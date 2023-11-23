@@ -85,7 +85,7 @@ export default {
     margin-right: 0.5rem; 
   }
   .hamburger {
-    color:white;
+    color:rgb(161, 21, 21);
     width:1em;
     display: flex;
     align-items: center;
