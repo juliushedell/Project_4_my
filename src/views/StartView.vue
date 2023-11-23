@@ -12,7 +12,11 @@
   <ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
+<<<<<<< HEAD
     <router-link to="/about/">{{uiLabels.about}}</router-link>
+=======
+    <a href="">{{uiLabels.about}}</a>
+>>>>>>> 82a9f12d774658706ce1aabcb7bf6d51ee629f2e
   </ResponsiveNav>
   <h1>{{ uiLabels["sales-pitch"] }}</h1>
   <h2>{{ uiLabels.subHeading }}</h2>
@@ -84,7 +88,7 @@ export default {
     margin-right: 0.5rem; 
   }
   .hamburger {
-    color:white;
+    color:rgb(161, 21, 21);
     width:1em;
     display: flex;
     align-items: center;
