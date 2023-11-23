@@ -5,18 +5,14 @@
     </div>
     <div class="logo">
       <img src="/img/logo.png">
-      Polly polling tool 
+      Allegations
       <img src="../assets/logo.svg">
     </div>
   </header>
   <ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
-    <a href="">{{uiLabels.about}}</a>
-<<<<<<< HEAD
-=======
-    
->>>>>>> e5af88ac2ab34a808c4cd26eb067d50f22416959
+    <router-link to="/about/">{{uiLabels.about}}</router-link>
   </ResponsiveNav>
   <h1>{{ uiLabels["sales-pitch"] }}</h1>
   <h2>{{ uiLabels.subHeading }}</h2>
