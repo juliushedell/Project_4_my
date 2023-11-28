@@ -12,5 +12,10 @@
 	"li1": "The host chooses a theme and how many allegations each player should submit.",
 	"li2": "Other players join by pressing 'join game', filling out their name and entering the game code that the host provides.",
 	"li3": "The goal of the game is to match the allegations with the correct player as fast as possible.",
-	"li4": "There are two lifelines available to be used at will:"
+	"li4": "There are two lifelines available to be used at will:",
+
+	"enterAllegations": "Enter allegations",
+	"Allegation1": "Allegation 1:",
+	"Allegation2": "Allegation 2:",
+	"Allegation3": "Allegation 3:"
 }

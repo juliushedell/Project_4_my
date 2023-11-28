@@ -29,6 +29,12 @@ const router = createRouter({
       name: 'HowToPlayView',
       component: () => import('../views/HowToPlayView.vue')
     },
+    {
+      path: '/EnterAllegations/',
+      name: 'EnterAllegations',
+      component: () => import('../views/EnterAllegations.vue')
+    }, 
+    
   ]
 })
 

@@ -12,5 +12,13 @@
 	"li1": "Värden väljer ett tema och hur många påståenden varje spelare ska lämna in.",
 	"li2": "Andra spelare ansluter genom att trycka på 'Gå med i spelet', fylla i sitt namn och ange den spelkod som värden tillhandahåller.",
 	"li3": "Målet med spelet är att matcha påståendena med rätt spelare så snabbt som möjligt.", 
-	"li4": "Det finns två livlinor tillgängliga för att användas vid behov:"
+	"li4": "Det finns två livlinor tillgängliga för att användas vid behov:",
+
+	"enterAllegations": "Ange allegations",
+	"Allegation1": "Allegation 1:",
+	"Allegation2": "Allegation 2:",
+	"Allegation3": "Allegation 3:"
+
+
+
 }
