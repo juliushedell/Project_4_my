@@ -30,7 +30,7 @@
           <router-link to="/createtheme/" class="themes">{{ uiLabels["cot"] }}</router-link>
         </div>
         <br>
-        <router-link to="/back/" class="back">{{ uiLabels["back"] }}</router-link>
+        <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
         <button v-on:click="create" class="create_game">
           {{ uiLabels["cg"] }}
         </button>
