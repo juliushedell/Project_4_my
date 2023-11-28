@@ -1,18 +1,40 @@
 <template>
   <header>
-    <div v-bind:class="['hamburger', {'close': !hideNav}]" 
+    <!--<div v-bind:class="['hamburger', {'close': !hideNav}]" 
          v-on:click="toggleNav">
     </div>
     <div class="logo">
       <img src="/img/logo.png">
       Allegations
-      <img src="../assets/logo.svg">
+      <img src="img/alligatorStart.png">
+    </div>-->
+    <div class="logo">
+      <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}} </button>
     </div>
   </header>
-  <ResponsiveNav v-bind:hideNav="hideNav">
-    <button v-on:click="switchLanguage">
-      <img :src="uiLabels['changeLanguage']">
-    </button>
+  <body>
+    <disp id="frontText">
+      <h1>Allegations</h1>
+      <p>where confessions are made</p> 
+    <img  src="img/alligatorStart.png" style="width:400px; height:250px;" >
+    </disp>
+    <disp class=wrapper>
+      <button class="button" style="grid-area:a;" >
+        Host game 
+      </button>
+      <button class="button" style="grid-area:b;">
+        Join game 
+      </button>
+      <button class="button" style="grid-area:d">
+        How to play  
+      </button>
+     </disp>
+
+    
+    
+  </body>
+  <!--<ResponsiveNav v-bind:hideNav="hideNav">
+    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
     <router-link to="/HowToPlayView/">{{uiLabels.regler}}</router-link>
     <router-link to="/hostgame/">{{uiLabels.host}}</router-link>
@@ -23,7 +45,7 @@
     Write poll id: 
     <input type="text" v-model="id">
   </label>
-  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
+  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link> -->
 </template>
 
 <script>
@@ -69,10 +91,11 @@ export default {
 </script>
 <style scoped>
   header {
-    background-color: red;
+    background-color: #81b8ce ;
     width: 100%;
-    display: grid;
-    grid-template-columns: 2em auto;
+    /* display: grid; */
+    /* grid-template-columns: 2em auto; */
+    text-align: right;
   }
   .logo {
     text-transform: uppercase;
@@ -116,5 +139,25 @@ export default {
   .hide {
     left:-12em;
   }
+}
+body{
+    background-color: #81b8ce; 
+  }
+#frontText{
+  color: green; 
+}
+.wrapper{
+  display: grid; 
+  grid-gap: 10px;
+  grid-template: 
+  "a b" 40px 
+  "c d" 40px / 1fr 1fr;
+}
+.button {
+  background-color:green;
+  color:yellow;
+  text-align: center; 
+
+  
 }
 </style>
