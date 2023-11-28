@@ -14,5 +14,15 @@
 	"li1": "Värden väljer ett tema och hur många påståenden varje spelare ska lämna in.",
 	"li2": "Andra spelare ansluter genom att trycka på 'Gå med i spelet', fylla i sitt namn och ange den spelkod som värden tillhandahåller.",
 	"li3": "Målet med spelet är att matcha påståendena med rätt spelare så snabbt som möjligt.", 
-	"li4": "Det finns två livlinor tillgängliga för att användas vid behov:"
+	"li4": "Det finns två livlinor tillgängliga för att användas vid behov:",
+
+	"name_of_host": "Namn på spelare",
+	"al_pp": "Allegations per spelare",
+	"theme": "Tema:",
+	"childhood": "Barndom",
+	"illegal": "Olagligt",
+	"uti": "På fyllan",
+	"cot": "Skapa eget tema",
+	"back": "Tillbaka",
+	"cg": "Skapa spel"
 }
