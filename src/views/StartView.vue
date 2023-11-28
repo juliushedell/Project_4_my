@@ -9,7 +9,7 @@
       <img src="img/alligatorStart.png">
     </div>-->
     <div class="logo">
-      <button v-on:click="switchLanguage">
+      <button v-on:click="switchLanguage" id="language_button">
       <img :src="uiLabels['changeLanguage']" id="language_button">
     </button>
     </div>
@@ -153,5 +153,10 @@ body{
   color:yellow;
   text-align: center;
   text-decoration: none; 
+}
+
+#language_button {
+  border: none;
+  background: none;
 }
 </style>
