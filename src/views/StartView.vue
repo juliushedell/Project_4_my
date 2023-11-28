@@ -21,17 +21,10 @@
     <img  src="img/alligatorStart.png" style="width:400px; height:250px;" >
     </disp>
     <disp class=wrapper>
-      <button class="button" style="grid-area:a;" >
-        Host game 
-      </button>
-      <button class="button" style="grid-area:b;">
-        Join game 
-      </button>
-      <button class="button" style="grid-area:d">
-        How to play  
-      </button>
-     </disp>
-
+     <router-link to="/HostGame/" class="button" style="grid-area:a;">{{uiLabels.host}}</router-link>
+     <router-link to="/JoinGameName/" class="button" style="grid-area:b;">{{uiLabels.joinGame}}</router-link>
+     <router-link to="/HowToPlayView/" class="button" style="grid-area:d;">{{uiLabels.howToPlay}}</router-link>
+    </disp>
     
     
   </body>
@@ -158,8 +151,7 @@ body{
 .button {
   background-color:green;
   color:yellow;
-  text-align: center; 
-
-  
+  text-align: center;
+  text-decoration: none; 
 }
 </style>
