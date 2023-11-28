@@ -2,7 +2,7 @@
     <div id="app"> 
         <header> 
             <h1>
-                Host game
+              {{ uiLabels["host"] }}
                 <img src="/img/Head_picture.png" class="head_picture">
             </h1>
         </header>

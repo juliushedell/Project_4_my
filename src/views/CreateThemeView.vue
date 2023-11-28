@@ -2,7 +2,7 @@
     <div id="app"> 
         <header> 
             <h1>
-                Create own theme
+                {{ uiLabels["createOwnTheme"] }}
             </h1>
             <img src="pullerPoint.png" alt="Alligator" class="header-image">
         </header>
