@@ -1,5 +1,5 @@
 {
-	"sales-pitch": "Simply. Great. Polling.",
+	"sales-pitch": "Where confessions are made",
 	"subHeading": "A simple polling tool",
 	"invite": "Invite participants with this link:",
 	"createPoll": "Create game",
@@ -38,7 +38,6 @@
 	"enterGameCode": "Join game",
 	"joinGame": "Join Game",
 	"lobby": "Kod",
-	"cg": "Create game",
 
 	"eyt": "Enter you theme:"
 }

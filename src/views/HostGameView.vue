@@ -16,7 +16,7 @@
         {{ uiLabels["al_pp"] }}
         <input type="number" v-model="no_allegations" class="text">
       </div>
-        <li>{{ uiLabels["theme"] }}</li>
+        {{ uiLabels["theme"] }}
         <div>
           <button v-on:click="ch" class="themes">
             {{ uiLabels["childhood"] }}
@@ -108,12 +108,6 @@ body {
   height: 70em;
 }
 
-li {
-  list-style: none;
-  background-size: 2%;
-  padding-left: 10px;
-  margin-bottom: 10px;
-}
 
 .themes{
   border: 5px solid;
@@ -126,16 +120,6 @@ li {
   text-decoration: none;
 }
 
-.back{
-  border: 5px solid;
-  border-radius: 8px;
-  color: red;
-  font-size: 16px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #81b8ce;
-  text-decoration: none;
-}
 
 .create_game{
   border: 5px solid;
