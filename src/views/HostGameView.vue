@@ -8,31 +8,29 @@
         </header>
     </div>
     <body>
-        <li>Name of host: </li>
+        <li> {{ uiLabels["name_of_host"] }} </li>
         <input type="text" v-model="name_of_host" class="text">
-        <li>Allegations per player</li>
+        <li>{{ uiLabels["al_pp"] }}</li>
         <input type="number" v-model="no_allegations" class="text">
-        <li>Theme: </li>
+        <li>{{ uiLabels["theme"] }}</li>
         <div>
           <button v-on:click="ch" class="themes">
-            Childhood
+            {{ uiLabels["childhood"] }}
           </button>
           <button v-on:click="ill" class="themes">
-            Illegal
+            {{ uiLabels["illegal"] }}
           </button>
           <button v-on:click="uti" class="themes">
-            Under the influence
+            {{ uiLabels["uti"] }}
           </button>
           <button v-on:click="create_own" class="themes">
-            Create you own theme
+            {{ uiLabels["cot"] }}
           </button>
         </div>
         <br>
-        <button v-on:click="back" class="back">
-          <router-link to="/back/">Back</router-link>
-        </button>
+        <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
         <button v-on:click="create" class="create_game">
-          Create game
+          {{ uiLabels["cg"] }}
         </button>
     </body>
 
@@ -43,51 +41,47 @@
 
 
   
-  <script>
-  import io from 'socket.io-client';
-  const socket = io("localhost:3000");
-  
-  export default {
-    name: 'CreateView',
-    data: function () {
-      return {
-        lang: localStorage.getItem("lang") || "en",
-        pollId: "",
-        question: "",
-        answers: ["", ""],
-        questionNumber: 0,
-        data: {},
-        uiLabels: {}
+<script>
+import ResponsiveNav from '@/components/ResponsiveNav.vue';
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
+export default {
+  name: 'StartView',
+  components: {
+    ResponsiveNav
+  },
+  data: function () {
+    return {
+      uiLabels: {},
+      id: "",
+      lang: localStorage.getItem("lang") || "en",
+      hideNav: true
+    }
+  },
+  created: function () {
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
+  },
+  methods: {
+    switchLanguage: function() {
+      if (this.lang === "en") {
+        this.lang = "sv"
       }
-    },
-    created: function () {
-      this.id = this.$route.params.id;
-      socket.emit("pageLoaded", this.lang);
-      socket.on("init", (labels) => {
-        this.uiLabels = labels
-      })
-      socket.on("dataUpdate", (data) =>
-        this.data = data
-      )
-      socket.on("pollCreated", (data) =>
-        this.data = data)
-    },
-    methods: {
-      createPoll: function () {
-        socket.emit("createPoll", {pollId: this.pollId, lang: this.lang })
-      },
-      addQuestion: function () {
-        socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
-      },
-      addAnswer: function () {
-        this.answers.push("");
-      },
-      runQuestion: function () {
-        socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+      else {
+        this.lang = "en"
       }
+      localStorage.setItem("lang", this.lang);
+      socket.emit("switchLanguage", this.lang)
+    },
+    toggleNav: function () {
+      this.hideNav = ! this.hideNav;
     }
   }
-  </script>
+}
+</script>
 
 <style scoped>
 #app {
@@ -142,6 +136,7 @@ li {
   padding: 10px;
   margin: 10px;
   background-color: #81b8ce;
+  text-decoration: none;
 }
 
 .create_game{
