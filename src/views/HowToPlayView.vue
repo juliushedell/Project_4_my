@@ -2,7 +2,7 @@
     <header>
       <h1>
         {{ uiLabels["howToPlay"] }}
-        <img src="/img/Head_picture.png" id="head_picture">
+        <img src="/img/Head_picture.png" class="head_picture">
       </h1>
     
     </header>
@@ -75,15 +75,17 @@ body {
 li {
   list-style: none;
   background: url('/img/Bullet_points.png') no-repeat 0 center;
-  background-size: 3%;
+  background-size: 1.5em;
   padding-left: 50px;
   margin-bottom: 30px;
   text-align: left;
   font-size: 1.5em;
 }
 
-#head_picture {
-  height: 75px;
+.head_picture {
+  position: absolute;
+  padding-left: 15em;
+  height: 85px;
 }
 
 </style>

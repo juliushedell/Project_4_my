@@ -3,8 +3,8 @@
         <header> 
             <h1>
                 Host game
+                <img src="/img/Head_picture.png" class="head_picture">
             </h1>
-            <img src="pullerPoint.png" alt="Alligator" class="header-image">
         </header>
     </div>
     <body>
