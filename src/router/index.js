@@ -25,9 +25,44 @@ const router = createRouter({
       component: () => import('../views/ResultView.vue')
     }, 
     {
-      path: '/about/',
+      path: '/HowToPlayView/',
       name: 'HowToPlayView',
       component: () => import('../views/HowToPlayView.vue')
+    },
+    {
+      path: '/HostGame/',
+      name: 'HostGameView',
+      component: () => import('../views/HostGameView.vue')
+    },
+    {
+      path: '/EnterAllegations/',
+      name: 'EnterAllegations',
+      component: () => import('../views/EnterAllegations.vue')
+    },
+    {
+      path: '/JoinGameName/',
+      name: 'JoinGameName',
+      component: () => import('../views/JoinGameName.vue')
+    },
+    {
+      path: '/JoinGameCode/',
+      name: 'JoinGameCode',
+      component: () => import('../views/JoinGameCode.vue')
+    },
+    {
+      path: '/Lobby/',
+      name: 'Lobby',
+      component: () => import('../views/Lobby.vue')
+    },
+    // {
+    //   path: '/backk/',
+    //   name: 'HostGameView',
+    //   component: () => import('../views/HostGameView.vue')
+    // },
+    {
+      path: '/createtheme/',
+      name: 'CreateTheme',
+      component: () => import('../views/CreateThemeView.vue')
     },
   ]
 })
