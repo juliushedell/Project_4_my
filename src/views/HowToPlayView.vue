@@ -6,37 +6,61 @@
 
     <header>
       <h1>
-          How to play
+        {{ uiLabels["howToPlay"] }}
       </h1>
       <img src="pullerPoint.png" alt="Alligator" class="header-image">
     </header>
 
     <body> 
-      <li> The host chooses a theme and how many allegations each player should submit. </li>
-      <li> Other players join by pressing “join game”, filling out their name and entering the game code that the host provides. </li>
-      <li> The goal of the game is to match the allegations with the correct player as fast as possible. </li>
-      <li> There are two lifelines available to be used at will: </li>
+      <li> {{ uiLabels["li1"] }} </li>
+      <li> {{ uiLabels["li2"] }} </li>
+      <li> {{ uiLabels["li3"] }} </li>
+      <li> {{ uiLabels["li4"] }} </li>
     </body>
 
   </div>
 </template>
 
 <script>
+import ResponsiveNav from '@/components/ResponsiveNav.vue';
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
 export default {
-
-  data() {
+  name: 'StartView',
+  components: {
+    ResponsiveNav
+  },
+  data: function () {
     return {
-
-    };
+      uiLabels: {},
+      id: "",
+      lang: localStorage.getItem("lang") || "en",
+      hideNav: true
+    }
+  },
+  created: function () {
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
   },
   methods: {
-
-  },
-  computed: {
-
-  },
-
-};
+    switchLanguage: function() {
+      if (this.lang === "en") {
+        this.lang = "sv"
+      }
+      else {
+        this.lang = "en"
+      }
+      localStorage.setItem("lang", this.lang);
+      socket.emit("switchLanguage", this.lang)
+    },
+    toggleNav: function () {
+      this.hideNav = ! this.hideNav;
+    }
+  }
+}
 </script>
 
 <style scoped>
