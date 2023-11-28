@@ -15,6 +15,8 @@
 	"li2": "Other players join by pressing 'join game', filling out their name and entering the game code that the host provides.",
 	"li3": "The goal of the game is to match the allegations with the correct player as fast as possible.",
 	"li4": "There are two lifelines available to be used at will:",
+	"50/50": "Reduces the options down to 2", 
+	"sneakPeak": "Allows a sneak peak on what other players have answerd",
 
 	"name_of_host": "Name of host",
 	"al_pp": "Allegations per player",

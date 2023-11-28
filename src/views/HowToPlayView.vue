@@ -11,7 +11,13 @@
       <li> {{ uiLabels["li2"] }} </li>
       <li> {{ uiLabels["li3"] }} </li>
       <li> {{ uiLabels["li4"] }} </li>
+      <br>
+      <br>
+      <h3> {{ uiLabels["50/50"] }} </h3>
+      <br>
+      <h3> {{ uiLabels["sneakPeak"] }}</h3>
     </body>
+
 </template>
 
 <script>
@@ -80,6 +86,12 @@ li {
   margin-bottom: 30px;
   text-align: left;
   font-size: 1.5em;
+}
+
+h3 {
+  text-align: left;
+  padding-left: 300px;
+
 }
 
 .head_picture {

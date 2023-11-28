@@ -12,8 +12,9 @@ h1 {
   background-color: green;
   color: yellow;
   padding: 15px;
-  margin-top: 0%;
+  margin-top: 1em;
   margin-bottom: 0%;
+
 }
 
 body {
@@ -24,4 +25,5 @@ body {
   position: absolute;
   padding-left: 15em;
   height: 85px;
+
 }
