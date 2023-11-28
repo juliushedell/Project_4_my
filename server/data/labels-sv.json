@@ -37,5 +37,8 @@
 	"enterName": "Fyll i namn",
 	"enterGameCode": "Delta i spel",
 	"joinGame": "Delta i spel",
-	"lobby": "Game code"
+	"lobby": "Game code",
+	"cg": "Skapa spel",
+
+	"eyt": "Ange ditt tema:"
 }

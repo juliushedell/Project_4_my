@@ -5,3 +5,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+h1 {
+  background-color: green;
+  color: yellow;
+  padding: 15px;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+body {
+  background-color: #81b8ce;
+}
+
+.head_picture {
+  position: absolute;
+  padding-left: 15em;
+  height: 85px;
+}

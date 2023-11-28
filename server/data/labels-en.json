@@ -23,7 +23,7 @@
 
 	"name_of_host": "Name of host",
 	"al_pp": "Allegations per player",
-	"theme": "theme",
+	"theme": "Theme",
 	"childhood": "Childhood",
 	"illegal": "Illegal",
 	"uti": "Under the influence",
@@ -35,5 +35,8 @@
 	"enterName": "Enter name",
 	"enterGameCode": "Join game",
 	"joinGame": "Join Game",
-	"lobby": "Kod"
+	"lobby": "Kod",
+	"cg": "Create game",
+
+	"eyt": "Enter you theme:"
 }

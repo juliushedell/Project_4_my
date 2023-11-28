@@ -1,17 +1,23 @@
 <template>
-    <header>
-      <h1>
-        {{ uiLabels["howToPlay"] }}
-        <img src="/img/Head_picture.png" class="head_picture">
-      </h1>
-    
-    </header>
+    <div id="app"> 
+        <header> 
+            <h1>
+                Create own theme
+            </h1>
+            <img src="pullerPoint.png" alt="Alligator" class="header-image">
+        </header>
+    </div>
     <body>
-      <li> {{ uiLabels["li1"] }} </li>
-      <li> {{ uiLabels["li2"] }} </li>
-      <li> {{ uiLabels["li3"] }} </li>
-      <li> {{ uiLabels["li4"] }} </li>
+        <div class="wrap">
+            {{ uiLabels["eyt"] }}
+            <input type="text" v-model="name_of_host">
+        </div>
+        <router-link to="/backk/" class="backk">{{ uiLabels["back"] }}</router-link>
+        <button v-on:click="create" class="create_game">
+          {{ uiLabels["cg"] }}
+        </button>
     </body>
+
 </template>
 
 <script>
@@ -57,35 +63,9 @@ export default {
 </script>
 
 <style scoped>
-
-.header-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    max-width: 100px;
-    height: auto;
+.wrap{
+  display: grid;
+  grid-gap: 5em;
+  grid-template-columns: repeat(2, 1fr);
 }
-
-body {
-  height: 40em;
-  padding-left: 10%;
-  padding-top: 25px;
-}
-
-li {
-  list-style: none;
-  background: url('/img/Bullet_points.png') no-repeat 0 center;
-  background-size: 1.5em;
-  padding-left: 50px;
-  margin-bottom: 30px;
-  text-align: left;
-  font-size: 1.5em;
-}
-
-.head_picture {
-  position: absolute;
-  padding-left: 15em;
-  height: 85px;
-}
-
 </style>

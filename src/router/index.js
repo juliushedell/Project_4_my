@@ -54,6 +54,16 @@ const router = createRouter({
       name: 'Lobby',
       component: () => import('../views/Lobby.vue')
     },
+    // {
+    //   path: '/backk/',
+    //   name: 'HostGameView',
+    //   component: () => import('../views/HostGameView.vue')
+    // },
+    {
+      path: '/createtheme/',
+      name: 'CreateTheme',
+      component: () => import('../views/CreateThemeView.vue')
+    },
   ]
 })
 
