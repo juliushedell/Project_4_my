@@ -1,15 +1,24 @@
 <template>
-    <header>
-          {{ uiLabels["enterGameCode"] }}
-    </header>
-    <body> 
-     <p> <input type="number" id="gameCode" v-model="gameCode_data" required="required" > </p>
-    <router-link to="Lobby" class="next">{{ uiLabels["joinGame"] }}</router-link>
+    <div id="app"> 
+        <header> 
+            <h1>
+                Create own theme
+            </h1>
+            <img src="pullerPoint.png" alt="Alligator" class="header-image">
+        </header>
+    </div>
+    <body>
+        <div class="wrap">
+            {{ uiLabels["eyt"] }}
+            <input type="text" v-model="name_of_host">
+        </div>
+        <router-link to="/backk/" class="backk">{{ uiLabels["back"] }}</router-link>
+        <button v-on:click="create" class="create_game">
+          {{ uiLabels["cg"] }}
+        </button>
     </body>
+
 </template>
-
-
-
 
 <script>
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
@@ -53,15 +62,10 @@ export default {
 }
 </script>
 
-<style>
-.next{
-  border: 5px solid;
-  border-radius: 8px;
-  color: red;
-  font-size: 16px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #81b8ce;
-  text-decoration: none;
+<style scoped>
+.wrap{
+  display: grid;
+  grid-gap: 5em;
+  grid-template-columns: repeat(2, 1fr);
 }
 </style>

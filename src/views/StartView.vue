@@ -14,7 +14,7 @@
       <img :src="uiLabels['changeLanguage']">
     </button>
     <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
-    <router-link to="/about/">{{uiLabels.about}}</router-link>
+    <router-link to="/HowToPlayView/">{{uiLabels.regler}}</router-link>
     <router-link to="/hostgame/">{{uiLabels.host}}</router-link>
     </ResponsiveNav>
   <h1>{{ uiLabels["sales-pitch"] }}</h1>
