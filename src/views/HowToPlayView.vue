@@ -16,6 +16,16 @@
       <h3> {{ uiLabels["50/50"] }} </h3>
       <br>
       <h3> {{ uiLabels["sneakPeak"] }}</h3>
+
+      <button v-on:click="clue1" class="clues"> 50/50</button>
+      
+      <button v-on:click="clue1" class="clues"> Sneak peak</button>
+
+
+        <br>
+        <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
+
+    
     </body>
 
 </template>
@@ -92,6 +102,19 @@ h3 {
   text-align: left;
   padding-left: 300px;
 
+}
+
+.clues {
+  width: 200px; 
+  height: 50px; 
+  border-radius: 25px; 
+  background-color: yellow;
+  border: 6px solid green;
+  padding: 15px 32px;
+  text-align: center;
+  color: red; 
+  display: inline-block;
+  font-size: 20px;
 }
 
 .head_picture {
