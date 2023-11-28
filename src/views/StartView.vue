@@ -140,6 +140,7 @@ body{
   }
 #frontText{
   color: green; 
+  text-align: center;
 }
 .wrapper{
   display: grid; 
@@ -148,12 +149,12 @@ body{
   "a b" 40px 
   "c d" 40px / 1fr 1fr;
 }
-.button {
+ /* .button {  
   background-color:green;
   color:yellow;
   text-align: center;
   text-decoration: none; 
-}
+}*/
 
 #language_button {
   border: none;

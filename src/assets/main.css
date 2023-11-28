@@ -26,7 +26,14 @@ body {
   position: absolute;
   padding-left: 15em;
   height: 85px;
-  margin-top: -45px;
+}
+
+.button{
+  background-color: #3fbc6a;
+  border: 3px solid  #2a9451 ;
+  color:#fff540;
+  text-align: center;
+  border-radius: 20px;  
 }
 
 .back{
