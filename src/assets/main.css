@@ -12,8 +12,10 @@ h1 {
   background-color: green;
   color: yellow;
   padding: 15px;
-  margin-top: 0%;
+  margin-top: 1em;
   margin-bottom: 0%;
+  border-top: 3px solid #8dca88;
+  border-bottom: 3px solid #8dca88;
 }
 
 body {
