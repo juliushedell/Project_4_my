@@ -6,3 +6,16 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
+
+h1 {
+  background-color: green;
+  color: yellow;
+  padding: 10px;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+body {
+  background-color: #81b8ce;
+}
