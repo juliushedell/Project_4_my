@@ -9,13 +9,15 @@
       <img src="img/alligatorStart.png">
     </div>-->
     <div class="logo">
-      <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}} </button>
+      <button v-on:click="switchLanguage">
+      <img :src="uiLabels['changeLanguage']" id="language_button">
+    </button>
     </div>
   </header>
   <body>
     <disp id="frontText">
       <h1>Allegations</h1>
-      <p>where confessions are made</p> 
+      <p>{{ uiLabels['sales-pitch'] }}</p> 
     <img  src="img/alligatorStart.png" style="width:400px; height:250px;" >
     </disp>
     <disp class=wrapper>
