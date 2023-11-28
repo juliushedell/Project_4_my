@@ -29,6 +29,16 @@ const router = createRouter({
       name: 'HowToPlayView',
       component: () => import('../views/HowToPlayView.vue')
     },
+    {
+      path: '/hostgame/',
+      name: 'HostGameView',
+      component: () => import('../views/HostgameView.vue')
+    },
+    {
+      path: '/back/',
+      name: 'StartView',
+      component: () => import('../views/StartView.vue')
+    },
   ]
 })
 
