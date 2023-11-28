@@ -14,5 +14,15 @@
 	"li1": "The host chooses a theme and how many allegations each player should submit.",
 	"li2": "Other players join by pressing 'join game', filling out their name and entering the game code that the host provides.",
 	"li3": "The goal of the game is to match the allegations with the correct player as fast as possible.",
-	"li4": "There are two lifelines available to be used at will:"
+	"li4": "There are two lifelines available to be used at will:",
+
+	"name_of_host": "Name of host",
+	"al_pp": "Allegations per player",
+	"theme": "theme",
+	"childhood": "Childhood",
+	"illegal": "Illegal",
+	"uti": "Under the influence",
+	"cot": "Create own theme",
+	"back": "Back",
+	"cg": "Create game"
 }
