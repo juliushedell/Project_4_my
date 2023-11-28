@@ -32,12 +32,22 @@ const router = createRouter({
     {
       path: '/hostgame/',
       name: 'HostGameView',
-      component: () => import('../views/HostgameView.vue')
+      component: () => import('../views/HostGameView.vue')
     },
     {
       path: '/back/',
       name: 'StartView',
       component: () => import('../views/StartView.vue')
+    },
+    // {
+    //   path: '/backk/',
+    //   name: 'HostGameView',
+    //   component: () => import('../views/HostGameView.vue')
+    // },
+    {
+      path: '/createtheme/',
+      name: 'CreateTheme',
+      component: () => import('../views/CreateThemeView.vue')
     },
   ]
 })

@@ -18,11 +18,13 @@
 
 	"name_of_host": "Name of host",
 	"al_pp": "Allegations per player",
-	"theme": "theme",
+	"theme": "Theme",
 	"childhood": "Childhood",
 	"illegal": "Illegal",
 	"uti": "Under the influence",
 	"cot": "Create own theme",
 	"back": "Back",
-	"cg": "Create game"
+	"cg": "Create game",
+
+	"eyt": "Enter you theme:"
 }

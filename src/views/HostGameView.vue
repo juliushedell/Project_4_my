@@ -8,10 +8,14 @@
         </header>
     </div>
     <body>
-        <li> {{ uiLabels["name_of_host"] }} </li>
+      <div class="wrap">
+        {{ uiLabels["name_of_host"] }}
         <input type="text" v-model="name_of_host" class="text">
-        <li>{{ uiLabels["al_pp"] }}</li>
+      </div>
+      <div class="wrap">
+        {{ uiLabels["al_pp"] }}
         <input type="number" v-model="no_allegations" class="text">
+      </div>
         <li>{{ uiLabels["theme"] }}</li>
         <div>
           <button v-on:click="ch" class="themes">
@@ -23,9 +27,7 @@
           <button v-on:click="uti" class="themes">
             {{ uiLabels["uti"] }}
           </button>
-          <button v-on:click="create_own" class="themes">
-            {{ uiLabels["cot"] }}
-          </button>
+          <router-link to="/createtheme/" class="themes">{{ uiLabels["cot"] }}</router-link>
         </div>
         <br>
         <router-link to="/back/" class="back">{{ uiLabels["back"] }}</router-link>
@@ -88,10 +90,6 @@ export default {
   background-color: #81b8ce; /* Set the background color for the entire component */
 }
 
-h1 {
-  background-color: green;
-  color: yellow;
-}
 
 .header-image {
     position: absolute;
@@ -107,8 +105,7 @@ header {
 
 body {
   background-color: #81b8ce;
-  height: 40em;
-  padding-left: 10%;
+  height: 70em;
 }
 
 li {
@@ -126,6 +123,7 @@ li {
   padding: 10px;
   margin: 10px;
   background-color: #81b8ce;
+  text-decoration: none;
 }
 
 .back{
@@ -155,6 +153,12 @@ li {
   font-size: 16px;
   padding: 10px;
   margin: 10px;
+}
+
+.wrap{
+  display: grid;
+  grid-gap: 5em;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 </style>
