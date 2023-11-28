@@ -13,6 +13,7 @@
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
     <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
     <router-link to="/about/">{{uiLabels.about}}</router-link>
+    </ResponsiveNav>
   </ResponsiveNav>
   <h1>{{ uiLabels["sales-pitch"] }}</h1>
   <h2>{{ uiLabels.subHeading }}</h2>
@@ -84,7 +85,7 @@ export default {
     margin-right: 0.5rem; 
   }
   .hamburger {
-    color:rgb(161, 21, 21);
+    color:white;
     width:1em;
     display: flex;
     align-items: center;
