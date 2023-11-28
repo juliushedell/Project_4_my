@@ -10,7 +10,9 @@
     </div>
   </header>
   <ResponsiveNav v-bind:hideNav="hideNav">
-    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
+    <button v-on:click="switchLanguage">
+      <img :src="uiLabels['changeLanguage']">
+    </button>
     <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
     <router-link to="/about/">{{uiLabels.about}}</router-link>
     <router-link to="/hostgame/">{{uiLabels.host}}</router-link>
