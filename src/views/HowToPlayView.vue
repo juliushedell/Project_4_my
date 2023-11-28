@@ -11,7 +11,7 @@
       <img src="pullerPoint.png" alt="Alligator" class="header-image">
     </header>
 
-    <body> 
+    <body>
       <li> {{ uiLabels["li1"] }} </li>
       <li> {{ uiLabels["li2"] }} </li>
       <li> {{ uiLabels["li3"] }} </li>
@@ -95,8 +95,10 @@ li {
   list-style: none;
   background: url('pullerPoint.png') no-repeat 0 center;
   background-size: 2%;
-  padding-left: 10px;
-  margin-bottom: 10px;
+  padding-left: 50px;
+  margin-bottom: 30px;
+  text-align: left;
+  font-size: 1.5em;
 }
 
 </style>
