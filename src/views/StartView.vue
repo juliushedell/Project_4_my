@@ -15,6 +15,7 @@
     </button>
     <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
     <router-link to="/about/">{{uiLabels.about}}</router-link>
+    <router-link to="/hostgame/">{{uiLabels.host}}</router-link>
     </ResponsiveNav>
   <h1>{{ uiLabels["sales-pitch"] }}</h1>
   <h2>{{ uiLabels.subHeading }}</h2>
