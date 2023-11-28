@@ -120,16 +120,6 @@ body {
   text-decoration: none;
 }
 
-.back{
-  border: 5px solid;
-  border-radius: 8px;
-  color: red;
-  font-size: 16px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #81b8ce;
-  text-decoration: none;
-}
 
 .create_game{
   border: 5px solid;
