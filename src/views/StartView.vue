@@ -9,24 +9,26 @@
       <img src="img/alligatorStart.png">
     </div>-->
     <div class="logo">
-      <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}} </button>
+      <button v-on:click="switchLanguage">
+      <img :src="uiLabels['changeLanguage']">
+    </button>
     </div>
   </header>
   <body>
     <disp id="frontText">
-      <h1>Allegations</h1>
+      <h2>Allegations</h2>
       <p>where confessions are made</p> 
     <img  src="img/alligatorStart.png" style="width:400px; height:250px;" >
     </disp>
     <disp class=wrapper>
       <button class="button" style="grid-area:a;" >
-        Host game 
+        <p>Host game</p>
       </button>
       <button class="button" style="grid-area:b;">
-        Join game 
+        <p>Join game</p>
       </button>
       <button class="button" style="grid-area:d">
-        How to play  
+        <p>How to play</p>
       </button>
      </disp>
 
@@ -145,6 +147,7 @@ body{
   }
 #frontText{
   color: green; 
+  text-align: center;
 }
 .wrapper{
   display: grid; 
@@ -153,11 +156,9 @@ body{
   "a b" 40px 
   "c d" 40px / 1fr 1fr;
 }
-.button {
+/* .button { 
   background-color:green;
   color:yellow;
   text-align: center; 
-
-  
-}
+}*/
 </style>
