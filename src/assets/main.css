@@ -8,14 +8,18 @@
 
 
 h1 {
-  background-color: green;
+  background-color: #3fbc6a;
   color: yellow;
   padding: 15px;
   margin-top: 1em;
   margin-bottom: 0%;
   text-align: center;
-  border-top: 3px solid #66db4e;
-  border-bottom: 3px solid #66db4e;
+  border-top: 3px solid #2a9451;
+  border-bottom: 3px solid #2a9451;
+}
+
+h2 {
+  font-size: 35px;
 }
 
 body {
@@ -47,4 +51,21 @@ body {
   margin: 10px;
   background-color: #81b8ce;
   text-decoration: none;
+}
+
+.back {
+  width: 200px; 
+  height: 75px; 
+  border-radius: 40px; 
+  background-color: pink;
+  border: 6px solid green;
+  text-align: center;
+  color: green; 
+  display: inline-block;
+  font-size: 30px;
+  line-height: 70px;
+}
+
+.back:hover{
+  background-color: #ffccd5;
 }

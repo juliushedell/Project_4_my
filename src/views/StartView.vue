@@ -8,18 +8,17 @@
       Allegations
       <img src="img/alligatorStart.png">
     </div>-->
-    <div class="logo">
+    
       <button v-on:click="switchLanguage" id="language_button">
       <img :src="uiLabels['changeLanguage']" id="language_button">
-    </button>
-    </div>
+      </button>
   </header>
   <body>
-    <disp id="frontText">
-      <h1>Allegations</h1>
+    <div id="frontText">
+      <h2>Allegations</h2>
       <p>{{ uiLabels['sales-pitch'] }}</p> 
-    <img  src="img/alligatorStart.png" style="width:400px; height:250px;" >
-    </disp>
+    <img  src="img/alligatorStart.png" id="startpage_picture">
+    </div>
     <disp class=wrapper>
      <router-link to="/HostGame/" class="button" style="grid-area:a;">{{uiLabels.host}}</router-link>
      <router-link to="/JoinGameName/" class="button" style="grid-area:b;">{{uiLabels.joinGame}}</router-link>
@@ -139,7 +138,7 @@ body{
     background-color: #81b8ce; 
   }
 #frontText{
-  color: green; 
+  color: #2a9451; 
   text-align: center;
 }
 .wrapper{
@@ -159,5 +158,16 @@ body{
 #language_button {
   border: none;
   background: none;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+#startpage_picture {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  width:400px; 
+  height:250px;
 }
 </style>
