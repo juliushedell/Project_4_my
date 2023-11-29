@@ -42,5 +42,9 @@
 
 	"eyt": "Enter you theme:",
 
+<<<<<<< HEAD
 	"gameCode": "Game code"
+=======
+	"Choosename": "Choose name"
+>>>>>>> 3907c50b1defd3ed16a49c24a9848857419c2702
 }

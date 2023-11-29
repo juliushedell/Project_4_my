@@ -42,6 +42,10 @@
 	"lobby": "Game code",
 
 	"eyt": "Ange ditt tema:",
+<<<<<<< HEAD
 
 	"gameCode": "Spelkod"
+=======
+	"Choosename": "Välj namn"
+>>>>>>> 3907c50b1defd3ed16a49c24a9848857419c2702
 }

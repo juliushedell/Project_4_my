@@ -1,10 +1,18 @@
 <template>
     <header>
-          {{ uiLabels["enterGameCode"] }}
+      <h1>
+        {{ uiLabels["joinGame"] }}
+        <img src="/img/Head_picture.png" class="head_picture">
+      </h1>
     </header>
     <body> 
-     <p> <input type="number" id="gameCode" v-model="gameCode_data" required="required" > </p>
-    <router-link to="Lobby" class="next">{{ uiLabels["joinGame"] }}</router-link>
+      <div class="wrap">
+        {{ uiLabels["enterGameCode"] }}
+        <p> 
+          <input type="number" id="gameCode" v-model="gameCode_data" required="required" > 
+        </p>
+      </div>
+      <router-link to="/Lobby/" class="button">{{ uiLabels["joinGame"] }}</router-link>
     </body>
 </template>
 
@@ -54,14 +62,5 @@ export default {
 </script>
 
 <style>
-.next{
-  border: 5px solid;
-  border-radius: 8px;
-  color: red;
-  font-size: 16px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #81b8ce;
-  text-decoration: none;
-}
+
 </style>
