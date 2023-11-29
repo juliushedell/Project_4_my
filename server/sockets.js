@@ -46,7 +46,13 @@ function sockets(io, socket, data) {
   socket.on('resetAll', () => {
     data = new Data();
     data.initializeData();
-  })
+  });
+  // tar emot confessions ?
+  //Behöver lägga till io.emit för att kunna skicka vidare !
+ // socket.on('addConfessions', function(confessions){
+    //data.addConfessions(confessions)
+
+  //})
  
 }
 

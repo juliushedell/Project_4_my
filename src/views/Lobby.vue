@@ -9,33 +9,25 @@
           {{ key }}
         </div>
       </div>
+      <!-- skapar fields till confessions -->
       <form>
         <div>
           <div v-for="i in 3" :key="i">
             <label for="confession{{ i }}"> Confession {{ i }} :</label>
-            <input type="text" id="field{{ i }}" v-model="conf" required="required" placeholder="Enter confession here">
+            <input type="text" id="field{{ i }}" v-on="conf" required="required" placeholder="Enter confession here">
             <br><br>
           </div>
         </div>
       </form>
-    <!--<form>
-      <p>
-        <label for="confession"> Confessions:</label>
-        <br>
-        <input type="text" id="confession" v-model="conf" required="required" placeholder="Enter confession here">
-        <br>
-        <input type="text" id="confession" v-model="conf" required="required" placeholder="Enter confession here">
-        <br>
-        <input type="text" id="confession" v-model="conf" required="required" placeholder="Enter confession here">
-      </p>
-    </form>-->
-    <div id="orders">
-      <button  v-on:click="markDone(key)">
-        <h3>Next</h3> 
-      </button>
-    </div>  
-    <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-  </body>
+      <!-- knapp som skickar confessions till submitConfessions  -->
+      <div>
+        <button  v-on:click="submitConfessions(key)">
+          <h3>Next</h3> 
+        </button>
+      </div>  
+      <!--knapp som går bakåt -->
+      <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
+    </body>
 </template>
 
 <script>
@@ -54,7 +46,9 @@ export default {
       uiLabels: {},
       id: "",
       lang: localStorage.getItem("lang") || "en",
-      hideNav: true
+      hideNav: true,
+      // lagrar confessions i array?
+      conf:[]
     }
   },
   created: function () {
@@ -79,7 +73,11 @@ export default {
     },
     generateGameCode: function () {
     return Math.floor(Math.random() * 100000);
-  }
+    }
+    // skickar confessions till servern ?
+    //submitConfessions: function() {
+      //socket.emit("addConfessions", {conf: this.conf})
+    //}
   }
 }
 </script>
