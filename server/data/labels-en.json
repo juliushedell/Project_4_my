@@ -30,7 +30,7 @@
 	"childhood": "Childhood",
 	"illegal": "Illegal",
 	"uti": "Under the influence",
-	"cot": "Create own theme",
+	"yourOwnTheme": "Theme:",
 	"back": "Back",
 	"next": "Next",
 	"cg": "Create game",
@@ -40,6 +40,5 @@
 	"joinGame": "Join Game",
 	"lobby": "Kod",
 
-	"eyt": "Enter you theme:",
-	"createOwnTheme": "Create own theme"
+	"eyt": "Enter you theme:"
 }

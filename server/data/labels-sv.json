@@ -31,7 +31,7 @@
 	"childhood": "Barndom",
 	"illegal": "Olagligt",
 	"uti": "På fyllan",
-	"cot": "Skapa eget tema",
+	"yourOwnTheme": "Tema:",
 	"back": "Tillbaka",
 	"next": "Nästa",
 	"cg": "Skapa spel",
@@ -41,6 +41,5 @@
 	"joinGame": "Delta i spel",
 	"lobby": "Game code",
 
-	"eyt": "Ange ditt tema:",
-	"createOwnTheme": "Skapa eget tema"
+	"eyt": "Ange ditt tema:"
 }
