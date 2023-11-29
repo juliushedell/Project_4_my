@@ -1,11 +1,21 @@
 <template>
 <header>
-{{ uiLabels["enterName"] }}
+<h1>
+  {{ uiLabels["Choosename"] }}
+  <img src="/img/Head_picture.png" class="head_picture">
+</h1>
 </header>
 <body>
-    <p> <input type="text" id="gameName" v-model="gameName_data" required="required" > </p>
-<router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
-<router-link to="JoinGameCode" class="next">{{ uiLabels["next"] }}</router-link>
+  <div class="wrap">
+  {{ uiLabels["enterName"] }}
+    <p> 
+      <input type="text" id="gameName" v-model="gameName_data" required="required" > 
+    </p>
+  </div>
+  <div class="wrap">
+    <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
+    <router-link to="/JoinGameCode/" class="button">{{ uiLabels["next"] }}</router-link>
+  </div>
 </body>
 </template>
 
@@ -52,14 +62,10 @@ export default {
 </script>
 
 <style>
-.back, .next{
-  border: 5px solid;
-  border-radius: 8px;
-  color: red;
-  font-size: 16px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #81b8ce;
-  text-decoration: none;
+.wrap{
+display: grid;
+grid-gap: 5em;
+grid-template-columns: repeat(2, 1fr);
+margin: 50px 100px 50px 100px;
 }
 </style>
