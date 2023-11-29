@@ -13,8 +13,8 @@
 	"li2": "Andra spelare ansluter genom att trycka på 'Gå med i spelet', fylla i sitt namn och ange den spelkod som värden tillhandahåller.",
 	"li3": "Målet med spelet är att matcha påståendena med rätt spelare så snabbt som möjligt.", 
 	"li4": "Det finns två livlinor tillgängliga för att användas vid behov:",
-	"50/50": "Minskar antalet val till 2", 
-	"sneakPeak": "Tillåter en tjuvtitt på vad andra spelare har svarat",
+	"50/50": "- Minskar antalet val till 2", 
+	"sneakPeak": "- Tillåter en tjuvtitt på vad andra spelare har svarat",
 
 	"enterAllegations": "Ange allegations",
 	"Allegation1": "Allegation 1:",
@@ -38,5 +38,6 @@
 	"joinGame": "Delta i spel",
 	"lobby": "Game code",
 
-	"eyt": "Ange ditt tema:"
+	"eyt": "Ange ditt tema:",
+	"Choosename": "Välj namn"
 }
