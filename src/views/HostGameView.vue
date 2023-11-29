@@ -126,15 +126,19 @@ margin-bottom: 10px;
 }
 
 .themes{
-border: 5px solid;
-border-radius: 8px;
+border: 5px solid #2a9451;
 color: green;
-font-size: 16px;
-padding: 10px;
-margin: 10px;
 background-color: #81b8ce;
+text-align: center;
+border-radius: 20px;
 text-decoration: none;
+padding: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
 }
+
+
 
 
 
