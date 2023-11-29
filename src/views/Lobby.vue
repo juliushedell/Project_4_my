@@ -17,38 +17,51 @@
 </template>
 
 <script>
+
+import ResponsiveNav from '@/components/ResponsiveNav.vue';
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
 export default {
-  name: 'Lobby',
+  name: 'StartView',
+  components: {
+    ResponsiveNav
+  },
   data: function () {
     return {
-      dengrejen: null
+      uiLabels: {},
+      id: "",
+      lang: localStorage.getItem("lang") || "en",
+      hideNav: true
     }
   },
   created: function () {
-//   this.id = this.$route.params.id;
-//   socket.emit("pageLoaded", this.lang);
-//   socket.on("init", (labels) => {
-//     this.uiLabels = labels
-//   })
-//   socket.on("dataUpdate", (data) =>
-//     this.data = data
-//   )
-//   socket.on("pollCreated", (data) =>
-//     this.data = data)
-//----------------------------------------------------------------
-//    socket.on("gameCreated", (data) =>
-//      this.data = data)
-//     console.log('hejhej')
-
-  //----------------------------------------------------------------
-},
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
+  },
   methods: {
-    clearQueue: function () {
-      socket.emit('clearQueue');
-    }
+    switchLanguage: function() {
+      if (this.lang === "en") {
+        this.lang = "sv"
+      }
+      else {
+        this.lang = "en"
+      }
+      localStorage.setItem("lang", this.lang);
+      socket.emit("switchLanguage", this.lang)
+    },
+    toggleNav: function () {
+      this.hideNav = ! this.hideNav;
+    },
+    generateGameCode: function () {
+    return Math.floor(Math.random() * 100000);
+  }
   }
 }
 </script>
+
 
 <style>
 </style>
