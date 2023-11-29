@@ -31,12 +31,12 @@ Data.prototype.createPoll = function(pollId, lang="en") {
   return this.polls[pollId];
 }
 //----------------------------------------------------------------
- Data.prototype.createGame = function(game_id, lang="en") {
+ Data.prototype.createGame = function(game_id, lang="en", name_of_host, no_allegations,the_theme) {
    if (typeof this.polls[game_id] === "undefined") {
      let poll = {};
      poll.lang = lang;  
      poll.name_of_host = '';
-     poll.no_allegations = 0;
+     poll.no_allegations = 50;
      poll.the_theme = '';              
      this.polls[game_id] = poll;
      console.log("poll created", game_id, poll);

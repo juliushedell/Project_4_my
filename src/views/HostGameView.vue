@@ -33,9 +33,9 @@
 
       <br>
       <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-      <button v-on:click="createGame" class="create_game" type="submit">
+      <router-link to="/Lobby/" v-on:click="createGame" class="create_game" type="submit">
         {{ uiLabels["cg"] }}
-      </button>
+      </router-link>
 
 
 </body>
@@ -58,7 +58,7 @@ data: function () {
   return {
     uiLabels: {},
     data: {},
-    game_id: "",
+    game_id: "112",
     lang: localStorage.getItem("lang") || "en",
     name_of_host: '',
     no_allegations: 0,
@@ -77,7 +77,8 @@ created: function () {
   socket.on("pollCreated", (data) =>
     this.data = data)
 //----------------------------------------------------------------
-
+   socket.on("gameCreated", (data) =>
+     this.data = data)
   //----------------------------------------------------------------
 },
 methods: {
@@ -87,7 +88,6 @@ methods: {
                                  name_of_host: this.name_of_host,
                                  no_allegations: this.no_allegations,
                                  the_theme: this.the_theme})
-    console.log(this.name_of_host,this.no_allegations,this.the_theme)
   },
 }
 }
