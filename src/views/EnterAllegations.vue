@@ -62,7 +62,6 @@ export default {
 }
 </script>
 
-<style>
 <style scoped>
 #app {
   background-color: #81b8ce; /* Set the background color for the entire component */
