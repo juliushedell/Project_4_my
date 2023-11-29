@@ -38,7 +38,7 @@
 	"enterGameCode": "Join game",
 	"joinGame": "Join Game",
 	"lobby": "Kod",
-	"cg": "Create game",
 
-	"eyt": "Enter you theme:"
+	"eyt": "Enter you theme:",
+	"yourOwnTheme": "Theme:"
 }

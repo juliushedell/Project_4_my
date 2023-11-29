@@ -31,6 +31,19 @@ Data.prototype.createPoll = function(pollId, lang="en") {
   return this.polls[pollId];
 }
 
+// Data.prototype.createGame = function(game_id, lang="en") {
+//   if (typeof this.polls[game_id] === "undefined") {
+//     let poll = {};
+//     poll.lang = lang;  
+//     poll.name_of_host = '';
+//     poll.no_allegations = 0;
+//     poll.the_theme = '';              
+//     this.polls[game_id] = poll;
+//     console.log("poll created", game_id, poll);
+//   }
+//   return this.polls[game_id];
+// }
+
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
