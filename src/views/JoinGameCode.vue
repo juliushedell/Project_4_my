@@ -6,13 +6,14 @@
       </h1>
     </header>
     <body> 
-      <div class="wrap">
-        {{ uiLabels["enterGameCode"] }}
-        <p> 
+      <div class="center">
+        <p class="a"> 
           <input type="number" id="gameCode" v-model="gameCode_data" required="required" > 
         </p>
-      </div>
-      <router-link to="/Lobby/" class="button">{{ uiLabels["joinGame"] }}</router-link>
+        <div class="b">
+          <router-link to="/Lobby/" class="button">{{ uiLabels["joinGame"] }}</router-link>
+        </div>
+    </div>
     </body>
 </template>
 
@@ -62,5 +63,24 @@ export default {
 </script>
 
 <style>
+.center{
+  padding: 50px;
+  text-align: center;
+}
 
+.a {
+  margin: 10px 10px 80px 10px;
+}
+
+.b {
+  margin: 80px 10px 80px 10px;
+}
+
+#gameCode{
+  border-radius: 8px;
+  color: green;
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px;
+}
 </style>

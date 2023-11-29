@@ -170,4 +170,8 @@ body{
   width:400px; 
   height:250px;
 }
+
+.button{
+  margin: 20px;
+}
 </style>
