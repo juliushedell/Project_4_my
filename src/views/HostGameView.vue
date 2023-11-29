@@ -2,7 +2,7 @@
   <div id="app"> 
       <header> 
           <h1>
-              Host game
+            {{ uiLabels["host"] }}
               <img src="/img/Head_picture.png" class="head_picture">
           </h1>
       </header>
@@ -33,9 +33,9 @@
 
       <br>
       <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-      <button v-on:click="createGame" class="create_game" type="submit">
+      <router-link to="/Lobby/" v-on:click="createGame" class="create_game" type="submit">
         {{ uiLabels["cg"] }}
-      </button>
+      </router-link>
 
 
 </body>
@@ -58,7 +58,7 @@ data: function () {
   return {
     uiLabels: {},
     data: {},
-    game_id: "",
+    game_id: "112",
     lang: localStorage.getItem("lang") || "en",
     name_of_host: '',
     no_allegations: 0,
@@ -76,9 +76,10 @@ created: function () {
   )
   socket.on("pollCreated", (data) =>
     this.data = data)
-
-  // socket.on("gameCreated", (data) =>
-  //   this.data = data)
+//----------------------------------------------------------------
+   socket.on("gameCreated", (data) =>
+     this.data = data)
+  //----------------------------------------------------------------
 },
 methods: {
   createGame: function () {
@@ -125,16 +126,24 @@ margin-bottom: 10px;
 }
 
 .themes{
-border: 5px solid;
-border-radius: 8px;
+border: 5px solid #2a9451;
 color: green;
-font-size: 16px;
-padding: 10px;
-margin: 10px;
 background-color: #81b8ce;
+text-align: center;
+border-radius: 20px;
 text-decoration: none;
+padding: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 22ac1c2fefd13d01d955df1a2fece98c2e158b41
 
 .create_game{
 border: 5px solid;

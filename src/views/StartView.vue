@@ -15,8 +15,8 @@
   </header>
   <body>
     <div id="frontText">
-      <h2>Allegations</h2>
-      <p>{{ uiLabels['sales-pitch'] }}</p> 
+      <h2>ALLEGATIONS</h2>
+      <h4>{{ uiLabels['sales-pitch'] }}</h4> 
     <img  src="img/alligatorStart.png" id="startpage_picture">
     </div>
     <disp class=wrapper>
@@ -169,5 +169,9 @@ body{
   margin-bottom: 100px;
   width:400px; 
   height:250px;
+}
+
+.button{
+  margin: 20px;
 }
 </style>
