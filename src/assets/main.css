@@ -75,3 +75,16 @@ body {
 .back:hover{
   background-color: #ffccd5;
 }
+
+.themes{
+  border: 5px solid;
+  border-radius: 8px;
+  color: green;
+  background-color: #81b8ce;
+  font-size: 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  }

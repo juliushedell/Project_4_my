@@ -125,17 +125,6 @@ padding-left: 10px;
 margin-bottom: 10px;
 }
 
-.themes{
-border: 5px solid;
-border-radius: 8px;
-color: green;
-font-size: 16px;
-padding: 10px;
-margin: 10px;
-background-color: #81b8ce;
-text-decoration: none;
-}
-
 
 .create_game{
 border: 5px solid;
@@ -145,6 +134,14 @@ font-size: 20px;
 padding: 15px;
 margin: 10px;
 background-color: #81b8ce;
+}
+
+#otherTheme{
+  border-radius: 8px;
+  color: green;
+  font-size: 16px;
+  padding: 10px;
+  margin: 70px;
 }
 
 .text{
