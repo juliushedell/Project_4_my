@@ -1,19 +1,41 @@
 <template>
     <body>
-<p> Lobby: displaying game code and entered players </p>
-
-
-<div>
-  <div v-for="(d, key) in dengrejen" 
-       v-bind:style="{ left: order.details.x + 'px', 
-                       top: order.details.y + 'px'}" 
-       v-bind:key="'dots' + key">
-    {{ key }}
-  </div>
-</div>
-
-
-</body>
+      <!-- <p> Lobby: displaying game code and entered players </p> -->
+      <div>
+        <div v-for="(d, key) in dengrejen" 
+            v-bind:style="{ left: order.details.x + 'px', 
+                            top: order.details.y + 'px'}" 
+            v-bind:key="'dots' + key">
+          {{ key }}
+        </div>
+      </div>
+      <form>
+        <div>
+          <div v-for="i in 3" :key="i">
+            <label for="confession{{ i }}"> Confession {{ i }} :</label>
+            <input type="text" id="field{{ i }}" v-model="conf" required="required" placeholder="Enter confession here">
+            <br><br>
+          </div>
+        </div>
+      </form>
+    <!--<form>
+      <p>
+        <label for="confession"> Confessions:</label>
+        <br>
+        <input type="text" id="confession" v-model="conf" required="required" placeholder="Enter confession here">
+        <br>
+        <input type="text" id="confession" v-model="conf" required="required" placeholder="Enter confession here">
+        <br>
+        <input type="text" id="confession" v-model="conf" required="required" placeholder="Enter confession here">
+      </p>
+    </form>-->
+    <div id="orders">
+      <button  v-on:click="markDone(key)">
+        <h3>Next</h3> 
+      </button>
+    </div>  
+    <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
+  </body>
 </template>
 
 <script>
