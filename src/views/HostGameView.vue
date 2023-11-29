@@ -2,7 +2,7 @@
   <div id="app"> 
       <header> 
           <h1>
-              Host game
+            {{ uiLabels["host"] }}
               <img src="/img/Head_picture.png" class="head_picture">
           </h1>
       </header>
@@ -76,9 +76,9 @@ created: function () {
   )
   socket.on("pollCreated", (data) =>
     this.data = data)
+//----------------------------------------------------------------
 
-  // socket.on("gameCreated", (data) =>
-  //   this.data = data)
+  //----------------------------------------------------------------
 },
 methods: {
   createGame: function () {
