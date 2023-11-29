@@ -12,11 +12,11 @@ function sockets(io, socket, data) {
   socket.on('createPoll', function(d) {
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
-
- // socket.on('createGame', function(d) {
- //   socket.emit('gameCreated', data.createGame(d.game_id, d.lang));
- // });
-
+//----------------------------------------------------------------
+  socket.on('createGame', function(gameSetup) {
+    socket.emit('gameCreated', data.createGame(gameSetup.game_id, gameSetup.lang, gameSetup.name_of_host, gameSetup.no_allegations,gameSetup.the_theme));
+  });
+//----------------------------------------------------------------
   socket.on('addQuestion', function(d) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
     socket.emit('dataUpdate', data.getAnswers(d.pollId));

@@ -4,7 +4,6 @@
         {{ uiLabels["howToPlay"] }}
         <img src="/img/Head_picture.png" class="head_picture">
       </h1>
-    
     </header>
     <body>
       <li> {{ uiLabels["li1"] }} </li>
@@ -73,14 +72,6 @@ export default {
 
 <style scoped>
 
-.header-image {
-    position: absolute;
-    top: 0;
-    right: 0;
-    max-width: 100px;
-    height: auto;
-}
-
 body {
   height: 40em;
   padding-left: 10%;
@@ -116,12 +107,6 @@ h3 {
   position: relative;
   top: -130px; 
   
-}
-
-.head_picture {
-  position: absolute;
-  padding-left: 15em;
-  height: 85px;
 }
 
 </style>

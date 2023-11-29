@@ -19,7 +19,8 @@ h1 {
 }
 
 h2 {
-  font-size: 35px;
+  font-size: 50px;
+  letter-spacing: 10px;
 }
 
 body {
@@ -27,9 +28,11 @@ body {
 }
 
 .head_picture {
-  position: absolute;
-  padding-left: 15em;
   height: 85px;
+  position: absolute;
+  text-align: right;
+  margin-left: 450px;
+  margin-top: -45px;
 }
 
 .button{

@@ -12,7 +12,7 @@
             {{ uiLabels["eyt"] }}
             <input type="text" v-model="name_of_host">
         </div>
-        <router-link to="/HostGame/" class="backk">{{ uiLabels["back"] }}</router-link>
+        <router-link to="/HostGame/" class="back">{{ uiLabels["back"] }}</router-link>
         <button v-on:click="create" class="create_game">
           {{ uiLabels["cg"] }}
         </button>
