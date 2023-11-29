@@ -9,27 +9,22 @@
       <img src="img/alligatorStart.png">
     </div>-->
     <div class="logo">
-      <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}} </button>
+      <button v-on:click="switchLanguage" id="language_button">
+      <img :src="uiLabels['changeLanguage']" id="language_button">
+    </button>
     </div>
   </header>
   <body>
     <disp id="frontText">
       <h1>Allegations</h1>
-      <p>where confessions are made</p> 
+      <p>{{ uiLabels['sales-pitch'] }}</p> 
     <img  src="img/alligatorStart.png" style="width:400px; height:250px;" >
     </disp>
     <disp class=wrapper>
-      <button class="button" style="grid-area:a;" >
-        Host game 
-      </button>
-      <button class="button" style="grid-area:b;">
-        Join game 
-      </button>
-      <button class="button" style="grid-area:d">
-        How to play  
-      </button>
-     </disp>
-
+     <router-link to="/HostGame/" class="button" style="grid-area:a;">{{uiLabels.host}}</router-link>
+     <router-link to="/JoinGameName/" class="button" style="grid-area:b;">{{uiLabels.joinGame}}</router-link>
+     <router-link to="/HowToPlayView/" class="button" style="grid-area:d;">{{uiLabels.howToPlay}}</router-link>
+    </disp>
     
     
   </body>
@@ -145,6 +140,7 @@ body{
   }
 #frontText{
   color: green; 
+  text-align: center;
 }
 .wrapper{
   display: grid; 
@@ -153,11 +149,15 @@ body{
   "a b" 40px 
   "c d" 40px / 1fr 1fr;
 }
-.button {
+ /* .button {  
   background-color:green;
   color:yellow;
-  text-align: center; 
+  text-align: center;
+  text-decoration: none; 
+}*/
 
-  
+#language_button {
+  border: none;
+  background: none;
 }
 </style>

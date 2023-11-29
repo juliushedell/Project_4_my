@@ -1,5 +1,5 @@
 {
-	"sales-pitch": "Simply. Great. Polling.",
+	"sales-pitch": "Where confessions are made",
 	"subHeading": "A simple polling tool",
 	"invite": "Invite participants with this link:",
 	"createPoll": "Create game",
@@ -29,7 +29,7 @@
 	"childhood": "Childhood",
 	"illegal": "Illegal",
 	"uti": "Under the influence",
-	"cot": "Create own theme",
+	"yourOwnTheme": "Theme:",
 	"back": "Back",
 	"next": "Next",
 	"cg": "Create game",
@@ -39,6 +39,5 @@
 	"joinGame": "Join Game",
 	"lobby": "Kod",
 
-	"eyt": "Enter you theme:",
-	"yourOwnTheme": "Theme:"
+	"eyt": "Enter you theme:"
 }

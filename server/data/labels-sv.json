@@ -1,5 +1,5 @@
 {
-	"sales-pitch": "Svar. Helt. Enkelt.",
+	"sales-pitch": "Där hemligheterna kommer fram",
 	"subHeading": "Ett enkelt enkätverktyg",
 	"invite": "Bjud in deltagare med den här länken:",
 	"createPoll": "Skapa spel",
@@ -31,7 +31,7 @@
 	"childhood": "Barndom",
 	"illegal": "Olagligt",
 	"uti": "På fyllan",
-	"cot": "Skapa eget tema",
+	"yourOwnTheme": "Tema:",
 	"back": "Tillbaka",
 	"next": "Nästa",
 	"cg": "Skapa spel",
@@ -41,6 +41,5 @@
 	"joinGame": "Delta i spel",
 	"lobby": "Game code",
 
-	"eyt": "Ange ditt tema:",
-	"yourOwnTheme": "Tema:"
+	"eyt": "Ange ditt tema:"
 }
