@@ -41,5 +41,7 @@
 	"joinGame": "Delta i spel",
 	"lobby": "Game code",
 
-	"eyt": "Ange ditt tema:"
+	"eyt": "Ange ditt tema:",
+
+	"gameCode": "Spelkod"
 }
