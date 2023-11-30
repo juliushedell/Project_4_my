@@ -49,7 +49,7 @@ function sockets(io, socket, data) {
   });
   // tar emot confessions ?
   //Behöver lägga till io.emit för att kunna skicka vidare !
- // socket.on('addConfessions', function(confessions){
+  // socket.on('addConfessions', function(confessions){
     //data.addConfessions(confessions)
 
   //})
