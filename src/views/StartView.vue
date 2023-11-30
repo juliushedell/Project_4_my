@@ -25,7 +25,6 @@
      <router-link to="/HowToPlayView/" class="button" style="grid-area:d;">{{uiLabels.howToPlay}}</router-link>
     </disp>
     
-    
   </body>
   <!--<ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
@@ -142,11 +141,12 @@ body{
   text-align: center;
 }
 .wrapper{
-  display: grid; 
+  display: grid;
   grid-gap: 10px;
-  grid-template: 
-  "a b" 40px 
-  "c d" 40px / 1fr 1fr;
+  grid-template:
+    "a b c" 40px / 1fr 1fr 1fr;
+  padding-left: 525px;
+
 }
  /* .button {  
   background-color:green;
@@ -162,6 +162,10 @@ body{
   margin-right: 5px;
 }
 
+#language_button:hover {
+      cursor: pointer;
+    }
+
 #startpage_picture {
   display: block;
   margin-left: auto;
@@ -169,5 +173,9 @@ body{
   margin-bottom: 100px;
   width:400px; 
   height:250px;
+}
+
+.button{
+  margin: 20px;
 }
 </style>

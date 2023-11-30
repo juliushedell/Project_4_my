@@ -88,6 +88,7 @@ methods: {
                                  name_of_host: this.name_of_host,
                                  no_allegations: this.no_allegations,
                                  the_theme: this.the_theme})
+    console.log(this.name_of_host,this.no_allegations,this.the_theme)
   },
 }
 }
@@ -124,27 +125,10 @@ padding-left: 10px;
 margin-bottom: 10px;
 }
 
-.themes{
-border: 5px solid;
-border-radius: 8px;
-color: green;
-font-size: 16px;
-padding: 10px;
-margin: 10px;
-background-color: #81b8ce;
-text-decoration: none;
-}
 
-.back{
-border: 5px solid;
-border-radius: 8px;
-color: red;
-font-size: 16px;
-padding: 10px;
-margin: 10px;
-background-color: #81b8ce;
-text-decoration: none;
-}
+
+
+>>>>>>> 22ac1c2fefd13d01d955df1a2fece98c2e158b41
 
 .create_game{
 border: 5px solid;
@@ -154,6 +138,14 @@ font-size: 20px;
 padding: 15px;
 margin: 10px;
 background-color: #81b8ce;
+}
+
+#otherTheme{
+  border-radius: 8px;
+  color: green;
+  font-size: 16px;
+  padding: 10px;
+  margin: 70px;
 }
 
 .text{

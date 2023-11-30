@@ -14,7 +14,7 @@
   </div>
   <div class="wrap">
     <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
-    <router-link to="/JoinGameCode/" class="button">{{ uiLabels["next"] }}</router-link>
+    <router-link to="/JoinGameCode/" v-on:click="namePlayer" class="button" type="submit">{{ uiLabels["next"] }}</router-link>
   </div>
 </body>
 </template>
@@ -56,7 +56,13 @@ export default {
     },
     toggleNav: function () {
       this.hideNav = ! this.hideNav;
-    }
+    },
+    namePlayer: function () {
+    socket.emit("namePlayer", {game_id: this.game_id,
+                                 lang: this.lang,
+                                 name_of_player: this.name_of_player,})
+    console.log(this.name_of_player)
+  },
   }
 }
 </script>
@@ -67,5 +73,13 @@ display: grid;
 grid-gap: 5em;
 grid-template-columns: repeat(2, 1fr);
 margin: 50px 100px 50px 100px;
+}
+
+#gameName{
+  border-radius: 8px;
+  color: green;
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px;
 }
 </style>
