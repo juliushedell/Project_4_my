@@ -22,9 +22,12 @@
     <disp class=wrapper>
      <router-link to="/HostGame/" class="button" style="grid-area:a;">{{uiLabels.host}}</router-link>
      <router-link to="/JoinGameName/" class="button" style="grid-area:b;">{{uiLabels.joinGame}}</router-link>
-     <router-link to="/HowToPlayView/" class="button" style="grid-area:d;">{{uiLabels.howToPlay}}</router-link>
     </disp>
-    
+
+    <disp class=rightButton>
+    <router-link to="/HowToPlayView/" class="button" style="grid-area:d;">{{uiLabels.howToPlay}}</router-link>
+    </disp>
+
   </body>
   <!--<ResponsiveNav v-bind:hideNav="hideNav">
     <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
@@ -116,6 +119,25 @@ export default {
     font-size: 1.5rem;
   }
 
+  .wrapper{
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+  margin-top: 50px;
+}
+
+.rightButton{
+  display: flex;
+  justify-content: right;
+  margin-top: 40px;
+}
+
+.button{
+  margin-top: -75px;
+  padding: 20px
+}
+
+
 @media screen and (max-width:50em) {
   .logo {
     font-size: 5vw;
@@ -132,7 +154,27 @@ export default {
   .hide {
     left:-12em;
   }
+  .wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.rightButton{
+  display: flex;
+  align-items: right;
+  justify-content: center;
+}
+.button{
+  dispplay: flex;
+  width: 9em; /* 150px converted to em based on a 16px reference font size */
+  height: 3em; /* 50px converted to em based on a 16px reference font size */
+  border-radius: 3.125em; /* 50px converted to em based on a 16px reference font size */
+  background-color: #3fbc6a;
+  border: 0.1875em solid #2a9451; /* 3px converted to em based on a 16px reference font size */
+}
+}
+
+
 body{
     background-color: #81b8ce; 
   }
@@ -140,14 +182,7 @@ body{
   color: #2a9451; 
   text-align: center;
 }
-.wrapper{
-  display: grid;
-  grid-gap: 10px;
-  grid-template:
-    "a b c" 40px / 1fr 1fr 1fr;
-  padding-left: 525px;
 
-}
  /* .button {  
   background-color:green;
   color:yellow;
@@ -175,7 +210,6 @@ body{
   height:250px;
 }
 
-.button{
-  margin: 20px;
-}
+
+
 </style>

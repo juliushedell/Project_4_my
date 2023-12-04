@@ -18,18 +18,32 @@ Data.prototype.getUILabels = function (lang = "en") {
   return JSON.parse(labels);
 }
 
-Data.prototype.createPoll = function(pollId, lang="en") {
+// Ändrat: lagt till name, numberAllegations och theme, tagit bort pollID
+Data.prototype.createPoll = function(lang="en", pollId, name, numberAllegations, theme) {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
-    poll.lang = lang;  
+    poll.lang = lang; 
     poll.questions = [];
     poll.answers = [];
     poll.currentQuestion = 0;              
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
+
+    // Tillagt
+    poll.name = name;
+    poll.numberAllegations = numberAllegations;
+    poll.theme = theme;
   }
   return this.polls[pollId];
 }
+
+Data.prototype.getPoll = function(pollId) {
+  if (typeof this.polls[pollId] === "undefined") {
+    return {}
+  }
+  return this.polls[pollId];
+}
+
 //----------------------------------------------------------------
  Data.prototype.createGame = function(game_id, lang="en", name_of_host, no_allegations,the_theme) {
    if (typeof this.polls[game_id] === "undefined") {
@@ -99,6 +113,7 @@ Data.prototype.getAnswers = function(pollId) {
   }
   return {}
 }
+
 export { Data };
 
 

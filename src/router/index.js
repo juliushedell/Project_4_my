@@ -50,7 +50,7 @@ const router = createRouter({
       component: () => import('../views/JoinGameCode.vue')
     },
     {
-      path: '/Lobby/',
+      path: '/Lobby/:pollId',
       name: 'Lobby',
       component: () => import('../views/Lobby.vue')
     },
