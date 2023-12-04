@@ -7,6 +7,8 @@
           </h1>
       </header>
       <div>
+        {{ poll.theme }}
+        <br>
         {{ uiLabels['gameCode'] }}:
         {{ this.gameCode }}
         <div v-for="(d, key) in dengrejen" 
@@ -19,9 +21,9 @@
       <!-- skapar fields till confessions -->
       <form>
         <div>
-          <div v-for="i in 3" :key="i">
+          <div v-for="i in poll.numberAllegations" :key="i">
             <label for="confession{{ i }}"> Confession {{ i }} :</label>
-            <input type="text" id="field{{ i }}" v-on="conf" required="required" placeholder="Enter confession here">
+            <input type="text" id="field{{ i }}" v-model="conf[i]" required="required" placeholder="Enter confession here">
             <br><br>
           </div>
         </div>
