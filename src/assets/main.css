@@ -25,6 +25,7 @@ h2 {
 
 body {
   background-color: #81b8ce;
+  font-size: 16px;
 }
 
 .head_picture {
@@ -35,16 +36,16 @@ body {
   margin-top: -45px;
 }
 
-.button{
-  width: 150px; 
-  height: 50px; 
-  border-radius: 50px; 
+.button {
+  width: 9em; /* 150px converted to em based on a 16px reference font size */
+  height: 3em; /* 50px converted to em based on a 16px reference font size */
+  border-radius: 3.125em; /* 50px converted to em based on a 16px reference font size */
   background-color: #3fbc6a;
-  border: 3px solid  #2a9451 ;
-  color:yellow;
+  border: 0.1875em solid #2a9451; /* 3px converted to em based on a 16px reference font size */
+  color: yellow;
   text-align: center;
   text-decoration: none;
-  padding: 20px;
+  padding: 1.25em; /* 20px converted to em based on a 16px reference font size */
   display: flex;
   justify-content: center;
   align-items: center;
