@@ -2,7 +2,7 @@
   <div id="app"> 
       <header> 
           <h1>
-            {{ uiLabels["host"] }}
+              Host game
               <img src="/img/Head_picture.png" class="head_picture">
           </h1>
       </header>
@@ -33,18 +33,15 @@
 
       <br>
       <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-      <router-link to="/Lobby/" v-on:click="createGame" class="create_game" type="submit">
+      <button v-on:click="createGame" class="create_game" type="submit">
         {{ uiLabels["cg"] }}
-      </router-link>
+      </button>
 
 
 </body>
 
 
 </template>
-
-
-
 
 
 
@@ -58,7 +55,7 @@ data: function () {
   return {
     uiLabels: {},
     data: {},
-    game_id: "112",
+    game_id: "",
     lang: localStorage.getItem("lang") || "en",
     name_of_host: '',
     no_allegations: 0,
@@ -74,12 +71,16 @@ created: function () {
   socket.on("dataUpdate", (data) =>
     this.data = data
   )
-  socket.on("pollCreated", (data) =>
-    this.data = data)
-//----------------------------------------------------------------
-   socket.on("gameCreated", (data) =>
-     this.data = data)
-  //----------------------------------------------------------------
+  socket.on("pollCreated", (data) => {
+    // this.data = data
+    console.log(data)
+
+  }
+  )
+    
+
+  // socket.on("gameCreated", (data) =>
+  //   this.data = data)
 },
 methods: {
   createGame: function () {
@@ -125,10 +126,27 @@ padding-left: 10px;
 margin-bottom: 10px;
 }
 
+.themes{
+border: 5px solid;
+border-radius: 8px;
+color: green;
+font-size: 16px;
+padding: 10px;
+margin: 10px;
+background-color: #81b8ce;
+text-decoration: none;
+}
 
-
-
->>>>>>> 22ac1c2fefd13d01d955df1a2fece98c2e158b41
+.back{
+border: 5px solid;
+border-radius: 8px;
+color: red;
+font-size: 16px;
+padding: 10px;
+margin: 10px;
+background-color: #81b8ce;
+text-decoration: none;
+}
 
 .create_game{
 border: 5px solid;
@@ -138,14 +156,6 @@ font-size: 20px;
 padding: 15px;
 margin: 10px;
 background-color: #81b8ce;
-}
-
-#otherTheme{
-  border-radius: 8px;
-  color: green;
-  font-size: 16px;
-  padding: 10px;
-  margin: 70px;
 }
 
 .text{

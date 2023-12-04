@@ -1,7 +1,14 @@
 <template>
     <body>
-      <!-- <p> Lobby: displaying game code and entered players </p> -->
+      <header> 
+          <h1>
+              Lobby
+              <img src="/img/Head_picture.png" class="head_picture">
+          </h1>
+      </header>
       <div>
+        {{ uiLabels['gameCode'] }}:
+        {{ this.gameCode }}
         <div v-for="(d, key) in dengrejen" 
             v-bind:style="{ left: order.details.x + 'px', 
                             top: order.details.y + 'px'}" 
@@ -27,6 +34,7 @@
       </div>  
       <!--knapp som går bakåt -->
       <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
+      {{ poll }}
     </body>
 </template>
 
@@ -48,11 +56,18 @@ export default {
       lang: localStorage.getItem("lang") || "en",
       hideNav: true,
       // lagrar confessions i array?
-      conf:[]
+      conf:[],
+      poll: {},
+      gameCode: 0
     }
   },
   created: function () {
+    this.gameCode = this.$route.params.pollId
     socket.emit("pageLoaded", this.lang);
+    socket.emit("getPoll", this.gameCode);
+    socket.on("pullPoll", (poll) => {
+      this.poll = poll
+    })
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
@@ -72,7 +87,7 @@ export default {
       this.hideNav = ! this.hideNav;
     },
     generateGameCode: function () {
-    return Math.floor(Math.random() * 100000);
+    return Math.floor(Math.random() * 10000000);
     }
     // skickar confessions till servern ?
     //submitConfessions: function() {

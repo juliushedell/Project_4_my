@@ -10,7 +10,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('createPoll', function(d) {
-    socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
+    socket.emit('pollCreated', data.createPoll(d.lang, d.pollId, d.name, d.numberAllegations, d.theme));
   });
 //----------------------------------------------------------------
   socket.on('createGame', function(gameSetup) {
@@ -31,6 +31,11 @@ function sockets(io, socket, data) {
     socket.join(pollId);
     socket.emit('newQuestion', data.getQuestion(pollId))
     socket.emit('dataUpdate', data.getAnswers(pollId));
+  });
+
+  socket.on('getPoll', function(pollId) {
+    socket.join(pollId);
+    socket.emit('pullPoll', data.getPoll(pollId))
   });
 
   socket.on('runQuestion', function(d) {
