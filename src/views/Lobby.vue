@@ -30,6 +30,7 @@
           {{ key }}
         </div>
       </div>
+      </form>
       <!-- skapar fields till confessions -->
       <form>
         <div>
