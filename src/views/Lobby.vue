@@ -14,7 +14,7 @@
         <div>
           <div v-for="i in 3" :key="i">
             <label for="confession{{ i }}"> Confession {{ i }} :</label>
-            <input type="text" id="field{{ i }}" v-on="conf" required="required" placeholder="Enter confession here">
+            <input type="text" id="field{{ i }}" v-model="conf[i]" required="required" placeholder="Enter confession here">
             <br><br>
           </div>
         </div>
