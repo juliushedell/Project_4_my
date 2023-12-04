@@ -23,23 +23,35 @@
     <!-- skapar fields till confessions -->
     <form>
       <div>
-        <div v-for="i in 3" :key="i">
-          <label for="confession{{ i }}"> Confession {{ i }} :</label>
-          <input type="text" id="field{{ i }}" v-on="conf" required="required" placeholder="Enter confession here">
-          <br><br>
+        <br>
+        <div v-for="(d, key) in dengrejen" 
+            v-bind:style="{ left: order.details.x + 'px', 
+                            top: order.details.y + 'px'}" 
+            v-bind:key="'dots' + key">
+          {{ key }}
         </div>
       </div>
-    </form>
-    <!-- knapp som skickar confessions till submitConfessions  -->
-    <div>
-      <button  v-on:click="submitConfessions(key)">
-        <h3>Next</h3> 
-      </button>
-    </div>  
-    <!--knapp som går bakåt -->
-    <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-    {{ poll }}
-  </body>
+      </form>
+      <!-- skapar fields till confessions -->
+      <form>
+        <div>
+          <div v-for="i in poll.numberAllegations" :key="i">
+            <label for="confession{{ i }}"> Confession {{ i }} :</label>
+            <input type="text" id="field{{ i }}" v-model="conf[i]" required="required" placeholder="Enter confession here">
+            <br><br>
+          </div>
+        </div>
+      </form>
+      <!-- knapp som skickar confessions till submitConfessions  -->
+      <div>
+        <button  v-on:click="submitConfessions(key)">
+          <h3>Next</h3> 
+        </button>
+      </div>  
+      <!--knapp som går bakåt -->
+      <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
+      {{ poll }}
+    </body>
 </template>
 
 <script>
