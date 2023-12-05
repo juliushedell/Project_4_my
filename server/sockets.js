@@ -10,7 +10,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('createPoll', function(d) {
-    socket.emit('pollCreated', data.createPoll(d.lang, d.pollId, d.name, d.numberAllegations, d.theme));
+    socket.emit('pollCreated', data.createPoll(d.lang, d.pollId, d.name, d.numberAllegations, d.theme, d.allegations));
   });
 //----------------------------------------------------------------
   socket.on('createGame', function(gameSetup) {
@@ -52,6 +52,10 @@ function sockets(io, socket, data) {
     data = new Data();
     data.initializeData();
   });
+
+  socket.on('addConfessions', function(gameCode, conf) {
+    data.addConfessions(gameCode, conf);
+  })
   // tar emot confessions ?
   //Behöver lägga till io.emit för att kunna skicka vidare !
   // socket.on('addConfessions', function(confessions){

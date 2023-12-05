@@ -9,8 +9,7 @@
     <h2 id="gameCode">
       {{ this.gameCode }}
     </h2>
-    <h3>
-      {{ uiLabels['yourOwnTheme'] }}
+    <h3 id="theme">
       {{ poll.theme }}
     </h3>
       <div v-for="(d, key) in dengrejen" 
@@ -35,15 +34,15 @@
       <form>
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
-            <label for="confession{{ i }}"> Confession {{ i }} :</label>
-            <input type="text" id="field{{ i }}" v-model="conf[i]" required="required" placeholder="Enter confession here">
+            <label for="confession{{ i }}"> Allegation {{ i }} :</label>
+            <input type="text" id="field{{ i }}" v-model="conf[i]" required="required" :placeholder="uiLabels.enterAllegations">
             <br><br>
           </div>
         </div>
       </form>
       <!-- knapp som skickar confessions till submitConfessions  -->
       <div>
-        <button  v-on:click="submitConfessions(key)">
+        <button v-on:click="submitConfessions">
           <h3>Next</h3> 
         </button>
       </div>  
@@ -71,7 +70,7 @@ data: function () {
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
     // lagrar confessions i array?
-    conf:[],
+    conf:{},
     poll: {},
     gameCode: 0
   }
@@ -103,11 +102,11 @@ methods: {
   },
   generateGameCode: function () {
   return Math.floor(Math.random() * 1000000);
-  }
-  // skickar confessions till servern ?
-  //submitConfessions: function() {
-    //socket.emit("addConfessions", {conf: this.conf})
-  //}
+  },
+  submitConfessions: function() {
+  this.conf.push(this.confession);
+  socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
+}
 }
 }
 </script>
@@ -119,5 +118,6 @@ methods: {
   text-align: center;
   margin-top: 0.3em;
 }
+
 
 </style>

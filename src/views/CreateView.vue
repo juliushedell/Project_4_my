@@ -44,7 +44,8 @@ data: function () {
 
     name: "",
     numberAllegations: 0,
-    theme: ""
+    theme: "",
+    allegations: {}
   }
 },
 created: function () {
@@ -64,7 +65,7 @@ created: function () {
 methods: {
   createPoll: function () {
     let pollId = this.generateGameCode();
-    socket.emit("createPoll", {lang: this.lang, pollId: pollId, name: this.name, numberAllegations: this.numberAllegations, theme: this.theme})
+    socket.emit("createPoll", {lang: this.lang, pollId: pollId, name: this.name, numberAllegations: this.numberAllegations, theme: this.theme, allegations: this.allegations})
     this.$router.push ('/Lobby/' + pollId)
   },
   addQuestion: function () {
