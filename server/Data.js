@@ -58,6 +58,7 @@ Data.prototype.getPoll = function(pollId) {
    return this.polls[game_id];
  }
 //----------------------------------------------------------------
+
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);

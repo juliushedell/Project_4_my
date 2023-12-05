@@ -21,7 +21,7 @@
     </div>
     <disp class=wrapper>
      <router-link to="/create/" class="button" style="grid-area:a;">{{uiLabels.host}}</router-link>
-     <router-link to="/JoinGameName/" class="button" style="grid-area:b;">{{uiLabels.joinGame}}</router-link>
+     <router-link to="/JoinGameCode/" class="button" style="grid-area:b;">{{uiLabels.joinGame}}</router-link>
     </disp>
 
     <disp class=rightButton>
