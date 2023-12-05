@@ -117,7 +117,7 @@ Data.prototype.getAnswers = function(pollId) {
 }
 
 Data.prototype.addConfessions = function (gameCode, confessions) {
-    this.polls[gameCode].allegations = confessions;
+    // this.polls[gameCode].allegations = confessions;
     // Returna något??
 };
 

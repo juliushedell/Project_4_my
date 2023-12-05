@@ -12,40 +12,24 @@
     <h3 id="theme">
       {{ poll.theme }}
     </h3>
-      <div v-for="(d, key) in dengrejen" 
-          v-bind:style="{ left: order.details.x + 'px', 
-                          top: order.details.y + 'px'}" 
-          v-bind:key="'dots' + key">
-        {{ key }}
-      </div>
-    <!-- skapar fields till confessions -->
-    <form>
-      <div>
-        <br>
-        <div v-for="(d, key) in dengrejen" 
-            v-bind:style="{ left: order.details.x + 'px', 
-                            top: order.details.y + 'px'}" 
-            v-bind:key="'dots' + key">
-          {{ key }}
-        </div>
-      </div>
-      </form>
-      <!-- skapar fields till confessions -->
-      <form>
+    <h3>
+      {{ poll.name }}
+    </h3>
+      <form id="allegationsForm">
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
-            <label for="confession{{ i }}"> Allegation {{ i }} :</label>
-            <input type="text" id="field{{ i }}" v-model="conf[i]" required="required" :placeholder="uiLabels.enterAllegations">
+            <label for="confession{{ i }}"> Allegation {{ i }} : </label>
+            <input type="text" id="field{{ i }}" v-model="poll.allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
             <br><br>
           </div>
         </div>
+        <div>
+      </div>
       </form>
-      <!-- knapp som skickar confessions till submitConfessions  -->
-      <div>
-        <button v-on:click="submitConfessions">
-          <h3>Next</h3> 
+      <button type="submit" form="allegationsForm" v-on:click="submitConfessions">
+          <h3>{{ uiLabels['submit'] }}</h3>
         </button>
-      </div>  
+      <!-- knapp som skickar confessions till submitConfessions  -->  
       <!--knapp som går bakåt -->
       <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
       {{ poll }}
@@ -70,7 +54,7 @@ data: function () {
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
     // lagrar confessions i array?
-    conf:{},
+    conf:[],
     poll: {},
     gameCode: 0
   }
@@ -104,8 +88,9 @@ methods: {
   return Math.floor(Math.random() * 1000000);
   },
   submitConfessions: function() {
-  this.conf.push(this.confession);
-  socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
+  // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
+  this.conf = poll.allegations;
+  console.log(this.conf)
 }
 }
 }
