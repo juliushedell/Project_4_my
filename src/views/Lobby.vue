@@ -6,10 +6,9 @@
             <img src="/img/Head_picture.png" class="head_picture">
         </h1>
     </header>
-    <h3>
-      {{ uiLabels['gameCode'] }}:
+    <h2 id="gameCode">
       {{ this.gameCode }}
-    </h3>
+    </h2>
     <h3>
       {{ uiLabels['yourOwnTheme'] }}
       {{ poll.theme }}
@@ -103,7 +102,7 @@ methods: {
     this.hideNav = ! this.hideNav;
   },
   generateGameCode: function () {
-  return Math.floor(Math.random() * 10000000);
+  return Math.floor(Math.random() * 1000000);
   }
   // skickar confessions till servern ?
   //submitConfessions: function() {
@@ -115,4 +114,10 @@ methods: {
 
 
 <style>
+
+#gameCode {
+  text-align: center;
+  margin-top: 0.3em;
+}
+
 </style>

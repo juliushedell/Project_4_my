@@ -1,29 +1,12 @@
 <template>
-  <div>
+    <div>
     {{ uiLabels['name_of_host'] }}
-    <input type="text" v-model="name">
-  </div>
-    <!-- <div>
-      Answers:
-      <input v-for="(_, i) in answers" 
-             v-model="answers[i]" 
-             v-bind:key="'answer'+i">
-      <button v-on:click="addAnswer">
-        Add answer alternative
-      </button>
-    </div> -->
-  <!-- <button v-on:click="numberAllegations">
-    What is this button
-  </button> -->
+    <input type="text" v-model="name" required>
+    </div>
   <div>
     {{ uiLabels['al_pp'] }}
-  <input type="number" v-model="numberAllegations">
+  <input type="number" min="1" max="8" v-model="numberAllegations">
   </div>
-  <!-- <button v-on:click="runQuestion">
-    Run question
-  </button> -->
-  <!-- {{data}} -->
-  <!-- <router-link v-bind:to="'/result/'+pollId">Check result</router-link> -->
   <div>
     {{ uiLabels["theme"] }}
   </div>
@@ -56,7 +39,6 @@ data: function () {
     lang: localStorage.getItem("lang") || "en",
     question: "",
     answers: ["", ""],
-    questionNumber: 0,
     data: {},
     uiLabels: {},
 
@@ -95,7 +77,7 @@ methods: {
     socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
   },
   generateGameCode: function () {
-  return Math.floor(Math.random() * 10000000);
+  return Math.floor(Math.random() * 1000000);
   }
 }
 }
