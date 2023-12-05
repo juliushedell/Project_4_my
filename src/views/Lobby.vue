@@ -110,14 +110,13 @@ methods: {
   font-size: 20px;
 }
 #parent-container {
-  text-align: center; /* Center the content horizontally */
+  text-align: center; 
 }
-
 #confessionsform {
   font-size: 30px;
   color: #2a9451;
   font-weight: bold;
-  display: inline-block; /* Ensure that the form doesn't take up the full width */
+  display: inline-block; 
 }
 .button{
   width: 200px; 
