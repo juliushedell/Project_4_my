@@ -31,21 +31,19 @@
       </div>
       </form>
       <!-- skapar fields till confessions -->
-      <form>
+      <form id="confessionsform">
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
-            <label for="confession{{ i }}"> Allegation {{ i }} :</label>
-            <input type="text" id="field{{ i }}" v-model="conf[i]" required="required" :placeholder="uiLabels.enterAllegations">
+            <label for="confession{{ i }}"> Allegation {{ i }} :  </label>
+            <input type="text" class="field" id="field{{ i }}" v-model="conf[i]" required="required" :placeholder="uiLabels.enterAllegations">
             <br><br>
           </div>
         </div>
       </form>
       <!-- knapp som skickar confessions till submitConfessions  -->
-      <div>
-        <button v-on:click="submitConfessions">
-          <h3>Next</h3> 
+        <button class= "button" v-on:click="submitConfessions">
+          <h3>Submit</h3> 
         </button>
-      </div>  
       <!--knapp som går bakåt -->
       <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
       {{ poll }}
@@ -106,8 +104,8 @@ methods: {
   submitConfessions: function() {
   this.conf.push(this.confession);
   socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
-}
-}
+  }
+ }
 }
 </script>
 
@@ -118,6 +116,26 @@ methods: {
   text-align: center;
   margin-top: 0.3em;
 }
-
+.field{
+  border-radius: 8px;
+  color: black;
+  font-size: 20px;
+}
+#confessionsform{
+  width: 25em;
+  font-size: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  color: #2a9451;
+  font-weight:bold;
+}
+.button{
+  width: 200px; 
+  height: 75px;
+  font-size: 30px;
+}
+#theme{
+  text-align: center;
+}
 
 </style>
