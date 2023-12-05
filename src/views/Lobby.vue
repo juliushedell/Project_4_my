@@ -26,7 +26,7 @@
       </form>
     </div>
       <!-- knapp som skickar confessions till submitConfessions  -->
-      <div class="wrap">
+      <div class="wrappp">
          <!--knapp som går bakåt -->
          <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
         <button class= "button" v-on:click="submitConfessions">
@@ -128,7 +128,7 @@ methods: {
   text-align: center;
 }
 
-.wrap{
+.wrappp{
   display: flex;
   align-items: center;
   justify-content: center;
