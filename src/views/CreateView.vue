@@ -45,7 +45,7 @@ data: function () {
     name: "",
     numberAllegations: 0,
     theme: "",
-    allegations: {}
+    allegations: []
   }
 },
 created: function () {

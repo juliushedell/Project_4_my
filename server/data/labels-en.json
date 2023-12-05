@@ -43,5 +43,7 @@
 	"eyt": "Enter you theme:",
 
 	"gameCode": "Game code",
-	"Choosename": "Choose name"
+	"Choosename": "Choose name",
+	
+	"submit": "submit"
 }

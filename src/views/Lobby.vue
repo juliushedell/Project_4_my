@@ -12,14 +12,16 @@
     <h3 id="theme">
       {{ poll.theme }}
     </h3>
-    <br>
+    <h3>
+      {{ poll.name }}
+    </h3>
       <!-- skapar fields till confessions -->
       <div id="parent-container">
       <form id="confessionsform">
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
             <label for="confession{{ i }}"> Allegation {{ i }} :  </label>
-            <input type="text" class="field" id="field{{ i }}" v-model="conf[i]" required="required" :placeholder="uiLabels.enterAllegations">
+            <input type="text" class="field" id="field{{ i }}" v-model="poll.allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
             <br><br>
           </div>
         </div>
@@ -32,7 +34,9 @@
         <button class= "button" v-on:click="submitConfessions">
           <h3>Submit</h3> 
         </button>
-      </div>  
+         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
+      </div>
+    </div>
       <br>
       {{ poll }}
     </body>
@@ -56,7 +60,7 @@ data: function () {
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
     // lagrar confessions i array?
-    conf:{},
+    conf:[],
     poll: {},
     gameCode: 0
   }
@@ -90,10 +94,11 @@ methods: {
   return Math.floor(Math.random() * 1000000);
   },
   submitConfessions: function() {
-  this.conf.push(this.confession);
-  socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
-  }
- }
+  // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
+  this.conf = poll.allegations;
+  console.log(this.conf)
+}
+}
 }
 </script>
 
