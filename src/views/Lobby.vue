@@ -12,25 +12,9 @@
     <h3 id="theme">
       {{ poll.theme }}
     </h3>
-      <div v-for="(d, key) in dengrejen" 
-          v-bind:style="{ left: order.details.x + 'px', 
-                          top: order.details.y + 'px'}" 
-          v-bind:key="'dots' + key">
-        {{ key }}
-      </div>
-    <!-- skapar fields till confessions -->
-    <form>
-      <div>
-        <br>
-        <div v-for="(d, key) in dengrejen" 
-            v-bind:style="{ left: order.details.x + 'px', 
-                            top: order.details.y + 'px'}" 
-            v-bind:key="'dots' + key">
-          {{ key }}
-        </div>
-      </div>
-      </form>
+    <br>
       <!-- skapar fields till confessions -->
+      <div id="parent-container">
       <form id="confessionsform">
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
@@ -40,12 +24,16 @@
           </div>
         </div>
       </form>
+    </div>
       <!-- knapp som skickar confessions till submitConfessions  -->
+      <div class="wrap">
+         <!--knapp som går bakåt -->
+         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
         <button class= "button" v-on:click="submitConfessions">
           <h3>Submit</h3> 
         </button>
-      <!--knapp som går bakåt -->
-      <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
+      </div>  
+      <br>
       {{ poll }}
     </body>
 </template>
@@ -121,21 +109,31 @@ methods: {
   color: black;
   font-size: 20px;
 }
-#confessionsform{
-  width: 25em;
+#parent-container {
+  text-align: center; /* Center the content horizontally */
+}
+
+#confessionsform {
   font-size: 30px;
-  margin-right: auto;
-  margin-left: auto;
   color: #2a9451;
-  font-weight:bold;
+  font-weight: bold;
+  display: inline-block; /* Ensure that the form doesn't take up the full width */
 }
 .button{
   width: 200px; 
   height: 75px;
   font-size: 30px;
+  margin-left: auto;
 }
 #theme{
   text-align: center;
+}
+
+.wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 50px 0px 50px;
 }
 
 </style>

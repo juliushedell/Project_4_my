@@ -65,6 +65,7 @@ body {
   display: inline-block;
   font-size: 30px;
   line-height: 70px;
+  text-decoration: none;
 }
 
 .back:hover{
