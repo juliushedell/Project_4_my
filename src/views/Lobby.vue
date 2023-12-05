@@ -49,7 +49,7 @@
         </button>
       </div>  
       <!--knapp som går bakåt -->
-      <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
+      <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
       {{ poll }}
     </body>
 </template>

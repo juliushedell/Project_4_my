@@ -39,7 +39,7 @@
     <label class="themes" for="other">{{ uiLabels["yourOwnTheme"] }}</label>
     <input type="text" id="otherTheme" v-model="theme"/>
 </div>
-
+<router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
 <button v-on:click="createPoll">
     Create game
 </button>
