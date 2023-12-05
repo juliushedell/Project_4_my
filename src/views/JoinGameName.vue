@@ -13,7 +13,7 @@
     </p>
   </div>
   <div class="wrap">
-    <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
+    <router-link to="/JoinGameCode/" class="back">{{ uiLabels["back"] }}</router-link>
     <router-link to="/Lobby/:pollId" v-on:click="namePlayer" class="button" type="submit">{{ uiLabels["next"] }}</router-link>
   </div>
 </body>

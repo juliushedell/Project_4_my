@@ -13,24 +13,7 @@
       {{ uiLabels['yourOwnTheme'] }}
       {{ poll.theme }}
     </h3>
-      <div v-for="(d, key) in dengrejen" 
-          v-bind:style="{ left: order.details.x + 'px', 
-                          top: order.details.y + 'px'}" 
-          v-bind:key="'dots' + key">
-        {{ key }}
-      </div>
-    <!-- skapar fields till confessions -->
-    <form>
-      <div>
-        <br>
-        <div v-for="(d, key) in dengrejen" 
-            v-bind:style="{ left: order.details.x + 'px', 
-                            top: order.details.y + 'px'}" 
-            v-bind:key="'dots' + key">
-          {{ key }}
-        </div>
-      </div>
-      </form>
+
       <!-- skapar fields till confessions -->
       <form>
         <div>

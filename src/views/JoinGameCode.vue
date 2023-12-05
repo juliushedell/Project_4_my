@@ -11,7 +11,8 @@
           <input type="number" id="gameCode" v-model="gameCode_data" required="required" > 
         </p>
         <div class="b">
-          <router-link to="/JoinGameName/" class="button">{{ uiLabels["joinGame"] }}</router-link>
+          <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
+          <router-link to="/JoinGameName/" v-on:click="codePlayer" class="button">{{ uiLabels["joinGame"] }}</router-link>
         </div>
     </div>
     </body>
@@ -35,7 +36,8 @@ export default {
       uiLabels: {},
       id: "",
       lang: localStorage.getItem("lang") || "en",
-      hideNav: true
+      hideNav: true,
+      gameCode_data:0
     }
   },
   created: function () {
@@ -57,7 +59,12 @@ export default {
     },
     toggleNav: function () {
       this.hideNav = ! this.hideNav;
-    }
+    },
+    codePlayer: function () {
+    socket.emit("codePlayer", {  lang: this.lang,
+      gameCode_data: this.gameCode_data,})
+    console.log(this.gameCode_data)
+  },
   }
 }
 </script>
