@@ -29,14 +29,11 @@
     </div>
       <!-- knapp som skickar confessions till submitConfessions  -->
       <div class="wrappp">
-         <!--knapp som går bakåt -->
-         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
+        <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
         <button class= "button" v-on:click="submitConfessions">
           <h3>Submit</h3> 
         </button>
-         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
       </div>
-    </div>
       <br>
       {{ poll }}
     </body>
