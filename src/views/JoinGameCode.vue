@@ -11,7 +11,7 @@
           <input type="number" id="gameCode" v-model="gameCode_data" required="required" > 
         </p>
         <div class="b">
-          <router-link to="/Lobby/" class="button">{{ uiLabels["joinGame"] }}</router-link>
+          <router-link to="/JoinGameName/" class="button">{{ uiLabels["joinGame"] }}</router-link>
         </div>
     </div>
     </body>

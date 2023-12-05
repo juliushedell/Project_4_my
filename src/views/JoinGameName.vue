@@ -14,7 +14,7 @@
   </div>
   <div class="wrap">
     <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
-    <router-link to="/JoinGameCode/" v-on:click="namePlayer" class="button" type="submit">{{ uiLabels["next"] }}</router-link>
+    <router-link to="/Lobby/:pollId" v-on:click="namePlayer" class="button" type="submit">{{ uiLabels["next"] }}</router-link>
   </div>
 </body>
 </template>
@@ -34,7 +34,8 @@ export default {
       uiLabels: {},
       id: "",
       lang: localStorage.getItem("lang") || "en",
-      hideNav: true
+      hideNav: true,
+      gameName_data:''
     }
   },
   created: function () {
@@ -58,10 +59,9 @@ export default {
       this.hideNav = ! this.hideNav;
     },
     namePlayer: function () {
-    socket.emit("namePlayer", {game_id: this.game_id,
-                                 lang: this.lang,
-                                 name_of_player: this.name_of_player,})
-    console.log(this.name_of_player)
+    socket.emit("namePlayer", {  lang: this.lang,
+      gameName_data: this.gameName_data,})
+    console.log(this.gameName_data)
   },
   }
 }
