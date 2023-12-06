@@ -8,14 +8,26 @@
   </header>
   
   
-  
-    <div clas=wrapper>
+  <div class="wrapper">
+    <div class="wrap">
       {{ uiLabels['name_of_host'] }}
       <input type="text" v-model="name" required>
-   
+   </div>
+   <div class="wrap">
         {{ uiLabels['al_pp'] }}
         <input type="number" min="1" max="8" v-model="numberAllegations">
     </div>
+  </div>
+
+
+    <!--     <div class="wrap">
+      {{ uiLabels["name_of_host"] }}
+      <input type="text" v-model="name_of_host" class="text">
+    </div>
+    <div class="wrap">
+      {{ uiLabels["al_pp"] }}
+      <input type="number" v-model="no_allegations" class="text">
+    </div> -->
   
     <div class=themeTitle>
       {{ uiLabels["theme"] }}
@@ -33,16 +45,15 @@
       <input type="text" id="otherTheme" v-model="theme"/>
   </div>
   
-  <button v-on:click="createPoll" class="buttonCreate">
-      Create game
-  </button>
+  <div class="align">
+    <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
+    <button v-on:click="createPoll" class="button">
+        {{uiLabels["cg"]}}
+    </button>
+  </div>
+</template>
   
-  <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-  
-  
-  </template>
-  
-  <script>
+<script>
   import io from 'socket.io-client';
   const socket = io("localhost:3000");
   
@@ -93,29 +104,38 @@
     },
     generateGameCode: function () {
     return Math.floor(Math.random() * 1000000);
+      }
     }
   }
-  }
-  </script>
+</script>
   
-  <style scoped>
-  .wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    min-height: 100vh;
-  }
+<style scoped> 
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 50px;
+}
   
-  .themeTitle{
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    color: green; 
-  }
+.wrap{
+  display: grid;
+  grid-gap: 5em;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 28px;
+  color: green;
+}
+
+.themeTitle{
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  color: green; 
+  margin-top: 20px;
+}
   
-  .themes{
+.themes{
   border: 3px solid yellow;
   border-radius: 20px;
   color: green;
@@ -124,71 +144,49 @@
   margin: 10px;
   background-color: #81b8ce;
   text-decoration: none;
-  }
+}
   
-  .themebuttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
+.themebuttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
   
-  .themebuttons input[type="radio"] {
+.themebuttons input[type="radio"] {
   opacity: 0.01;
   z-index: 100;
   }
   
-  .themebuttons input[type="radio"]:checked+label,
-  .Checked+label {
+.themebuttons input[type="radio"]:checked+label,
+  
+.themebuttons label:hover {
   background: yellow;
   }
   
-  .themebuttons label:hover {
-  background: yellow;
-  }
+#otherTheme{
+  height: 30px; 
+  width: 150px; 
+  border-radius: 15px;
+  font-size: 14px;
+}
+
+.themebuttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   
-  #otherTheme{
-    height: 50px; 
-    width: 150px; 
-    border-radius: 15px;
-    font-size: 14px;
-  
-  }
-  
-  .back{
-    line-height: 30px;
-    border-width: 3px;
-    width: 100px;
-    height: 30px;
-    margin-left: 20px;
-    font-size: 14px;
-    margin-top: 10px;
-  }
-  
-  .buttonCreate{
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-  }
-  
-  @media screen and (max-width:50em) {
-    .themebuttons{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  
-    .themeTitle{
-      display: flex; 
-      align-items: center;
-      justify-content: center;
-    }
-  
-    .buttonCreate{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-  
-  
-  </style>
+.themeTitle{
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+
+.align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 50px 0px 50px;
+  gap: 100px;
+}
+</style>
