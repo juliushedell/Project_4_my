@@ -6,7 +6,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 h1 {
   background-color: #3fbc6a;
   color: yellow;
@@ -30,10 +29,10 @@ body {
 
 .head_picture {
   height: 85px;
-  position: absolute;
-  text-align: right;
-  margin-left: 450px;
-  margin-top: -45px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 10px;
 }
 
 .button {
@@ -60,12 +59,13 @@ body {
   height: 75px; 
   border-radius: 40px; 
   background-color: pink;
-  border: 6px solid green;
+  border: 6px solid #2a9451;;
   text-align: center;
-  color: green; 
+  color: #2a9451; 
   display: inline-block;
   font-size: 30px;
   line-height: 70px;
+  text-decoration: none;
 }
 
 .back:hover{

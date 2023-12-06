@@ -18,7 +18,7 @@
 	"sneakPeak": "- Allows a sneak peak on what other players have answerd",
 	
 
-	"enterAllegations": "Enter allegations",
+	"enterAllegations": "Enter allegation",
 	"Allegation1": "Allegation 1:",
 	"Allegation2": "Allegation 2:",
 	"Allegation3": "Allegation 3:",
@@ -43,5 +43,7 @@
 	"eyt": "Enter you theme:",
 
 	"gameCode": "Game code",
-	"Choosename": "Choose name"
+	"Choosename": "Choose name",
+	
+	"submit": "submit"
 }

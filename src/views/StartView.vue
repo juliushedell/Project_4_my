@@ -165,7 +165,7 @@ export default {
   justify-content: center;
 }
 .button{
-  dispplay: flex;
+  display: flex;
   width: 9em; /* 150px converted to em based on a 16px reference font size */
   height: 3em; /* 50px converted to em based on a 16px reference font size */
   border-radius: 3.125em; /* 50px converted to em based on a 16px reference font size */

@@ -9,29 +9,33 @@
     <h2 id="gameCode">
       {{ this.gameCode }}
     </h2>
-    <h3>
-      {{ uiLabels['yourOwnTheme'] }}
+    <h3 id="theme">
       {{ poll.theme }}
     </h3>
 
+    <h3>
+      {{ poll.name }}
+    </h3>
       <!-- skapar fields till confessions -->
-      <form>
+      <div id="parent-container">
+      <form id="confessionsform">
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
-            <label for="confession{{ i }}"> Confession {{ i }} :</label>
-            <input type="text" id="field{{ i }}" v-model="conf[i]" required="required" placeholder="Enter confession here">
+            <label for="confession{{ i }}"> Allegation {{ i }} :  </label>
+            <input type="text" class="field" id="field{{ i }}" v-model="poll.allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
             <br><br>
           </div>
         </div>
       </form>
+    </div>
       <!-- knapp som skickar confessions till submitConfessions  -->
-      <div>
-        <button  v-on:click="submitConfessions(key)">
-          <h3>Next</h3> 
+      <div class="wrappp">
+        <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
+        <button class= "button" v-on:click="submitConfessions">
+          <h3>Submit</h3> 
         </button>
-      </div>  
-      <!--knapp som går bakåt -->
-      <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
+      </div>
+      <br>
       {{ poll }}
     </body>
 </template>
@@ -86,11 +90,12 @@ methods: {
   },
   generateGameCode: function () {
   return Math.floor(Math.random() * 1000000);
-  }
-  // skickar confessions till servern ?
-  //submitConfessions: function() {
-    //socket.emit("addConfessions", {conf: this.conf})
-  //}
+  },
+  submitConfessions: function() {
+  // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
+  this.conf = poll.allegations;
+  console.log(this.conf)
+}
 }
 }
 </script>
@@ -101,6 +106,36 @@ methods: {
 #gameCode {
   text-align: center;
   margin-top: 0.3em;
+}
+.field{
+  border-radius: 8px;
+  color: black;
+  font-size: 20px;
+}
+#parent-container {
+  text-align: center; 
+}
+#confessionsform {
+  font-size: 30px;
+  color: #2a9451;
+  font-weight: bold;
+  display: inline-block; 
+}
+.button{
+  width: 200px; 
+  height: 75px;
+  font-size: 30px;
+  margin-left: auto;
+}
+#theme{
+  text-align: center;
+}
+
+.wrappp{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 50px 0px 50px;
 }
 
 </style>

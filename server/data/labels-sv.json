@@ -16,7 +16,7 @@
 	"50/50": "- Minskar antalet val till 2", 
 	"sneakPeak": "- Tillåter en tjuvtitt på vad andra spelare har svarat",
 
-	"enterAllegations": "Ange allegations",
+	"enterAllegations": "Ange allegation",
 	"Allegation1": "Allegation 1:",
 	"Allegation2": "Allegation 2:",
 	"Allegation3": "Allegation 3:",
@@ -41,5 +41,7 @@
 	"eyt": "Ange ditt tema:",
 
 	"gameCode": "Spelkod",
-	"Choosename": "Välj namn"
+	"Choosename": "Välj namn",
+
+	"submit": "skicka in"
 }
