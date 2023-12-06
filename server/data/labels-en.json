@@ -45,5 +45,6 @@
 	"gameCode": "Game code",
 	"Choosename": "Choose name",
 	
-	"submit": "submit"
+	"submit": "submit",
+	"start": "start game"
 }

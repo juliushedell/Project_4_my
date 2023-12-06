@@ -129,7 +129,7 @@ export default {
 .rightButton{
   display: flex;
   justify-content: right;
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 .button{
@@ -166,8 +166,8 @@ export default {
 }
 .button{
   display: flex;
-  width: 9em; /* 150px converted to em based on a 16px reference font size */
-  height: 3em; /* 50px converted to em based on a 16px reference font size */
+  width: 8em; /* 150px converted to em based on a 16px reference font size */
+  height: 1em; /* 50px converted to em based on a 16px reference font size */
   border-radius: 3.125em; /* 50px converted to em based on a 16px reference font size */
   background-color: #3fbc6a;
   border: 0.1875em solid #2a9451; /* 3px converted to em based on a 16px reference font size */
