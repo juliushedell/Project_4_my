@@ -12,10 +12,11 @@
     <h3 id="theme">
       {{ poll.theme }}
     </h3>
-
-    <h3>
-      {{ poll.name }}
-    </h3>
+    <div id="pollName">
+      <h3>
+        {{ poll.name }}
+      </h3>
+    </div>
       <!-- skapar fields till confessions -->
       <div id="parent-container">
       <form id="confessionsform">
@@ -149,4 +150,19 @@ methods: {
   color:yellow;
 }
 
+#theme{
+  color: yellow;
+}
+
+#pollName{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; 
+  height: 30px; 
+  border-radius: 40px; 
+  border: 2px solid blue;
+  color: blue;
+  text-align: center;
+}
 </style>
