@@ -57,7 +57,7 @@ data: function () {
     id: "",
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
-    // lagrar confessions i array?
+    // lagrar confessions i array
     conf:[],
     poll: {},
     gameCode: 0
@@ -158,11 +158,14 @@ methods: {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px; 
+  width:min-content;
   height: 30px; 
   border-radius: 40px; 
   border: 2px solid blue;
+  padding: 10px;
+  margin:40px auto;
   color: blue;
   text-align: center;
+ 
 }
 </style>
