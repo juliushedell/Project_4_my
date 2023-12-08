@@ -10,11 +10,11 @@
       {{ this.gameCode }}
     </h2>
     <h3 id="theme">
-      {{ poll.theme }}
+      {{ this.theme }}
     </h3>
 
     <h3>
-      {{ poll.name }}
+      {{ this.name }}
     </h3>
       <!-- skapar fields till confessions -->
       <div id="parent-container">
@@ -37,6 +37,8 @@
       </div>
       <br>
       {{ poll }}
+      xxxx
+      {{ players }}
     </body>
 </template>
 
@@ -60,13 +62,18 @@ data: function () {
     // lagrar confessions i array?
     conf:[],
     poll: {},
-    gameCode: 0
+    gameCode: 0,
+    players: {}
   }
 },
 created: function () {
-  this.gameCode = this.$route.params.pollId
+  this.gameCode = this.$route.params.gameCode
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
+  socket.emit("getPlayers", this.gameCode);
+  socket.on("pullPlayer", (players) => {
+    this.players = players
+  })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
   })

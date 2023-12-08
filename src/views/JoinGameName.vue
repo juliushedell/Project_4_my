@@ -1,22 +1,24 @@
 <template>
-<header>
-<h1>
-  {{ uiLabels["Choosename"] }}
-  <img src="/img/Head_picture.png" class="head_picture">
-</h1>
-</header>
-<body>
-  <div class="wrap">
-  {{ uiLabels["enterName"] }}
-    <p> 
-      <input type="text" id="gameName" v-model="gameName_data" required="required" > 
-    </p>
+  <div>
+    <header>
+      <h1>
+        {{ uiLabels["Choosename"] }}
+        <img src="/img/Head_picture.png" class="head_picture">
+      </h1>
+    </header>
+    <body>
+      <div class="wrap">
+        {{ uiLabels["enterName"] }}
+        <p> 
+          <input type="text" id="gameName" v-model="gameName_data" required="required" > 
+        </p>
+      </div>
+      <div class="wrap">
+        <router-link to="/JoinGameCode/" class="back">{{ uiLabels["back"] }}</router-link>
+        <button @click="namePlayer" class="button" type="submit">{{ uiLabels["next"] }}</button>
+      </div>
+    </body>
   </div>
-  <div class="wrap">
-    <router-link to="/JoinGameCode/" class="back">{{ uiLabels["back"] }}</router-link>
-    <router-link to="/Lobby/:pollId" v-on:click="namePlayer" class="button" type="submit">{{ uiLabels["next"] }}</router-link>
-  </div>
-</body>
 </template>
 
 <script>
@@ -25,7 +27,7 @@ import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
-  name: 'StartView',
+  name: 'JoinGameName',
   components: {
     ResponsiveNav
   },
@@ -35,44 +37,40 @@ export default {
       id: "",
       lang: localStorage.getItem("lang") || "en",
       hideNav: true,
-      gameName_data:''
+      gameName_data: '',
+      gameCode: 0,
+      player: {}
     }
   },
   created: function () {
+    this.gameCode = this.$route.params.gameCode
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
-    })
+    });
   },
   methods: {
-    switchLanguage: function() {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    },
-    toggleNav: function () {
-      this.hideNav = ! this.hideNav;
-    },
     namePlayer: function () {
-    socket.emit("namePlayer", {  lang: this.lang,
-      gameName_data: this.gameName_data,})
-    console.log(this.gameName_data)
-  },
+      // socket.emit("namePlayer", {
+      //   lang: this.lang,
+      //   gameName_data: this.gameName_data,
+      //   gameCode: this.gameCode
+      // });
+
+      
+      socket.emit('createPlayer', {lang: this.lang, gameCode: this.gameCode, name: this.gameName_data, isHost: false})
+      this.$router.push({ name: 'Lobby', params: { gameCode: this.gameCode } });
+    },
   }
 }
 </script>
 
 <style>
 .wrap{
-display: grid;
-grid-gap: 5em;
-grid-template-columns: repeat(2, 1fr);
-margin: 50px 100px 50px 100px;
+  display: grid;
+  grid-gap: 5em;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 50px 100px 50px 100px;
 }
 
 #gameName{
