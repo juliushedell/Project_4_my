@@ -31,9 +31,8 @@
       <!-- knapp som skickar confessions till submitConfessions  -->
       <div class="wrappp">
         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
-        <button class= "button" v-on:click="submitConfessions">
-          <h3>Submit</h3> 
-        </button>
+        <router-link to="/playingGame" class="button">{{ uiLabels["start"] }}</router-link>
+        <button v-on:click="submit" id="submit">{{ uiLabels["submit"] }}</button>
       </div>
       <br>
       {{ poll }}
@@ -59,7 +58,7 @@ data: function () {
     id: "",
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
-    // lagrar confessions i array?
+    // lagrar confessions i array
     conf:[],
     poll: {},
     gameCode: 0,
@@ -129,10 +128,12 @@ methods: {
   display: inline-block; 
 }
 .button{
-  width: 200px; 
-  height: 75px;
+  width: 120px; 
+  height: 1px;
   font-size: 30px;
   margin-left: auto;
+  font-size: 20px;
+  margin-right:10px;
 }
 #theme{
   text-align: center;
@@ -145,4 +146,32 @@ methods: {
   margin: 0px 50px 0px 50px;
 }
 
+#submit{
+  width: 170px; 
+  height: 60px;
+  border-radius: 40px;
+  background-color: #3fbc6a;;
+  border: 0.1875em solid #2a9451;
+  font-size: 20px;
+  color:yellow;
+}
+
+#theme{
+  color: yellow;
+}
+
+#pollName{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:min-content;
+  height: 30px; 
+  border-radius: 40px; 
+  border: 2px solid blue;
+  padding: 10px;
+  margin:40px auto;
+  color: blue;
+  text-align: center;
+ 
+}
 </style>

@@ -30,7 +30,7 @@
 	"childhood": "Childhood",
 	"illegal": "Illegal",
 	"uti": "Under the influence",
-	"yourOwnTheme": "Theme:",
+	"yourOwnTheme": "Own theme",
 	"back": "Back",
 	"next": "Next",
 	"cg": "Create game",
@@ -45,5 +45,6 @@
 	"gameCode": "Game code",
 	"Choosename": "Choose name",
 	
-	"submit": "submit"
+	"submit": "submit",
+	"start": "start game"
 }

@@ -64,7 +64,13 @@ const router = createRouter({
       name: 'CreateTheme',
       component: () => import('../views/CreateThemeView.vue')
     },
-  ]
+    {
+      path: '/playingGame/',
+      name: 'playingGame',
+      component: () => import('../views/playingGame.vue')
+    } 
+  ] 
 })
 
 export default router
+
