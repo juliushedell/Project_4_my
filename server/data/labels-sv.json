@@ -42,5 +42,6 @@
 
 	"gameCode": "Spelkod",
 	"Choosename": "Välj namn",
-	"start": "starta spel"
+	"start": "starta spel", 
+	"correctAnswer": "Den rätta personen till påståendet är:"
 }
