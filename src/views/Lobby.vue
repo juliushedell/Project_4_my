@@ -13,7 +13,7 @@
       {{ poll.theme }}
     </h3>
 
-    <h3>
+    <h3 id="name">
       {{ poll.name }}
     </h3>
       <!-- skapar fields till confessions -->
@@ -101,6 +101,10 @@ methods: {
 
 
 <style>
+#name {
+  text-align: center;
+  margin-top: 0.3em; 
+}
 
 #gameCode {
   text-align: center;
@@ -147,6 +151,11 @@ methods: {
   border: 0.1875em solid #2a9451;
   font-size: 20px;
   color:yellow;
+}
+
+#submit:hover{
+  background-color: darkgreen;
+
 }
 
 </style>
