@@ -8,7 +8,7 @@
       </header>
 
       <div class="alligator-container">
-      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="\img\alligatorStart.png" alt="countDownAlligator" />
+      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="img\alligatorTimer.png" alt="countDownAlligator" />
       <!-- här måste vi lägga in en ny bild på en alligator med lite mer utrymme till höger -->
     </div>
 
@@ -23,14 +23,14 @@
 export default {
   data: function() {
     return {
-      timer: 10,
+      timer: 15,
     };
   },
 
   computed: {
     countPercentageAlligator() {
       // Calculate the percentage based on the current countdown value
-      return (this.timer / 10) * 100; // Assuming a countdown from 10 seconds
+      return (this.timer / 15) * 100; // Assuming a countdown from 10 seconds
     },
   },
 
@@ -63,7 +63,6 @@ img {
   height: auto;
   max-width: 25vw;
   transition: clip-path 1s ease; /* Add a smooth transition effect for clip-path changes */
-  
 }
 
 </style>
