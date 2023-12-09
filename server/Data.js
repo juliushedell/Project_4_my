@@ -34,8 +34,29 @@ Data.prototype.createPoll = function(lang="en", pollId, name, numberAllegations,
     poll.numberAllegations = numberAllegations;
     poll.theme = theme;
     poll.allegations = allegations;
+    poll.players = {};
   }
   return this.polls[pollId];
+}
+
+Data.prototype.createPlayer = function(lang="en", pollId, name, isHost) {
+  const poll = this.polls[pollId];
+  if (typeof poll === "undefined") {
+    return {};
+  }
+  if (typeof poll.players[name] === "undefined") {
+    let player = {};
+    poll.players[name] = player;
+    player.lang = lang;
+    console.log("player created", name, pollId);
+    player.isHost = isHost;
+    player.name = name;
+    player.points = 0;
+    player.gameCode = pollId;
+    // player.numberAllegations = polls[pollId].numberAllegations; // Funkar detta?? Behövs ens denna info lagras här?
+    player.allegations = [];
+  }
+   return poll.players[name];
 }
 
 Data.prototype.getPoll = function(pollId) {
@@ -43,6 +64,14 @@ Data.prototype.getPoll = function(pollId) {
     return {}
   }
   return this.polls[pollId];
+}
+
+Data.prototype.getPlayers = function(gameCode) {
+  const poll = this.polls[gameCode];
+  if (typeof poll === "undefined") {
+    return {};
+  }
+  return poll.players
 }
 
 //----------------------------------------------------------------
@@ -119,6 +148,17 @@ Data.prototype.getAnswers = function(pollId) {
 Data.prototype.addConfessions = function (gameCode, confessions) {
     // this.polls[gameCode].allegations = confessions;
     // Returna något??
+};
+
+Data.prototype.addPlayer = function (gameCode, playerName) {
+  if (this.polls[gameCode]) {
+    this.polls[gameCode].joinedPlayers.push({ name: playerName, joinedAt: new Date() });
+  }
+};
+
+Data.prototype.recieveCode = function (gameCode) {
+  console.log("game code recieved ", gameCode);
+
 };
 
 export { Data };

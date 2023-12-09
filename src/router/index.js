@@ -40,7 +40,7 @@ const router = createRouter({
       component: () => import('../views/EnterAllegations.vue')
     },
     {
-      path: '/JoinGameName/',
+      path: '/JoinGameName/:gameCode',
       name: 'JoinGameName',
       component: () => import('../views/JoinGameName.vue')
     },
@@ -50,7 +50,7 @@ const router = createRouter({
       component: () => import('../views/JoinGameCode.vue')
     },
     {
-      path: '/Lobby/:pollId',
+      path: '/Lobby/:gameCode',
       name: 'Lobby',
       component: () => import('../views/Lobby.vue')
     },

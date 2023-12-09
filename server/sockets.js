@@ -10,8 +10,11 @@ function sockets(io, socket, data) {
   });
 
   socket.on('createPoll', function(d) {
-    socket.emit('pollCreated', data.createPoll(d.lang, d.pollId, d.name, d.numberAllegations, d.theme, d.allegations));
+    socket.emit('pollCreated', data.createPoll(d.lang, d.gameCode, d.name, d.numberAllegations, d.theme, d.allegations));
   });
+  socket.on('createPlayer', function(d) {
+    data.createPlayer(d.lang, d.gameCode, d.name, d.isHost);
+  })
 //----------------------------------------------------------------
   socket.on('createGame', function(gameSetup) {
     socket.emit('gameCreated', data.createGame(gameSetup.game_id, gameSetup.lang, gameSetup.name_of_host, gameSetup.no_allegations,gameSetup.the_theme));
@@ -27,16 +30,19 @@ function sockets(io, socket, data) {
     socket.emit('questionEdited', data.getAllQuestions(d.pollId));
   });
 
-  socket.on('joinPoll', function(pollId) {
-    socket.join(pollId);
-    socket.emit('newQuestion', data.getQuestion(pollId))
-    socket.emit('dataUpdate', data.getAnswers(pollId));
+  socket.on('joinPoll', function(gameCode) {
+    socket.join(gameCode);
+    socket.emit('pullPoll', data.getPoll(gameCode));
   });
 
   socket.on('getPoll', function(pollId) {
     socket.join(pollId);
-    socket.emit('pullPoll', data.getPoll(pollId))
+    io.to(pollId).emit('pullPoll', data.getPoll(pollId))
   });
+
+  socket.on('getPlayers', function(gameCode) {
+    io.to(gameCode).emit('pullPlayer', data.getPlayers(gameCode));
+  })
 
   socket.on('runQuestion', function(d) {
     io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
@@ -55,13 +61,17 @@ function sockets(io, socket, data) {
 
   socket.on('addConfessions', function(gameCode, conf) {
     data.addConfessions(gameCode, conf);
-  })
+  });
   // tar emot confessions ?
   //Behöver lägga till io.emit för att kunna skicka vidare !
   // socket.on('addConfessions', function(confessions){
     //data.addConfessions(confessions)
 
   //})
+
+  socket.on("sendCode", function (gameCode) {
+    socket.emit("recieveCode", gameCode);
+  })
  
 }
 

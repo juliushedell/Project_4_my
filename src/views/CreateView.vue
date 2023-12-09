@@ -89,18 +89,19 @@
   },
   methods: {
     createPoll: function () {
-      let pollId = this.generateGameCode();
-      socket.emit("createPoll", {lang: this.lang, pollId: pollId, name: this.name, numberAllegations: this.numberAllegations, theme: this.theme, allegations: this.allegations})
-      this.$router.push ('/Lobby/' + pollId)
+      let gameCode = this.generateGameCode();
+      socket.emit("createPoll", {lang: this.lang, gameCode: gameCode, name: this.name, numberAllegations: this.numberAllegations, theme: this.theme, allegations: this.allegations})
+      socket.emit('createPlayer', {lang: this.lang, gameCode: gameCode, name: this.name, isHost: true})
+      this.$router.push ('/Lobby/' + gameCode)
     },
     addQuestion: function () {
-      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
+      socket.emit("addQuestion", {gameCode: this.gameCode, q: this.question, a: this.answers } )
     },
     addAnswer: function () {
       this.answers.push("");
     },
     runQuestion: function () {
-      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
+      socket.emit("runQuestion", {gameCode: this.gameCode, questionNumber: this.questionNumber})
     },
     generateGameCode: function () {
     return Math.floor(Math.random() * 1000000);

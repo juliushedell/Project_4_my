@@ -10,11 +10,11 @@
       {{ this.gameCode }}
     </h2>
     <h3 id="theme">
-      {{ poll.theme }}
+      {{ this.theme }}
     </h3>
 
-    <h3 id="name">
-      {{ poll.name }}
+    <h3>
+      {{ this.name }}
     </h3>
       <!-- skapar fields till confessions -->
       <div id="parent-container">
@@ -36,6 +36,8 @@
       </div>
       <br>
       {{ poll }}
+      xxxx
+      {{ players }}
     </body>
 </template>
 
@@ -56,16 +58,21 @@ data: function () {
     id: "",
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
-    // lagrar confessions i array?
+    // lagrar confessions i array
     conf:[],
     poll: {},
-    gameCode: 0
+    gameCode: 0,
+    players: {}
   }
 },
 created: function () {
-  this.gameCode = this.$route.params.pollId
+  this.gameCode = this.$route.params.gameCode
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
+  socket.emit("getPlayers", this.gameCode);
+  socket.on("pullPlayer", (players) => {
+    this.players = players
+  })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
   })
@@ -153,9 +160,22 @@ methods: {
   color:yellow;
 }
 
-#submit:hover{
-  background-color: darkgreen;
-
+#theme{
+  color: yellow;
 }
 
+#pollName{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:min-content;
+  height: 30px; 
+  border-radius: 40px; 
+  border: 2px solid blue;
+  padding: 10px;
+  margin:40px auto;
+  color: blue;
+  text-align: center;
+ 
+}
 </style>
