@@ -7,18 +7,29 @@
     </h1>
   </header>
   
-  
   <div class="wrapper">
-    <div class="wrap">
+    <div class="wrap" style="grid-area: a;">
       {{ uiLabels['name_of_host'] }}
       <input type="text" v-model="name" required>
    </div>
-   <div class="wrap">
-        {{ uiLabels['al_pp'] }}
-        <input type="number" min="1" max="8" v-model="numberAllegations">
+    <div class="wrap" style="grid-area: b;" >
+      {{ uiLabels["al_pp"] }}
     </div>
+    <div style="grid-area: c; padding-right: 200px;">
+      <button  @click="removeAllegation">
+        -
+      </button>
+      {{numberAllegations}}
+      <button @click="addAllegation">
+        +
+      </button>
+    </div>
+ 
+    <!-- <div class="wrap"></div>
+        { uiLabels['al_pp'] }}
+        <input type="number" min="1" max="8" v-model="numberAllegations">
+    </div> -->
   </div>
-
 
     <!--     <div class="wrap">
       {{ uiLabels["name_of_host"] }}
@@ -68,7 +79,7 @@
       uiLabels: {},
   
       name: "",
-      numberAllegations: 0,
+      numberAllegations: 1 ,
       theme: "",
       allegations: []
     }
@@ -105,24 +116,38 @@
     },
     generateGameCode: function () {
     return Math.floor(Math.random() * 1000000);
+    },
+      removeAllegation: function(){
+    if (this.numberAllegations > 1){
+      this.numberAllegations --;
+     }
+    }, 
+    addAllegation: function(){
+      if (this.numberAllegations < 8){
+      this.numberAllegations ++;
       }
     }
+   }
   }
 </script>
   
 <style scoped> 
 .wrapper{
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
   padding-top: 50px;
+  display: grid;
+  grid-template-areas: 
+  'a a'
+  'b c';
+  color: green;
+  font-size: 28px;
 }
   
 .wrap{
   display: grid;
-  grid-gap: 5em;
   grid-template-columns: repeat(2, 1fr);
   font-size: 28px;
   color: green;
@@ -161,7 +186,7 @@
 .themebuttons input[type="radio"]:checked+label,
   
 .themebuttons label:hover {
-  background: yellow;
+  background:yellow;
   }
   
 #otherTheme{

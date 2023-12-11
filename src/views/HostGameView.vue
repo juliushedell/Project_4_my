@@ -90,7 +90,7 @@ methods: {
                                  no_allegations: this.no_allegations,
                                  the_theme: this.the_theme})
     console.log(this.name_of_host,this.no_allegations,this.the_theme)
-  },
+  }
 }
 }
 
