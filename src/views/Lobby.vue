@@ -32,7 +32,8 @@
       <div class="wrappp">
         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
         <router-link to="/playingGame" class="button">{{ uiLabels["start"] }}</router-link>
-        <button v-on:click="submit" id="submit">{{ uiLabels["submit"] }}</button>
+        <button v-on:click="submitConfessions" id="submit" :disabled="isInputDisabled">{{ uiLabels["submit"] }}</button> 
+        <!-- Ändrade till v-on:click submitconsfessions instället för v-on:click submit-->
       </div>
       <br>
       {{ poll }}
@@ -62,7 +63,8 @@ data: function () {
     conf:[],
     poll: {},
     gameCode: 0,
-    players: {}
+    players: {}, 
+    isInputDisabled: false //grundvariabel som gör att det går att redigera i iinput fieldsen
   }
 },
 created: function () {
@@ -99,15 +101,20 @@ methods: {
   },
   submitConfessions: function() {
   // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
-  this.conf = poll.allegations;
-  console.log(this.conf)
-}
-}
-}
+  this.conf = this.poll.allegations;
+  console.log(this.conf);
+  this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
+  console.log("tjena") //den verkar inte nå hit när man klickar på knappen
+  }
+ }}
 </script>
 
 
 <style>
+#name {
+  text-align: center;
+  margin-top: 0.3em; 
+}
 
 #gameCode {
   text-align: center;

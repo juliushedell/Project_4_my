@@ -11,77 +11,64 @@ h1 {
   color: yellow;
   padding: 15px;
   margin-top: 1em;
-  margin-bottom: 0%;
+  margin-bottom: 0;
   text-align: center;
   border-top: 3px solid #2a9451;
   border-bottom: 3px solid #2a9451;
 }
 
 h2 {
-  font-size: 50px;
-  letter-spacing: 10px;
+  font-size: 3.5vw;
+  letter-spacing: 0.6vw;
 }
 
 body {
   background-color: #81b8ce;
-  font-size: 16px;
+  font-size: 1em; /* Keep font size in em for better responsiveness */
 }
 
 .head_picture {
-  height: 85px;
+  height: 8vh; /* Adjusted height to 8% of viewport height */
   position: fixed;
   top: 0;
   right: 0;
-  margin: 10px;
+  margin: 1.5vh; /* Adjusted margin to 1.5% of viewport height */
 }
 
 .button {
-  width: 8em; 
-  height: 1em;
-  border-radius: 3.125em; 
+  width: 8vw; /* Adjusted width to 8% of viewport width */
+  height: 3vh; /* Adjusted height to 3% of viewport height */
+  border-radius: 3.125em;
   background-color: #3fbc6a;
   border: 0.1875em solid #2a9451;
   color: yellow;
   text-align: center;
   text-decoration: none;
-  padding: 1.25em; 
+  padding: 1.25vw; /* Adjusted padding to 1.25% of viewport width */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.button:hover{
-  background-color: darkgreen ;
+.button:hover {
+  background-color: darkgreen;
 }
 
-.back{
-  line-height: 30px;
+.back {
+  line-height: 4vh; /* Adjusted line-height to 4% of viewport height */
   background-color: pink;
   border: 3px solid #2a9451;
   text-align: center;
-  color: #2a9451; 
+  color: #2a9451;
   display: inline-block;
-  width: 100px;
-  height: 30px;
-  margin-left: 20px;
-  font-size: 14px;
+  width: 10vw; /* Adjusted width to 10% of viewport width */
+  height: 4vh; /* Adjusted height to 4% of viewport height */
+  margin-left: 2vw; /* Adjusted margin-left to 2% of viewport width */
+  font-size: 1.4vw; /* Adjusted font-size to 1.4% of viewport width */
   text-decoration: none;
-  border-radius: 40px; 
+  border-radius: 4vw; /* Adjusted border-radius to 4% of viewport width */
 }
 
-.back:hover{
+.back:hover {
   background-color: #ffccd5;
 }
-
-/* .themes{
-  border: 5px solid;
-  border-radius: 8px;
-  color: green;
-  background-color: #81b8ce;
-  font-size: 16px;
-  border-radius: 20px;
-  text-decoration: none;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
-  } */
