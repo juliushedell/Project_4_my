@@ -33,7 +33,6 @@
         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
         <router-link to="/playingGame" class="button">{{ uiLabels["start"] }}</router-link>
         <button v-on:click="submitConfessions" id="submit" :disabled="isInputDisabled">{{ uiLabels["submit"] }}</button> 
-        <!-- Ändrade till v-on:click submitconsfessions instället för v-on:click submit-->
       </div>
       <br>
       {{ poll }}
@@ -44,23 +43,15 @@
 
 <script>
 
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
-name: 'StartView',
-components: {
-  ResponsiveNav
-},
+name: 'enterAllegations',
 data: function () {
   return {
     uiLabels: {},
-    id: "",
     lang: localStorage.getItem("lang") || "en",
-    hideNav: true,
-    // lagrar confessions i array
-    conf:[],
     poll: {},
     gameCode: 0,
     players: [], 
@@ -101,16 +92,9 @@ methods: {
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
   },
-  toggleNav: function () {
-    this.hideNav = ! this.hideNav;
-  },
-  generateGameCode: function () {
-  return Math.floor(Math.random() * 1000000);
-  },
   submitConfessions: function() {
   socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.gameName_data, isHost: false});
   this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
-  console.log("tjena") //den verkar inte nå hit när man klickar på knappen
   }
  }}
 </script>

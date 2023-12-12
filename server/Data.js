@@ -25,8 +25,6 @@ Data.prototype.createPoll = function(lang="en", pollId, numberAllegations, theme
     poll.lang = lang;              
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
-
-    // Tillagt
     poll.numberAllegations = numberAllegations;
     poll.theme = theme;
     poll.players = [];
@@ -74,21 +72,6 @@ Data.prototype.getPlayers = function(gameCode) {
   return poll.players
   
 }
-
-//----------------------------------------------------------------
- Data.prototype.createGame = function(game_id, lang="en", name_of_host, no_allegations,the_theme) {
-   if (typeof this.polls[game_id] === "undefined") {
-     let poll = {};
-     poll.lang = lang;  
-     poll.name_of_host = '';
-     poll.no_allegations = 50;
-     poll.the_theme = '';              
-     this.polls[game_id] = poll;
-     console.log("poll created", game_id, poll);
-   }
-   return this.polls[game_id];
- }
-//----------------------------------------------------------------
 
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
@@ -153,12 +136,6 @@ Data.prototype.addConfessions = function (gameCode, allegations, name) {
     poll.players.push(thePlaya)
   // this.polls[gameCode].allegations = confessions;
     // Returna något??
-  }
-};
-
-Data.prototype.addPlayer = function (gameCode, playerName) {
-  if (this.polls[gameCode]) {
-    this.polls[gameCode].joinedPlayers.push({ name: playerName, joinedAt: new Date() });
   }
 };
 

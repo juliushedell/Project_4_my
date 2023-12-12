@@ -30,16 +30,6 @@ const router = createRouter({
       component: () => import('../views/HowToPlayView.vue')
     },
     {
-      path: '/HostGame/',
-      name: 'HostGameView',
-      component: () => import('../views/HostGameView.vue')
-    },
-    {
-      path: '/EnterAllegations/',
-      name: 'EnterAllegations',
-      component: () => import('../views/EnterAllegations.vue')
-    },
-    {
       path: '/JoinGameName/:gameCode',
       name: 'JoinGameName',
       component: () => import('../views/JoinGameName.vue')
@@ -53,16 +43,6 @@ const router = createRouter({
       path: '/Lobby/:gameCode/:pid',
       name: 'Lobby',
       component: () => import('../views/Lobby.vue')
-    },
-    {
-      path: '/HostGame/',
-      name: 'HostGameView',
-      component: () => import('../views/HostGameView.vue')
-    },
-    {
-      path: '/createtheme/',
-      name: 'CreateTheme',
-      component: () => import('../views/CreateThemeView.vue')
     },
     {
       path: '/playingGame/',
