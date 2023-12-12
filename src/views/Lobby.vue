@@ -41,7 +41,6 @@
 
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
-
 export default {
 name: 'enterAllegations',
 data: function () {
@@ -92,6 +91,7 @@ methods: {
   submitConfessions: function() {
   socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost});
   this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
+  console.log("tjena") //den verkar inte nå hit när man klickar på knappen
   }
  }}
 </script>
