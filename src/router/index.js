@@ -48,7 +48,12 @@ const router = createRouter({
       path: '/playingGame/',
       name: 'playingGame',
       component: () => import('../views/playingGame.vue')
-    } 
+    },
+    {
+      path: '/Lobbytwo/:gameCode/:pid',
+      name: 'Lobbytwo',
+      component: () => import('../views/LobbytwoView.vue')
+    }, 
   ] 
 })
 
