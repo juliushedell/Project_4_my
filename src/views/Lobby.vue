@@ -47,7 +47,6 @@
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
-
 export default {
 name: 'StartView',
 components: {
@@ -104,7 +103,7 @@ methods: {
   this.conf = this.poll.allegations;
   console.log(this.conf);
   this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
-  console.log("tjena") //den verkar inte nå hit när man klickar på knappen
+  console.log("hello") //den verkar inte nå hit när man klickar på knappen
   }
  }}
 </script>
