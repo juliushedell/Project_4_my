@@ -9,6 +9,9 @@
         <h2 id="gameCode">
             {{ this.gameCode }}
         </h2>
+        <div class="player-list" v-for="(player, index) in poll.players" :key="index">
+          {{ player.name }}
+        </div>
     </div>
     <div class="pollName">
         {{ gameName_data }}
@@ -86,7 +89,7 @@ methods: {
  }}
 </script>
 
-<style>
+<style scoped>
 .pollName{
   display: flex;
   justify-content: center;
@@ -132,4 +135,9 @@ methods: {
   justify-content: center;
   align-items: center;
 }
+
+.player-list {
+    text-align: center;
+  }
+
 </style>
