@@ -42,5 +42,7 @@
 
 	"gameCode": "Spelkod",
 	"Choosename": "Välj namn",
-	"start": "starta spel"
+	"start": "starta spel",
+
+	"answer": "Personen bakom påståendet är: "
 }
