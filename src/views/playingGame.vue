@@ -16,6 +16,7 @@
 
     <div class=timerDispaly style="text-align: center;">
         <p v-if="timer > 0"> {{ timer }} </p>
+        <p v-else="timer ===0" > {{ goToPodiumView() }} </p> 
     </div>
 
     <div style="text-align: center; display: flex; justify-content: center;">
@@ -28,7 +29,7 @@
 export default {
   data: function() {
     return {
-      timer: 10, 
+      timer: 15, 
       players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"] //denna är temoprär för att se om det funkar
     };
   },
@@ -36,7 +37,7 @@ export default {
   computed: {
     countPercentageAlligator() {
       // Calculate the percentage based on the current countdown value
-      return (this.timer / 10) * 100; // Assuming a countdown from 10 seconds
+      return (this.timer / 15) * 100; // Assuming a countdown from 10 seconds
     },
 
     randomizedPlayers() {
@@ -57,8 +58,15 @@ export default {
           this.timer--;
         } else {
           clearInterval(countdownInterval);
+          this.goToPodiumView();
         }
       }, 1000);
+    },
+
+    goToPodiumView() {
+      // Perform redirection here, using router-link or programmatically
+      // For example, programmatically navigating to another view
+      this.$router.push('/Podium'); // Change '/another-view' to your desired route
     },
 
     checkIfCorrect(player) {
