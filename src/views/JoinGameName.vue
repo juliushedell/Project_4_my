@@ -10,7 +10,7 @@
       <div class="wrap">
         {{ uiLabels["enterName"] }}
         <p> 
-          <input type="text" id="gameName" v-model="gameName_data" required="required" > 
+          <input type="text" id="gameName" v-model="name" required="required" > 
         </p>
       </div>
       <div class="wrap">
@@ -31,7 +31,7 @@ export default {
     return {
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
-      gameName_data: '',
+      name: '',
       gameCode: 0,
       isHost: false,
       player: {}
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     namePlayer: function () {
-      this.$router.push({ name: 'Lobby', params: { gameCode: this.gameCode, pid: this.gameName_data } });
+      this.$router.push({ name: 'Lobby', params: { gameCode: this.gameCode, name: this.name, isHost: this.isHost } });
     }
   }
 }

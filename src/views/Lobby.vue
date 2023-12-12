@@ -10,11 +10,7 @@
       {{ this.gameCode }}
     </h2>
     <h3 id="theme">
-      {{ this.theme }}
-    </h3>
-
-    <h3>
-      {{ this.name }}
+      {{ poll.theme }}
     </h3>
       <!-- skapar fields till confessions -->
       <div id="parent-container">
@@ -45,7 +41,6 @@
 
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
-
 export default {
 name: 'enterAllegations',
 data: function () {
@@ -63,7 +58,8 @@ data: function () {
 
 created: function () { 
   this.gameCode = this.$route.params.gameCode
-  this.gameName_data = this.$route.params.pid
+  this.name = this.$route.params.name
+  this.isHost = this.$route.params.isHost;
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
   socket.emit("getPlayers", this.gameCode);

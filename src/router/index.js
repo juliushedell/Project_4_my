@@ -40,9 +40,10 @@ const router = createRouter({
       component: () => import('../views/JoinGameCode.vue')
     },
     {
-      path: '/Lobby/:gameCode/:pid',
+      path: '/Lobby/:gameCode/:name/:isHost',
       name: 'Lobby',
-      component: () => import('../views/Lobby.vue')
+      component: () => import('../views/Lobby.vue'),
+      props: true
     },
     {
       path: '/playingGame/',
