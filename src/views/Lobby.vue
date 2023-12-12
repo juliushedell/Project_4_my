@@ -89,9 +89,9 @@ methods: {
     socket.emit("switchLanguage", this.lang)
   },
   submitConfessions: function() {
-    socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.gameName_data, isHost: false});
+    socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost});
     this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
-    this.$router.push ('/Lobbytwo/' + this.gameCode +'/' + this.gameName_data)
+    this.$router.push ('/Lobbytwo/' + this.gameCode +'/' + this.name)
     }
  }}
 </script>
