@@ -11,7 +11,7 @@
         <p>Här ska det komma upp alligations  OBS här får det vara max 325 tecken</p></div>
 
       <div class="alligator-container">
-      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="img\alligatorTimer.png" alt="countDownAlligator" />
+      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
     </div>
 
     <div class=timerDispaly style="text-align: center;">
