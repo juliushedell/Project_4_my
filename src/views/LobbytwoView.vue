@@ -9,13 +9,11 @@
         <h2 id="gameCode">
             {{ this.gameCode }}
         </h2>
-        <div class="player-list" v-for="(player, index) in poll.players" :key="index">
-          {{ player.name }}
-        </div>
     </div>
-    <div class="pollName">
-        {{ gameName_data }}
+    <div class="player-list" v-for="(player, index) in poll.players" :key="index">
+        {{ player.name }}
     </div>
+    <br>
     {{ poll }}
       xxxx
     {{ players }}
@@ -90,7 +88,7 @@ methods: {
 </script>
 
 <style scoped>
-.pollName{
+.player-list{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -122,15 +120,17 @@ methods: {
 }
 
 #gameCode {
-  width: 8vw; /* Adjusted width to 8% of viewport width */
+  width: 16vw; /* Adjusted width to 8% of viewport width */
   height: 3vh; /* Adjusted height to 3% of viewport height */
   border-radius: 3.125em;
   background-color: #81b8ce;
   border: 0.1875em solid yellow;
   color: blue;
+  font-size: 6vw;
   text-align: center;
   text-decoration: none;
-  padding: 1.25vw; /* Adjusted padding to 1.25% of viewport width */
+  margin: 7vh auto;
+  padding: 6vw; /* Adjusted padding to 1.25% of viewport width */
   display: flex;
   justify-content: center;
   align-items: center;
