@@ -22,7 +22,7 @@
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
             <label for="confession{{ i }}"> Allegation {{ i }} :  </label>
-            <input type="text" class="field" id="field{{ i }}" v-model="poll.allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
+            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
             <br><br>
           </div>
         </div>
@@ -33,7 +33,6 @@
         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
         <router-link to="/playingGame" class="button">{{ uiLabels["start"] }}</router-link>
         <button v-on:click="submitConfessions" id="submit" :disabled="isInputDisabled">{{ uiLabels["submit"] }}</button> 
-        <!-- Ändrade till v-on:click submitconsfessions instället för v-on:click submit-->
       </div>
       <br>
       {{ poll }}
@@ -44,41 +43,41 @@
 
 <script>
 
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 export default {
-name: 'StartView',
-components: {
-  ResponsiveNav
-},
+name: 'enterAllegations',
 data: function () {
   return {
     uiLabels: {},
-    id: "",
     lang: localStorage.getItem("lang") || "en",
-    hideNav: true,
-    // lagrar confessions i array
-    conf:[],
     poll: {},
     gameCode: 0,
-    players: {}, 
-    isInputDisabled: false //grundvariabel som gör att det går att redigera i iinput fieldsen
+    players: [], 
+    isInputDisabled: false, //grundvariabel som gör att det går att redigera i iinput fieldsen
+    allegations: [],
+    name:''
   }
 },
-created: function () {
+
+created: function () { 
   this.gameCode = this.$route.params.gameCode
+  this.gameName_data = this.$route.params.pid
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
   socket.emit("getPlayers", this.gameCode);
   socket.on("pullPlayer", (players) => {
     this.players = players
+    console.log(players)
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
   })
   socket.on("init", (labels) => {
     this.uiLabels = labels
+  })
+  socket.on("confessionsSubmitted", (players) => {
+    this.players = players
   })
 },
 methods: {
@@ -92,18 +91,10 @@ methods: {
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
   },
-  toggleNav: function () {
-    this.hideNav = ! this.hideNav;
-  },
-  generateGameCode: function () {
-  return Math.floor(Math.random() * 1000000);
-  },
   submitConfessions: function() {
-  // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
-  this.conf = this.poll.allegations;
-  console.log(this.conf);
+  socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.gameName_data, isHost: false});
   this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
-  console.log("hello") //den verkar inte nå hit när man klickar på knappen
+  console.log("tjena") //den verkar inte nå hit när man klickar på knappen
   }
  }}
 </script>

@@ -24,22 +24,7 @@
         +
       </button>
     </div>
- 
-    <!-- <div class="wrap"></div>
-        { uiLabels['al_pp'] }}
-        <input type="number" min="1" max="8" v-model="numberAllegations">
-    </div> -->
   </div>
-
-    <!--     <div class="wrap">
-      {{ uiLabels["name_of_host"] }}
-      <input type="text" v-model="name_of_host" class="text">
-    </div>
-    <div class="wrap">
-      {{ uiLabels["al_pp"] }}
-      <input type="number" v-model="no_allegations" class="text">
-    </div> -->
-  
     <div class=themeTitle>
       {{ uiLabels["theme"] }}
     </div>
@@ -73,15 +58,12 @@
   data: function () {
     return {
       lang: localStorage.getItem("lang") || "en",
-      question: "",
-      answers: ["", ""],
       data: {},
       uiLabels: {},
-  
-      name: "",
       numberAllegations: 1 ,
       theme: "",
-      allegations: []
+      isHost: true,
+      name: ''
     }
   },
   created: function () {
@@ -101,18 +83,8 @@
   methods: {
     createPoll: function () {
       let gameCode = this.generateGameCode();
-      socket.emit("createPoll", {lang: this.lang, gameCode: gameCode, name: this.name, numberAllegations: this.numberAllegations, theme: this.theme, allegations: this.allegations})
-      socket.emit('createPlayer', {lang: this.lang, gameCode: gameCode, name: this.name, isHost: true})
-      this.$router.push ('/Lobby/' + gameCode)
-    },
-    addQuestion: function () {
-      socket.emit("addQuestion", {gameCode: this.gameCode, q: this.question, a: this.answers } )
-    },
-    addAnswer: function () {
-      this.answers.push("");
-    },
-    runQuestion: function () {
-      socket.emit("runQuestion", {gameCode: this.gameCode, questionNumber: this.questionNumber})
+      socket.emit("createPoll", {lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme})
+      this.$router.push ('/Lobby/' + gameCode +'/' + this.name)
     },
     generateGameCode: function () {
     return Math.floor(Math.random() * 1000000);

@@ -19,44 +19,41 @@ Data.prototype.getUILabels = function (lang = "en") {
 }
 
 // Ändrat: lagt till name, numberAllegations och theme, tagit bort pollID
-Data.prototype.createPoll = function(lang="en", pollId, name, numberAllegations, theme, allegations) {
+Data.prototype.createPoll = function(lang="en", pollId, numberAllegations, theme) {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
-    poll.lang = lang; 
-    poll.questions = [];
-    poll.answers = [];
-    poll.currentQuestion = 0;              
+    poll.lang = lang;              
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
-
-    // Tillagt
-    poll.name = name;
     poll.numberAllegations = numberAllegations;
     poll.theme = theme;
-    poll.allegations = allegations;
-    poll.players = {};
+    poll.players = [];
   }
   return this.polls[pollId];
 }
 
-Data.prototype.createPlayer = function(lang="en", pollId, name, isHost) {
-  const poll = this.polls[pollId];
-  if (typeof poll === "undefined") {
-    return {};
+Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost) {
+  const poll = this.polls[gameCode];
+  console.log("ALLEGATIONS ADDED TO", gameCode, allegations, name);
+  if (typeof poll !== "undefined") {
+    let thePlaya = {
+      name: name,
+      allegations: allegations,
+      points: 0,
+      isHost: isHost
+    }
+    poll.players.push(thePlaya)
   }
-  if (typeof poll.players[name] === "undefined") {
-    let player = {};
-    poll.players[name] = player;
-    player.lang = lang;
-    console.log("player created", name, pollId);
-    player.isHost = isHost;
-    player.name = name;
-    player.points = 0;
-    player.gameCode = pollId;
-    // player.numberAllegations = polls[pollId].numberAllegations; // Funkar detta?? Behövs ens denna info lagras här?
-    player.allegations = [];
+  
+}
+
+Data.prototype.getConfessions = function(gameCode) {
+  const poll = this.polls[gameCode];
+  if (typeof this.polls[gameCode] === "undefined") {
+    console.log("HEJHEJ",players)
+    return poll.players;
   }
-   return poll.players[name];
+  return []
 }
 
 Data.prototype.getPoll = function(pollId) {
@@ -70,24 +67,11 @@ Data.prototype.getPlayers = function(gameCode) {
   const poll = this.polls[gameCode];
   if (typeof poll === "undefined") {
     return {};
+  
   }
   return poll.players
+  
 }
-
-//----------------------------------------------------------------
- Data.prototype.createGame = function(game_id, lang="en", name_of_host, no_allegations,the_theme) {
-   if (typeof this.polls[game_id] === "undefined") {
-     let poll = {};
-     poll.lang = lang;  
-     poll.name_of_host = '';
-     poll.no_allegations = 50;
-     poll.the_theme = '';              
-     this.polls[game_id] = poll;
-     console.log("poll created", game_id, poll);
-   }
-   return this.polls[game_id];
- }
-//----------------------------------------------------------------
 
 Data.prototype.addQuestion = function(pollId, q) {
   const poll = this.polls[pollId];
@@ -145,14 +129,13 @@ Data.prototype.getAnswers = function(pollId) {
   return {}
 }
 
-Data.prototype.addConfessions = function (gameCode, confessions) {
-    // this.polls[gameCode].allegations = confessions;
+Data.prototype.addConfessions = function (gameCode, allegations, name) {
+  const poll = this.polls[gameCode];  
+  console.log("CONFESSION ADDED ", gameCode, allegations, name);  
+  if (typeof poll !== 'undefined') {
+    poll.players.push(thePlaya)
+  // this.polls[gameCode].allegations = confessions;
     // Returna något??
-};
-
-Data.prototype.addPlayer = function (gameCode, playerName) {
-  if (this.polls[gameCode]) {
-    this.polls[gameCode].joinedPlayers.push({ name: playerName, joinedAt: new Date() });
   }
 };
 
@@ -160,6 +143,14 @@ Data.prototype.recieveCode = function (gameCode) {
   console.log("game code recieved ", gameCode);
 
 };
+
+Data.prototype.getConfessions = function(gameCode) {
+  const poll = this.polls[gameCode];
+  if (typeof poll === "undefined") {
+    return [];
+  }
+  return poll.players;
+}
 
 export { Data };
 

@@ -22,23 +22,18 @@
 </template>
 
 <script>
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
   name: 'JoinGameName',
-  components: {
-    ResponsiveNav
-  },
   data: function () {
     return {
       uiLabels: {},
-      id: "",
       lang: localStorage.getItem("lang") || "en",
-      hideNav: true,
       gameName_data: '',
       gameCode: 0,
+      isHost: false,
       player: {}
     }
   },
@@ -51,16 +46,8 @@ export default {
   },
   methods: {
     namePlayer: function () {
-      // socket.emit("namePlayer", {
-      //   lang: this.lang,
-      //   gameName_data: this.gameName_data,
-      //   gameCode: this.gameCode
-      // });
-
-      
-      socket.emit('createPlayer', {lang: this.lang, gameCode: this.gameCode, name: this.gameName_data, isHost: false})
-      this.$router.push({ name: 'Lobby', params: { gameCode: this.gameCode } });
-    },
+      this.$router.push({ name: 'Lobby', params: { gameCode: this.gameCode, pid: this.gameName_data } });
+    }
   }
 }
 </script>

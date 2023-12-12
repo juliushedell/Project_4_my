@@ -1,14 +1,5 @@
 <template>
   <header>
-    <!--<div v-bind:class="['hamburger', {'close': !hideNav}]" 
-         v-on:click="toggleNav">
-    </div>
-    <div class="logo">
-      <img src="/img/logo.png">
-      Allegations
-      <img src="img/alligatorStart.png">
-    </div>-->
-    
       <button v-on:click="switchLanguage" id="language_button">
       <img :src="uiLabels['changeLanguage']" id="language_button">
       </button>
@@ -29,37 +20,18 @@
     </disp>
 
   </body>
-  <!--<ResponsiveNav v-bind:hideNav="hideNav">
-    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
-    <router-link to="/HowToPlayView/">{{uiLabels.regler}}</router-link>
-    <router-link to="/hostgame/">{{uiLabels.host}}</router-link>
-    </ResponsiveNav>
-  <h1>{{ uiLabels["sales-pitch"] }}</h1>
-  <h2>{{ uiLabels.subHeading }}</h2>
-  <label>
-    Write poll id: 
-    <input type="text" v-model="id">
-  </label>
-  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link> -->
 </template>
 
 <script>
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
   name: 'StartView',
-  components: {
-    ResponsiveNav
-  },
   data: function () {
     return {
       uiLabels: {},
-      id: "",
       lang: localStorage.getItem("lang") || "en",
-      hideNav: true
     }
   },
   created: function () {
@@ -79,9 +51,6 @@ export default {
       localStorage.setItem("lang", this.lang);
       socket.emit("switchLanguage", this.lang)
     },
-    toggleNav: function () {
-      this.hideNav = ! this.hideNav;
-    }
   }
 }
 </script>
@@ -183,13 +152,6 @@ body{
   text-align: center;
 }
 
- /* .button {  
-  background-color:green;
-  color:yellow;
-  text-align: center;
-  text-decoration: none; 
-}*/
-
 #language_button {
   border: none;
   background: none;
@@ -209,7 +171,4 @@ body{
   width:400px; 
   height:250px;
 }
-
-
-
 </style>
