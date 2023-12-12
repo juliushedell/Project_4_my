@@ -82,12 +82,13 @@
   },
   methods: {
     createPoll: function () {
-      let gameCode = this.generateGameCode();
-      socket.emit("createPoll", {lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme})
-      this.$router.push ('/Lobby/' + gameCode +'/' + this.name)
-    },
+  let gameCode = this.generateGameCode();
+  socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme });
+  this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } });
+  },
+
     generateGameCode: function () {
-    return Math.floor(Math.random() * 1000000);
+    return Math.floor(Math.random() * 900000 + 100000);
     },
       removeAllegation: function(){
     if (this.numberAllegations > 1){

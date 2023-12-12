@@ -22,7 +22,7 @@ Data.prototype.getUILabels = function (lang = "en") {
 Data.prototype.createPoll = function(lang="en", pollId, numberAllegations, theme) {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
-    poll.lang = lang;              
+    poll.lang = lang;
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
     poll.numberAllegations = numberAllegations;
