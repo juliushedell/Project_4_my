@@ -108,7 +108,7 @@ methods: {
   return Math.floor(Math.random() * 1000000);
   },
   submitConfessions: function() {
-  socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.gameName_data});
+  socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.gameName_data, isHost: false});
   this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
   console.log("tjena") //den verkar inte nå hit när man klickar på knappen
   }

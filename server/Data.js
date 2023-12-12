@@ -19,52 +19,30 @@ Data.prototype.getUILabels = function (lang = "en") {
 }
 
 // Ändrat: lagt till name, numberAllegations och theme, tagit bort pollID
-Data.prototype.createPoll = function(lang="en", pollId, name, numberAllegations, theme, allegations) {
+Data.prototype.createPoll = function(lang="en", pollId, numberAllegations, theme) {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
-    poll.lang = lang; 
-    poll.questions = [];
-    poll.answers = [];
-    poll.currentQuestion = 0;              
+    poll.lang = lang;              
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
 
     // Tillagt
-    poll.name = name;
     poll.numberAllegations = numberAllegations;
     poll.theme = theme;
-    poll.allegations = [];
     poll.players = [];
   }
   return this.polls[pollId];
 }
 
-Data.prototype.createPlayer = function(lang="en", pollId, name, isHost, allegations) {
-  const poll = this.polls[pollId];
-  if (typeof poll === "undefined") {
-    return {};
-  }
-  if (typeof poll.players[name] === "undefined") {
-    let player = {};
-    poll.players[name] = player;
-    player.lang = lang;
-    console.log("player created", name, pollId);
-    player.isHost = isHost;
-    player.name = name;
-    player.points = 0;
-    player.gameCode = pollId;
-    // player.numberAllegations = polls[pollId].numberAllegations; // Funkar detta?? Behövs ens denna info lagras här?
-    player.allegations = allegations;
-  }
-   return poll.players[name];
-}
-Data.prototype.submitConfessions = function(gameCode, allegations, name) {
+Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost) {
   const poll = this.polls[gameCode];
   console.log("ALLEGATIONS ADDED TO", gameCode, allegations, name);
   if (typeof poll !== "undefined") {
     let thePlaya = {
       name: name,
-      allegations: allegations
+      allegations: allegations,
+      points: 0,
+      isHost: isHost
     }
     poll.players.push(thePlaya)
   }

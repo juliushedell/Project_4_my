@@ -10,11 +10,8 @@ function sockets(io, socket, data) {
   });
 
   socket.on('createPoll', function(d) {
-    socket.emit('pollCreated', data.createPoll(d.lang, d.gameCode, d.name, d.numberAllegations, d.theme, d.allegations));
+    socket.emit('pollCreated', data.createPoll(d.lang, d.gameCode, d.numberAllegations, d.theme));
   });
-  socket.on('createPlayer', function(d) {
-    data.createPlayer(d.lang, d.gameCode, d.name, d.isHost);
-  })
 //----------------------------------------------------------------
   socket.on('createGame', function(gameSetup) {
     socket.emit('gameCreated', data.createGame(gameSetup.game_id, gameSetup.lang, gameSetup.name_of_host, gameSetup.no_allegations,gameSetup.the_theme));
@@ -60,7 +57,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('submitConfessions', function(d) {
-    data.submitConfessions(d.gameCode, d.allegations, d.name);
+    data.submitConfessions(d.gameCode, d.allegations, d.name, d.isHost);
     io.to(d.gameCode).emit('confessionsSubmitted', data.getConfessions(d.gameCode))
   });
   // tar emot confessions ?

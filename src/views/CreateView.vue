@@ -78,10 +78,9 @@
       data: {},
       uiLabels: {},
   
-      name: "",
       numberAllegations: 1 ,
       theme: "",
-      allegations: []
+      isHost: true
     }
   },
   created: function () {
@@ -101,8 +100,7 @@
   methods: {
     createPoll: function () {
       let gameCode = this.generateGameCode();
-      socket.emit("createPoll", {lang: this.lang, gameCode: gameCode, name: this.name, numberAllegations: this.numberAllegations, theme: this.theme, allegations: this.allegations})
-      socket.emit('createPlayer', {lang: this.lang, gameCode: gameCode, name: this.name, isHost: true})
+      socket.emit("createPoll", {lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme})
       this.$router.push ('/Lobby/' + gameCode +'/' + this.name)
     },
     addQuestion: function () {
