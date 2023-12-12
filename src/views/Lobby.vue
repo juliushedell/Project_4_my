@@ -2,7 +2,7 @@
   <body>
     <header> 
         <h1>
-            Lobby
+            Allegations
             <img src="/img/Head_picture.png" class="head_picture">
         </h1>
     </header>
@@ -10,6 +10,7 @@
       {{ this.gameCode }}
     </h2>
     <h3 id="theme">
+      {{ uiLabels["theme"] }}
       {{ poll.theme }}
     </h3>
       <!-- skapar fields till confessions -->
@@ -27,7 +28,6 @@
       <!-- knapp som skickar confessions till submitConfessions  -->
       <div class="wrappp">
         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
-        <router-link to="/playingGame" class="button">{{ uiLabels["start"] }}</router-link>
         <button v-on:click="submitConfessions" id="submit" :disabled="isInputDisabled">{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
