@@ -59,7 +59,7 @@ export default {
 
       
       socket.emit('createPlayer', {lang: this.lang, gameCode: this.gameCode, name: this.gameName_data, isHost: false})
-      this.$router.push({ name: 'Lobby', params: { gameCode: this.gameCode } });
+      this.$router.push({ name: 'Lobby', params: { gameCode: this.gameCode, pid: this.gameName_data } });
     },
   }
 }

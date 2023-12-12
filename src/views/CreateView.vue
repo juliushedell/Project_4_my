@@ -92,7 +92,7 @@
       let gameCode = this.generateGameCode();
       socket.emit("createPoll", {lang: this.lang, gameCode: gameCode, name: this.name, numberAllegations: this.numberAllegations, theme: this.theme, allegations: this.allegations})
       socket.emit('createPlayer', {lang: this.lang, gameCode: gameCode, name: this.name, isHost: true})
-      this.$router.push ('/Lobby/' + gameCode)
+      this.$router.push ('/Lobby/' + gameCode +'/' + this.name)
     },
     addQuestion: function () {
       socket.emit("addQuestion", {gameCode: this.gameCode, q: this.question, a: this.answers } )

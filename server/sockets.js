@@ -59,8 +59,9 @@ function sockets(io, socket, data) {
     data.initializeData();
   });
 
-  socket.on('addConfessions', function(gameCode, conf) {
-    data.addConfessions(gameCode, conf);
+  socket.on('submitConfessions', function(d) {
+    data.submitConfessions(d.gameCode, d.allegations, d.name);
+    io.to(d.gameCode).emit('confessionsSubmitted', data.getConfessions(d.gameCode))
   });
   // tar emot confessions ?
   //Behöver lägga till io.emit för att kunna skicka vidare !
