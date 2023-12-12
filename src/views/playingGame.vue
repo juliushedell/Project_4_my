@@ -18,8 +18,8 @@
         <p v-if="timer > 0"> {{ timer }} </p>
     </div>
 
-    <div class="buttonWrapper" style="text-align: center; display: flex; justify-content: center;">
-    <button v-for="(player, index) in players" :key="index" v-on:click="checkIfCorrect(player)" id="pollName"> {{ player }} </button> 
+    <div style="text-align: center; display: flex; justify-content: center;">
+    <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="checkIfCorrect(player)" id="pollName"> {{ player }} </button> 
     </div>
 
 </template>
@@ -29,7 +29,7 @@ export default {
   data: function() {
     return {
       timer: 10, 
-      players: ['Emelie_LOL_6577', 'Emma', 'Kurt', "Abel", "Kim"] //denna är temoprär för att se om det funkar
+      players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"] //denna är temoprär för att se om det funkar
     };
   },
 
@@ -37,6 +37,12 @@ export default {
     countPercentageAlligator() {
       // Calculate the percentage based on the current countdown value
       return (this.timer / 10) * 100; // Assuming a countdown from 10 seconds
+    },
+
+    randomizedPlayers() {
+  // Blanda ordningen på spelararrayen och ta de första 4 elementen
+    const randomized = this.players.slice().sort(() => Math.random() - 0.5);
+    return randomized.slice(0, 4);
     },
   },
 
@@ -101,17 +107,15 @@ img {
   width:min-content;
   height: 50px; 
   border-radius: 40px; 
-  border: 2px solid blue;
+  border: 3px solid blue;
   padding: 10px;
   margin:40px auto;
   color: blue;
   text-align: center;
+  background-color: #81b8ce;
  
 }
 
-.bottonWrapper {
-
-}
 
 @media screen and (max-width:50em) {
     
