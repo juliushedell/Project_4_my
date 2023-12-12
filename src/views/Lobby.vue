@@ -1,5 +1,4 @@
 <template>
-  <body>
     <header> 
         <h1>
             Allegations
@@ -34,7 +33,6 @@
       {{ poll }}
       xxxx
       {{ players }}
-    </body>
 </template>
 
 <script>

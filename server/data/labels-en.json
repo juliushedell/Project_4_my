@@ -46,7 +46,8 @@
 	"Choosename": "Choose name",
 	
 	"submit": "submit",
-	"start": "start game",
+	"start": "start game", 
 
-	"cancel": "Cancel"
+	"cancel": "Cancel",
+	"answer": "The person behind the alligation: "
 }

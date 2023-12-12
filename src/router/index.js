@@ -55,6 +55,14 @@ const router = createRouter({
       name: 'Lobbytwo',
       component: () => import('../views/LobbytwoView.vue')
     }, 
+    {
+      path: '/Podium/', 
+      name: 'Podium',
+      component: () => import('../views/Podium.vue')
+
+
+
+    }
   ] 
 })
 
