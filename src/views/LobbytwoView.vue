@@ -19,7 +19,7 @@
     {{ players }}
     <br>
         <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
-        <router-link to="/playingGame/" class="button">{{ uiLabels["start"] }}</router-link>
+        <button v-on:click="submitConfessions" class="button">{{ uiLabels["start"] }}</button>
 
 </template>
 
@@ -45,11 +45,12 @@ data: function () {
     poll: {},
     gameCode: 0,
     players: {}, 
-    isInputDisabled: false //grundvariabel som gör att det går att redigera i iinput fieldsen
+    name:''
   }
 },
 created: function () {
   this.gameCode = this.$route.params.gameCode
+  this.name = this.$route.params.name
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
   socket.emit("getPlayers", this.gameCode);
@@ -77,13 +78,20 @@ methods: {
   toggleNav: function () {
     this.hideNav = ! this.hideNav;
   },
+  // submitConfessions: function() {
+  // // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
+  // this.conf = this.poll.allegations;
+  // console.log(this.conf);
+  // this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
+  // },
   submitConfessions: function() {
-  // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
-  this.conf = this.poll.allegations;
-  console.log(this.conf);
-  this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
-  console.log("tjena") //den verkar inte nå hit när man klickar på knappen
-  }
+    const gameCode = this.gameCode; // Save gameCode in a local variable
+    const name = this.name; // Save name in a local variable
+    console.log(this.gameCode)
+    console.log(this.name)
+    socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.name});
+    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+    }
  }}
 </script>
 
@@ -99,7 +107,9 @@ methods: {
   padding: 10px;
   margin:40px auto;
   color: blue;
-  text-align: center;
+  text-align: center; 
+  display: flex; 
+  justify-content: center;
 }
 
 .button{

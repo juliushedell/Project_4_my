@@ -27,7 +27,7 @@
       <!-- knapp som skickar confessions till submitConfessions  -->
       <div class="wrappp">
         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
-        <button v-on:click="submitConfessions" id="submit" :disabled="isInputDisabled">{{ uiLabels["submit"] }}</button> 
+        <button v-on:click="submitConfessions" id="submit" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
       {{ poll }}

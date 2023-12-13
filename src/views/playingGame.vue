@@ -14,23 +14,44 @@
       <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
     </div>
 
-    <div class=timerDispaly style="text-align: center;">
+    <!-- <div class=timerDispaly style="text-align: center;">
         <p v-if="timer > 0"> {{ timer }} </p>
         <p v-else="timer ===0" > {{ goToPodiumView() }} </p> 
-    </div>
+    </div> -->
 
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="checkIfCorrect(player)" id="pollName"> {{ player }} </button> 
     </div>
 
+    {{ poll }}
+      xxxx
+    {{ players }}
 </template>
 
 <script>
+
+import ResponsiveNav from '@/components/ResponsiveNav.vue';
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
 export default {
+name: 'playingGame',
+components: {
+  ResponsiveNav
+},
   data: function() {
     return {
       timer: 15, 
-      players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"] //denna är temoprär för att se om det funkar
+      // players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
+      uiLabels: {},
+    id: "",
+    lang: localStorage.getItem("lang") || "en",
+    hideNav: true,
+    // lagrar confessions i array
+    conf:[],
+    poll: {},
+    gameCode: 0,
+    players: {}, 
     };
   },
 
@@ -49,6 +70,18 @@ export default {
 
   created() {
     this.startCountdown();
+    socket.emit("pageLoaded", this.lang);
+  socket.emit("getPoll", this.gameCode);
+  socket.emit("getPlayers", this.gameCode);
+    socket.on("pullPlayer", (players) => {
+    this.players = players
+  })
+  socket.on("pullPoll", (poll) => {
+    this.poll = poll
+  })
+  socket.on("init", (labels) => {
+    this.uiLabels = labels
+  })
   },
 
   methods: {
@@ -63,11 +96,11 @@ export default {
       }, 1000);
     },
 
-    goToPodiumView() {
-      // Perform redirection here, using router-link or programmatically
-      // For example, programmatically navigating to another view
-      this.$router.push('/Podium'); // Change '/another-view' to your desired route
-    },
+    // goToPodiumView() {
+    //   // Perform redirection here, using router-link or programmatically
+    //   // For example, programmatically navigating to another view
+    //   this.$router.push('/Podium'); // Change '/another-view' to your desired route
+    // },
 
     checkIfCorrect(player) {
         console.log(`Clicked on ${player}`); 

@@ -46,12 +46,12 @@ const router = createRouter({
       props: true
     },
     {
-      path: '/playingGame/',
+      path: '/playingGame/:gameCode/:name',
       name: 'playingGame',
       component: () => import('../views/playingGame.vue')
     },
     {
-      path: '/Lobbytwo/:gameCode/:pid',
+      path: '/Lobbytwo/:gameCode/:name',
       name: 'Lobbytwo',
       component: () => import('../views/LobbytwoView.vue')
     }, 
