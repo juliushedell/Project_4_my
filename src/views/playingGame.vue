@@ -15,7 +15,7 @@
     </div>
 
     <div class=timerDispaly style="text-align: center;">
-        <p v-if="timer > 0"> {{ timer }} </p>
+        <p v-if="timenpm run r > 0"> {{ timer }} </p>
         <p v-else="timer ===0" > {{ goToPodiumView() }} </p> 
     </div>
 

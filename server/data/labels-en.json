@@ -48,10 +48,6 @@
 	"submit": "submit",
 	"start": "start game", 
 
-<<<<<<< HEAD
-	"answer": "Correct answer: "
-=======
-	"cancel": "Cancel",
-	"answer": "The person behind the alligation: "
->>>>>>> 17f54d8c57b9ef380df8f6b4bd6de15cefffb893
+	"answer": "Correct answer: ",
+	"cancel": "Cancel"
 }
