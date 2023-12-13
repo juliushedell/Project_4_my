@@ -42,27 +42,24 @@ components: {
   data: function() {
     return {
       timer: 15, 
-      // players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
+      players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
       uiLabels: {},
-    id: "",
-    lang: localStorage.getItem("lang") || "en",
-    hideNav: true,
-    // lagrar confessions i array
-    conf:[],
-    poll: {},
-    gameCode: 0,
-    players: {}, 
-    };
-  },
+      id: "",
+      lang: localStorage.getItem("lang") || "en",
+      hideNav: true,
+      conf:[],
+      poll: {},
+      gameCode: 0,
+      players: {}, 
+      };
+    },
 
   computed: {
     countPercentageAlligator() {
-      // Calculate the percentage based on the current countdown value
-      return (this.timer / 15) * 100; // Assuming a countdown from 10 seconds
+      return (this.timer / 15) * 100; 
     },
 
     randomizedPlayers() {
-  // Blanda ordningen på spelararrayen och ta de första 4 elementen
     const randomized = this.players.slice().sort(() => Math.random() - 0.5);
     return randomized.slice(0, 4);
     },
@@ -71,8 +68,8 @@ components: {
   created() {
     this.startCountdown();
     socket.emit("pageLoaded", this.lang);
-  socket.emit("getPoll", this.gameCode);
-  socket.emit("getPlayers", this.gameCode);
+    socket.emit("getPoll", this.gameCode);
+    socket.emit("getPlayers", this.gameCode);
     socket.on("pullPlayer", (players) => {
     this.players = players
   })
