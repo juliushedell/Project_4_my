@@ -52,6 +52,11 @@ components: {
     poll: {},
     gameCode: 0,
     players: {}, 
+    // behövs för att visa allegation och veta rätt svar 
+    counter: 0, 
+    randomAllegation: "",
+    correctAnswer: ""
+  
     };
   },
 
@@ -71,13 +76,17 @@ components: {
   created() {
     this.startCountdown();
     socket.emit("pageLoaded", this.lang);
-  socket.emit("getPoll", this.gameCode);
-  socket.emit("getPlayers", this.gameCode);
+    socket.emit("getPoll", this.gameCode);
+    socket.emit("getPlayers", this.gameCode);
     socket.on("pullPlayer", (players) => {
     this.players = players
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
+  })
+  //should return when a random allegation has been picked 
+  socket.on('getRandomAllegation', (poll) => {
+  this.poll = poll
   })
   socket.on("init", (labels) => {
     this.uiLabels = labels

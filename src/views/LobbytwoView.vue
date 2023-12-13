@@ -93,6 +93,7 @@ methods: {
     this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
     }
  }}
+
 </script>
 
 <style scoped>

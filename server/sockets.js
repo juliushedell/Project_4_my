@@ -57,9 +57,23 @@ function sockets(io, socket, data) {
     io.to(d.gameCode).emit('confessionsSubmitted', data.getConfessions(d.gameCode))
   });
 
+  //ska ta fram en random allegation varje gång som en fråga ska presenteras 
+  socket.on('randomAllegation', function(d){
+    data.randomAllegation(d.gamecode);
+    let poll = data.getRandomAllegation(d.gameCode);
+    io.to(d.gameCode).emit('getRandomAllegation', poll);
+
+  });
+
+  //ska räkna allegations när spelet startar OBS endast en gång 
+  socket.on('CountAllegations', function(d){
+    data.countAllegations(d.gamecode);
+    
+  });
+
   socket.on("sendCode", function (gameCode) {
     socket.emit("recieveCode", gameCode);
-  })
+  });
  
 }
 
