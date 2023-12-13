@@ -43,6 +43,10 @@
 	"gameCode": "Spelkod",
 	"Choosename": "Välj namn",
 	"start": "starta spel",
+<<<<<<< HEAD
 
 	"answer": "Rätt svar: "
+=======
+	"cancel": "Avbryt"
+>>>>>>> 17f54d8c57b9ef380df8f6b4bd6de15cefffb893
 }
