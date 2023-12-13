@@ -49,5 +49,7 @@
 	"start": "start game", 
 
 	"answer": "Correct answer: ",
-	"cancel": "Cancel"
+	"cancel": "Cancel",
+
+	"nameUsed": "The name is already in use, please choose another one."
 }
