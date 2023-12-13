@@ -7,8 +7,12 @@
     </header>
         <div class="answerDisplay">
         <h3>
-            {{ uiLabels['answer'] }}
+            {{ uiLabels['answer'] }} **namn**
         </h3>
+    </div>
+
+    <div class=podiumFrame>
+        <p>Här i ska vi skriva poängställningen </p>
     </div>
 
 
@@ -70,8 +74,23 @@ methods: {
 
 <style>
 .answerDisplay {
-    font-size: 22px;
     color: green;
+    font-family: 'Comic Sans MS';
+    font-size: 22px;
+    text-align: center; 
+}
+
+.podiumFrame {
+  border: 4px solid green;
+    padding: 2vw; 
+    width: 80vw; 
+    height: 50vh; 
+    resize: none;
+    overflow-wrap: break-word;
+    margin: 0 auto;
+    margin-top: 4vh; 
+    font-family: 'Comic Sans MS';
+    font-size: 1.5vw; 
 }
 
 
