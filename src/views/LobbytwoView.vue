@@ -19,7 +19,7 @@
     {{ players }}
     <br>
         <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
-        <button v-on:click="submitConfessions" class="button">{{ uiLabels["start"] }}</button>
+        <button v-if="this.isHost" v-on:click="submitConfessions" class="button">{{ uiLabels["start"] }}</button>
 
 </template>
 
@@ -45,12 +45,15 @@ data: function () {
     poll: {},
     gameCode: 0,
     players: {}, 
-    name:''
+    name:'',
+    isHost: false
   }
 },
 created: function () {
   this.gameCode = this.$route.params.gameCode
   this.name = this.$route.params.name
+  this.isHost = this.$route.params.isHost === 'true';
+  console.log(this.isHost)
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
   socket.emit("getPlayers", this.gameCode);

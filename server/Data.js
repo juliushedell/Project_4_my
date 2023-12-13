@@ -17,19 +17,17 @@ Data.prototype.getUILabels = function (lang = "en") {
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-
-// Ändrat: lagt till name, numberAllegations och theme, tagit bort pollID
-Data.prototype.createPoll = function(lang="en", pollId, numberAllegations, theme) {
-  if (typeof this.polls[pollId] === "undefined") {
+Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme) {
+  if (typeof this.polls[gameCode] === "undefined") {
     let poll = {};
     poll.lang = lang;
-    this.polls[pollId] = poll;
-    console.log("poll created", pollId, poll);
+    this.polls[gameCode] = poll;
+    console.log("poll created", gameCode, poll);
     poll.numberAllegations = numberAllegations;
     poll.theme = theme;
     poll.players = [];
   }
-  return this.polls[pollId];
+  return this.polls[gameCode];
 }
 
 Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost) {
@@ -56,11 +54,11 @@ Data.prototype.getConfessions = function(gameCode) {
   return []
 }
 
-Data.prototype.getPoll = function(pollId) {
-  if (typeof this.polls[pollId] === "undefined") {
+Data.prototype.getPoll = function(gameCode) {
+  if (typeof this.polls[gameCode] === "undefined") {
     return {}
   }
-  return this.polls[pollId];
+  return this.polls[gameCode];
 }
 
 Data.prototype.getPlayers = function(gameCode) {
@@ -139,9 +137,8 @@ Data.prototype.addConfessions = function (gameCode, allegations, name) {
   }
 };
 
-Data.prototype.recieveCode = function (gameCode) {
-  console.log("game code recieved ", gameCode);
-
+Data.prototype.checkHost = function (players) {
+    
 };
 
 Data.prototype.getConfessions = function(gameCode) {

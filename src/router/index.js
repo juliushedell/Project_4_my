@@ -51,7 +51,7 @@ const router = createRouter({
       component: () => import('../views/playingGame.vue')
     },
     {
-      path: '/Lobbytwo/:gameCode/:name',
+      path: '/Lobbytwo/:gameCode/:name/:isHost',
       name: 'Lobbytwo',
       component: () => import('../views/LobbytwoView.vue')
     }, 
