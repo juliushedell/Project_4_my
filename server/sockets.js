@@ -74,6 +74,11 @@ function sockets(io, socket, data) {
   socket.on("sendCode", function (gameCode) {
     socket.emit("recieveCode", gameCode);
   });
+
+  socket.on('checkName', function (d) {
+    const checkedName = data.checkName(d.gameCode, d.name);
+    socket.emit('nameChecked', checkedName);
+  });
  
 }
 

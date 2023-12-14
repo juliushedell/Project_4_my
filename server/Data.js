@@ -175,8 +175,22 @@ Data.prototype.addConfessions = function (gameCode, allegations, name) {
   }
 };
 
-Data.prototype.checkHost = function (players) {
-    
+Data.prototype.checkName = function (gameCode, checkName) {
+  const poll = this.polls[gameCode];
+  const players = poll.players;
+
+  if (poll && players) {
+    const playerExists = players.some(player => player.name === checkName);
+    if (playerExists) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+  else {
+    console.log("poll eller players existerar inte")
+  }
 };
 
 Data.prototype.getConfessions = function(gameCode) {

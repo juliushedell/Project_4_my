@@ -42,7 +42,7 @@ components: {
   data: function() {
     return {
       timer: 15, 
-      // players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
+      players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
       uiLabels: {},
     id: "",
     lang: localStorage.getItem("lang") || "en",
@@ -51,23 +51,15 @@ components: {
     conf:[],
     poll: {},
     gameCode: 0,
-    players: {}, 
-    // behövs för att visa allegation och veta rätt svar 
-    counter: 0, 
-    randomAllegation: "",
-    correctAnswer: ""
-  
     };
   },
 
   computed: {
     countPercentageAlligator() {
-      // Calculate the percentage based on the current countdown value
-      return (this.timer / 15) * 100; // Assuming a countdown from 10 seconds
+      return (this.timer / 15) * 100; 
     },
 
     randomizedPlayers() {
-  // Blanda ordningen på spelararrayen och ta de första 4 elementen
     const randomized = this.players.slice().sort(() => Math.random() - 0.5);
     return randomized.slice(0, 4);
     },
@@ -105,18 +97,15 @@ components: {
       }, 1000);
     },
 
-    // goToPodiumView() {
-    //   // Perform redirection here, using router-link or programmatically
-    //   // For example, programmatically navigating to another view
-    //   this.$router.push('/Podium'); // Change '/another-view' to your desired route
-    // },
+    goToPodiumView() {
+      this.$router.push('/Podium'); // Change '/another-view' to your desired route
+      },
 
     checkIfCorrect(player) {
         console.log(`Clicked on ${player}`); 
         //här ska vi kolla om det namnet man klickar på är rätt svar
     }
   },
-
   
 };
 </script>

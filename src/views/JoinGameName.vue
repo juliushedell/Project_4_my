@@ -34,7 +34,7 @@ export default {
       name: '',
       gameCode: 0,
       isHost: false,
-      player: {}
+      player: {},
     }
   },
   created: function () {
@@ -46,8 +46,18 @@ export default {
   },
   methods: {
     namePlayer: function () {
-      this.$router.push({ name: 'Lobby', params: { gameCode: this.gameCode, name: this.name, isHost: this.isHost } });
+  socket.emit('checkName', { gameCode: this.gameCode, name: this.name });
+  socket.on('nameChecked', (checkedName) => {
+    if (!checkedName) {
+      this.$router.push({name: 'Lobby',params: { gameCode: this.gameCode, name: this.name, isHost: this.isHost },
+      });
+    } else {
+      alert(this.uiLabels['nameUsed']);
+      console.log('Name is already in use.');
     }
+  });
+}
+
   }
 }
 </script>

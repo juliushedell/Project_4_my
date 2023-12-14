@@ -45,5 +45,7 @@
 	"start": "starta spel",
 
 	"answer": "Rätt svar: ",
-	"cancel": "Avbryt"
+	"cancel": "Avbryt",
+
+	"nameUsed": "Namnet används redan, var vänlig välj ett annat."
 }
