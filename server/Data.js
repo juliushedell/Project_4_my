@@ -26,6 +26,10 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.numberAllegations = numberAllegations;
     poll.theme = theme;
     poll.players = [];
+    //tillagt för playingGame
+    poll.counter = 0; 
+    poll.randomAllegation = "";
+    poll.correctAnswer = "";
   }
   return this.polls[gameCode];
 }
@@ -43,6 +47,38 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
     poll.players.push(thePlaya)
   }
   
+}
+
+Data.prototype.randomAllegation = function(gameCode){
+  const poll = this.polls[gameCode];
+  randomPlayerIndex = Math.floor(Math.random()*poll.players.length);
+  correctAnswer = poll.players[randomPlayerIndex];
+  playerAllegations = randomPlayer.allegations;
+
+  if (playerAllegations.length > 0){
+    const randomAllegationIndex = Math.floor(Math.random()*playerAllegations.length);
+    const randomAllegation = playerAllegations[randomAllegationIndex];
+
+    playerAllegations.splice(randomAllegationIndex, 1); //Här ska den aktuella allegation tas bort 
+    
+    poll.counter = poll.counter --; 
+    poll.correctAnswer = correctAnswer
+    poll.randomAllegation = randomAllegation
+
+  }
+  else{
+    this.randomAllegation();
+  }
+}
+
+Data.prototype.getRandomAllegation = function(gameCode){
+  const poll = this.polls[gameCode];
+  return poll;
+}
+
+Data.prototype.countAllegations = function(gameCode){
+  const poll = this.polls[gameCode];
+  poll.counter = poll.players.length * poll.numberAllegations; 
 }
 
 Data.prototype.getConfessions = function(gameCode) {
@@ -137,8 +173,22 @@ Data.prototype.addConfessions = function (gameCode, allegations, name) {
   }
 };
 
-Data.prototype.checkHost = function (players) {
-    
+Data.prototype.checkName = function (gameCode, checkName) {
+  const poll = this.polls[gameCode];
+  const players = poll.players;
+
+  if (poll && players) {
+    const playerExists = players.some(player => player.name === checkName);
+    if (playerExists) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+  else {
+    console.log("poll eller players existerar inte")
+  }
 };
 
 Data.prototype.getConfessions = function(gameCode) {

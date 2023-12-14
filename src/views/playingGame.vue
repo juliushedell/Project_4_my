@@ -44,15 +44,15 @@ components: {
       timer: 15, 
       players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
       uiLabels: {},
-      id: "",
-      lang: localStorage.getItem("lang") || "en",
-      hideNav: true,
-      conf:[],
-      poll: {},
-      gameCode: 0,
-      players: {}, 
-      };
-    },
+    id: "",
+    lang: localStorage.getItem("lang") || "en",
+    hideNav: true,
+    // lagrar confessions i array
+    conf:[],
+    poll: {},
+    gameCode: 0,
+    };
+  },
 
   computed: {
     countPercentageAlligator() {
@@ -76,6 +76,10 @@ components: {
   socket.on("pullPoll", (poll) => {
     this.poll = poll
   })
+  //should return when a random allegation has been picked 
+  socket.on('getRandomAllegation', (poll) => {
+  this.poll = poll
+  })
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
@@ -93,18 +97,15 @@ components: {
       }, 1000);
     },
 
-    // goToPodiumView() {
-    //   // Perform redirection here, using router-link or programmatically
-    //   // For example, programmatically navigating to another view
-    //   this.$router.push('/Podium'); // Change '/another-view' to your desired route
-    // },
+    goToPodiumView() {
+      this.$router.push('/Podium'); // Change '/another-view' to your desired route
+      },
 
     checkIfCorrect(player) {
         console.log(`Clicked on ${player}`); 
         //här ska vi kolla om det namnet man klickar på är rätt svar
     }
   },
-
   
 };
 </script>
