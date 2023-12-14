@@ -92,7 +92,7 @@ methods: {
     const name = this.name; // Save name in a local variable
     console.log(this.gameCode)
     console.log(this.name)
-    socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.name});
+    socket.emit('randomAllegation', {gameCode: this.gameCode});
     this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
     }
  }}

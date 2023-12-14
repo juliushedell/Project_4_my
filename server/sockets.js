@@ -59,7 +59,7 @@ function sockets(io, socket, data) {
 
   //ska ta fram en random allegation varje gång som en fråga ska presenteras 
   socket.on('randomAllegation', function(d){
-    data.randomAllegation(d.gamecode);
+    data.randomAllegation(d.gameCode);
     let poll = data.getRandomAllegation(d.gameCode);
     io.to(d.gameCode).emit('getRandomAllegation', poll);
 
