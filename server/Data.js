@@ -47,13 +47,14 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
     poll.players.push(thePlaya)
   }
   
-}
+};
 
 Data.prototype.randomAllegation = function(gameCode){
   const poll = this.polls[gameCode];
-  randomPlayerIndex = Math.floor(Math.random()*poll.players.length);
-  correctAnswer = poll.players[randomPlayerIndex];
-  playerAllegations = randomPlayer.allegations;
+  const players = poll.players;
+  const randomPlayerIndex = Math.floor(Math.random()*players.length);
+  const correctAnswer = players[randomPlayerIndex];
+  const playerAllegations = correctAnswer.allegations;
 
   if (playerAllegations.length > 0){
     const randomAllegationIndex = Math.floor(Math.random()*playerAllegations.length);
@@ -62,14 +63,14 @@ Data.prototype.randomAllegation = function(gameCode){
     playerAllegations.splice(randomAllegationIndex, 1); //Här ska den aktuella allegation tas bort 
     
     poll.counter = poll.counter --; 
-    poll.correctAnswer = correctAnswer
-    poll.randomAllegation = randomAllegation
+    poll.correctAnswer = correctAnswer;
+    poll.randomAllegation = randomAllegation;
 
   }
   else{
     this.randomAllegation();
   }
-}
+};
 
 Data.prototype.getRandomAllegation = function(gameCode){
   const poll = this.polls[gameCode];
@@ -78,7 +79,8 @@ Data.prototype.getRandomAllegation = function(gameCode){
 
 Data.prototype.countAllegations = function(gameCode){
   const poll = this.polls[gameCode];
-  poll.counter = poll.players.length * poll.numberAllegations; 
+  const players = poll.players;
+  poll.counter = players.length * poll.numberAllegations; 
 }
 
 Data.prototype.getConfessions = function(gameCode) {
