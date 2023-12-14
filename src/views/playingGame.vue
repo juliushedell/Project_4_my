@@ -58,10 +58,10 @@ components: {
       return (this.timer / 15) * 100; 
     },
 
-    randomizedPlayers() {
-    const randomized = this.players.slice().sort(() => Math.random() - 0.5);
-    return randomized.slice(0, 4);
-    },
+    // randomizedPlayers() {
+    // const randomized = this.players.slice().sort(() => Math.random() - 0.5);
+    // return randomized.slice(0, 4);
+    // },
   },
 
   created() {
@@ -74,11 +74,13 @@ components: {
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
+    console.log(poll)
   })
   //should return when a random allegation has been picked 
-  socket.on('getRandomAllegation', (poll) => {
-  this.poll = poll
-  })
+  // socket.on('getRandomAllegation', (poll) => {
+  // this.poll = poll
+  // console.log(poll)
+  // })
   
   socket.on("init", (labels) => {
     this.uiLabels = labels
@@ -98,7 +100,7 @@ components: {
     },
 
     goToPodiumView() {
-      this.$router.push('/Podium'); // Change '/another-view' to your desired route
+      // this.$router.push('/Podium'); // Change '/another-view' to your desired route
       },
 
     checkIfCorrect(player) {
