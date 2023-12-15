@@ -51,5 +51,7 @@
 	"answer": "Correct answer: ",
 	"cancel": "Cancel",
 
-	"nameUsed": "The name is already in use, please choose another one."
+	"nameUsed": "The name is already in use, please choose another one.",
+
+	"nextQuestion": "Next allegation"
 }

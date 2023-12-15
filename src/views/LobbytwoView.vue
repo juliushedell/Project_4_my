@@ -53,7 +53,6 @@ created: function () {
   this.gameCode = this.$route.params.gameCode
   this.name = this.$route.params.name
   this.isHost = this.$route.params.isHost === 'true';
-  console.log(this.isHost)
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
   socket.emit("getPlayers", this.gameCode);
@@ -67,7 +66,7 @@ created: function () {
     this.uiLabels = labels
   })
   socket.on("startGame", () =>
-  this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+  this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   
   )
 },
@@ -85,20 +84,10 @@ methods: {
   toggleNav: function () {
     this.hideNav = ! this.hideNav;
   },
-  // submitConfessions: function() {
-  // // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
-  // this.conf = this.poll.allegations;
-  // console.log(this.conf);
-  // this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
-  // },
 
   startGame: function() {
     socket.emit("startPoll", this.gameCode)
-    // const gameCode = this.gameCode; // Save gameCode in a local variable
-    // const name = this.name; // Save name in a local variable
-    // console.log(this.gameCode)
-    // console.log(this.name)
-    // this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+    socket.emit('randomAllegation', this.gameCode)
     }
  }}
 </script>

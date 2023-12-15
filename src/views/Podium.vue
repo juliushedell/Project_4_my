@@ -16,8 +16,9 @@
       <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
       <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
     </div>
+    <button v-if="this.isHost" v-on:click="nextQuestion" class="button">{{ uiLabels["nextQuestion"] }}</button>
 
-    <button v-on:click="nextAllegation" class="button">next alligation</button>
+    <button v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
 
 
 </template>

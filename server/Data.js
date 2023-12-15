@@ -52,9 +52,9 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
 Data.prototype.randomAllegation = function(gameCode){
   const poll = this.polls[gameCode];
   const players = poll.players;
-  const randomPlayerIndex = Math.floor(Math.random()*players.length);
-  const correctAnswer = players[randomPlayerIndex];
-  const playerAllegations = correctAnswer.allegations;
+  let randomPlayerIndex = Math.floor(Math.random()*players.length);
+  let correctAnswer = players[randomPlayerIndex];
+  let playerAllegations = correctAnswer.allegations;
 
   if (playerAllegations.length > 0){
     const randomAllegationIndex = Math.floor(Math.random()*playerAllegations.length);
@@ -62,13 +62,19 @@ Data.prototype.randomAllegation = function(gameCode){
 
     playerAllegations.splice(randomAllegationIndex, 1); //Här ska den aktuella allegation tas bort 
     
-    poll.counter = poll.counter --; 
-    poll.correctAnswer = correctAnswer;
+    poll.counter = poll.counter - 1; 
+    poll.correctAnswer = correctAnswer.name;
     poll.randomAllegation = randomAllegation;
-
+    if (poll.counter === 0) {
+      return false
+    }
+    return true
   }
-  else{
-    this.randomAllegation();
+  else if (poll.counter > 0) {
+    return randomAllegation(gameCode);
+  }
+  else {
+    return false
   }
 };
 
