@@ -66,6 +66,10 @@ created: function () {
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
+  socket.on("startGame", () =>
+  this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+  
+  )
 },
 methods: {
   switchLanguage: function() {
@@ -81,22 +85,12 @@ methods: {
   toggleNav: function () {
     this.hideNav = ! this.hideNav;
   },
-  // submitConfessions: function() {
-  // // socket.emit("addConfessions", {gameCode: this.gameCode, conf: this.conf});
-  // this.conf = this.poll.allegations;
-  // console.log(this.conf);
-  // this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
-  // },
+
   startGame: function() {
-    const gameCode = this.gameCode; // Save gameCode in a local variable
-    const name = this.name; // Save name in a local variable
-    console.log(this.gameCode)
-    console.log(this.name)
-    socket.emit('startGame', gameCode)
-    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
+    socket.emit("startPoll", this.gameCode)
+    // this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
     }
  }}
-
 </script>
 
 <style scoped>

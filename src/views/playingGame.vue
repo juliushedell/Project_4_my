@@ -49,7 +49,9 @@ components: {
     hideNav: true,
     conf:[],
     poll: {},
-    gameCode: 0,
+    gameCode: 0
+    // name: '',
+    // isHost: false
     };
   },
 
@@ -65,9 +67,9 @@ components: {
   },
 
   created() {
-  this.gameCode = this.$route.params.gameCode;
-  this.name = this.$route.params.name;
-  this.isHost = this.$route.params.isHost === 'true';
+  // this.gameCode = this.$route.params.gameCode
+  // this.name = this.$route.params.name
+  // this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
   socket.emit('randomAllegation', {gameCode: this.gameCode});
   socket.on('getRandomAllegation', (poll) => {

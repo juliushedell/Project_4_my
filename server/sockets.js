@@ -79,7 +79,9 @@ function sockets(io, socket, data) {
     const checkedName = data.checkName(d.gameCode, d.name);
     socket.emit('nameChecked', checkedName);
   });
- 
+  socket.on('startPoll', function (gameCode) {
+    io.to(gameCode).emit('startGame');
+  });
 }
 
 export { sockets };
