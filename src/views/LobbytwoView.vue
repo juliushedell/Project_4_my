@@ -86,6 +86,8 @@ methods: {
   },
 
   startGame: function() {
+    console.log(this.gameCode)
+    socket.emit('countAllegations', this.gameCode)
     socket.emit("startPoll", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)
     }

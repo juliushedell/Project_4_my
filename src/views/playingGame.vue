@@ -20,11 +20,12 @@
     </div>
 
     <div style="text-align: center; display: flex; justify-content: center;">
-    <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="checkIfCorrect(player)" id="pollName"> {{ player }} </button> 
+    <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
     </div>
     {{ poll.correctAnswer }}
     XXXXXX
-    {{ poll }}
+    {{ this.playerList }}
+    {{ poll.counter }}
 </template>
 
 <script>
@@ -50,7 +51,8 @@ components: {
     poll: {},
     gameCode: 0,
     name: '',
-    isHost: false
+    isHost: false,
+    playerList: []
     };
   },
 
@@ -58,11 +60,10 @@ components: {
     countPercentageAlligator() {
       return (this.timer / 15) * 100; 
     },
-
-    // randomizedPlayers() {
-    // const randomized = this.players.slice().sort(() => Math.random() - 0.5);
-    // return randomized.slice(0, 4);
-    // },
+    randomizedPlayers() {
+    const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
+    return randomized.slice(0, 3);
+    },
   },
 
   created() {
@@ -74,6 +75,10 @@ components: {
   socket.on("pullPoll", (poll) => {
     this.poll = poll
     console.log(poll)
+  });
+  socket.emit('getPlayerList', this.gameCode);
+  socket.on('playerList', (playerList) => {
+    this.playerList = playerList
   })
   // socket.emit('randomAllegation', {gameCode: this.gameCode});
   // socket.on('getRandomAllegation', (poll) => {
@@ -109,9 +114,8 @@ components: {
       // this.$router.push('/Podium'); // Change '/another-view' to your desired route
       },
 
-    checkIfCorrect(player) {
-        // console.log(`Clicked on ${player}`); 
-        //här ska vi kolla om det namnet man klickar på är rätt svar
+    submitAnswer: function (player) {
+      // this.poll.players[this.name].currentAnswer
     }
   },
   

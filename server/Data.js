@@ -212,20 +212,35 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   const players = poll.players;
   const randPlayers = [];
   let i = 0;
-  while (i < 4) {
-    const randomIndex = Math.floor(Math.random() * players.length);
-    const randomPlayer = players[randomIndex].name;
-    if (randomPlayer !== rightAnswer && !randPlayers.includes(randomPlayer)) {
-      randPlayers.push(randomPlayer);
-      i += 1;
+  if (players.length > 4) {
+    while (i < 3) {
+      const randomIndex = Math.floor(Math.random() * players.length);
+      const randomPlayer = players[randomIndex].name;
+      if (randomPlayer !== rightAnswer && !randPlayers.includes(randomPlayer)) {
+        randPlayers.push(randomPlayer);
+        i += 1;
+      }
+    }
+  }
+  else {
+    for (let playa of Players) {
+      randPlayers.push(playa.name)
     }
   }
   randPlayers.push(rightAnswer);
   randPlayers.slice().sort(() => Math.random() - 0.5);
   return randPlayers;
-  console.log(randPlayers)
-}
+};
 
+Data.prototype.playerList = function (gameCode) {
+  const poll = this.polls[gameCode];
+  const players = poll.players;
+  let playerList = [];
+  for (let player of players) {
+    playerList.push(player.name);
+  }
+  return playerList
+};
 
 export { Data };
 

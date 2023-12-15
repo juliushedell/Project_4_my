@@ -63,9 +63,8 @@ function sockets(io, socket, data) {
   });
 
   //ska räkna allegations när spelet startar OBS endast en gång 
-  socket.on('CountAllegations', function(d){
-    data.countAllegations(d.gamecode);
-    
+  socket.on('countAllegations', function (gameCode) {
+    data.countAllegations(gameCode);
   });
 
   socket.on("sendCode", function (gameCode) {
@@ -79,6 +78,11 @@ function sockets(io, socket, data) {
   socket.on('startPoll', function (gameCode) {
     io.to(gameCode).emit('startGame');
   });
+
+  socket.on('getPlayerList', function(gameCode) {
+    const playerList = data.randomPlayers(gameCode);
+    socket.emit('playerList', playerList);
+  })
 }
 
 export { sockets };
