@@ -129,8 +129,8 @@ Data.prototype.scoreBoard = function (gameCode){
     }
   };
   return {
-    array1st
-    array2nd
+    array1st,
+    array2nd, 
     array3d
   };
 }
