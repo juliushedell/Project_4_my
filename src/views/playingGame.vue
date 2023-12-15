@@ -65,22 +65,15 @@ components: {
   },
 
   created() {
-    this.startCountdown();
-    socket.emit("pageLoaded", this.lang);
-    socket.emit("getPoll", this.gameCode);
-    socket.emit("getPlayers", this.gameCode);
-    socket.on("pullPlayer", (players) => {
-    this.players = players
-  })
-  socket.on("pullPoll", (poll) => {
-    this.poll = poll
-    console.log(poll)
-  })
+  socket.emit("pageLoaded", this.lang);
+  socket.emit('randomAllegation', {gameCode: this.gameCode});
+  socket.on('getRandomAllegation', (poll) => {
+  this.poll = poll
+  console.log(poll)
+  });
+  this.startCountdown();
   //should return when a random allegation has been picked 
-  // socket.on('getRandomAllegation', (poll) => {
-  // this.poll = poll
-  // console.log(poll)
-  // })
+  
   
   socket.on("init", (labels) => {
     this.uiLabels = labels
