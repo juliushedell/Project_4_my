@@ -120,7 +120,6 @@ Data.prototype.scoreBoard = function (gameCode){
   let array1st = [];
   let array2nd = [];
   let array3rd = [];
- 
   
   for (let i = 0; i < players.length; i++) {
     if (players[i].points === uniquePoints[0]) {
@@ -137,7 +136,7 @@ Data.prototype.scoreBoard = function (gameCode){
     array2nd, 
     array3rd
   };
-}
+};
 
 Data.prototype.getPoll = function(gameCode) {
   if (typeof this.polls[gameCode] === "undefined") {
