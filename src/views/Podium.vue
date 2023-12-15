@@ -1,13 +1,13 @@
 <template>
     <header> 
         <h1>
-            LEADERBOARD
+            {{uiLabels['Leaderboard']}}
             <img src="/img/Head_picture.png" class="head_picture">
         </h1>
     </header>
         <div class="answerDisplay">
         <h3>
-            {{ uiLabels['answer'] }} **namn**
+            {{ uiLabels['answer'] }} {{ poll.correctAnswer }}
         </h3>
     </div>
 
@@ -16,11 +16,7 @@
       <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
       <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
     </div>
-    <button v-if="this.isHost" v-on:click="nextQuestion" class="button">{{ uiLabels["nextQuestion"] }}</button>
-
-    <button v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
-
-
+    <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
 </template>
 
 <script>
@@ -37,32 +33,37 @@ components: {
 data: function () {
   return {
     uiLabels: {},
-    id: "",
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
-    // lagrar confessions i array
-    conf:[],
     poll: {},
     gameCode: 0,
-    players: {}, 
+    name: '',
+    isHost: false,
+    playerList: [],
+    currentPlayer: {}
   }
 },
 created: function () {
   this.gameCode = this.$route.params.gameCode
   this.name = this.$route.params.name
-  this.isHost = this.$route.params.isHost;
+  this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
-  socket.emit("getPlayers", this.gameCode);
-  socket.on("pullPlayer", (players) => {
-    this.players = players
-  })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
-  })
+    for (let player of poll.players) {
+      if (player.name === this.name) {
+        this.currentPlayer = player;
+        break
+      }
+    }
+  });
   socket.on("init", (labels) => {
     this.uiLabels = labels
-  })
+  });
+  socket.on("startGame", () =>
+  this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
+  );
 },
 methods: {
   switchLanguage: function() {
@@ -77,7 +78,7 @@ methods: {
   },
 
   nextAllegation: function() {
-    socket.emit("submitConfessions", {gameCode: this.gameCode, name: this.name, isHost: this.isHost});
+    
     this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   }, 
 

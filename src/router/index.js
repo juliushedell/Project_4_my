@@ -56,7 +56,7 @@ const router = createRouter({
       component: () => import('../views/LobbytwoView.vue')
     }, 
     {
-      path: '/Podium/', 
+      path: '/Podium/:gameCode/:name/:isHost', 
       name: 'Podium',
       component: () => import('../views/Podium.vue')
     },

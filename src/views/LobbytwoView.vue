@@ -14,9 +14,6 @@
         {{ player.name }}
     </div>
     <br>
-    {{ poll }}
-      xxxx
-    {{ players }}
     <br>
         <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
@@ -55,6 +52,7 @@ created: function () {
   this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
+  socket.emit('countAllegations', this.gameCode)
   socket.emit("getPlayers", this.gameCode);
   socket.on("pullPlayer", (players) => {
     this.players = players
@@ -67,7 +65,6 @@ created: function () {
   })
   socket.on("startGame", () =>
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
-  
   )
 },
 methods: {
@@ -86,8 +83,6 @@ methods: {
   },
 
   startGame: function() {
-    console.log(this.gameCode)
-    socket.emit('countAllegations', this.gameCode)
     socket.emit("startPoll", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)
     }

@@ -6,6 +6,7 @@
             <img src="/img/Head_picture.png" class="head_picture">
         </h1>
       </header>
+      Allegation:  {{ poll.counter }} / {{ poll.totalAllegations }}
 
     <div class=text-frame>
         <p>{{ poll.randomAllegation }}</p></div>
@@ -16,7 +17,7 @@
 
     <div class=timerDispaly style="text-align: center;">
         <p v-if="timer > 0"> {{ timer }} </p>
-        <p v-else="timer ===0" > {{ goToPodiumView() }} </p> 
+        <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
 
     <div style="text-align: center; display: flex; justify-content: center;">
@@ -44,18 +45,17 @@ components: {
   data: function() {
     return {
     timer: 15, 
-    playersTest: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
     uiLabels: {},
-    id: "",
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
-    conf:[],
     poll: {},
     gameCode: 0,
     name: '',
     isHost: false,
     playerList: [],
-    currentPlayer: {}
+    currentPlayer: {},
+    answerLock: false,
+    totalAllegations: 0
     };
   },
 
@@ -108,20 +108,17 @@ components: {
       }, 1000);
     },
 
-    nextQuestion: function() {
-      console.log('nästa fråga')
-    },
-
     goToPodiumView() {
-      // this.$router.push('/Podium'); // Change '/another-view' to your desired route
+      this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       },
 
     submitAnswer: function (player) {
-      this.currentPlayer.currentAnswer = player;
-      console.log(this.currentPlayer.currentAnswer)
+      if (!this.answerLock && this.timer !== 0) {
+        this.currentPlayer.currentAnswer = player;
+        this.answerLock = true;
+      }
     }
   },
-  
 };
 </script>
 

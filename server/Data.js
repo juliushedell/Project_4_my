@@ -30,6 +30,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.counter = 0; 
     poll.randomAllegation = "";
     poll.correctAnswer = "";
+    poll.totalAllegations = 0;
   }
   return this.polls[gameCode];
 }
@@ -87,7 +88,8 @@ Data.prototype.getRandomAllegation = function(gameCode){
 Data.prototype.countAllegations = function(gameCode){
   const poll = this.polls[gameCode];
   const players = poll.players;
-  poll.counter = players.length * poll.numberAllegations; 
+  poll.counter = players.length * poll.numberAllegations;
+  poll.totalAllegations = players.length * poll.numberAllegations;
 }
 
 Data.prototype.getConfessions = function(gameCode) {
