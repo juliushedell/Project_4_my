@@ -6,7 +6,7 @@
             <img src="/img/Head_picture.png" class="head_picture">
         </h1>
       </header>
-      Allegation:  {{ poll.counter }} / {{ poll.totalAllegations }}
+      Allegation:  {{ this.allegationsLeft }} / {{ poll.totalAllegations }}
 
     <div class=text-frame>
         <p>{{ poll.randomAllegation }}</p></div>
@@ -55,7 +55,7 @@ components: {
     playerList: [],
     currentPlayer: {},
     answerLock: false,
-    totalAllegations: 0
+    allegationsLeft: 0
     };
   },
 
@@ -88,7 +88,10 @@ components: {
   socket.on('playerList', (playerList) => {
     this.playerList = playerList
   });
-  
+  socket.emit('allegationsLeft', this.gameCode)
+  socket.on('allegationsRemaining', (aL) => {
+    this.allegationsLeft = aL;
+  })
   this.startCountdown();
 
   socket.on("init", (labels) => {
@@ -114,7 +117,7 @@ components: {
 
     submitAnswer: function (player) {
       if (!this.answerLock && this.timer !== 0) {
-        this.currentPlayer.currentAnswer = player;
+        socket.emit('submitAnswer', this.gameCode, this.name, player);
         this.answerLock = true;
       }
     }

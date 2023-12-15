@@ -37,7 +37,6 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
 
 Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost) {
   const poll = this.polls[gameCode];
-  console.log("ALLEGATIONS ADDED TO", gameCode, allegations, name);
   if (typeof poll !== "undefined") {
     let thePlaya = {
       name: name,
@@ -101,14 +100,24 @@ Data.prototype.getConfessions = function(gameCode) {
   return []
 }
 
+Data.prototype.findCurrentPlayer = function(gameCode, name) {
+  const poll = this.polls[gameCode];
+  const players = poll.players;
+  for (let player of players) {
+    if (player.name === name) {
+      return player
+    }
+  }
+}
+
 Data.prototype.compareAnswers = function (gameCode, name){
   const poll = this.polls[gameCode];
-  let players = poll.players; 
-  let currentPlayer = players[name];
-  let correctAnswer = poll.correctAnswer;
-  let playerAnswer = currentPlayer.currentAnswer; 
+  const players = poll.players;
+  const currentPlayer = this.findCurrentPlayer(gameCode, name);
+  const correctAnswer = poll.correctAnswer;
+  const playerAnswer = currentPlayer.currentAnswer;
   if (playerAnswer === correctAnswer){
-    currentPlayer.points = currentPlayer.points += 5;
+    currentPlayer.points += 5;
   }
 }
 
@@ -182,22 +191,11 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   return []
 }
 
-Data.prototype.submitAnswer = function(pollId, answer) {
-  const poll = this.polls[pollId];
-  console.log("answer submitted for ", pollId, answer);
-  if (typeof poll !== 'undefined') {
-    let answers = poll.answers[poll.currentQuestion];
-    if (typeof answers !== 'object') {
-      answers = {};
-      answers[answer] = 1;
-      poll.answers.push(answers);
-    }
-    else if (typeof answers[answer] === 'undefined')
-      answers[answer] = 1;
-    else
-      answers[answer] += 1
-    console.log("answers looks like ", answers, typeof answers);
-  }
+Data.prototype.submitAnswer = function(gameCode, name, answer) {
+  const poll = this.polls[gameCode];
+  const players = poll.players;
+  let currentPlayer = this.findCurrentPlayer(gameCode, name);
+  currentPlayer.currentAnswer = answer;
 }
 
 Data.prototype.getAnswers = function(pollId) {
@@ -271,6 +269,12 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   randPlayers.slice().sort(() => Math.random() - 0.5);
   return randPlayers;
 };
+
+Data.prototype.allegationsLeft = function (gameCode) {
+  const poll = this.polls[gameCode];
+  const aL = poll.totalAllegations - poll.counter;
+  return aL
+}
 
 export { Data };
 

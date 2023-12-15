@@ -42,9 +42,8 @@ function sockets(io, socket, data) {
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
-  socket.on('submitAnswer', function(d) {
-    data.submitAnswer(d.pollId, d.answer);
-    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
+  socket.on('submitAnswer', function(gameCode, name, answer) {
+    data.submitAnswer(gameCode, name, answer);
   });
 
   socket.on('resetAll', () => {
@@ -82,6 +81,20 @@ function sockets(io, socket, data) {
   socket.on('getPlayerList', function(gameCode) {
     const playerList = data.randomPlayers(gameCode);
     socket.emit('playerList', playerList);
+  })
+  
+  socket.on('getScoreboard', function(gameCode) {
+    const {array1, array2, array3} = data.scoreBoard(gameCode);
+    socket.emit('scoreBoard', { array1, array2, array3 } );
+  })
+
+  socket.on('compareAnswer', function(gameCode, name) {
+    data.compareAnswers(gameCode, name);
+  })
+
+  socket.on('allegationsLeft', function(gameCode) {
+    const aL = data.allegationsLeft(gameCode);
+    socket.emit('allegationsRemaining', aL);
   })
 }
 

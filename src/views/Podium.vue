@@ -16,6 +16,7 @@
       <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
       <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
     </div>
+    {{ currentPlayer.points }}
     <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
 </template>
 
@@ -57,6 +58,7 @@ created: function () {
         break
       }
     }
+    socket.emit('compareAnswer', this.gameCode, this.name);
   });
   socket.on("init", (labels) => {
     this.uiLabels = labels
@@ -64,6 +66,7 @@ created: function () {
   socket.on("startGame", () =>
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   );
+
 },
 methods: {
   switchLanguage: function() {
@@ -78,7 +81,6 @@ methods: {
   },
 
   nextAllegation: function() {
-    
     this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   }, 
 
