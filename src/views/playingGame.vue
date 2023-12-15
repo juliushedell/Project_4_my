@@ -14,10 +14,10 @@
       <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
     </div>
 
-    <!-- <div class=timerDispaly style="text-align: center;">
+    <div class=timerDispaly style="text-align: center;">
         <p v-if="timer > 0"> {{ timer }} </p>
         <p v-else="timer ===0" > {{ goToPodiumView() }} </p> 
-    </div> -->
+    </div>
 
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="checkIfCorrect(player)" id="pollName"> {{ player }} </button> 
@@ -41,13 +41,12 @@ components: {
 },
   data: function() {
     return {
-      timer: 15, 
+    timer: 15, 
       // players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
-      uiLabels: {},
+    uiLabels: {},
     id: "",
     lang: localStorage.getItem("lang") || "en",
     hideNav: true,
-    // lagrar confessions i array
     conf:[],
     poll: {},
     gameCode: 0,
@@ -80,7 +79,12 @@ components: {
   //should return when a random allegation has been picked 
   socket.on('getRandomAllegation', (poll) => {
   this.poll = poll
-  })
+  console.log(poll)
+  });
+  this.startCountdown();
+  //should return when a random allegation has been picked 
+  
+  
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
@@ -99,7 +103,7 @@ components: {
     },
 
     goToPodiumView() {
-      this.$router.push('/Podium'); // Change '/another-view' to your desired route
+      // this.$router.push('/Podium'); // Change '/another-view' to your desired route
       },
 
     checkIfCorrect(player) {

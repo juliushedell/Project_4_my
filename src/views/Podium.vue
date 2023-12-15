@@ -1,7 +1,7 @@
 <template>
     <header> 
         <h1>
-            Podium
+            LEADERBOARD
             <img src="/img/Head_picture.png" class="head_picture">
         </h1>
     </header>
@@ -12,7 +12,10 @@
     </div>
 
     <div class=podiumFrame>
-        <p>Här i ska vi skriva poängställningen </p>
+      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
+      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
+      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
+     
     </div>
     <button v-if="this.isHost" v-on:click="nextQuestion" class="button">{{ uiLabels["nextQuestion"] }}</button>
 
@@ -93,13 +96,50 @@ methods: {
   border: 4px solid green;
     padding: 2vw; 
     width: 80vw; 
-    height: 50vh; 
+    height: 40vh; 
     resize: none;
     overflow-wrap: break-word;
     margin: 0 auto;
     margin-top: 4vh; 
     font-family: 'Comic Sans MS';
-    font-size: 1.5vw; 
+    font-size: 2.0vw; 
+}
+
+.player {
+   padding-left: 5vw;;
+}
+
+.score {
+   padding-left: 40vw; 
+}
+
+li {
+  list-style: none;
+  background: url('/img/Bullet_points.png') no-repeat 0 center;
+  background-size: 1.5em;
+  padding-left: 50px;
+  margin-bottom: 30px;
+  text-align: left;
+  font-size: 1.5em;
+}
+
+@media screen and (max-width:50em) {
+  .podiumFrame{
+    padding-top: 4vh;
+    font-size: 2.8vw; 
+    height: 30vh;
+  }
+
+  .player {
+   padding-left: 10vw;;
+}
+
+.score {
+   padding-left: 25vw; 
+}
+
+
+
 }
 
 

@@ -90,11 +90,9 @@ methods: {
   startGame: function() {
     const gameCode = this.gameCode; // Save gameCode in a local variable
     const name = this.name; // Save name in a local variable
-    console.log(this.gameCode);
-    console.log(this.name);
-    socket.emit('countAllegations', {gameCode: this.gameCode});
-    socket.emit('randomAllegation', {gameCode: this.gameCode});
-    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name);
+    console.log(this.gameCode)
+    console.log(this.name)
+    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
     }
  }}
 

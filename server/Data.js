@@ -199,7 +199,27 @@ Data.prototype.getConfessions = function(gameCode) {
     return [];
   }
   return poll.players;
+};
+
+Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
+  const poll = this.polls[gameCode];
+  const players = poll.players;
+  const randPlayers = [];
+  let i = 0;
+  while (i < 4) {
+    const randomIndex = Math.floor(Math.random() * players.length);
+    const randomPlayer = players[randomIndex].name;
+    if (randomPlayer !== rightAnswer && !randPlayers.includes(randomPlayer)) {
+      randPlayers.push(randomPlayer);
+      i += 1;
+    }
+  }
+  randPlayers.push(rightAnswer);
+  randPlayers.slice().sort(() => Math.random() - 0.5);
+  return randPlayers;
+  console.log(randPlayers)
 }
+
 
 export { Data };
 
