@@ -36,8 +36,8 @@ body {
 }
 
 .button {
-  width: 8vw; /* Adjusted width to 8% of viewport width */
-  height: 3vh; /* Adjusted height to 3% of viewport height */
+  width: 96px;
+  height: 24px;
   border-radius: 3.125em;
   background-color: #3fbc6a;
   border: 0.1875em solid #2a9451;
