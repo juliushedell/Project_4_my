@@ -26,6 +26,8 @@
     XXXXXX
     {{ this.playerList }}
     {{ poll.counter }}
+    {{ this.currentPlayer }}
+    {{ this.name }}
 </template>
 
 <script>
@@ -52,7 +54,8 @@ components: {
     gameCode: 0,
     name: '',
     isHost: false,
-    playerList: []
+    playerList: [],
+    currentPlayer: {}
     };
   },
 
@@ -74,21 +77,20 @@ components: {
   socket.emit("getPoll", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
-    console.log(poll)
+    for (let player of poll.players) {
+      if (player.name === this.name) {
+        this.currentPlayer = player;
+        break
+      }
+    }
   });
   socket.emit('getPlayerList', this.gameCode);
   socket.on('playerList', (playerList) => {
     this.playerList = playerList
-  })
-  // socket.emit('randomAllegation', {gameCode: this.gameCode});
-  // socket.on('getRandomAllegation', (poll) => {
-  // this.poll = poll
-  // console.log(poll)
-  // });
+  });
+  
   this.startCountdown();
-  //should return when a random allegation has been picked 
-  
-  
+
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
@@ -115,7 +117,8 @@ components: {
       },
 
     submitAnswer: function (player) {
-      // this.poll.players[this.name].currentAnswer
+      this.currentPlayer.currentAnswer = player;
+      console.log(this.currentPlayer.currentAnswer)
     }
   },
   
