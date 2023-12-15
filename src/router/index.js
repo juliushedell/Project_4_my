@@ -59,9 +59,16 @@ const router = createRouter({
       path: '/Podium/', 
       name: 'Podium',
       component: () => import('../views/Podium.vue')
-
-
-
+    },
+    {
+      path: '/Final/', 
+      name: 'final',
+      component: () => import('../views/Final.vue')
+    },
+    {
+      path: '/Confetti/', 
+      name: 'Confetti',
+      component: () => import('../components/Confetti.vue')
     }
   ] 
 })
