@@ -121,12 +121,12 @@ Data.prototype.scoreBoard = function (gameCode){
  
   
   for (let i = 0; i < players.length; i++) {
-    if (players.points[i] === uniquePoints[0]) {
-      array1st.push(players.points[i]);
-    } else if (players.points[i] === uniquePoints[1]) {
-      array2nd.push(players.points[i]);
-    } else if (players.points[i] === uniquePoints[2]) {
-      array3rd.push(players.points[i]);
+    if (players[i].points === uniquePoints[0]) {
+      array1st.push(players[i]);
+    } else if (players[i].points === uniquePoints[1]) {
+      array2nd.push(players[i]);
+    } else if (players[i].points === uniquePoints[2]) {
+      array3rd.push(players[i]);
     }
   };
 
