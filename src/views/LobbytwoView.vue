@@ -19,7 +19,7 @@
     {{ players }}
     <br>
         <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
-        <button v-if="this.isHost" v-on:click="submitConfessions" class="button">{{ uiLabels["start"] }}</button>
+        <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
 
 </template>
 
@@ -87,13 +87,14 @@ methods: {
   // console.log(this.conf);
   // this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
   // },
-  submitConfessions: function() {
+  startGame: function() {
     const gameCode = this.gameCode; // Save gameCode in a local variable
     const name = this.name; // Save name in a local variable
-    console.log(this.gameCode)
-    console.log(this.name)
+    console.log(this.gameCode);
+    console.log(this.name);
+    socket.emit('countAllegations', {gameCode: this.gameCode});
     socket.emit('randomAllegation', {gameCode: this.gameCode});
-    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name);
     }
  }}
 

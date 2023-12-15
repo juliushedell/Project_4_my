@@ -14,6 +14,7 @@
     <div class=podiumFrame>
         <p>Här i ska vi skriva poängställningen </p>
     </div>
+    <button v-if="this.isHost" v-on:click="nextQuestion" class="button">{{ uiLabels["nextQuestion"] }}</button>
 
 
 </template>
@@ -69,6 +70,14 @@ methods: {
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
   },
+  nextQuestion: function() {
+    const gameCode = this.gameCode; // Save gameCode in a local variable
+    const name = this.name; // Save name in a local variable
+    console.log(this.gameCode);
+    console.log(this.name);
+    socket.emit('randomAllegation', {gameCode: this.gameCode});
+    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name);
+    }
  }}
 </script>
 

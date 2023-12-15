@@ -47,5 +47,7 @@
 	"answer": "Rätt svar: ",
 	"cancel": "Avbryt",
 
-	"nameUsed": "Namnet används redan, var vänlig välj ett annat."
+	"nameUsed": "Namnet används redan, var vänlig välj ett annat.",
+
+	"nextQuestion": "Nästa fråga"
 }
