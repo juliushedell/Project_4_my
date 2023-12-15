@@ -50,6 +50,8 @@ components: {
     conf:[],
     poll: {},
     gameCode: 0,
+    name: '',
+    isHost: false
     };
   },
 
@@ -65,18 +67,11 @@ components: {
   },
 
   created() {
-    this.startCountdown();
-    socket.emit("pageLoaded", this.lang);
-  // socket.emit('randomAllegation', {gameCode: this.gameCode})
-  //   socket.emit("getPoll", this.gameCode);
-  //   socket.emit("getPlayers", this.gameCode);
-  //   socket.on("pullPlayer", (players) => {
-  //   this.players = players
-  // })
-  // socket.on("pullPoll", (poll) => {
-  //   this.poll = poll
-  // })
-  //should return when a random allegation has been picked 
+  this.gameCode = this.$route.params.gameCode
+  this.name = this.$route.params.name
+  this.isHost = this.$route.params.isHost === 'true';
+  socket.emit("pageLoaded", this.lang);
+  socket.emit('randomAllegation', {gameCode: this.gameCode});
   socket.on('getRandomAllegation', (poll) => {
   this.poll = poll
   console.log(poll)
