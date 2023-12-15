@@ -58,11 +58,8 @@ function sockets(io, socket, data) {
   });
 
   //ska ta fram en random allegation varje gång som en fråga ska presenteras 
-  socket.on('randomAllegation', function(d){
-    data.randomAllegation(d.gameCode);
-    let poll = data.getRandomAllegation(d.gameCode);
-    io.to(d.gameCode).emit('getRandomAllegation', poll);
-
+  socket.on('randomAllegation', function(gameCode){
+    data.randomAllegation(gameCode);
   });
 
   //ska räkna allegations när spelet startar OBS endast en gång 

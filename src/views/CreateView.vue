@@ -76,7 +76,6 @@
     )
     socket.on("pollCreated", (data) => {
       this.data = data
-      console.log(data)
     }
       )
   },

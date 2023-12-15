@@ -53,7 +53,6 @@ created: function () {
   this.gameCode = this.$route.params.gameCode
   this.name = this.$route.params.name
   this.isHost = this.$route.params.isHost === 'true';
-  console.log(this.isHost)
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
   socket.emit("getPlayers", this.gameCode);
@@ -88,7 +87,7 @@ methods: {
 
   startGame: function() {
     socket.emit("startPoll", this.gameCode)
-    // this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+    socket.emit('randomAllegation', this.gameCode)
     }
  }}
 </script>
