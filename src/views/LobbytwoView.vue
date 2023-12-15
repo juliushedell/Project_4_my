@@ -66,6 +66,10 @@ created: function () {
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
+  socket.on("startGame", () =>
+  this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+  
+  )
 },
 methods: {
   switchLanguage: function() {
@@ -87,15 +91,16 @@ methods: {
   // console.log(this.conf);
   // this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
   // },
+
   startGame: function() {
-    const gameCode = this.gameCode; // Save gameCode in a local variable
-    const name = this.name; // Save name in a local variable
-    console.log(this.gameCode)
-    console.log(this.name)
-    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+    socket.emit("startPoll", this.gameCode)
+    // const gameCode = this.gameCode; // Save gameCode in a local variable
+    // const name = this.name; // Save name in a local variable
+    // console.log(this.gameCode)
+    // console.log(this.name)
+    // this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
     }
  }}
-
 </script>
 
 <style scoped>
