@@ -43,6 +43,7 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       allegations: allegations,
       points: 0,
       isHost: isHost
+      currentAnswer: ""
     }
     poll.players.push(thePlaya)
   }
@@ -97,6 +98,38 @@ Data.prototype.getConfessions = function(gameCode) {
   }
   return []
 }
+
+Data.prototype.compareAnswers = function (gameCode, name){
+  const poll = this.polls[gameCode];
+  let players = poll.players; 
+  let currentPlayer = players[name];
+  let correctAnswer = poll.correctAnswer;
+  let playerAnswer = currentPlayer.currentAnswer; 
+  if (playerAnswer === correctAnswer){
+    currentPlayer.points = currentPlayer.points += 5;
+  }
+}
+
+// Data.prototype.scoreBoard = function (gameCode){
+//   const poll = this.polls[gameCode];
+//   let players = poll.players.slice(); // Create a copy of players array
+//   players.sort((a, b) => b.points - a.points); // Sort players by points in descending order
+//   let array1st = [players[0]];
+//   let array2nd = [];
+//   let array3d = [];
+  
+
+
+//   // for (let i = 1; i < players.length-1; i++) {
+//   //   if (players[i].points === array1st[0].points){
+//   //       array1st.push (players[i])
+//   //       playersCompare.splice(i, 1);
+//   //   }
+//   //   elseif (players[i].points === array2nd)
+    
+//   // }
+
+// }
 
 Data.prototype.getPoll = function(gameCode) {
   if (typeof this.polls[gameCode] === "undefined") {
