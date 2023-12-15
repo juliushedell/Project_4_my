@@ -92,7 +92,8 @@ methods: {
     const name = this.name; // Save name in a local variable
     console.log(this.gameCode)
     console.log(this.name)
-    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+    socket.emit('startGame', gameCode)
+    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
     }
  }}
 

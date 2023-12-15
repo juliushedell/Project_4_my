@@ -62,13 +62,19 @@ Data.prototype.randomAllegation = function(gameCode){
 
     playerAllegations.splice(randomAllegationIndex, 1); //Här ska den aktuella allegation tas bort 
     
-    poll.counter = poll.counter --; 
+    poll.counter = poll.counter - 1; 
     poll.correctAnswer = correctAnswer;
     poll.randomAllegation = randomAllegation;
-
+    if (poll.counter === 0) {
+      return false
+    }
+    return true
   }
-  else{
-    this.randomAllegation();
+  else if (poll.counter > 0) {
+    return randomAllegation(gameCode);
+  }
+  else {
+    return false
   }
 };
 
