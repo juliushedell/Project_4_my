@@ -5,9 +5,16 @@
       <img src="/img/Head_picture.png" class="head_picture">
     </h1>
   </header>
-  <div id="codeField">
-    <input type="number" id="gameCode" v-model="gameCode" required="required"> 
+
+
+  <div class="initialText">
+  <label  for="gameCode"> {{ uiLabels["explain"] }} </label>
   </div>
+
+  <div id="codeField">
+    <input type="number" id="gameCode" v-model="gameCode" required="required" >
+  </div>
+
   <div class="wrapper">
     <router-link to="/"  class="back" >{{ uiLabels["back"] }}</router-link>
     <button @click="codePlayer" class="button" >{{ uiLabels["joinGame"] }}</button>
@@ -42,34 +49,15 @@ export default {
 </script>
 
 <style>
-/* .center {
-  padding: 50px;
-  text-align: center;
-}
-
-.a {
-  margin: 10px 10px 80px 10px;
-}
-
-.b {
-  grid-template-areas: 
-  'a b'; 
-}
-
-.button{
-  position: right; 
-} */
 
 #codeField{
-  align-items: center;
-  margin: 10px 10px 80px 10px;
-  padding: 50px;
+  margin: 0px 10px 80px 10px;
   text-align: center;
 }
 
 #gameCode {
   border-radius: 8px;
-  color: green;
+  color: #2a9451; 
   font-size: 16px;
   padding: 10px;
   margin: 10px;
@@ -84,12 +72,27 @@ export default {
 
 .back{
   justify-self: start;
+  margin-left: 25vw;
 }
 
 .button{
-  margin-right: 20px;
-  justify-self:end 
-  
+  margin-right: 25vw;
+  justify-self:end;
+  width: 150px; 
+  height: 50px;  
 }
 
+#gameCode::-webkit-outer-spin-button,
+  #gameCode::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+.initialText{
+  margin-top: 100px;
+  font-size: 20px;
+  color: #2a9451;
+  font-weight: bolder;
+  text-align: center;
+}
 </style>

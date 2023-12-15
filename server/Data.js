@@ -250,20 +250,25 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   const players = poll.players;
   const randPlayers = [];
   let i = 0;
-  while (i < 4) {
-    const randomIndex = Math.floor(Math.random() * players.length);
-    const randomPlayer = players[randomIndex].name;
-    if (randomPlayer !== rightAnswer && !randPlayers.includes(randomPlayer)) {
-      randPlayers.push(randomPlayer);
-      i += 1;
+  if (players.length > 4) {
+    while (i < 3) {
+      const randomIndex = Math.floor(Math.random() * players.length);
+      const randomPlayer = players[randomIndex].name;
+      if (randomPlayer !== rightAnswer && !randPlayers.includes(randomPlayer)) {
+        randPlayers.push(randomPlayer);
+        i += 1;
+      }
+    }
+    randPlayers.push(rightAnswer);
+  }
+  else {
+    for (let playa of players) {
+      randPlayers.push(playa.name)
     }
   }
-  randPlayers.push(rightAnswer);
   randPlayers.slice().sort(() => Math.random() - 0.5);
   return randPlayers;
-  console.log(randPlayers)
-}
-
+};
 
 export { Data };
 
