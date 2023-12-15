@@ -114,12 +114,22 @@ Data.prototype.scoreBoard = function (gameCode){
   const poll = this.polls[gameCode];
   let players = poll.players.slice(); // Create a copy of players array
   players.sort((a, b) => b.points - a.points); // Sort players by points in descending order
-  let array1st = [];
-  let array2nd = [];
-  let array3d = [];
   const uniquePoints = [...new Set(players)];
+
+  if (length.uniquePoints > 3) {
+    let array1st = [];
+    let array2nd = [];
+    let array3rd = [];
+  };
+  if(length.uniquePoints === 2){
+    let array1st = [];
+    let array2nd = [];
+  };
+  if(length.uniquePoints === 1){
+    let array1st = [];
+  };
   
-  for (let i = 0; i < sortedArray.length; i++) {
+  for (let i = 0; i < players.length; i++) {
     if (players.points[i] === uniquePoints[0]) {
       array1st.push(players.points[i]);
     } else if (players.points[i] === uniquePoints[1]) {
@@ -128,10 +138,11 @@ Data.prototype.scoreBoard = function (gameCode){
       array3rd.push(players.points[i]);
     }
   };
+  
   return {
     array1st,
     array2nd, 
-    array3d
+    array3rd
   };
 }
 
