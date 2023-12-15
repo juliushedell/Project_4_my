@@ -42,7 +42,8 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       name: name,
       allegations: allegations,
       points: 0,
-      isHost: isHost
+      isHost: isHost,
+      currentAnswer: ""
     }
     poll.players.push(thePlaya)
   }
@@ -96,6 +97,44 @@ Data.prototype.getConfessions = function(gameCode) {
     return poll.players;
   }
   return []
+}
+
+Data.prototype.compareAnswers = function (gameCode, name){
+  const poll = this.polls[gameCode];
+  let players = poll.players; 
+  let currentPlayer = players[name];
+  let correctAnswer = poll.correctAnswer;
+  let playerAnswer = currentPlayer.currentAnswer; 
+  if (playerAnswer === correctAnswer){
+    currentPlayer.points = currentPlayer.points += 5;
+  }
+}
+
+Data.prototype.scoreBoard = function (gameCode){
+  const poll = this.polls[gameCode];
+  let players = poll.players.slice(); // Create a copy of players array
+  players.sort((a, b) => b.points - a.points); // Sort players by points in descending order
+  const uniquePoints = [...new Set(players)];
+  let array1st = [];
+  let array2nd = [];
+  let array3rd = [];
+ 
+  
+  for (let i = 0; i < players.length; i++) {
+    if (players[i].points === uniquePoints[0]) {
+      array1st.push(players[i]);
+    } else if (players[i].points === uniquePoints[1]) {
+      array2nd.push(players[i]);
+    } else if (players[i].points === uniquePoints[2]) {
+      array3rd.push(players[i]);
+    }
+  };
+
+  return { 
+    array1st,
+    array2nd, 
+    array3rd
+  };
 }
 
 Data.prototype.getPoll = function(gameCode) {

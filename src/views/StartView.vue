@@ -75,20 +75,15 @@ export default {
   margin-top: 20px;
 }
 
+h2 {
+  font-size: 3vw;
+  letter-spacing: 0.4vw;
+}
+
 h4{
-  font-size: 2.0vw;
-  letter-spacing: 0.3vw;
+  font-size: 1.5vw;
+  letter-spacing: 0.1vw;
 }
-
-@media screen and (max-width:50em) {
-.rightButton{
-  justify-content: center;
-}
-.button{
-  width: 18vw; 
-  height: 6vh; 
-}}
-
 
 body{
     background-color: #81b8ce; 
@@ -111,11 +106,35 @@ body{
     }
 
 #startpage_picture {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 10px;
   width:400px; 
   height:250px;
 }
+
+@media screen and (max-width:50em) {
+.rightButton{
+  justify-content: center;
+}
+.button{
+  width: 18vw; 
+  height: 6vh; 
+}
+
+h2 {
+  font-size: 26px;
+  letter-spacing: 2px;
+} 
+
+h4{
+  font-size: 13px;
+letter-spacing: 1.0px;
+}
+
+#startpage_picture {
+  width: 266px;
+  height: 166px;
+}}
+
+
+
 </style>
