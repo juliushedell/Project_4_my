@@ -95,4 +95,16 @@ export default {
   font-weight: bolder;
   text-align: center;
 }
+
+@media screen and (max-width:50em) {
+
+  .wrapper{  
+    justify-content: center;
+    gap: 20px; 
+  }
+
+ 
+
+
+}
 </style>
