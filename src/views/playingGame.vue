@@ -71,11 +71,11 @@ components: {
   //this.name = this.$route.params.name
  // this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
-  socket.emit('randomAllegation', {gameCode: this.gameCode});
-  socket.on('getRandomAllegation', (poll) => {
-  this.poll = poll
-  console.log(poll)
-  });
+  // socket.emit('randomAllegation', {gameCode: this.gameCode});
+  // socket.on('getRandomAllegation', (poll) => {
+  // this.poll = poll
+  // console.log(poll)
+  // });
   this.startCountdown();
   //should return when a random allegation has been picked 
   

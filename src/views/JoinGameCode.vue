@@ -1,20 +1,16 @@
 <template>
-  <div>
-    <header>
-      <h1>
-        {{ uiLabels["joinGame"] }}
-        <img src="/img/Head_picture.png" class="head_picture">
-      </h1>
-    </header>
-    <div class="center">
-      <p class="a"> 
-        <input type="number" id="gameCode" v-model="gameCode" required="required"> 
-      </p>
-      <div class="b">
-        <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
-        <button @click="codePlayer" class="button">{{ uiLabels["joinGame"] }}</button>
-      </div>
-    </div>
+  <header>
+    <h1>
+      {{ uiLabels["joinGame"] }}
+      <img src="/img/Head_picture.png" class="head_picture">
+    </h1>
+  </header>
+  <div id="codeField">
+    <input type="number" id="gameCode" v-model="gameCode" required="required"> 
+  </div>
+  <div class="wrapper">
+    <router-link to="/"  class="back" >{{ uiLabels["back"] }}</router-link>
+    <button @click="codePlayer" class="button" >{{ uiLabels["joinGame"] }}</button>
   </div>
 </template>
 
@@ -46,7 +42,7 @@ export default {
 </script>
 
 <style>
-.center {
+/* .center {
   padding: 50px;
   text-align: center;
 }
@@ -56,7 +52,19 @@ export default {
 }
 
 .b {
-  margin: 80px 10px 80px 10px;
+  grid-template-areas: 
+  'a b'; 
+}
+
+.button{
+  position: right; 
+} */
+
+#codeField{
+  align-items: center;
+  margin: 10px 10px 80px 10px;
+  padding: 50px;
+  text-align: center;
 }
 
 #gameCode {
@@ -66,4 +74,22 @@ export default {
   padding: 10px;
   margin: 10px;
 }
+
+.wrapper{
+  grid-template-columns: auto auto;
+  display:grid; 
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.back{
+  justify-self: start;
+}
+
+.button{
+  margin-right: 20px;
+  justify-self:end 
+  
+}
+
 </style>
