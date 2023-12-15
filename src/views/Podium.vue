@@ -19,6 +19,8 @@
     </div>
     <button v-if="this.isHost" v-on:click="nextQuestion" class="button">{{ uiLabels["nextQuestion"] }}</button>
 
+    <button v-on:click="nextAllegation" class="button">next alligation</button>
+
 
 </template>
 
@@ -44,11 +46,12 @@ data: function () {
     poll: {},
     gameCode: 0,
     players: {}, 
-    isInputDisabled: false //grundvariabel som gör att det går att redigera i iinput fieldsen
   }
 },
 created: function () {
   this.gameCode = this.$route.params.gameCode
+  this.name = this.$route.params.name
+  this.isHost = this.$route.params.isHost;
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
   socket.emit("getPlayers", this.gameCode);
@@ -73,14 +76,12 @@ methods: {
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
   },
-  nextQuestion: function() {
-    const gameCode = this.gameCode; // Save gameCode in a local variable
-    const name = this.name; // Save name in a local variable
-    console.log(this.gameCode);
-    console.log(this.name);
-    socket.emit('randomAllegation', {gameCode: this.gameCode});
-    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name);
-    }
+
+  nextAllegation: function() {
+    socket.emit("submitConfessions", {gameCode: this.gameCode, name: this.name, isHost: this.isHost});
+    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
+  }, 
+
  }}
 </script>
 
@@ -122,6 +123,13 @@ li {
   text-align: left;
   font-size: 1.5em;
 }
+
+.button{
+    position: fixed;
+    bottom: 10vh; 
+    right: 8vw; 
+}
+
 
 @media screen and (max-width:50em) {
   .podiumFrame{
