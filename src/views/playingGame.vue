@@ -42,7 +42,7 @@ components: {
   data: function() {
     return {
     timer: 15, 
-      // players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
+    players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
     uiLabels: {},
     id: "",
     lang: localStorage.getItem("lang") || "en",
@@ -50,8 +50,8 @@ components: {
     conf:[],
     poll: {},
     gameCode: 0,
-    //name: '',
-    //isHost: false
+    name: '',
+    isHost: false
     };
   },
 
@@ -67,15 +67,15 @@ components: {
   },
 
   created() {
-  //this.gameCode = this.$route.params.gameCode
-  //this.name = this.$route.params.name
- // this.isHost = this.$route.params.isHost === 'true';
+  this.gameCode = this.$route.params.gameCode
+  this.name = this.$route.params.name
+  this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
-  socket.emit('randomAllegation', {gameCode: this.gameCode});
-  socket.on('getRandomAllegation', (poll) => {
-  this.poll = poll
-  console.log(poll)
-  });
+  // socket.emit('randomAllegation', {gameCode: this.gameCode});
+  // socket.on('getRandomAllegation', (poll) => {
+  // this.poll = poll
+  // console.log(poll)
+  // });
   this.startCountdown();
   //should return when a random allegation has been picked 
   

@@ -46,7 +46,7 @@ const router = createRouter({
       props: true
     },
     {
-      path: '/playingGame/:gameCode/:name/',
+      path: '/playingGame/:gameCode/:name/:isHost',
       name: 'playingGame',
       component: () => import('../views/playingGame.vue')
     },

@@ -67,7 +67,7 @@ created: function () {
     this.uiLabels = labels
   })
   socket.on("startGame", () =>
-  this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name)
+  this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   
   )
 },
