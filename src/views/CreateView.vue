@@ -15,7 +15,7 @@
     <div class="wrap" style="grid-area: b;" >
       {{ uiLabels["al_pp"] }}
     </div>
-    <div style="grid-area: c; padding-right: 200px;">
+    <div class="plusminus" style="grid-area: c; padding-right: 100px;">
       <button  @click="removeAllegation">
         -
       </button>
@@ -36,8 +36,9 @@
       <label class="themes" for="illegal">{{ uiLabels["illegal"] }}</label>
       <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence"/>
       <label class="themes" for="uti">{{ uiLabels["uti"] }}</label>
-      <input type="radio" id="other" v-model="theme" name="the_theme"/>
-      <label class="themes" for="other">{{ uiLabels["yourOwnTheme"] }}</label>
+      <!-- <input type="radio" id="other" v-model="theme" name="the_theme" value=""/>
+      <label class="themes" for="other">{{ uiLabels["yourOwnTheme"] }}</label> -->
+      <p class="ot">{{ uiLabels["yourOwnTheme"] }}</p>
       <input type="text" id="otherTheme" v-model="theme"/>
   </div>
   
@@ -179,7 +180,15 @@
   align-items: center;
   justify-content: center;
 }
+.plusminus {
+  width: 80px;
+}
 
+.ot {
+  color: green;
+  font-size: 18px;
+  padding-right: 8px;
+}
 .align {
   display: flex;
   align-items: center;

@@ -135,6 +135,25 @@ letter-spacing: 1.0px;
   height: 166px;
 }}
 
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  h2 {
+  padding-top: 100px;
+} 
+
+
+  #startpage_picture {
+  margin-bottom: 20px;
+  width:177,8px; 
+  height:111,1px;
+}
+
+.button{
+  width: 30vw; 
+  height: 6vh; 
+}
+    
+}
+
 
 
 </style>

@@ -110,26 +110,32 @@ Data.prototype.compareAnswers = function (gameCode, name){
   }
 }
 
-// Data.prototype.scoreBoard = function (gameCode){
-//   const poll = this.polls[gameCode];
-//   let players = poll.players.slice(); // Create a copy of players array
-//   players.sort((a, b) => b.points - a.points); // Sort players by points in descending order
-//   let array1st = [players[0]];
-//   let array2nd = [];
-//   let array3d = [];
+Data.prototype.scoreBoard = function (gameCode){
+  const poll = this.polls[gameCode];
+  let players = poll.players.slice(); // Create a copy of players array
+  players.sort((a, b) => b.points - a.points); // Sort players by points in descending order
+  const uniquePoints = [...new Set(players)];
+  let array1st = [];
+  let array2nd = [];
+  let array3rd = [];
+ 
   
+  for (let i = 0; i < players.length; i++) {
+    if (players[i].points === uniquePoints[0]) {
+      array1st.push(players[i]);
+    } else if (players[i].points === uniquePoints[1]) {
+      array2nd.push(players[i]);
+    } else if (players[i].points === uniquePoints[2]) {
+      array3rd.push(players[i]);
+    }
+  };
 
-
-//   // for (let i = 1; i < players.length-1; i++) {
-//   //   if (players[i].points === array1st[0].points){
-//   //       array1st.push (players[i])
-//   //       playersCompare.splice(i, 1);
-//   //   }
-//   //   elseif (players[i].points === array2nd)
-    
-//   // }
-
-// }
+  return { 
+    array1st,
+    array2nd, 
+    array3rd
+  };
+}
 
 Data.prototype.getPoll = function(gameCode) {
   if (typeof this.polls[gameCode] === "undefined") {
