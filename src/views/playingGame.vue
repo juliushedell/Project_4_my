@@ -8,7 +8,7 @@
       </header>
 
     <div class=text-frame>
-        <p>Här ska det komma upp alligations  OBS här får det vara max 325 tecken</p></div>
+        <p>{{ poll.randomAllegation }}</p></div>
 
       <div class="alligator-container">
       <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
@@ -22,10 +22,9 @@
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="checkIfCorrect(player)" id="pollName"> {{ player }} </button> 
     </div>
-
+    {{ poll.correctAnswer }}
+    XXXXXX
     {{ poll }}
-      xxxx
-    {{ players }}
 </template>
 
 <script>
@@ -42,7 +41,7 @@ components: {
   data: function() {
     return {
     timer: 15, 
-      // players: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
+    playersTest: ['Emelie_LOL_6577',"Mackie_BOI_boom", "Zebra_1337",'Emma', 'Kurt', "Abel", "BOB_saft_lover"], //denna är temoprär för att se om det funkar
     uiLabels: {},
     id: "",
     lang: localStorage.getItem("lang") || "en",
@@ -50,8 +49,8 @@ components: {
     conf:[],
     poll: {},
     gameCode: 0,
-    //name: '',
-    //isHost: false
+    name: '',
+    isHost: false
     };
   },
 
@@ -67,10 +66,15 @@ components: {
   },
 
   created() {
-  //this.gameCode = this.$route.params.gameCode
-  //this.name = this.$route.params.name
- // this.isHost = this.$route.params.isHost === 'true';
+  this.gameCode = this.$route.params.gameCode
+  this.name = this.$route.params.name
+  this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
+  socket.emit("getPoll", this.gameCode);
+  socket.on("pullPoll", (poll) => {
+    this.poll = poll
+    console.log(poll)
+  })
   // socket.emit('randomAllegation', {gameCode: this.gameCode});
   // socket.on('getRandomAllegation', (poll) => {
   // this.poll = poll
@@ -97,12 +101,16 @@ components: {
       }, 1000);
     },
 
+    nextQuestion: function() {
+      console.log('nästa fråga')
+    },
+
     goToPodiumView() {
       // this.$router.push('/Podium'); // Change '/another-view' to your desired route
       },
 
     checkIfCorrect(player) {
-        console.log(`Clicked on ${player}`); 
+        // console.log(`Clicked on ${player}`); 
         //här ska vi kolla om det namnet man klickar på är rätt svar
     }
   },

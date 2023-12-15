@@ -18,7 +18,7 @@
     </div>
     <button v-if="this.isHost" v-on:click="nextQuestion" class="button">{{ uiLabels["nextQuestion"] }}</button>
 
-    <button v-on:click="nextAllegation" class="button">next alligation</button>
+    <button v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
 
 
 </template>

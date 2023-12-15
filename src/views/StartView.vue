@@ -54,99 +54,46 @@ export default {
   }
 }
 </script>
+
 <style scoped>
   header {
     background-color: #81b8ce ;
     width: 100%;
-    /* display: grid; */
-    /* grid-template-columns: 2em auto; */
     text-align: right;
-  }
-  .logo {
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 2.5rem;
-    color: white;
-    padding-top:0.2em;
-  }
-  .logo img {
-    height:2.5rem;
-    vertical-align: bottom;
-    margin-right: 0.5rem; 
-  }
-  .hamburger {
-    color:white;
-    width:1em;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    padding:0.5rem;
-    top:0;
-    left:0;
-    height: 2rem;
-    cursor: pointer;
-    font-size: 1.5rem;
   }
 
   .wrapper{
   display: flex;
   justify-content: center;
   gap: 20px; 
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .rightButton{
   display: flex;
   justify-content: right;
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
-.button{
-  margin-top: -75px;
-  padding: 20px
+h4{
+  font-size: 2.0vw;
+  letter-spacing: 0.3vw;
 }
-
 
 @media screen and (max-width:50em) {
-  .logo {
-    font-size: 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hamburger::before {
-    content: "☰";
-  }
-  .close::before {
-    content: "✕";
-  }
-  .hide {
-    left:-12em;
-  }
-  .wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 .rightButton{
-  display: flex;
-  align-items: right;
   justify-content: center;
 }
 .button{
-  display: flex;
-  width: 8em; /* 150px converted to em based on a 16px reference font size */
-  height: 1em; /* 50px converted to em based on a 16px reference font size */
-  border-radius: 3.125em; /* 50px converted to em based on a 16px reference font size */
-  background-color: #3fbc6a;
-  border: 0.1875em solid #2a9451; /* 3px converted to em based on a 16px reference font size */
-}
-}
+  width: 18vw; 
+  height: 6vh; 
+}}
 
 
 body{
     background-color: #81b8ce; 
   }
+
 #frontText{
   color: #2a9451; 
   text-align: center;
@@ -167,7 +114,7 @@ body{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
   width:400px; 
   height:250px;
 }
