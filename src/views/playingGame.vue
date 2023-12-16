@@ -31,8 +31,6 @@
     <div>
       <button v-if="this.currentPlayer.fiftyfifty" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
     </div>
-    {{ this.currentPlayer.fiftyfifty }}
-
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
     </div>
@@ -74,7 +72,7 @@ components: {
     },
     randomizedPlayers() {
     const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
-    return randomized.slice(0, 3);
+    return randomized.slice(0, 4);
     },
   },
 
