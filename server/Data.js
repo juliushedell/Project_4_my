@@ -127,19 +127,27 @@ Data.prototype.compareAnswers = function (gameCode, name){
 
 Data.prototype.scoreBoard = function (gameCode){
   const poll = this.polls[gameCode];
-  let players = poll.players.slice(); // Create a copy of players array
-  players.sort((a, b) => b.points - a.points); // Sort players by points in descending order
-  const uniquePoints = [...new Set(players)];
+  players = poll.players
+  
+  let pointsArray = [];
   let array1st = [];
   let array2nd = [];
   let array3rd = [];
+
+  for (let i = 0; i < players.length; i++){
+    pointsArray.push(players[i].points)
+  }
+  pointsArray.sort((a, b) => b - a); // Sorterar arrayen från högst poäng till lägst 
+  const uniquePoints = [...new Set(pointsArray)]; //Skapar en array med bara unika element 
   
   for (let i = 0; i < players.length; i++) {
     if (players[i].points === uniquePoints[0]) {
       array1st.push(players[i]);
-    } else if (players[i].points === uniquePoints[1]) {
+    } 
+    else if (players[i].points === uniquePoints[1]) {
       array2nd.push(players[i]);
-    } else if (players[i].points === uniquePoints[2]) {
+    } 
+    else if (players[i].points === uniquePoints[2]) {
       array3rd.push(players[i]);
     }
   };
