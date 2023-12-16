@@ -85,6 +85,7 @@ methods: {
 
   nextAllegation: function() {
     socket.emit("jumpToNextAllegation", this.gameCode)
+    socket.emit('randomAllegation', this.gameCode)
   }, 
 
  }}
