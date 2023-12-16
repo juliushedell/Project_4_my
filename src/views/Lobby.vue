@@ -31,9 +31,6 @@
         <button v-on:click="submitConfessions" id="submit" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
-      {{ poll }}
-      xxxx
-      {{ players }}
 </template>
 
 <script>
