@@ -120,6 +120,7 @@
 }
   
 .wrap{
+  padding-top: 75px; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   font-size: 28px;

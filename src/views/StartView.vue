@@ -140,7 +140,6 @@ letter-spacing: 1.0px;
   padding-top: 100px;
 } 
 
-
   #startpage_picture {
   margin-bottom: 20px;
   width:177,8px; 
@@ -150,9 +149,7 @@ letter-spacing: 1.0px;
 .button{
   width: 30vw; 
   height: 6vh; 
-}
-    
-}
+}}
 
 
 
