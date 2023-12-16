@@ -72,7 +72,7 @@ Data.prototype.randomAllegation = function(gameCode){
     return true
   }
   else if (poll.counter > 0) {
-    return this.randomAllegation(gameCode);
+    return randomAllegation(gameCode);
   }
   else {
     return false

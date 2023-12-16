@@ -61,7 +61,7 @@ const router = createRouter({
       component: () => import('../views/Podium.vue')
     },
     {
-      path: '/Final/', 
+      path: '/Final/:gameCode/:name/:isHost', 
       name: 'final',
       component: () => import('../views/Final.vue')
     },

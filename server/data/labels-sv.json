@@ -51,5 +51,7 @@
 	"nameUsed": "Namnet används redan, var vänlig välj ett annat.",
 
 	"nextQuestion": "Nästa allegation",
-	"Leaderboard": "Poängställning"
+	"Leaderboard": "Poängställning",
+
+	"theWinner": "Vinnaren är: "
 }

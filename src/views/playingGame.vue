@@ -112,7 +112,11 @@ components: {
     },
 
     goToPodiumView() {
+     if(this.poll.counter > 0) {
       this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      } else {
+        this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      }
       },
 
     submitAnswer: function (player) {
