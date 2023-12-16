@@ -22,7 +22,7 @@
     <div>
       <button v-if="this.currentPlayer.sneakPeak" v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
     </div>
-    <div v-if="!this.currentPlayer.sneakPeak">
+    <div v-if="this.currentPlayer.visible">
       {{ uiLabels['opponentAnswer'] }}
       <p v-for="(count, name) in this.poll.sneakDict">
         {{ name }}: {{ count }}
@@ -34,8 +34,6 @@
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
     </div>
-    {{ poll.sneakDict }}
-    {{ this.answers }}
 </template>
 
 <script>
@@ -142,8 +140,14 @@ components: {
     },
 
     goToPodiumView() {
+      this.currentPlayer.visible = false;
       socket.emit('compareAnswer', this.gameCode, this.name);
-      // this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      if (this.poll.counter > 0) {
+        this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      }
+      else {
+        this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      }
       },
 
     submitAnswer: function (player) {
@@ -155,6 +159,7 @@ components: {
 
     sneakPeak: function () {
       if (this.currentPlayer.sneakPeak) {
+        this.currentPlayer.visible = true;
         this.currentPlayer.sneakPeak = false;
         socket.emit('usedSneakPeak', this.gameCode, this.name);
     }
