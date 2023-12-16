@@ -29,7 +29,7 @@ body {
 
 .head_picture {
   height: 8vh; /* Adjusted height to 8% of viewport height */
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   margin: 1.5vh; /* Adjusted margin to 1.5% of viewport height */

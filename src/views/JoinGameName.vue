@@ -11,12 +11,10 @@
 
       <div class="explainingText">
         {{ uiLabels["enterName"] }}
+        <p> 
+          <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
+        </p>
       </div>
-
-        <div class="nameField">
-          <input type="text" id="gameName" v-model="name" required="required" > 
-        </div>
-    
       <div class="wrap">
         <router-link to="/JoinGameCode/" class="back">{{ uiLabels["back"] }}</router-link>
         <button @click="namePlayer" class="button" type="submit">{{ uiLabels["next"] }}</button>
@@ -49,6 +47,11 @@ export default {
     });
   },
   methods: {
+    checkNameLength() {
+      if (this.name.length === 15) {
+        alert('Change name: https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
+      }
+    },
     namePlayer: function () {
   socket.emit('checkName', { gameCode: this.gameCode, name: this.name });
   socket.on('nameChecked', (checkedName) => {
