@@ -43,7 +43,8 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       allegations: allegations,
       points: 0,
       isHost: isHost,
-      currentAnswer: ""
+      currentAnswer: "",
+      fiftyfifty: true
     }
     poll.players.push(thePlaya)
   }
@@ -274,6 +275,12 @@ Data.prototype.allegationsLeft = function (gameCode) {
   const poll = this.polls[gameCode];
   const aL = poll.totalAllegations - poll.counter;
   return aL
+}
+
+Data.prototype.changeFiftyFifty = function (gameCode, name){
+  const poll = this.polls[gameCode];
+  const player = this.findCurrentPlayer(gameCode, name);
+  player.fiftyfifty = false; 
 }
 
 export { Data };

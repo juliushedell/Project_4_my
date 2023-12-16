@@ -100,6 +100,11 @@ function sockets(io, socket, data) {
     const aL = data.allegationsLeft(gameCode);
     socket.emit('allegationsRemaining', aL);
   })
+
+  socket.on('changeFiftyFifty', function(gameCode, name) {
+    data.changeFiftyFifty(gameCode, name);
+    
+  })
 }
 
 export { sockets };
