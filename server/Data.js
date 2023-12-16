@@ -32,6 +32,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.correctAnswer = "";
     poll.totalAllegations = 0;
     poll.lifeLine = false;
+    poll.answers = [];
   }
   return this.polls[gameCode];
 }
@@ -267,7 +268,6 @@ Data.prototype.allegationsLeft = function (gameCode) {
   return aL
 }
 
+
 export { Data };
-
-
 

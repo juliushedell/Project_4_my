@@ -44,6 +44,7 @@ function sockets(io, socket, data) {
 
   socket.on('submitAnswer', function(gameCode, name, answer) {
     data.submitAnswer(gameCode, name, answer);
+    io.to(gameCode).emit('answers', answer)
   });
 
   socket.on('resetAll', () => {
@@ -105,6 +106,10 @@ function sockets(io, socket, data) {
     let player = data.findCurrentPlayer(gameCode, name);
     socket.emit('currentPlayer', player);
   })
+
+
 }
+
+
 
 export { sockets };
