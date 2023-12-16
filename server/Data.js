@@ -268,6 +268,11 @@ Data.prototype.allegationsLeft = function (gameCode) {
   return aL
 }
 
+Data.prototype.usedSneakPeak = function (gameCode, name) {
+  const poll = this.polls[gameCode];
+  const player = this.findCurrentPlayer(gameCode, name);
+  player.sneakPeak = false;
+}
 
 export { Data };
 
