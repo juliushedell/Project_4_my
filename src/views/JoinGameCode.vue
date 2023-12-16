@@ -112,7 +112,10 @@ export default {
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
     margin-top: 450px; 
+
   }
+
+
 }
 
 

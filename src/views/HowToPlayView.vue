@@ -5,16 +5,26 @@
         <img src="/img/Head_picture.png" class="head_picture">
       </h1>
     </header>
+
     <body>
+    
+
+  
+    <div class="liList">
       <li> {{ uiLabels["li1"] }} </li>
       <li> {{ uiLabels["li2"] }} </li>
       <li> {{ uiLabels["li3"] }} </li>
       <li> {{ uiLabels["li4"] }} </li>
+    </div>
+
+    <br>
       <br>
       <br>
+      <br>
+
       <h3> {{ uiLabels["50/50"] }} </h3>
-      <br>
       <h3> {{ uiLabels["sneakPeak"] }}</h3>
+
 
       <button v-on:click="clue1" class="clues"> 50/50</button>
       <br>
@@ -23,8 +33,10 @@
       <br>
       <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
 
-    
     </body>
+
+    
+  
 
 </template>
 
@@ -63,6 +75,10 @@ export default {
 
 <style scoped>
 
+.liList {
+  padding-top: 50px;
+}
+
 body {
   height: 40em;
   padding-left: 10%;
@@ -72,11 +88,11 @@ body {
 li {
   list-style: none;
   background: url('/img/Bullet_points.png') no-repeat 0 center;
-  background-size: 1.5em;
+  background-size: 1.8em;
   padding-left: 50px;
   margin-bottom: 30px;
   text-align: left;
-  font-size: 1.5em;
+  font-size: 20px;
 }
 
 h3 {
@@ -103,5 +119,15 @@ h3 {
 .back{
   margin-top: -200px;
 }
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  li {
+  font-size: 15px;
+  background-size: 40px;
+}
+
+
+}
+
 
 </style>
