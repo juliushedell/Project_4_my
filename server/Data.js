@@ -33,6 +33,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.totalAllegations = 0;
     poll.lifeLine = lifeLine;
     poll.answers = [];
+    poll.sneakDict = {};
   }
   return this.polls[gameCode];
 }
@@ -47,6 +48,7 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       isHost: isHost,
       currentAnswer: "",
       fiftyfifty: true,
+      visible: false,
       sneakPeak: true
     }
     poll.players.push(thePlaya)

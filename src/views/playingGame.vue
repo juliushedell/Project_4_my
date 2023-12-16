@@ -22,9 +22,9 @@
     <div>
       <button v-if="this.currentPlayer.sneakPeak" v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
     </div>
-    <div v-if="!this.currentPlayer.sneakPeak">
+    <div v-if="this.currentPlayer.visible">
       {{ uiLabels['opponentAnswer'] }}
-      <p v-for="(count, name) in this.sneakDict">
+      <p v-for="(count, name) in this.poll.sneakDict">
         {{ name }}: {{ count }}
       </p>
     </div>
@@ -65,7 +65,6 @@ components: {
     answerLock: false,
     allegationsLeft: 0,
     answers: [],
-    sneakDict: {}
     };
   },
 
@@ -74,6 +73,7 @@ components: {
       return (this.timer / 15) * 100; 
     },
     randomizedPlayers() {
+    
     const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
     return randomized.slice(0, 4);
     },
@@ -91,17 +91,25 @@ components: {
     socket.on('currentPlayer', (player) => {
         this.currentPlayer = player
     })
-  });
-  socket.emit('getPlayerList', this.gameCode);
-  socket.on('playerList', (playerList) => {
+    socket.emit('getPlayerList', this.gameCode);
+    socket.on('playerList', (playerList) => {
     this.playerList = playerList
+    for (let i = 0; i < this.playerList.length; i++) {
+          const name = this.playerList[i];
+          this.poll.sneakDict[name] = 0;
+      }
+  });
   });
   socket.emit('allegationsLeft', this.gameCode)
   socket.on('allegationsRemaining', (aL) => {
     this.allegationsLeft = aL;
   })
   socket.on('answers', (answer) => {
-    this.answers.push(answer)
+    for (const key in this.poll.sneakDict) {
+      if (answer === key) {
+        this.poll.sneakDict[answer] += 1;
+      }
+    }
   })
   this.startCountdown();
 
@@ -135,8 +143,14 @@ components: {
     },
 
     goToPodiumView() {
+      this.currentPlayer.visible = false;
       socket.emit('compareAnswer', this.gameCode, this.name);
-      this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      if (this.poll.counter > 0) {
+        this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      }
+      else {
+        this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      }
       },
 
     submitAnswer: function (player) {
@@ -148,16 +162,9 @@ components: {
 
     sneakPeak: function () {
       if (this.currentPlayer.sneakPeak) {
+        this.currentPlayer.visible = true;
         this.currentPlayer.sneakPeak = false;
         socket.emit('usedSneakPeak', this.gameCode, this.name);
-        for (let i = 0; i < this.answers.length; i++) {
-          const name = this.answers[i];
-          if (this.sneakDict[name]) {
-            this.sneakDict[name] += 1;
-          } else {
-            this.sneakDict[name] = 1;
-        }
-      }
     }
   }
 },
