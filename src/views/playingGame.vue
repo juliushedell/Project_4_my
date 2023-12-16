@@ -73,7 +73,7 @@ components: {
     randomizedPlayers() {
     
     const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
-    return randomized.slice(0, 3);
+    return randomized.slice(0, 4);
     },
   },
 
