@@ -115,7 +115,7 @@ methods: {
   color: blue;
   text-align: center; 
   font-size: 26px;
-  width: 170px;
+  width: 220px;
 }
 
 .button{

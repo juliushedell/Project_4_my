@@ -41,7 +41,11 @@
       <p class="ot">{{ uiLabels["yourOwnTheme"] }}</p>
       <input type="text" id="otherTheme" v-model="theme"/>
   </div>
-  
+  <div class="lifeline">
+    <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">Play with lifelines</button>
+    <p v-if="buttonState">With lifelines</p>
+    <p v-else>Without lifelines</p>
+  </div>
   <div class="align">
     <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
     <button v-on:click="createPoll" class="button">
@@ -65,6 +69,7 @@
       theme: "",
       isHost: true,
       name: '',
+      buttonState: false
     }
   },
   created: function () {
@@ -86,9 +91,13 @@
         alert('Change name: https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
       }
     },
+    toggleButton() {
+      this.buttonState = !this.buttonState;
+      
+    },
     createPoll: function () {
   let gameCode = this.generateGameCode();
-  socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme });
+  socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState });
   this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } });
   },
 
@@ -201,5 +210,28 @@
   justify-content: center;
   margin: 20px 50px 0px 50px;
   gap: 100px;
+}
+.lifelinebutton {
+  border: 3px solid yellow;
+  border-radius: 20px;
+  color: green;
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #81b8ce;
+}
+
+.lifelinebutton:hover {
+  background: yellow;
+}
+.lifelinebutton.active {
+  background: yellow;
+}
+.lifeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: green;
+  font-size: 18px;
 }
 </style>
