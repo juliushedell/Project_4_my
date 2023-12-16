@@ -240,7 +240,7 @@
 }
 
 .minus:hover{
-  background-color: ;
+  background-color: yellow;
 }
 
 .ot {
