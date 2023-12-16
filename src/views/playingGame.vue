@@ -31,10 +31,11 @@
     <div>
       <button v-if="this.currentPlayer.fiftyfifty" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
     </div>
-
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
     </div>
+    {{ poll.sneakDict }}
+    {{ this.answers }}
 </template>
 
 <script>
@@ -103,10 +104,9 @@ components: {
     this.allegationsLeft = aL;
   })
   socket.on('answers', (answer) => {
-    for (let i = 0; i < this.playerList.length; i++) {
-      const name = this.playerList[i];
-      if (answer === this.poll.sneakDict[name]) {
-        this.poll.sneakDict[name] += 1;
+    for (const key in this.poll.sneakDict) {
+      if (answer === key) {
+        this.poll.sneakDict[answer] += 1;
       }
     }
   })
@@ -143,7 +143,7 @@ components: {
 
     goToPodiumView() {
       socket.emit('compareAnswer', this.gameCode, this.name);
-      this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      // this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       },
 
     submitAnswer: function (player) {
