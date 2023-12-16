@@ -77,12 +77,10 @@ components: {
   socket.emit("getPoll", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
-    for (let player of poll.players) {
-      if (player.name === this.name) {
-        this.currentPlayer = player;
-        break
-      }
-    }
+    socket.emit('findCurrentPlayer', this.gameCode, this.name);
+    socket.on('currentPlayer', (player) => {
+        this.currentPlayer = player
+    })
   });
   socket.emit('getPlayerList', this.gameCode);
   socket.on('playerList', (playerList) => {
@@ -112,6 +110,7 @@ components: {
     },
 
     goToPodiumView() {
+      socket.emit('compareAnswer', this.gameCode, this.name);
       this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       },
 

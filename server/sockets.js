@@ -100,6 +100,11 @@ function sockets(io, socket, data) {
     const aL = data.allegationsLeft(gameCode);
     socket.emit('allegationsRemaining', aL);
   })
+
+  socket.on('findCurrentPlayer', function(gameCode, name) {
+    let player = data.findCurrentPlayer(gameCode, name);
+    socket.emit('currentPlayer', player);
+  })
 }
 
 export { sockets };
