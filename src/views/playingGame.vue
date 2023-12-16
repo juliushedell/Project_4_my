@@ -20,7 +20,7 @@
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
     <div>
-      <button v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
+      <button v-if="this.currentPlayer.sneakPeak" v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
     </div>
     <div v-if="!this.currentPlayer.sneakPeak">
       {{ uiLabels['opponentAnswer'] }}
@@ -28,6 +28,10 @@
         {{ name }}: {{ count }}
       </p>
     </div>
+    <div>
+      <button v-if="this.currentPlayer.fiftyfifty" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
+    </div>
+    {{ this.currentPlayer.fiftyfifty }}
 
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
@@ -117,6 +121,18 @@ components: {
       }, 1000);
     },
 
+    implementFiftyFifty: function() {
+      let index = this.playerList.indexOf(this.poll.correctAnswer);
+      if (index === 0 || index === 1){
+        this.playerList.splice(2);
+      }
+      else {
+        this.playerList.splice(0, this.playerList.length-2);
+      }
+      this.currentPlayer.fiftyfifty = false; 
+      socket.emit('changeFiftyFifty', this.gameCode, this.name)
+    },
+
     goToPodiumView() {
      if(this.poll.counter > 0) {
       this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
@@ -124,7 +140,7 @@ components: {
         this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       }
       socket.emit('compareAnswer', this.gameCode, this.name);
-      // this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       },
 
     submitAnswer: function (player) {
@@ -137,6 +153,7 @@ components: {
     sneakPeak: function () {
       if (this.currentPlayer.sneakPeak) {
         this.currentPlayer.sneakPeak = false;
+        socket.emit('usedSneakPeak', this.gameCode, this.name);
         for (let i = 0; i < this.answers.length; i++) {
           const name = this.answers[i];
           if (this.sneakDict[name]) {
