@@ -10,7 +10,7 @@
   <div class="wrapper">
     <div class="wrap" style="grid-area: a;">
       {{ uiLabels['name_of_host'] }}
-      <input type="text" v-model="name" required>
+      <input type="text" v-model="name" :maxlength="15" @input="checkNameLength" required>
    </div>
     <div class="wrap" style="grid-area: b;" >
       {{ uiLabels["al_pp"] }}
@@ -64,7 +64,7 @@
       numberAllegations: 1 ,
       theme: "",
       isHost: true,
-      name: ''
+      name: '',
     }
   },
   created: function () {
@@ -81,6 +81,11 @@
       )
   },
   methods: {
+    checkNameLength() {
+      if (this.name.length === 15) {
+        alert('Change name: https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
+      }
+    },
     createPoll: function () {
   let gameCode = this.generateGameCode();
   socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme });
