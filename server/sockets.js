@@ -102,6 +102,10 @@ function sockets(io, socket, data) {
     socket.emit('allegationsRemaining', aL);
   })
 
+  socket.on('changeFiftyFifty', function(gameCode, name) {
+    data.changeFiftyFifty(gameCode, name);
+    
+  })
   socket.on('findCurrentPlayer', function(gameCode, name) {
     let player = data.findCurrentPlayer(gameCode, name);
     socket.emit('currentPlayer', player);

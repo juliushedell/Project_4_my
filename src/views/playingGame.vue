@@ -28,6 +28,10 @@
         {{ name }}: {{ count }}
       </p>
     </div>
+    <div>
+      <button v-if="this.currentPlayer.fiftyfifty" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
+    </div>
+    {{ this.currentPlayer.fiftyfifty }}
 
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
@@ -115,6 +119,18 @@ components: {
           this.goToPodiumView();
         }
       }, 1000);
+    },
+
+    implementFiftyFifty: function() {
+      let index = this.playerList.indexOf(this.poll.correctAnswer);
+      if (index === 0 || index === 1){
+        this.playerList.splice(2);
+      }
+      else {
+        this.playerList.splice(0, this.playerList.length-2);
+      }
+      this.currentPlayer.fiftyfifty = false; 
+      socket.emit('changeFiftyFifty', this.gameCode, this.name)
     },
 
     goToPodiumView() {

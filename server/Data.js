@@ -46,6 +46,7 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       points: 0,
       isHost: isHost,
       currentAnswer: "",
+      fiftyfifty: true,
       sneakPeak: true
     }
     poll.players.push(thePlaya)
@@ -272,6 +273,12 @@ Data.prototype.usedSneakPeak = function (gameCode, name) {
   const poll = this.polls[gameCode];
   const player = this.findCurrentPlayer(gameCode, name);
   player.sneakPeak = false;
+}
+
+Data.prototype.changeFiftyFifty = function (gameCode, name){
+  const poll = this.polls[gameCode];
+  const player = this.findCurrentPlayer(gameCode, name);
+  player.fiftyfifty = false; 
 }
 
 export { Data };
