@@ -10,20 +10,23 @@
   <div class="wrapper">
     <div class="wrap" style="grid-area: a;">
       {{ uiLabels['name_of_host'] }}
-      <input type="text" v-model="name" :maxlength="15" @input="checkNameLength" required>
+      <input class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" required>
    </div>
     <div class="wrap" style="grid-area: b;" >
       {{ uiLabels["al_pp"] }}
-    </div>
-    <div class="plusminus" style="grid-area: c; padding-right: 100px;">
-      <button  @click="removeAllegation">
+
+      <div class="plusminus"  >
+      <button class="minus" @click="removeAllegation">
         -
       </button>
       {{numberAllegations}}
-      <button @click="addAllegation">
+      <button class="plus" @click="addAllegation">
         +
       </button>
     </div>
+
+    </div>
+
   </div>
     <div class=themeTitle>
       {{ uiLabels["theme"] }}
@@ -114,36 +117,47 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   padding-top: 50px;
   display: grid;
   grid-template-areas: 
   'a a'
   'b c';
-  color: green;
+  color: #2a9451;
   font-size: 28px;
+  font-weight: bolder;
+  text-align: center;
 }
   
 .wrap{
-  padding-top: 75px; 
+  padding-top: 40px; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   font-size: 28px;
-  color: green;
+  color: #2a9451;
+  gap: 50px;
+}
+
+.textInputField {
+  height: 30px; 
+  width: 300px; 
+  border-radius: 15px;
+  font-size: 14px;
+
+
 }
 
 .themeTitle{
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-  color: green; 
-  margin-top: 20px;
+  padding-top: 60px;
+  font-size: 28px;
+  font-weight: bolder;
+  color: #2a9451;
+  
 }
   
 .themes{
   border: 3px solid yellow;
   border-radius: 20px;
-  color: green;
+  color: #2a9451;
   font-size: 16px;
   padding: 10px;
   margin: 10px;
@@ -185,13 +199,43 @@
   display: flex; 
   align-items: center;
   justify-content: center;
+
 }
 .plusminus {
-  width: 80px;
+  width: 300px;
+}
+
+.plus {
+  border: 3px solid yellow;
+  border-radius: 12px;
+  background-color: #81b8ce;
+  width: 30px;
+  height: 30px;
+  font-size: 22px;
+  color: #2a9451;
+}
+
+.plus:hover {
+  background-color: yellow;
+}
+
+
+.minus {
+  border: 3px solid yellow;
+  border-radius:12px;
+  background-color: #81b8ce;
+  width: 30px;
+  height: 30px;
+   font-size: 22px;
+  color: #2a9451; 
+}
+
+.minus:hover{
+  background-color: yellow;
 }
 
 .ot {
-  color: green;
+  color: #2a9451;
   font-size: 18px;
   padding-right: 8px;
 }
