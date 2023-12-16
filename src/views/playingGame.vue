@@ -24,14 +24,13 @@
     </div>
     <div v-if="!this.currentPlayer.sneakPeak">
       {{ uiLabels['opponentAnswer'] }}
-      <p v-for="(count, name) in this.sneakDict">
+      <p v-for="(count, name) in this.poll.sneakDict">
         {{ name }}: {{ count }}
       </p>
     </div>
     <div>
       <button v-if="this.currentPlayer.fiftyfifty" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
     </div>
-    {{ this.currentPlayer.fiftyfifty }}
 
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
@@ -64,7 +63,6 @@ components: {
     answerLock: false,
     allegationsLeft: 0,
     answers: [],
-    sneakDict: {}
     };
   },
 
@@ -73,6 +71,7 @@ components: {
       return (this.timer / 15) * 100; 
     },
     randomizedPlayers() {
+    
     const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
     return randomized.slice(0, 3);
     },
@@ -90,17 +89,26 @@ components: {
     socket.on('currentPlayer', (player) => {
         this.currentPlayer = player
     })
-  });
-  socket.emit('getPlayerList', this.gameCode);
-  socket.on('playerList', (playerList) => {
+    socket.emit('getPlayerList', this.gameCode);
+    socket.on('playerList', (playerList) => {
     this.playerList = playerList
+    for (let i = 0; i < this.playerList.length; i++) {
+          const name = this.playerList[i];
+          this.poll.sneakDict[name] = 0;
+      }
+  });
   });
   socket.emit('allegationsLeft', this.gameCode)
   socket.on('allegationsRemaining', (aL) => {
     this.allegationsLeft = aL;
   })
   socket.on('answers', (answer) => {
-    this.answers.push(answer)
+    for (let i = 0; i < this.playerList.length; i++) {
+      const name = this.playerList[i];
+      if (answer === this.poll.sneakDict[name]) {
+        this.poll.sneakDict[name] += 1;
+      }
+    }
   })
   this.startCountdown();
 
@@ -149,14 +157,6 @@ components: {
       if (this.currentPlayer.sneakPeak) {
         this.currentPlayer.sneakPeak = false;
         socket.emit('usedSneakPeak', this.gameCode, this.name);
-        for (let i = 0; i < this.answers.length; i++) {
-          const name = this.answers[i];
-          if (this.sneakDict[name]) {
-            this.sneakDict[name] += 1;
-          } else {
-            this.sneakDict[name] = 1;
-        }
-      }
     }
   }
 },

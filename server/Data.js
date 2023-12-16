@@ -33,6 +33,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.totalAllegations = 0;
     poll.lifeLine = lifeLine;
     poll.answers = [];
+    poll.sneakDict = {};
   }
   return this.polls[gameCode];
 }
