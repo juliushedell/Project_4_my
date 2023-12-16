@@ -98,13 +98,22 @@ export default {
 
 @media screen and (max-width:50em) {
 
-  .wrapper{  
-    justify-content: center;
-    gap: 20px; 
-  }
-
- 
-
-
+.head_picture{
+  height: 60px; 
+  margin: 10px;
 }
+
+.wrapper{  
+  margin-top:450px;
+  justify-content: center;
+  gap: 20px; 
+}
+}
+
+
+
+
+
+
+
 </style>
