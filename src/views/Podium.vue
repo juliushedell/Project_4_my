@@ -52,13 +52,10 @@ created: function () {
   socket.emit("getPoll", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
-    for (let player of poll.players) {
-      if (player.name === this.name) {
-        this.currentPlayer = player;
-        break
-      }
-    }
-    socket.emit('compareAnswer', this.gameCode, this.name);
+    socket.emit('findCurrentPlayer', this.gameCode, this.name);
+    socket.on('currentPlayer', (player) => {
+        this.currentPlayer = player
+    })
   });
   socket.on("init", (labels) => {
     this.uiLabels = labels

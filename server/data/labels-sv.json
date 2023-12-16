@@ -53,5 +53,6 @@
 	"nextQuestion": "Nästa allegation",
 	"Leaderboard": "Poängställning",
 
-	"theWinner": "Vinnaren är: "
+	"theWinner": "Vinnaren är: ",
+	"opponentAnswer": "Dina motspelares svar: "
 }

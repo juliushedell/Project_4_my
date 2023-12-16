@@ -10,8 +10,10 @@
             {{ this.gameCode }}
         </h2>
     </div>
+    <div class="playerLists">
     <div class="player-list" v-for="(player, index) in poll.players" :key="index">
         {{ player.name }}
+    </div>
     </div>
     <br>
     <br>
@@ -90,20 +92,30 @@ methods: {
 </script>
 
 <style scoped>
+
+.playerLists {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 20px;
+}
+
 .player-list{
   display: flex;
   justify-content: center;
   align-items: center;
   width:min-content;
-  height: 30px; 
+  height: 40px; 
   border-radius: 40px; 
   border: 2px solid blue;
   padding: 10px;
-  margin:40px auto;
+  margin:10px auto;
   color: blue;
   text-align: center; 
-  display: flex; 
-  justify-content: center;
+  font-size: 26px;
+  width: 220px;
 }
 
 .button{
@@ -140,8 +152,5 @@ methods: {
   align-items: center;
 }
 
-.player-list {
-    text-align: center;
-  }
 
 </style>

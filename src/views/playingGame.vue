@@ -19,16 +19,19 @@
         <p v-if="timer > 0"> {{ timer }} </p>
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
+    <div>
+      <button v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
+    </div>
+    <div v-if="!this.currentPlayer.sneakPeak">
+      {{ uiLabels['opponentAnswer'] }}
+      <p v-for="(count, name) in this.sneakDict">
+        {{ name }}: {{ count }}
+      </p>
+    </div>
 
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
     </div>
-    {{ poll.correctAnswer }}
-    XXXXXX
-    {{ this.playerList }}
-    {{ poll.counter }}
-    {{ this.currentPlayer }}
-    {{ this.name }}
 </template>
 
 <script>
@@ -55,7 +58,9 @@ components: {
     playerList: [],
     currentPlayer: {},
     answerLock: false,
-    allegationsLeft: 0
+    allegationsLeft: 0,
+    answers: [],
+    sneakDict: {}
     };
   },
 
@@ -77,12 +82,10 @@ components: {
   socket.emit("getPoll", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
-    for (let player of poll.players) {
-      if (player.name === this.name) {
-        this.currentPlayer = player;
-        break
-      }
-    }
+    socket.emit('findCurrentPlayer', this.gameCode, this.name);
+    socket.on('currentPlayer', (player) => {
+        this.currentPlayer = player
+    })
   });
   socket.emit('getPlayerList', this.gameCode);
   socket.on('playerList', (playerList) => {
@@ -91,6 +94,9 @@ components: {
   socket.emit('allegationsLeft', this.gameCode)
   socket.on('allegationsRemaining', (aL) => {
     this.allegationsLeft = aL;
+  })
+  socket.on('answers', (answer) => {
+    this.answers.push(answer)
   })
   this.startCountdown();
 
@@ -117,6 +123,8 @@ components: {
       } else {
         this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       }
+      socket.emit('compareAnswer', this.gameCode, this.name);
+      // this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       },
 
     submitAnswer: function (player) {
@@ -124,8 +132,22 @@ components: {
         socket.emit('submitAnswer', this.gameCode, this.name, player);
         this.answerLock = true;
       }
+    },
+
+    sneakPeak: function () {
+      if (this.currentPlayer.sneakPeak) {
+        this.currentPlayer.sneakPeak = false;
+        for (let i = 0; i < this.answers.length; i++) {
+          const name = this.answers[i];
+          if (this.sneakDict[name]) {
+            this.sneakDict[name] += 1;
+          } else {
+            this.sneakDict[name] = 1;
+        }
+      }
     }
-  },
+  }
+},
 };
 </script>
 

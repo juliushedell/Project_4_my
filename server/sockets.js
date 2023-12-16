@@ -10,7 +10,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('createPoll', function(d) {
-    socket.emit('pollCreated', data.createPoll(d.lang, d.gameCode, d.numberAllegations, d.theme));
+    socket.emit('pollCreated', data.createPoll(d.lang, d.gameCode, d.numberAllegations, d.theme, d.lifeLine));
   });
 
   socket.on('addQuestion', function(d) {
@@ -44,6 +44,7 @@ function sockets(io, socket, data) {
 
   socket.on('submitAnswer', function(gameCode, name, answer) {
     data.submitAnswer(gameCode, name, answer);
+    io.to(gameCode).emit('answers', answer)
   });
 
   socket.on('resetAll', () => {
@@ -100,6 +101,15 @@ function sockets(io, socket, data) {
     const aL = data.allegationsLeft(gameCode);
     socket.emit('allegationsRemaining', aL);
   })
+
+  socket.on('findCurrentPlayer', function(gameCode, name) {
+    let player = data.findCurrentPlayer(gameCode, name);
+    socket.emit('currentPlayer', player);
+  })
+
+
 }
+
+
 
 export { sockets };

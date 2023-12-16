@@ -17,7 +17,7 @@ Data.prototype.getUILabels = function (lang = "en") {
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme) {
+Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme, lifeLine) {
   if (typeof this.polls[gameCode] === "undefined") {
     let poll = {};
     poll.lang = lang;
@@ -31,6 +31,8 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.randomAllegation = "";
     poll.correctAnswer = "";
     poll.totalAllegations = 0;
+    poll.lifeLine = lifeLine;
+    poll.answers = [];
   }
   return this.polls[gameCode];
 }
@@ -43,7 +45,8 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       allegations: allegations,
       points: 0,
       isHost: isHost,
-      currentAnswer: ""
+      currentAnswer: "",
+      sneakPeak: true
     }
     poll.players.push(thePlaya)
   }
@@ -198,17 +201,6 @@ Data.prototype.submitAnswer = function(gameCode, name, answer) {
   currentPlayer.currentAnswer = answer;
 }
 
-Data.prototype.getAnswers = function(pollId) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    const answers = poll.answers[poll.currentQuestion];
-    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
-      return {q: poll.questions[poll.currentQuestion].q, a: answers};
-    }
-  }
-  return {}
-}
-
 Data.prototype.addConfessions = function (gameCode, allegations, name) {
   const poll = this.polls[gameCode];  
   console.log("CONFESSION ADDED ", gameCode, allegations, name);  
@@ -276,7 +268,6 @@ Data.prototype.allegationsLeft = function (gameCode) {
   return aL
 }
 
+
 export { Data };
-
-
 
