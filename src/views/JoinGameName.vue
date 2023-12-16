@@ -7,10 +7,12 @@
       </h1>
     </header>
     <body>
-      <div class="wrap">
+
+
+      <div class="explainingText">
         {{ uiLabels["enterName"] }}
         <p> 
-          <input type="text" id="gameName" v-model="name" required="required" > 
+          <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
         </p>
       </div>
       <div class="wrap">
@@ -45,6 +47,11 @@ export default {
     });
   },
   methods: {
+    checkNameLength() {
+      if (this.name.length === 15) {
+        alert('Change name: https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
+      }
+    },
     namePlayer: function () {
   socket.emit('checkName', { gameCode: this.gameCode, name: this.name });
   socket.on('nameChecked', (checkedName) => {
@@ -57,24 +64,55 @@ export default {
     }
   });
 }
-
   }
 }
 </script>
 
 <style>
+.explainingText{
+  margin-top: 100px;
+  font-size: 20px;
+  color: #2a9451;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.nameField{
+  margin: 0px 10px 80px 10px;
+  text-align: center;
+}
+
 .wrap{
-  display: grid;
-  grid-gap: 5em;
-  grid-template-columns: repeat(2, 1fr);
-  margin: 50px 100px 50px 100px;
+  grid-template-columns: auto auto;
+  display:grid; 
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 #gameName{
   border-radius: 8px;
-  color: green;
+  color: #2a9451; 
   font-size: 16px;
   padding: 10px;
   margin: 10px;
+}
+
+@media screen and (max-width:50em) {
+.head_picture{
+  height: 60px; 
+  margin: 10px;
+}
+
+.wrap{  
+  margin-top:300px;
+  justify-content: center;
+  gap: 20px; 
+}
+}
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  .wrapper {
+    margin-top: 450px; 
+  }
 }
 </style>

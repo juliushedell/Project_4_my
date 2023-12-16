@@ -97,17 +97,25 @@ export default {
 }
 
 @media screen and (max-width:50em) {
-
 .head_picture{
   height: 60px; 
   margin: 10px;
 }
 
 .wrapper{  
-  margin-top:450px;
+  margin-top:300px;
   justify-content: center;
   gap: 20px; 
 }
+}
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  .wrapper {
+    margin-top: 450px; 
+
+  }
+
+
 }
 
 

@@ -17,7 +17,7 @@ Data.prototype.getUILabels = function (lang = "en") {
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme) {
+Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme, lifeLine) {
   if (typeof this.polls[gameCode] === "undefined") {
     let poll = {};
     poll.lang = lang;
@@ -31,7 +31,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.randomAllegation = "";
     poll.correctAnswer = "";
     poll.totalAllegations = 0;
-    poll.lifeLine = false;
+    poll.lifeLine = lifeLine;
     poll.answers = [];
   }
   return this.polls[gameCode];
