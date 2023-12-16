@@ -66,6 +66,9 @@ created: function () {
   socket.on("startGame", () =>
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   );
+  socket.on("nextAllegation", () =>
+  this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
+  );
 
 },
 methods: {
@@ -81,7 +84,8 @@ methods: {
   },
 
   nextAllegation: function() {
-    this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
+    socket.emit("jumpToNextAllegation", this.gameCode)
+    socket.emit('randomAllegation', this.gameCode)
   }, 
 
  }}
