@@ -29,7 +29,6 @@
       </p>
     </div>
     <div>
-      <!-- <button v-on:click="implementFiftyFifty" class="button"> 50/50 </button> -->
       <button v-if="this.currentPlayer.fiftyfifty" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
     </div>
     {{ this.currentPlayer.fiftyfifty }}

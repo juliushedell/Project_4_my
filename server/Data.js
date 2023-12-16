@@ -46,7 +46,7 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       points: 0,
       isHost: isHost,
       currentAnswer: "",
-      fiftyfifty: true
+      fiftyfifty: true,
       sneakPeak: true
     }
     poll.players.push(thePlaya)
