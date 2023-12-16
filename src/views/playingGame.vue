@@ -20,7 +20,7 @@
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
     <div>
-      <button v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
+      <button v-if="this.currentPlayer.sneakPeak" v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
     </div>
     <div v-if="!this.currentPlayer.sneakPeak">
       {{ uiLabels['opponentAnswer'] }}
@@ -133,7 +133,7 @@ components: {
 
     goToPodiumView() {
       socket.emit('compareAnswer', this.gameCode, this.name);
-      // this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       },
 
     submitAnswer: function (player) {
@@ -146,6 +146,7 @@ components: {
     sneakPeak: function () {
       if (this.currentPlayer.sneakPeak) {
         this.currentPlayer.sneakPeak = false;
+        socket.emit('usedSneakPeak', this.gameCode, this.name);
         for (let i = 0; i < this.answers.length; i++) {
           const name = this.answers[i];
           if (this.sneakDict[name]) {

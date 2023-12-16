@@ -111,6 +111,9 @@ function sockets(io, socket, data) {
     socket.emit('currentPlayer', player);
   })
 
+  socket.on('usedSneakPeak', function(gameCode, name) {
+    data.usedSneakPeak(gameCode, name);
+  })
 
 }
 
