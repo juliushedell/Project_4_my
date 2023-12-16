@@ -55,5 +55,6 @@
 	"nameUsed": "The name is already in use, please choose another one.",
 
 	"nextQuestion": "Next allegation",
-	"Leaderboard": "LEADERBORD"
+	"Leaderboard": "LEADERBORD",
+	"opponentAnswer": "Your opponents answer: "
 }

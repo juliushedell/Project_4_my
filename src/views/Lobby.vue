@@ -12,6 +12,7 @@
       {{ uiLabels["theme"] }}
       {{ poll.theme }}
     </h3>
+    
       <!-- skapar fields till confessions -->
       <div id="parent-container">
       <form id="confessionsform">
@@ -30,6 +31,9 @@
         <button v-on:click="submitConfessions" id="submit" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
+      {{ poll }}
+      xxxx
+      {{ players }}
 </template>
 
 <script>
@@ -45,7 +49,6 @@ data: function () {
     poll: {},
     gameCode: 0,
     players: [], 
-    isInputDisabled: false, //grundvariabel som gör att det går att redigera i iinput fieldsen
     allegations: [],
     name:''
   }
@@ -60,6 +63,7 @@ created: function () {
   socket.emit("getPlayers", this.gameCode);
   socket.on("pullPlayer", (players) => {
     this.players = players
+    console.log(players)
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
@@ -84,7 +88,6 @@ methods: {
   },
   submitConfessions: function() {
     socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost});
-    this.isInputDisabled = true; //la till detta för att kunna göra det omöjligt att redigera sina allegations efter att man klickat på submit 
     this.$router.push ('/Lobbytwo/' + this.gameCode +'/' + this.name + '/' + this.isHost)
     }
  }}
