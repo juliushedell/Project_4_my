@@ -78,6 +78,10 @@ function sockets(io, socket, data) {
     io.to(gameCode).emit('startGame');
   });
 
+  socket.on('jumpToNextAllegation', function (gameCode) {
+    io.to(gameCode).emit('nextAllegation');
+  });
+
   socket.on('getPlayerList', function(gameCode) {
     const playerList = data.randomPlayers(gameCode);
     socket.emit('playerList', playerList);
