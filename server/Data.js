@@ -121,10 +121,9 @@ Data.prototype.compareAnswers = function (gameCode, name){
   let currentPlayer = this.findCurrentPlayer(gameCode, name);
   const correctAnswer = poll.correctAnswer;
   const playerAnswer = currentPlayer.currentAnswer;
-  console.log('i compare answers', currentPlayer.points, playerAnswer)
   if (playerAnswer === correctAnswer){
     currentPlayer.points += 5;
-    console.log(currentPlayer.points, playerAnswer)
+    console.log('I compareAnswers: ', currentPlayer.name, 'har poäng: ', currentPlayer.points,' svarade ', playerAnswer, ' rätt svar: ', correctAnswer)
   }
 }
 

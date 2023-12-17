@@ -20,7 +20,7 @@
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
     <div>
-      <button v-if="this.currentPlayer.sneakPeak" v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
+      <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
     </div>
     <div v-if="this.currentPlayer.visible">
       {{ uiLabels['opponentAnswer'] }}
@@ -29,7 +29,7 @@
       </p>
     </div>
     <div>
-      <button v-if="this.currentPlayer.fiftyfifty" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
+      <button v-if="this.currentPlayer.fiftyfifty && this.poll.lifeLine" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
