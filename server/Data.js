@@ -118,12 +118,13 @@ Data.prototype.findCurrentPlayer = function(gameCode, name) { //Funktion som let
 
 Data.prototype.compareAnswers = function (gameCode, name){ // Jämför den aktuella spelarens svar med det rätta svaret lagrat i poll
   const poll = this.polls[gameCode];
-  const players = poll.players;
-  const currentPlayer = this.findCurrentPlayer(gameCode, name);
+  let currentPlayer = this.findCurrentPlayer(gameCode, name);
   const correctAnswer = poll.correctAnswer;
   const playerAnswer = currentPlayer.currentAnswer;
+  console.log('i compare answers', currentPlayer.points, playerAnswer)
   if (playerAnswer === correctAnswer){
     currentPlayer.points += 5;
+    console.log(currentPlayer.points, playerAnswer)
   }
 }
 

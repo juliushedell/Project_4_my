@@ -34,9 +34,6 @@
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
     </div>
-    {{ playerList }}
-    {{ poll.players }}
-    {{ randomizedPlayers }}
 </template>
 
 <script>

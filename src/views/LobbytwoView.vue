@@ -19,9 +19,7 @@
     <br>
         <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
-
 </template>
-
 <script>
 
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
