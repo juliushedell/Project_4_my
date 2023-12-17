@@ -13,11 +13,11 @@ prototype of the Data object/class
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 ***********************************************/
 
-Data.prototype.getUILabels = function (lang = "en") {
+Data.prototype.getUILabels = function (lang = "en") { // Hämtar UILabels
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme, lifeLine) {
+Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme, lifeLine) { //Skapar pollen 
   if (typeof this.polls[gameCode] === "undefined") {
     let poll = {};
     poll.lang = lang;
@@ -38,7 +38,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
   return this.polls[gameCode];
 }
 
-Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost) {
+Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost) { // Skapar en spelare när allegations läggs till
   const poll = this.polls[gameCode];
   if (typeof poll !== "undefined") {
     let thePlaya = {
@@ -56,28 +56,28 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
   
 };
 
-Data.prototype.randomAllegation = function(gameCode){
+Data.prototype.randomAllegation = function(gameCode){ //Tar fram en random allegation och den som skrivit den 
   const poll = this.polls[gameCode];
   const players = poll.players;
-  let randomPlayerIndex = Math.floor(Math.random()*players.length);
-  let correctAnswer = players[randomPlayerIndex];
-  let playerAllegations = correctAnswer.allegations;
+  let randomPlayerIndex = Math.floor(Math.random()*players.length); //Tar fram ett random index från listan med spelare
+  let correctAnswer = players[randomPlayerIndex]; //Tar fram spelaren på indexet i fråga
+  let playerAllegations = correctAnswer.allegations; //Tar fram den spelaren lista med allegations 
 
-  if (playerAllegations.length > 0){
-    const randomAllegationIndex = Math.floor(Math.random()*playerAllegations.length);
-    const randomAllegation = playerAllegations[randomAllegationIndex];
+  if (playerAllegations.length > 0){ //Kollar så att spelarens allegations-lista inehåller minst en allegation 
+    const randomAllegationIndex = Math.floor(Math.random()*playerAllegations.length); //Tar fram ett random index från spelarens allegation-lista
+    const randomAllegation = playerAllegations[randomAllegationIndex]; //Tar fram den allegation som sedan ska visas i playingGame vyn
 
     playerAllegations.splice(randomAllegationIndex, 1); //Här ska den aktuella allegation tas bort 
     
-    poll.counter = poll.counter - 1; 
-    poll.correctAnswer = correctAnswer.name;
-    poll.randomAllegation = randomAllegation;
-    if (poll.counter === 0) {
+    poll.counter = poll.counter - 1; // Minskar counter med 1 för varje gång funktionen körs
+    poll.correctAnswer = correctAnswer.name; // Sparar namnet på den spelare som allegation tillhör i pollen
+    poll.randomAllegation = randomAllegation; // Sparar den allegation som ska visas i pollen
+    if (poll.counter === 0) { 
       return false
     }
     return true
   }
-  else if (poll.counter > 0) {
+  else if (poll.counter > 0) { //Om personen som slumpats fram inte har några allegations i sin lista så körs funktionen igen 
     return this.randomAllegation(gameCode);
   }
   else {
@@ -85,12 +85,12 @@ Data.prototype.randomAllegation = function(gameCode){
   }
 };
 
-Data.prototype.getRandomAllegation = function(gameCode){
+Data.prototype.getRandomAllegation = function(gameCode){ //returnerar pollen till playingGame vyn (kallas i socket)
   const poll = this.polls[gameCode];
   return poll;
 }
 
-Data.prototype.countAllegations = function(gameCode){
+Data.prototype.countAllegations = function(gameCode){ //Räknar hur många allegations som finns totalt (kallas när spelet startas)
   const poll = this.polls[gameCode];
   const players = poll.players;
   poll.counter = players.length * poll.numberAllegations;
@@ -106,7 +106,7 @@ Data.prototype.getConfessions = function(gameCode) {
   return []
 }
 
-Data.prototype.findCurrentPlayer = function(gameCode, name) {
+Data.prototype.findCurrentPlayer = function(gameCode, name) { //Funktion som letar upp vilken spelare som är den som gått in i data?
   const poll = this.polls[gameCode];
   const players = poll.players;
   for (let player of players) {
@@ -116,7 +116,7 @@ Data.prototype.findCurrentPlayer = function(gameCode, name) {
   }
 }
 
-Data.prototype.compareAnswers = function (gameCode, name){
+Data.prototype.compareAnswers = function (gameCode, name){ // Jämför den aktuella spelarens svar med det rätta svaret lagrat i poll
   const poll = this.polls[gameCode];
   const players = poll.players;
   const currentPlayer = this.findCurrentPlayer(gameCode, name);
@@ -127,7 +127,7 @@ Data.prototype.compareAnswers = function (gameCode, name){
   }
 }
 
-Data.prototype.scoreBoard = function (gameCode){
+Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelare som hamnar på 1:a, 2:a och 3:e plats 
   const poll = this.polls[gameCode];
   players = poll.players
   
@@ -136,13 +136,13 @@ Data.prototype.scoreBoard = function (gameCode){
   let array2nd = [];
   let array3rd = [];
 
-  for (let i = 0; i < players.length; i++){
+  for (let i = 0; i < players.length; i++){ //Skapar en array innehållande alla spelares poäng 
     pointsArray.push(players[i].points)
   }
   pointsArray.sort((a, b) => b - a); // Sorterar arrayen från högst poäng till lägst 
   const uniquePoints = [...new Set(pointsArray)]; //Skapar en array med bara unika element 
   
-  for (let i = 0; i < players.length; i++) {
+  for (let i = 0; i < players.length; i++) { //Fyller arrayerna med de spelare som hamnar på pallplats 
     if (players[i].points === uniquePoints[0]) {
       array1st.push(players[i]);
     } 
@@ -161,14 +161,14 @@ Data.prototype.scoreBoard = function (gameCode){
   };
 };
 
-Data.prototype.getPoll = function(gameCode) {
+Data.prototype.getPoll = function(gameCode) { //Hämter pollen
   if (typeof this.polls[gameCode] === "undefined") {
     return {}
   }
   return this.polls[gameCode];
 }
 
-Data.prototype.getPlayers = function(gameCode) {
+Data.prototype.getPlayers = function(gameCode) { //Härtar arrayen med spelare 
   const poll = this.polls[gameCode];
   if (typeof poll === "undefined") {
     return {};
@@ -178,7 +178,7 @@ Data.prototype.getPlayers = function(gameCode) {
   
 }
 
-Data.prototype.addQuestion = function(pollId, q) {
+Data.prototype.addQuestion = function(pollId, q) { //Används inte? 
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
   if (typeof poll !== 'undefined') {
@@ -186,14 +186,14 @@ Data.prototype.addQuestion = function(pollId, q) {
   }
 }
 
-Data.prototype.editQuestion = function(pollId, index, newQuestion) {
+Data.prototype.editQuestion = function(pollId, index, newQuestion) { // Används inte? 
   const poll = this.polls[pollId];
   if (typeof poll !== 'undefined') {
     poll.questions[index] = newQuestion;
   }
 }
 
-Data.prototype.getQuestion = function(pollId, qId=null) {
+Data.prototype.getQuestion = function(pollId, qId=null) { // Används inte?
   const poll = this.polls[pollId];
   console.log("question requested for ", pollId, qId);
   if (typeof poll !== 'undefined') {
@@ -205,14 +205,14 @@ Data.prototype.getQuestion = function(pollId, qId=null) {
   return []
 }
 
-Data.prototype.submitAnswer = function(gameCode, name, answer) {
+Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte?
   const poll = this.polls[gameCode];
   const players = poll.players;
   let currentPlayer = this.findCurrentPlayer(gameCode, name);
   currentPlayer.currentAnswer = answer;
 }
 
-Data.prototype.addConfessions = function (gameCode, allegations, name) {
+Data.prototype.addConfessions = function (gameCode, allegations, name) { //Används inte?
   const poll = this.polls[gameCode];  
   console.log("CONFESSION ADDED ", gameCode, allegations, name);  
   if (typeof poll !== 'undefined') {
@@ -222,7 +222,7 @@ Data.prototype.addConfessions = function (gameCode, allegations, name) {
   }
 };
 
-Data.prototype.checkName = function (gameCode, checkName) {
+Data.prototype.checkName = function (gameCode, checkName) { //Kollar om namnet man vill använda redan finns eller inte
   const poll = this.polls[gameCode];
   const players = poll.players;
 
@@ -273,19 +273,19 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   return randPlayers;
 };
 
-Data.prototype.allegationsLeft = function (gameCode) {
+Data.prototype.allegationsLeft = function (gameCode) { //Tar fram hur mång allegations som totalt finns kvar 
   const poll = this.polls[gameCode];
   const aL = poll.totalAllegations - poll.counter;
   return aL
 }
 
-Data.prototype.usedSneakPeak = function (gameCode, name) {
+Data.prototype.usedSneakPeak = function (gameCode, name) { //Ändrar till false för aktuella spelaren så att sneak-peak-knapp inte syns
   const poll = this.polls[gameCode];
   const player = this.findCurrentPlayer(gameCode, name);
   player.sneakPeak = false;
 }
 
-Data.prototype.changeFiftyFifty = function (gameCode, name){
+Data.prototype.changeFiftyFifty = function (gameCode, name){ //Ändrar till flase för aktuella spelaren så att 50/50-knapp inte syns
   const poll = this.polls[gameCode];
   const player = this.findCurrentPlayer(gameCode, name);
   player.fiftyfifty = false; 
