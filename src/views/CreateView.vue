@@ -265,13 +265,8 @@
   justify-content: center;
 }
 
-.button{
-  height: 50px;
-  width: 150px; 
-}
-
-.back{
-  width: 150px; 
+.button {
+  width: 250px;
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
@@ -306,6 +301,10 @@
     margin-top: 20px;
     gap: 40px;
   }
+
+  .button {
+  width: 170px;
+}
 }
 
 </style>
