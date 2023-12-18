@@ -46,8 +46,6 @@
   </div>
   <div class="lifeline">
     <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">Play with lifelines</button>
-    <p v-if="buttonState">With lifelines</p>
-    <p v-else>Without lifelines</p>
   </div>
   <div class="align">
     <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
@@ -143,7 +141,7 @@
   grid-template-columns: repeat(2, 1fr);
   font-size: 28px;
   color: #2a9451;
-  gap: 50px;
+  gap:0px;
 }
 
 .textInputField {
@@ -151,8 +149,7 @@
   width: 300px; 
   border-radius: 15px;
   font-size: 14px;
-
-
+  
 }
 
 .themeTitle{
@@ -160,7 +157,6 @@
   font-size: 28px;
   font-weight: bolder;
   color: #2a9451;
-  
 }
   
 .themes{
@@ -223,7 +219,6 @@
   font-size: 22px;
   color: #2a9451;
 }
-
 .plus:hover {
   background-color: yellow;
 }
@@ -248,12 +243,11 @@
   font-size: 18px;
   padding-right: 8px;
 }
+
 .align {
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 20px 50px 0px 50px;
-  gap: 100px;
+  gap: 70vw;
 }
 .lifelinebutton {
   border: 3px solid yellow;
@@ -264,18 +258,41 @@
   margin: 10px;
   background-color: #81b8ce;
 }
-
-.lifelinebutton:hover {
-  background: yellow;
-}
 .lifelinebutton.active {
   background: yellow;
 }
 .lifeline {
+  padding-top: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: green;
   font-size: 18px;
+}
+
+.button{
+  height: 50px;
+  width: 150px; 
+}
+
+.back{
+  width: 150px; 
+}
+
+@media screen and (max-width:50em) {
+
+
+  .textInputField {
+  width: 200px; 
+}
+  .wrap{
+    font-size: 18px;
+  }
+  .themeTitle{
+  font-size: 20px;
+  
+}
+
+
 }
 </style>

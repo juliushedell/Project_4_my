@@ -13,34 +13,19 @@ function sockets(io, socket, data) {
     socket.emit('pollCreated', data.createPoll(d.lang, d.gameCode, d.numberAllegations, d.theme, d.lifeLine));
   });
 
-  socket.on('addQuestion', function(d) {
-    data.addQuestion(d.pollId, {q: d.q, a: d.a});
-    socket.emit('dataUpdate', data.getAnswers(d.pollId));
-  });
-
-  socket.on('editQuestion', function(d) {
-    data.editQuestion(d.pollId, d.index, {q: d.q, a: d.a});
-    socket.emit('questionEdited', data.getAllQuestions(d.pollId));
-  });
-
   socket.on('joinPoll', function(gameCode) {
     socket.join(gameCode);
     socket.emit('pullPoll', data.getPoll(gameCode));
   });
 
-  socket.on('getPoll', function(pollId) {
-    socket.join(pollId);
-    io.to(pollId).emit('pullPoll', data.getPoll(pollId))
+  socket.on('getPoll', function(gameCode) {
+    socket.join(gameCode);
+    io.to(gameCode).emit('pullPoll', data.getPoll(gameCode))
   });
 
   socket.on('getPlayers', function(gameCode) {
     io.to(gameCode).emit('pullPlayer', data.getPlayers(gameCode));
   })
-
-  socket.on('runQuestion', function(d) {
-    io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
-    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
-  });
 
   socket.on('submitAnswer', function(gameCode, name, answer) {
     data.submitAnswer(gameCode, name, answer);
@@ -57,7 +42,6 @@ function sockets(io, socket, data) {
     io.to(d.gameCode).emit('confessionsSubmitted', data.getConfessions(d.gameCode))
   });
 
-  //ska ta fram en random allegation varje gång som en fråga ska presenteras 
   socket.on('randomAllegation', function(gameCode){
     data.randomAllegation(gameCode);
   });
@@ -89,8 +73,8 @@ function sockets(io, socket, data) {
   })
   
   socket.on('getScoreboard', function(gameCode) {
-    const {array1, array2, array3} = data.scoreBoard(gameCode);
-    socket.emit('scoreBoard', { array1, array2, array3 } );
+    const theScoreboard = data.scoreBoard(gameCode);
+    socket.emit('scoreBoard', theScoreboard );
   })
 
   socket.on('compareAnswer', function(gameCode, name) {
@@ -116,7 +100,5 @@ function sockets(io, socket, data) {
   })
 
 }
-
-
 
 export { sockets };
