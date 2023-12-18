@@ -32,18 +32,25 @@
     </div>
   
   <div class="themebuttons">
-      <input type="radio" id="childhood" v-model="theme" name="the_theme" value="Childhood"/>
-      <label class="themes" for="childhood">{{ uiLabels["childhood"] }}</label>
-      <input type="radio" id="illegal" v-model="theme" name="the_theme" value="Illegal"/>
-      <label class="themes" for="illegal">{{ uiLabels["illegal"] }}</label>
-      <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence"/>
-      <label class="themes" for="uti">{{ uiLabels["uti"] }}</label>
-      <p class="ot">{{ uiLabels["yourOwnTheme"] }}</p>
-      <input type="text" id="otherTheme" v-model="theme"/>
+    <input type="radio" id="childhood" v-model="theme" name="the_theme" value="childhood"/>
+    <label class="themes" for="childhood">{{ uiLabels["childhood"] }}</label>
+
+    <input type="radio" id="illegal" v-model="theme" name="the_theme" value="Illegal"/>
+    <label class="themes" for="illegal">{{ uiLabels["illegal"] }}</label>
+
+    <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence"/>
+    <label class="themes" for="uti">{{ uiLabels["uti"] }}</label>
+
+    <p class="ot">{{ uiLabels["yourOwnTheme"] }}</p>
+    <input type="text" id="otherTheme" v-model="theme"/>
+
   </div>
 
+
+
+
   <div class="lifeline">
-    <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">Play with lifelines</button>
+    <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">{{uiLabels["lifeLines"]}}</button>
   </div>
 
   <div class="align">
@@ -221,7 +228,7 @@
   height: 30px;
    font-size: 22px;
   color: #2a9451; 
-  line-height: 30px;
+  line-height: 5px;
 }
 
 .minus:hover{
@@ -235,10 +242,10 @@
 }
 
 .align {
-  padding-top: 50px;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
-  gap: 70vw;
+  gap: 60vw;
 }
 .lifelinebutton {
   border: 3px solid yellow;
