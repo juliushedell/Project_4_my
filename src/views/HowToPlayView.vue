@@ -129,7 +129,7 @@ p {
   margin-bottom: 30px;
 }
 .li-list1 {
-  background: url('/img/50:50.png') no-repeat 0 center;
+  background: url('/img/fifty.png') no-repeat 0 center;
   background-size: 7em;
   padding: 5px 0px 5px 0px
 }
