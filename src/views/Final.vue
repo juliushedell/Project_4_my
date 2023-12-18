@@ -7,7 +7,7 @@
     </div>
     <div class="answerDisplay">
       <h3>
-        {{ uiLabels['answer'] }} **namn**
+        {{ uiLabels['theWinner'] }} {{ this.array1st }}
       </h3>
     </div>
 
@@ -50,6 +50,8 @@ return {
 
 created: function () {
 this.gameCode = this.$route.params.gameCode
+this.name = this.$route.params.name
+this.isHost = this.$route.params.isHost === 'true';
 socket.emit("pageLoaded", this.lang);
 socket.emit("getPoll", this.gameCode);
 socket.emit("getPlayers", this.gameCode);

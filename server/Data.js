@@ -119,8 +119,9 @@ Data.prototype.findCurrentPlayer = function(gameCode, name) { //Funktion som let
 Data.prototype.compareAnswers = function (gameCode, name){ // Jämför den aktuella spelarens svar med det rätta svaret lagrat i poll
   const poll = this.polls[gameCode];
   let currentPlayer = this.findCurrentPlayer(gameCode, name);
-  const correctAnswer = poll.correctAnswer;
-  const playerAnswer = currentPlayer.currentAnswer;
+  let correctAnswer = poll.correctAnswer;
+  let playerAnswer = currentPlayer.currentAnswer;
+  console.log('i compare answers', currentPlayer.points, playerAnswer)
   if (playerAnswer === correctAnswer){
     currentPlayer.points += 5;
     console.log('I compareAnswers: ', currentPlayer.name, 'har poäng: ', currentPlayer.points,' svarade ', playerAnswer, ' rätt svar: ', correctAnswer)
@@ -129,7 +130,7 @@ Data.prototype.compareAnswers = function (gameCode, name){ // Jämför den aktue
 
 Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelare som hamnar på 1:a, 2:a och 3:e plats 
   const poll = this.polls[gameCode];
-  players = poll.players
+  const players = poll.players
   
   let pointsArray = [];
   let array1st = [];
@@ -141,7 +142,8 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
   }
   pointsArray.sort((a, b) => b - a); // Sorterar arrayen från högst poäng till lägst 
   const uniquePoints = [...new Set(pointsArray)]; //Skapar en array med bara unika element 
-  
+  console.log(pointsArray.sort((a, b) => b - a))
+  console.log(uniquePoints)
   for (let i = 0; i < players.length; i++) { //Fyller arrayerna med de spelare som hamnar på pallplats 
     if (players[i].points === uniquePoints[0]) {
       array1st.push(players[i]);
@@ -154,7 +156,7 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
     }
   };
 
-  return { 
+  return {
     array1st,
     array2nd, 
     array3rd
@@ -251,7 +253,7 @@ Data.prototype.getConfessions = function(gameCode) {
 Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   const poll = this.polls[gameCode];
   const players = poll.players;
-  const randPlayers = [];
+  let randPlayers = [];
   let i = 0;
   if (players.length > 4) {
     while (i < 3) {
@@ -263,15 +265,15 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
       }
     }
     randPlayers.push(rightAnswer);
-  }
-  else {
+  } else {
     for (let playa of players) {
-      randPlayers.push(playa.name)
+      randPlayers.push(playa.name);
     }
   }
-  randPlayers.slice().sort(() => Math.random() - 0.5);
+  randPlayers = randPlayers.slice().sort(() => Math.random() - 0.5);
   return randPlayers;
 };
+
 
 Data.prototype.allegationsLeft = function (gameCode) { //Tar fram hur mång allegations som totalt finns kvar 
   const poll = this.polls[gameCode];
