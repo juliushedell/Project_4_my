@@ -19,17 +19,19 @@
         <p v-if="timer > 0"> {{ timer }} </p>
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
+    <div class="wrap">
     <div>
-      <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
+      <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" class="lifeline"> Sneak Peak! </button>
     </div>
-    <div v-if="this.currentPlayer.visible">
+    <div v-if="this.currentPlayer.visible" class="sneakpeak">
       {{ uiLabels['opponentAnswer'] }}
       <p v-for="(count, name) in this.poll.sneakDict">
         {{ name }}: {{ count }}
       </p>
     </div>
     <div>
-      <button v-if="this.currentPlayer.fiftyfifty && this.poll.lifeLine" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
+      <button v-if="this.currentPlayer.fiftyfifty && this.poll.lifeLine" v-on:click="implementFiftyFifty" class="lifeline"> 50/50 </button>
+    </div>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
@@ -207,11 +209,40 @@ img {
   border-radius: 40px; 
   border: 3px solid blue;
   padding: 10px;
-  margin:40px auto;
+  margin:0px auto;
   color: blue;
   text-align: center;
   background-color: #81b8ce;
- 
+  width: 220px;
+  margin-top: -100px;
+}
+
+.lifeline {
+  width: 180px; 
+  height: 45px; 
+  border-radius: 25px; 
+  background-color: yellow;
+  border: 6px solid green;
+  text-align: center;
+  color: red; 
+  display: inline-block;
+  font-size: 20px;
+  position: relative;
+  top: -130px; 
+  font-weight: bold; 
+}
+
+.wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 150px 50px 0px 50px;
+  gap: 50px;
+}
+
+.sneakpeak {
+  margin-top: -200px;
+  color: green;
 }
 
 

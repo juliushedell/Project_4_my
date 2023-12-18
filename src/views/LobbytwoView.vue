@@ -100,22 +100,6 @@ methods: {
   gap: 20px;
 }
 
-.player-list{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width:min-content;
-  height: 40px; 
-  border-radius: 40px; 
-  border: 2px solid blue;
-  padding: 10px;
-  margin:10px auto;
-  color: blue;
-  text-align: center; 
-  font-size: 26px;
-  width: 220px;
-}
-
 .wrap{
   grid-template-columns: auto auto;
   display:grid; 
