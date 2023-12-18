@@ -12,7 +12,7 @@
       {{ uiLabels['name_of_host'] }}
       <input class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" required>
    </div>
-    <div class="wrap" style="grid-area: b;" >
+    <div class="wrap2" style="grid-area: b;" >
       {{ uiLabels["al_pp"] }}
 
       <div class="plusminus"  >
@@ -24,7 +24,6 @@
         +
       </button>
     </div>
-
     </div>
 
   </div>
@@ -39,11 +38,10 @@
       <label class="themes" for="illegal">{{ uiLabels["illegal"] }}</label>
       <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence"/>
       <label class="themes" for="uti">{{ uiLabels["uti"] }}</label>
-      <!-- <input type="radio" id="other" v-model="theme" name="the_theme" value=""/>
-      <label class="themes" for="other">{{ uiLabels["yourOwnTheme"] }}</label> -->
       <p class="ot">{{ uiLabels["yourOwnTheme"] }}</p>
       <input type="text" id="otherTheme" v-model="theme"/>
   </div>
+
   <div class="lifeline">
     <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">Play with lifelines</button>
   </div>
@@ -141,7 +139,13 @@
   grid-template-columns: repeat(2, 1fr);
   font-size: 28px;
   color: #2a9451;
-  gap:0px;
+ 
+}
+
+.wrap2{
+  padding-top: 40px; 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .textInputField {
@@ -149,6 +153,7 @@
   width: 300px; 
   border-radius: 15px;
   font-size: 14px;
+  border: 3px solid yellow;
   
 }
 
@@ -188,6 +193,7 @@
   }
   
 #otherTheme{
+  border: 3px solid yellow;
   height: 30px; 
   width: 150px; 
   border-radius: 15px;
@@ -204,12 +210,10 @@
   display: flex; 
   align-items: center;
   justify-content: center;
-
 }
 .plusminus {
   width: 300px;
 }
-
 .plus {
   border: 3px solid yellow;
   border-radius: 12px;
@@ -222,8 +226,6 @@
 .plus:hover {
   background-color: yellow;
 }
-
-
 .minus {
   border: 3px solid yellow;
   border-radius:12px;
@@ -256,7 +258,7 @@
   font-size: 16px;
   padding: 10px;
   margin: 10px;
-  background-color: #81b8ce;
+  background-color: white;
 }
 .lifelinebutton.active {
   background: yellow;
@@ -279,20 +281,38 @@
   width: 150px; 
 }
 
-@media screen and (max-width:50em) {
-
-
-  .textInputField {
-  width: 200px; 
-}
-  .wrap{
-    font-size: 18px;
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  .wrapper {
+    margin-top: -50px; 
   }
-  .themeTitle{
-  font-size: 20px;
-  
+  .textInputField {
+    width: 150px;
+  }
+  .wrap {
+    font-size: 20px;
+    padding-left: 20px;
+  }
+  .wrap2 {
+    font-size: 20px;
+    padding-left: 80px;
+  }
+  .themeTitle {
+    margin-top: -40px;
+    font-size: 20px;
+  }
+  .themebuttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #otherTheme {
+    margin-top: 10px; /* Add margin between the input field and the buttons */
+  }
+
+  .align{
+    margin-top: 20px;
+    gap: 40px;
+  }
 }
 
-
-}
 </style>
