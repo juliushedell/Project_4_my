@@ -11,12 +11,54 @@
         </h3>
     </div>
 
+
+    <!-- for (let i = 0; i < players.length; i++) { //Fyller arrayerna med de spelare som hamnar på pallplats 
+    if (players[i].points === uniquePoints[0]) {
+      array1st.push(players[i]);
+    } 
+    else if (players[i].points === uniquePoints[1]) {
+      array2nd.push(players[i]);
+    } 
+    else if (players[i].points === uniquePoints[2]) {
+      array3rd.push(players[i]);
+    }
+  }; -->
+
+
+
+  <!-- <div v-for="i in poll.numberAllegations" :key="i">
+            <label for="confession{{ i }}"> Allegation {{ i }} :  </label>
+            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
+            <br><br>
+          </div>
+
+
+          <div v-for="i in theScoreboard" :key="i">
+            <label for="Placering{{ i }}"> Placering {{ i }} :  </label>
+            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
+            <br><br>
+          </div>
+
+
+ -->
+
+
     <div class=podiumFrame>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
+      <div>
+    <ul>
+      <li v-for="(object, index) in theScoreboard.array1st" :key="index">
+       1st {{ theScoreboard.array1st[index].name }} <span class="score"> {{ theScoreboard.array1st[index].points }} points</span>
+      </li>
+      <li v-for="(object, index) in theScoreboard.array2nd" :key="index">
+       2nd {{ theScoreboard.array2nd[index].name }} <span class="score"> {{ theScoreboard.array2nd[index].points }} points</span>
+      </li>
+      <li v-for="(object, index) in theScoreboard.array3rd" :key="index">
+       3rd {{ theScoreboard.array3rd[index].name }} <span class="score"> {{ theScoreboard.array3rd[index].points }} points</span>
+      </li>
+    </ul>
+  </div>
     </div>
-    {{ currentPlayer.points }}
+    Your current points: {{ currentPlayer.points }}
     <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
 </template>
 
@@ -41,7 +83,8 @@ data: function () {
     name: '',
     isHost: false,
     playerList: [],
-    currentPlayer: {}
+    currentPlayer: {},
+    theScoreboard: {}
   }
 },
 created: function () {
@@ -50,11 +93,15 @@ created: function () {
   this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
+  socket.emit("getScoreboard", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
     socket.emit('findCurrentPlayer', this.gameCode, this.name);
     socket.on('currentPlayer', (player) => {
         this.currentPlayer = player
+    })
+    socket.on('scoreBoard', (theScoreboard) => {
+        this.theScoreboard = theScoreboard
     })
   });
   socket.on("init", (labels) => {

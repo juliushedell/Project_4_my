@@ -88,7 +88,7 @@ components: {
     socket.on('currentPlayer', (player) => {
         this.currentPlayer = player
     })
-    socket.emit('getPlayerList', this.gameCode);
+    socket.emit('getPlayerList', this.gameCode, poll.correctAnswer);
     socket.on('playerList', (playerList) => {
     this.playerList = playerList
     for (let i = 0; i < this.playerList.length; i++) {
@@ -149,6 +149,7 @@ components: {
         this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       }
       },
+      
 
     submitAnswer: function (player) {
       if (!this.answerLock && this.timer !== 0) {
