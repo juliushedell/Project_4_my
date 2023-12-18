@@ -130,7 +130,7 @@ Data.prototype.compareAnswers = function (gameCode, name){ // Jämför den aktue
 
 Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelare som hamnar på 1:a, 2:a och 3:e plats 
   const poll = this.polls[gameCode];
-  players = poll.players
+  const players = poll.players
   
   let pointsArray = [];
   let array1st = [];
@@ -142,7 +142,8 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
   }
   pointsArray.sort((a, b) => b - a); // Sorterar arrayen från högst poäng till lägst 
   const uniquePoints = [...new Set(pointsArray)]; //Skapar en array med bara unika element 
-  
+  console.log(pointsArray.sort((a, b) => b - a))
+  console.log(uniquePoints)
   for (let i = 0; i < players.length; i++) { //Fyller arrayerna med de spelare som hamnar på pallplats 
     if (players[i].points === uniquePoints[0]) {
       array1st.push(players[i]);
@@ -155,7 +156,7 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
     }
   };
 
-  return { 
+  return {
     array1st,
     array2nd, 
     array3rd

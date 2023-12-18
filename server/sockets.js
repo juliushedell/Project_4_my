@@ -73,8 +73,8 @@ function sockets(io, socket, data) {
   })
   
   socket.on('getScoreboard', function(gameCode) {
-    const {array1, array2, array3} = data.scoreBoard(gameCode);
-    socket.emit('scoreBoard', { array1, array2, array3 } );
+    const theScoreboard = data.scoreBoard(gameCode);
+    socket.emit('scoreBoard', theScoreboard );
   })
 
   socket.on('compareAnswer', function(gameCode, name) {

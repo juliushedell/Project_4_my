@@ -140,6 +140,11 @@ components: {
     },
 
     goToPodiumView() {
+     if(this.poll.counter > 0) {
+      this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      } else {
+        this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+      }
       this.currentPlayer.visible = false;
       socket.emit('compareAnswer', this.gameCode, this.name);
       if (this.poll.counter > 0) {
