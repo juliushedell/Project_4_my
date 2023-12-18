@@ -251,7 +251,7 @@ Data.prototype.getConfessions = function(gameCode) {
 Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   const poll = this.polls[gameCode];
   const players = poll.players;
-  const randPlayers = [];
+  let randPlayers = [];
   let i = 0;
   if (players.length > 4) {
     while (i < 3) {
@@ -263,15 +263,15 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
       }
     }
     randPlayers.push(rightAnswer);
-  }
-  else {
+  } else {
     for (let playa of players) {
-      randPlayers.push(playa.name)
+      randPlayers.push(playa.name);
     }
   }
-  randPlayers.slice().sort(() => Math.random() - 0.5);
+  randPlayers = randPlayers.slice().sort(() => Math.random() - 0.5);
   return randPlayers;
 };
+
 
 Data.prototype.allegationsLeft = function (gameCode) { //Tar fram hur mång allegations som totalt finns kvar 
   const poll = this.polls[gameCode];
