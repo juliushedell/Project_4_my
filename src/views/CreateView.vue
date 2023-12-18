@@ -221,7 +221,7 @@
   height: 30px;
    font-size: 22px;
   color: #2a9451; 
-  line-height: ;
+  line-height: 30px;
 }
 
 .minus:hover{
@@ -246,6 +246,7 @@
   color: #2a9451;
   font-size: 16px;
   padding: 10px;
+  background-color: #81b8ce;
 }
 .lifelinebutton.active {
   background: yellow;
