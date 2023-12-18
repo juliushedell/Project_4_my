@@ -5,34 +5,20 @@
         <img src="/img/Head_picture.png" class="head_picture">
       </h1>
     </header>
-
     <body>
-    
-
-  
     <div class="liList">
       <li> {{ uiLabels["li1"] }} </li>
       <li> {{ uiLabels["li2"] }} </li>
       <li> {{ uiLabels["li3"] }} </li>
       <li> {{ uiLabels["li4"] }} </li>
     </div>
-
-    <br>
-      <br>
-      <br>
-      <br>
-
-      <h3> {{ uiLabels["50/50"] }} </h3>
-      <h3> {{ uiLabels["sneakPeak"] }}</h3>
-
-
-      <button v-on:click="clue1" class="clues"> 50/50</button>
-      <br>
-      <br>
-      <button v-on:click="clue1" class="clues"> Sneak peak</button>
-      <br>
+    <div class="li-list1">
+      <p> {{ uiLabels["50/50"] }} </p>
+    </div>
+    <div class="li-list2">
+      <p> {{ uiLabels["sneakPeak"] }}</p>
+    </div>
       <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
-
     </body>
 
     
@@ -74,16 +60,27 @@ export default {
 </script>
 
 <style scoped>
-
-.liList {
-  padding-top: 50px;
-}
-
 body {
   height: 40em;
   padding-left: 10%;
   padding-top: 25px;
 }
+.liList {
+  padding-top: 50px;
+  margin-bottom: 80px;
+}
+.li-list1 {
+  background: url('/img/50:50.png') no-repeat 0 center;
+  background-size: 10em;
+  padding: 5px 0px 5px 0px
+}
+
+.li-list2 {
+  background: url('/img/Sneakpeak.png') no-repeat 0 center;
+  background-size: 10em;
+  padding: 5px 0px 5px 0px
+}
+
 
 li {
   list-style: none;
@@ -95,13 +92,17 @@ li {
   font-size: 20px;
 }
 
-h3 {
+p {
   text-align: left;
-  padding-left: 300px;
-
+  padding-left: 250px;
+  font-size: 20px;
 }
 
-.clues {
+.back {
+  margin-top: 50px;
+}
+
+/* .clues {
   width: 200px; 
   height: 50px; 
   border-radius: 25px; 
@@ -113,20 +114,48 @@ h3 {
   font-size: 20px;
   position: relative;
   top: -130px; 
-  
-}
+  font-weight: bold; 
+} */
 
-.back{
-  margin-top: -200px;
-}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   li {
-  font-size: 15px;
+  font-size: 16px;
   background-size: 40px;
+} 
+
+.liList {
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+.li-list1 {
+  background: url('/img/50:50.png') no-repeat 0 center;
+  background-size: 7em;
+  padding: 5px 0px 5px 0px
 }
 
+.li-list2 {
+  background: url('/img/Sneakpeak.png') no-repeat 0 center;
+  background-size: 7em;
+  padding: 5px 0px 5px 0px
+}
+p {
+  text-align: left;
+  padding-left: 130px;
+  font-size: 16px;
+}
 
+body {
+  height: 40em;
+  padding-left: 10%;
+  padding-top: 25px;
+  margin-right: 10px;
+}
+
+.back {
+  width:120px;
+  height:40px;
+}
 }
 
 
