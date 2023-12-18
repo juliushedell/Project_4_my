@@ -9,13 +9,13 @@
 	"regler": "How to play",
 
 
-	"howToPlay": "How to play",
-	"li1": "The host chooses a theme and how many allegations each player should submit.",
-	"li2": "Other players join by pressing 'join game', filling out their name and entering the game code that the host provides.",
-	"li3": "The goal of the game is to match the allegations with the correct player as fast as possible.",
-	"li4": "There are two lifelines available to be used at will:",
-	"50/50": "- Reduces the options down to 2", 
-	"sneakPeak": "- Allows a sneak peak on what other players have answerd",
+    "howToPlay": "How to play",
+    "li1": "The host chooses a theme and how many allegations each player should submit.",
+    "li2": "Other players join by pressing 'join game', entering the game code that the host provides and filling out their name.",
+    "li3": "The goal of the game is to match the allegations with the correct player as fast as possible.",
+    "li4": "There are two lifelines available to be used at will:",
+    "50/50": "Reduces the options so there is two left", 
+    "sneakPeak": "Allows a sneak peak on what other players have answered",
 	
 
 	"enterAllegations": "Enter allegation",
