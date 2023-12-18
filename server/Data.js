@@ -124,7 +124,7 @@ Data.prototype.compareAnswers = function (gameCode, name){ // Jämför den aktue
   console.log('i compare answers', currentPlayer.points, playerAnswer)
   if (playerAnswer === correctAnswer){
     currentPlayer.points += 5;
-    console.log(currentPlayer.points, playerAnswer)
+    console.log('I compareAnswers: ', currentPlayer.name, 'har poäng: ', currentPlayer.points,' svarade ', playerAnswer, ' rätt svar: ', correctAnswer)
   }
 }
 
@@ -252,7 +252,7 @@ Data.prototype.getConfessions = function(gameCode) {
 Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   const poll = this.polls[gameCode];
   const players = poll.players;
-  const randPlayers = [];
+  let randPlayers = [];
   let i = 0;
   if (players.length > 4) {
     while (i < 3) {
@@ -264,15 +264,15 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
       }
     }
     randPlayers.push(rightAnswer);
-  }
-  else {
+  } else {
     for (let playa of players) {
-      randPlayers.push(playa.name)
+      randPlayers.push(playa.name);
     }
   }
-  randPlayers.slice().sort(() => Math.random() - 0.5);
+  randPlayers = randPlayers.slice().sort(() => Math.random() - 0.5);
   return randPlayers;
 };
+
 
 Data.prototype.allegationsLeft = function (gameCode) { //Tar fram hur mång allegations som totalt finns kvar 
   const poll = this.polls[gameCode];
