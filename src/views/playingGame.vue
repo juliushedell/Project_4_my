@@ -33,7 +33,10 @@
     </div>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
-    <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
+      <label v-for="(player, index) in randomizedPlayers" :key="index" class="pollOption">
+      <input type="radio" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" :class="{active:answerLock}">
+      {{ player }}
+      </label>
     </div>
 </template>
 
@@ -64,6 +67,8 @@ data: function() {
   answerLock: false,
   allegationsLeft: 0,
   answers: [],
+  selectedPlayer: null,
+  answerLock: false,
   };
 },
 
@@ -144,10 +149,9 @@ methods: {
     }
     },
     
-
-  submitAnswer: function (player) {
-    if (!this.answerLock && this.timer !== 0) {
-      socket.emit('submitAnswer', this.gameCode, this.name, player);
+    submitAnswer: function () {
+    if (!this.answerLock && this.timer !== 0 && this.selectedPlayer !== null) {
+      socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
       this.answerLock = true;
       this.currentPlayer.visible = false;
     }
@@ -168,6 +172,26 @@ methods: {
 </script>
 
 <style scoped>
+
+.pollOption input[type="radio"] {
+  opacity: 0.01;
+  }
+
+.pollOption input[type="radio"]:checked+label,
+  
+.pollOption label:hover {
+  background:yellow;
+  }
+
+  .pollOption {
+    border: 3px solid yellow;
+    border-radius: 20px;
+    color: #2a9451;
+    font-size: 16px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #81b8ce;
+  }
 
 .text-frame {
   border: 4px solid green;
