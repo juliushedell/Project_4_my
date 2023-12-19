@@ -32,6 +32,7 @@
 	"back": "Tillbaka",
 	"next": "Nästa",
 	"cg": "Skapa spel",
+	"lifeLines": "Spela med livlinor",
 
 	"enterName": "Fyll i ditt namn:",
 	"enterGameCode": "Delta i spel",
