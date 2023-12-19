@@ -49,7 +49,7 @@ export default {
   methods: {
     checkNameLength() {
       if (this.name.length === 15) {
-        alert('Change name: https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
+        alert(this.uiLabels['tooLongName'] + 'https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
       }
     },
     namePlayer: function () {

@@ -33,12 +33,12 @@
   
   <div class="themebuttons">
       <input type="radio" id="childhood" v-model="theme" name="the_theme" value="Childhood"/>
-      <label class="themes" for="childhood">{{ uiLabels["childhood"] }}</label>
+      <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
       <input type="radio" id="illegal" v-model="theme" name="the_theme" value="Illegal"/>
-      <label class="themes" for="illegal">{{ uiLabels["illegal"] }}</label>
+      <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
       <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence"/>
-      <label class="themes" for="uti">{{ uiLabels["uti"] }}</label>
-      <p class="ot">{{ uiLabels["yourOwnTheme"] }}</p>
+      <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
+      <p class="ot">{{ uiLabels["Own theme: "] }}</p>
       <input type="text" id="otherTheme" v-model="theme"/>
   </div>
 
@@ -87,7 +87,7 @@
   methods: {
     checkNameLength() {
       if (this.name.length === 15) {
-        alert('Change name: https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
+        alert(this.uiLabels['tooLongName'] + 'https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
       }
     },
     toggleButton() {

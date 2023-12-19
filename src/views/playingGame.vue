@@ -1,5 +1,4 @@
 <template>
- <!-- Till denna sidan måste vi skicka alligations med tillhörande user, skapa en funkation osm plockar ut en alligation slumpmässigt och dispalyar den -->
     <header> 
         <h1>
             Game Time!
@@ -15,7 +14,7 @@
       <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
     </div>
 
-    <div class=timerDispaly style="text-align: center;">
+    <div class='timerDispaly' style="text-align: center;">
         <p v-if="timer > 0"> {{ timer }} </p>
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
@@ -24,7 +23,7 @@
     </div>
     <div v-if="this.currentPlayer.visible">
       {{ uiLabels['opponentAnswer'] }}
-      <p v-for="(count, name) in this.poll.sneakDict">
+      <p v-for="(count, name) in this.sneakDict">
         {{ name }}: {{ count }}
       </p>
     </div>
@@ -58,6 +57,7 @@ components: {
     name: '',
     isHost: false,
     playerList: [],
+    sneakDict: {},
     currentPlayer: {},
     answerLock: false,
     allegationsLeft: 0,
@@ -70,7 +70,6 @@ components: {
       return (this.timer / 15) * 100; 
     },
     randomizedPlayers() {
-    
     const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
     return randomized.slice(0, 4);
     },
@@ -84,32 +83,26 @@ components: {
   socket.emit("getPoll", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
-    socket.emit('findCurrentPlayer', this.gameCode, this.name);
-    socket.on('currentPlayer', (player) => {
-        this.currentPlayer = player
-    })
     socket.emit('getPlayerList', this.gameCode, poll.correctAnswer);
     socket.on('playerList', (playerList) => {
-    this.playerList = playerList
-    for (let i = 0; i < this.playerList.length; i++) {
-          const name = this.playerList[i];
-          this.poll.sneakDict[name] = 0;
-      }
+      this.playerList = playerList
+    });
   });
-  });
+  socket.emit('findCurrentPlayer', this.gameCode, this.name);
+  socket.on('currentPlayer', (player) => {
+      this.currentPlayer = player
+  })
   socket.emit('allegationsLeft', this.gameCode)
   socket.on('allegationsRemaining', (aL) => {
     this.allegationsLeft = aL;
   })
   socket.on('answers', (answer) => {
-    for (const key in this.poll.sneakDict) {
-      if (answer === key) {
-        this.poll.sneakDict[answer] += 1;
-      }
-    }
+    socket.emit('updateSneakDict', this.gameCode, this.playerList)
+    socket.on('sneakDict', (sneakDict) => {
+      this.sneakDict = sneakDict
+    })
   })
   this.startCountdown();
-
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
@@ -141,7 +134,6 @@ components: {
 
     goToPodiumView() {
       this.currentPlayer.visible = false;
-      socket.emit('compareAnswer', this.gameCode, this.name);
       if (this.poll.counter > 0) {
         this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       }
@@ -155,14 +147,18 @@ components: {
       if (!this.answerLock && this.timer !== 0) {
         socket.emit('submitAnswer', this.gameCode, this.name, player);
         this.answerLock = true;
+        this.currentPlayer.visible = false;
       }
     },
 
     sneakPeak: function () {
       if (this.currentPlayer.sneakPeak) {
         this.currentPlayer.visible = true;
-        this.currentPlayer.sneakPeak = false;
         socket.emit('usedSneakPeak', this.gameCode, this.name);
+        socket.emit('updateSneakDict', this.gameCode, this.playerList)
+        socket.on('sneakDict', (sneakDict) => {
+          this.sneakDict = sneakDict
+        })
     }
   }
 },

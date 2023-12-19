@@ -27,10 +27,10 @@
 	"name_of_host": "Name of host:",
 	"al_pp": "Allegations per player:",
 	"theme": "Theme:",
-	"childhood": "Childhood",
-	"illegal": "Illegal",
-	"uti": "Under the influence",
-	"yourOwnTheme": "Own theme: ",
+	"Childhood": "Childhood",
+	"Illegal": "Illegal",
+	"Under the influence": "Under the influence",
+	"Own theme: ": "Own theme: ",
 	"back": "Back",
 	"next": "Next",
 	"cg": "Create game",
@@ -53,6 +53,7 @@
 	"cancel": "Cancel",
 
 	"nameUsed": "The name is already in use, please choose another one.",
+	"tooLongName": "Ops! Your name seems to be too long for this game! If you need help changing your name in the legal sense, visit: ",
 
 	"nextQuestion": "Next allegation",
 	"Leaderboard": "LEADERBORD",

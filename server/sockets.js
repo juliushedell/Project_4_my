@@ -15,7 +15,7 @@ function sockets(io, socket, data) {
 
   socket.on('joinPoll', function(gameCode) {
     socket.join(gameCode);
-    socket.emit('pullPoll', data.getPoll(gameCode));
+    io.to(gameCode).emit('pullPoll', data.getPoll(gameCode));
   });
 
   socket.on('getPoll', function(gameCode) {
@@ -31,6 +31,11 @@ function sockets(io, socket, data) {
     data.submitAnswer(gameCode, name, answer);
     io.to(gameCode).emit('answers', answer)
   });
+
+  socket.on('updateSneakDict', function (gameCode, playerList) {
+    const sneakDict = data.updateSneakDict(gameCode, playerList);
+    socket.emit('sneakDict', sneakDict)
+  })
 
   socket.on('resetAll', () => {
     data = new Data();
@@ -77,8 +82,8 @@ function sockets(io, socket, data) {
     socket.emit('scoreBoard', theScoreboard );
   })
 
-  socket.on('compareAnswer', function(gameCode, name) {
-    data.compareAnswers(gameCode, name);
+  socket.on('compareAnswer', function(gameCode) {
+    data.compareAnswers(gameCode);
   })
 
   socket.on('allegationsLeft', function(gameCode) {

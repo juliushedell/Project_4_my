@@ -25,10 +25,10 @@
 	"name_of_host": "Fyll i ditt namn:",
 	"al_pp": "Allegations per spelare:",
 	"theme": "Tema:",
-	"childhood": "Barndom",
-	"illegal": "Olagligt",
-	"uti": "På fyllan",
-	"yourOwnTheme": "Eget tema: ",
+	"Childhood": "Barndom",
+	"Illegal": "Olagligt",
+	"Under the influence": "På fyllan",
+	"Own theme: ": "Eget tema: ",
 	"back": "Tillbaka",
 	"next": "Nästa",
 	"cg": "Skapa spel",
@@ -49,6 +49,7 @@
 	"cancel": "Avbryt",
 
 	"nameUsed": "Namnet används redan, var vänlig välj ett annat.",
+	"tooLongName": "Ops! Ditt namn ser ut att vara för långt för detta spelet! Om du behöver hjälp att byta namn juridiskt, besök: ",
 
 	"nextQuestion": "Nästa allegation",
 	"Leaderboard": "Poängställning",

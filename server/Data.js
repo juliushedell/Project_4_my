@@ -40,6 +40,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
 
 Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost) { // Skapar en spelare när allegations läggs till
   const poll = this.polls[gameCode];
+  const length = poll.numberAllegations;
   if (typeof poll !== "undefined") {
     let thePlaya = {
       name: name,
@@ -48,6 +49,7 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       isHost: isHost,
       currentAnswer: "",
       fiftyfifty: true,
+      scoreArray: new Array(length).fill(0),
       visible: false,
       sneakPeak: true
     }
@@ -97,15 +99,6 @@ Data.prototype.countAllegations = function(gameCode){ //Räknar hur många alleg
   poll.totalAllegations = players.length * poll.numberAllegations;
 }
 
-Data.prototype.getConfessions = function(gameCode) {
-  const poll = this.polls[gameCode];
-  if (typeof this.polls[gameCode] === "undefined") {
-    console.log("HEJHEJ",players)
-    return poll.players;
-  }
-  return []
-}
-
 Data.prototype.findCurrentPlayer = function(gameCode, name) { //Funktion som letar upp vilken spelare som är den som gått in i data?
   const poll = this.polls[gameCode];
   const players = poll.players;
@@ -116,15 +109,23 @@ Data.prototype.findCurrentPlayer = function(gameCode, name) { //Funktion som let
   }
 }
 
-Data.prototype.compareAnswers = function (gameCode, name){ // Jämför den aktuella spelarens svar med det rätta svaret lagrat i poll
+Data.prototype.compareAnswers = function (gameCode) { // Jämför den aktuella spelarens svar med det rätta svaret lagrat i poll
   const poll = this.polls[gameCode];
-  let currentPlayer = this.findCurrentPlayer(gameCode, name);
-  let correctAnswer = poll.correctAnswer;
-  let playerAnswer = currentPlayer.currentAnswer;
-  console.log('i compare answers', currentPlayer.points, playerAnswer)
-  if (playerAnswer === correctAnswer){
-    currentPlayer.points += 5;
-    console.log('I compareAnswers: ', currentPlayer.name, 'har poäng: ', currentPlayer.points,' svarade ', playerAnswer, ' rätt svar: ', correctAnswer)
+  const players = poll.players;
+  const currentAllegation = poll.numberAllegations * players.length - poll.counter - 1;
+  for (let player of players) {
+    if (poll.correctAnswer === player.currentAnswer) {
+      player.scoreArray[currentAllegation] = 5;
+    }
+    player.currentAnswer = "";
+  }
+
+  this.summerizePoints(gameCode, poll, players);
+}
+
+Data.prototype.summerizePoints = function(gameCode, poll, players) {
+  for (let player of players) {
+    player.points = player.scoreArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
   }
 }
 
@@ -170,44 +171,16 @@ Data.prototype.getPoll = function(gameCode) { //Hämter pollen
   return this.polls[gameCode];
 }
 
-Data.prototype.getPlayers = function(gameCode) { //Härtar arrayen med spelare 
+Data.prototype.getPlayers = function(gameCode) { //Hämtar arrayen med spelare 
   const poll = this.polls[gameCode];
   if (typeof poll === "undefined") {
     return {};
-  
   }
   return poll.players
   
 }
 
-Data.prototype.addQuestion = function(pollId, q) { //Används inte? 
-  const poll = this.polls[pollId];
-  console.log("question added to", pollId, q);
-  if (typeof poll !== 'undefined') {
-    poll.questions.push(q);
-  }
-}
-
-Data.prototype.editQuestion = function(pollId, index, newQuestion) { // Används inte? 
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    poll.questions[index] = newQuestion;
-  }
-}
-
-Data.prototype.getQuestion = function(pollId, qId=null) { // Används inte?
-  const poll = this.polls[pollId];
-  console.log("question requested for ", pollId, qId);
-  if (typeof poll !== 'undefined') {
-    if (qId !== null) {
-      poll.currentQuestion = qId;
-    }
-    return poll.questions[poll.currentQuestion];
-  }
-  return []
-}
-
-Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte?
+Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte? Jo det gör den!
   const poll = this.polls[gameCode];
   const players = poll.players;
   let currentPlayer = this.findCurrentPlayer(gameCode, name);
@@ -227,7 +200,6 @@ Data.prototype.addConfessions = function (gameCode, allegations, name) { //Anvä
 Data.prototype.checkName = function (gameCode, checkName) { //Kollar om namnet man vill använda redan finns eller inte
   const poll = this.polls[gameCode];
   const players = poll.players;
-
   if (poll && players) {
     const playerExists = players.some(player => player.name === checkName);
     if (playerExists) {
@@ -274,6 +246,32 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   return randPlayers;
 };
 
+Data.prototype.updateSneakDict = function (gameCode, playerList) {
+  const poll = this.polls[gameCode];
+  const players = poll.players;
+  let sneakDict = this.createSneakDict(gameCode, playerList);
+  for (let i = 0; i < playerList.length; i++) {
+    let counter = 0;
+    let name = playerList[i];
+    for (let player of players) {
+      if (player.currentAnswer === name) {
+        counter += 1;
+      }
+    }
+    sneakDict[name] = counter;
+  }
+  return sneakDict
+}
+
+Data.prototype.createSneakDict = function (gameCode, playerList) {
+  const poll = this.polls[gameCode];
+  let sneakDict = {};
+  for (let i = 0; i < playerList.length; i++) {
+    const name = playerList[i];
+    sneakDict[name] = 0;
+  }
+  return sneakDict
+}
 
 Data.prototype.allegationsLeft = function (gameCode) { //Tar fram hur mång allegations som totalt finns kvar 
   const poll = this.polls[gameCode];
