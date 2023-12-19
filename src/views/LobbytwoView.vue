@@ -16,7 +16,6 @@
     </div>
     </div>
     <div class="wrap">
-        <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
       </div>
 </template>
@@ -64,7 +63,7 @@ created: function () {
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
-  socket.on("startGame", () =>
+  socket.on("startGame", () => 
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   )
 },
@@ -78,14 +77,13 @@ methods: {
     }
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
-  },
-  toggleNav: function () {
-    this.hideNav = ! this.hideNav;
-  },
-
-  startGame: function() {
-    socket.emit("startPoll", this.gameCode)
-    socket.emit('randomAllegation', this.gameCode)
+    },
+     toggleNav: function () {
+      this.hideNav = ! this.hideNav;
+    },
+    startGame: function() {
+      socket.emit("startPoll", this.gameCode)
+      socket.emit('randomAllegation', this.gameCode)
     }
  }}
 </script>
