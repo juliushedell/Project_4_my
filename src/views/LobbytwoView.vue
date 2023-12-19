@@ -15,10 +15,16 @@
         {{ player.name }}
     </div>
     </div>
+    <div class="center">
     <div class="wrap">
+      <div class="wrap1" style="grid-area: a;">
         <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
+      </div>
+      <div class="wrap2" style="grid-area: b;">
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
       </div>
+      </div>
+    </div>
 </template>
 <script>
 
@@ -101,16 +107,54 @@ methods: {
   gap: 20px;
 }
 
-.wrap{
-  grid-template-columns: auto auto;
+/* .wrap{
+  grid-template-columns:auto auto;
   display:grid; 
   justify-content: space-between;
   margin: 20px;
+  justify-content: space-evenly;
+  gap: 20px; 
+} */
+.center {
+  display: flex;
+  justify-content: center;
+}
+.wrap{
+  justify-content: flex-start;
+  padding-top: 50px;
+  display: grid;
+  gap: 130px;
+  grid-template-areas: 
+  'a b';
+  width: 440px;
+}
+.wrap1{
+  grid-area: a;
+}
 
+.wrap2{
+  grid-area: b;
+  
 }
 .code{
     align-items: center;
     justify-content: center;
+}
+
+.player-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:min-content;
+  height: 50px; 
+  border-radius: 40px; 
+  border: 3px solid blue;
+  padding: 10px;
+  margin:0px auto;
+  color: blue;
+  text-align: center;
+  background-color: #81b8ce;
+  width: 220px;
 }
 
 #gameCode {
