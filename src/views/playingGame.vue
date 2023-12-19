@@ -10,31 +10,31 @@
   <div class=text-frame>
       <p>{{ poll.randomAllegation }}</p></div>
 
-    <div class="alligator-container">
-    <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../img/alligatorTimer.png"  alt="countDownAlligator" />
-  </div>
+      <div class="alligator-container">
+      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
+    </div>
 
-  <div class='timerDispaly' style="text-align: center;">
-      <p v-if="timer > 0"> {{ timer }} </p>
-      <p v-else > {{ goToPodiumView() }} </p> 
-  </div>
-  <div class="wrap">
-  <div>
-    <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" class="lifeline"> Sneak Peak! </button>
-  </div>
-  <div v-if="this.currentPlayer.visible" class="sneakpeak">
-    {{ uiLabels['opponentAnswer'] }}
-    <p v-for="(count, name) in this.sneakDict">
-      {{ name }}: {{ count }}
-    </p>
-  </div>
-  <div>
-    <button v-if="this.currentPlayer.fiftyfifty && this.poll.lifeLine" v-on:click="implementFiftyFifty" class="lifeline"> 50/50 </button>
-  </div>
-  </div>
-  <div style="text-align: center; display: flex; justify-content: center;">
-  <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
-  </div>
+    <div class='timerDispaly' style="text-align: center;">
+        <p v-if="timer > 0"> {{ timer }} </p>
+        <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
+    </div>
+    <div class="wrap">
+    <div>
+      <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" class="lifeline"> Sneak Peak! </button>
+    </div>
+    <div v-if="this.currentPlayer.visible" class="sneakpeak">
+      {{ uiLabels['opponentAnswer'] }}
+      <p v-for="(count, name) in this.sneakDict">
+        {{ name }}: {{ count }}
+      </p>
+    </div>
+    <div>
+      <button v-if="this.currentPlayer.fiftyfifty && this.poll.lifeLine" v-on:click="implementFiftyFifty" class="lifeline"> 50/50 </button>
+    </div>
+    </div>
+    <div style="text-align: center; display: flex; justify-content: center;">
+    <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
+    </div>
 </template>
 
 <script>

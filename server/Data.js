@@ -182,16 +182,6 @@ Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte
   currentPlayer.currentAnswer = answer;
 }
 
-Data.prototype.addConfessions = function (gameCode, allegations, name) { //Används inte?
-  const poll = this.polls[gameCode];  
-  console.log("CONFESSION ADDED ", gameCode, allegations, name);  
-  if (typeof poll !== 'undefined') {
-    poll.players.push(thePlaya)
-  // this.polls[gameCode].allegations = confessions;
-    // Returna något??
-  }
-};
-
 Data.prototype.checkName = function (gameCode, checkName) { //Kollar om namnet man vill använda redan finns eller inte
   const poll = this.polls[gameCode];
   const players = this.getPlayers(gameCode);
