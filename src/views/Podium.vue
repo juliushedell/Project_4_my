@@ -11,38 +11,26 @@
         </h3>
     </div>
     <div class=podiumFrame>
-      <div>
-        {{theScoreboard}}
-    <div v-for="i in theScoreboard" :key="i" >
-        <template v-if="typeof i !=='undefined' && i.length > 0 ">
-        {{ i[0].points }}
-        <div v-for="j in i" :key="j">
-        <template v-if="(typeof j !=='undefined')">
-        {{ j.name }}
-        <br>
-       </template>
-      </div>
-        </template>
+      <div class="placement" v-for="(i, index) in theScoreboard" :key="i" >
+            <template v-if="typeof i !=='undefined' && i.length > 0 ">
+              {{ index + 1 }}
+              <br>
+              {{uiLabels['points']}} {{ i[0].points }}
+              <div v-for="j in i" :key="j">
+                <template v-if="(typeof j !=='undefined')">
+                {{ j.name }}
+                <br>
+                </template>
+              </div>
+            </template>
+        </div>
     </div>
-
-      <!-- <li v-for="(object, index) in theScoreboard.array1st" :key="index">
-       1st {{ theScoreboard.array1st[index].name }} <span class="score"> {{ theScoreboard.array1st[index].points }} points</span>
-      </li>
-      <li v-for="(object, index) in theScoreboard.array2nd" :key="index">
-       2nd {{ theScoreboard.array2nd[index].name }} <span class="score"> {{ theScoreboard.array2nd[index].points }} points</span>
-      </li>
-      <li v-for="(object, index) in theScoreboard.array3rd" :key="index">
-       3rd {{ theScoreboard.array3rd[index].name }} <span class="score"> {{ theScoreboard.array3rd[index].points }} points</span>
-      </li> -->
-    <!-- </ul> -->
-  </div>
-    </div>
+    {{theScoreboard}}
     Your current points: {{ currentPlayer.points }}
     <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
 </template>
 
 <script>
-
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
@@ -63,7 +51,7 @@ data: function () {
     isHost: false,
     playerList: [],
     currentPlayer: {},
-    theScoreboard: []
+    theScoreboard: [],
   }
 },
 created: function () {
@@ -125,15 +113,16 @@ methods: {
 
 .podiumFrame {
   border: 4px solid green;
-    padding: 2vw; 
-    width: 80vw; 
-    height: 40vh; 
-    resize: none;
-    overflow-wrap: break-word;
-    margin: 0 auto;
-    margin-top: 4vh; 
-    font-family: 'Comic Sans MS';
-    font-size: 2.0vw; 
+  padding: 2vw; 
+  width: 80vw; 
+  height: 40vh; 
+  resize: none;
+  overflow-wrap: break-word;
+  margin: 0 auto;
+  margin-top: 4vh; 
+  font-family: 'Comic Sans MS';
+  font-size: 2.0vw; 
+  text-align: center;
 }
 
 .player {
@@ -160,6 +149,10 @@ li {
     right: 8vw; 
 }
 
+.placement{
+  margin-bottom:30px;
+}
+
 
 @media screen and (max-width:50em) {
   .podiumFrame{
@@ -170,13 +163,11 @@ li {
 
   .player {
    padding-left: 10vw;;
-}
+  }
 
-.score {
-   padding-left: 25vw; 
-}
-
-
+  .score {
+    padding-left: 25vw; 
+  }
 
 }
 

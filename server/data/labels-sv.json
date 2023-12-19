@@ -55,5 +55,7 @@
 	"Leaderboard": "Poängställning",
 
 	"theWinner": "Vinnaren är: ",
-	"opponentAnswer": "Dina motspelares svar: "
+	"opponentAnswer": "Dina motspelares svar: ",
+
+	"points": "Points:"
 }
