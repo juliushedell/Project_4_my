@@ -109,7 +109,7 @@ Data.prototype.findCurrentPlayer = function(gameCode, name) { //Funktion som let
   }
 }
 
-Data.prototype.compareAnswers = function (gameCode) { // Jämför den aktuella spelarens svar med det rätta svaret lagrat i poll
+Data.prototype.compareAnswers = function (gameCode) { // Beräknar alla spelares svar efter en omgång
   const poll = this.polls[gameCode];
   const players = this.getPlayers(gameCode);
   const currentAllegation = poll.numberAllegations * players.length - poll.counter - 1;
