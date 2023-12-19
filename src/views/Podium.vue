@@ -13,12 +13,11 @@
     <div class=podiumFrame>
       <div class="placement" v-for="(i, index) in theScoreboard" :key="i" >
             <template v-if="typeof i !=='undefined' && i.length > 0 ">
-              {{ index + 1 }}
-              <br>
-              {{uiLabels['points']}} {{ i[0].points }}
+              <div id="placementNr">{{ index + 1 }}</div>
+              <div id="points">{{uiLabels['points']}} {{ i[0].points }}</div>
               <div v-for="j in i" :key="j">
                 <template v-if="(typeof j !=='undefined')">
-                {{ j.name }}
+                <div id ="name">{{ j.name }} </div>
                 <br>
                 </template>
               </div>
@@ -151,7 +150,29 @@ li {
 }
 
 .placement{
-  margin-bottom:30px;
+  margin-bottom: 20px;
+  text-align: center;
+  justify-content: center;
+  display:flex;
+}
+
+#placementNr{
+  width: 50px; 
+  height: 50px; 
+  border: 2px solid goldenrod; 
+  border-radius: 50%; 
+  background-color: gold;
+  justify-content: center;
+  display:flex;
+  text-align: center;
+}
+
+#points{
+
+}
+
+#name{
+  
 }
 
 

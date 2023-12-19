@@ -11,12 +11,12 @@
         <p>{{ poll.randomAllegation }}</p></div>
 
       <div class="alligator-container">
-      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
+      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../img/alligatorTimer.png"  alt="countDownAlligator" />
     </div>
 
     <div class='timerDispaly' style="text-align: center;">
         <p v-if="timer > 0"> {{ timer }} </p>
-        <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
+        <p v-else > {{ goToPodiumView() }} </p> 
     </div>
     <div class="wrap">
     <div>
@@ -181,7 +181,6 @@ components: {
     font-family: 'Comic Sans MS';
     font-size: 1.5vw; 
 }
-
 
 .alligator-container {
   overflow: hidden;
