@@ -86,7 +86,8 @@ export default {
   grid-template-columns: auto auto;
   display:grid; 
   justify-content: space-between;
-  margin-top: 20px;
+  padding-top: 130px;
+ 
 }
 
 #gameName{
