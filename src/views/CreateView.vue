@@ -262,7 +262,8 @@
 }
 
 .button {
-  width: 250px;
+  width: 150px;
+  height:50px;
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {

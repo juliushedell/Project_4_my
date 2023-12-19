@@ -108,7 +108,7 @@ methods: {
 </script>
 
 
-<style>
+<style scoped>
 #name {
   text-align: center;
   margin-top: 0.3em; 

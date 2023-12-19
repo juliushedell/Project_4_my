@@ -73,6 +73,7 @@ export default {
   display: flex;
   justify-content: right;
   margin-top: 20px;
+  padding-right: 5px;
 }
 
 h2 {
@@ -109,6 +110,10 @@ body{
   margin-bottom: 10px;
   width:400px; 
   height:250px;
+}
+
+.button {
+  height: 25px;
 }
 
 @media screen and (max-width:50em) {
