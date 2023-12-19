@@ -32,7 +32,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.correctAnswer = "";
     poll.totalAllegations = 0;
     poll.lifeLine = lifeLine;
-    poll.answers = [];
+    poll.answerList = [];
     poll.sneakDict = {};
   }
   return this.polls[gameCode];
@@ -87,12 +87,12 @@ Data.prototype.randomAllegation = function(gameCode){ //Tar fram en random alleg
   }
 };
 
-Data.prototype.getRandomAllegation = function(gameCode){ //returnerar pollen till playingGame vyn (kallas i socket)
+Data.prototype.getRandomAllegation = function(gameCode) { //returnerar pollen till playingGame vyn (kallas i socket)
   const poll = this.polls[gameCode];
   return poll;
 }
 
-Data.prototype.countAllegations = function(gameCode){ //Räknar hur många allegations som finns totalt (kallas när spelet startas)
+Data.prototype.countAllegations = function(gameCode) { //Räknar hur många allegations som finns totalt (kallas när spelet startas)
   const poll = this.polls[gameCode];
   const players = this.getPlayers(gameCode);
   poll.counter = players.length * poll.numberAllegations;
@@ -115,10 +115,11 @@ Data.prototype.compareAnswers = function (gameCode) { // Beräknar alla spelares
   const currentAllegation = poll.numberAllegations * players.length - poll.counter - 1;
   for (let player of players) {
     if (poll.correctAnswer === player.currentAnswer) {
-      player.scoreArray[currentAllegation] = 5;
+      player.scoreArray[currentAllegation] = 5 + this.firstSubmitList(gameCode, player);
     }
     player.currentAnswer = "";
   }
+  poll.answerList = [];
   this.summerizePoints(gameCode, poll, players);
 }
 
@@ -166,6 +167,14 @@ Data.prototype.getPoll = function(gameCode) { //Hämter pollen
   return this.polls[gameCode];
 }
 
+Data.prototype.removePlayer = function(gameCode, name) {
+  const poll = this.polls[gameCode];
+  const players = this.getPlayers(gameCode);
+  const indexToRemove = players.findIndex(player => player.name === name);
+  players.splice(indexToRemove, 1);
+  return players
+}
+
 Data.prototype.getPlayers = function(gameCode) { //Hämtar arrayen med spelare 
   const poll = this.polls[gameCode];
   if (typeof poll === "undefined") {
@@ -180,6 +189,26 @@ Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte
   const players = this.getPlayers(gameCode);
   let currentPlayer = this.findCurrentPlayer(gameCode, name);
   currentPlayer.currentAnswer = answer;
+  if (currentPlayer.currentAnswer === poll.correctAnswer && !poll.answerList.includes(currentPlayer.name)) {
+    poll.answerList.push(currentPlayer.name)
+  }
+  return poll.answerList
+}
+
+Data.prototype.firstSubmitList = function(gameCode, player) {
+  const poll = this.polls[gameCode];
+  const answerList = poll.answerList;
+  if (player.currentAnswer === poll.correctAnswer) {
+    if (player.name === answerList[0]) {
+      return 3
+    }
+    else if (player.name === answerList[1]) {
+      return 1
+    }
+    else {
+      return 0
+    }
+  }
 }
 
 Data.prototype.checkName = function (gameCode, checkName) { //Kollar om namnet man vill använda redan finns eller inte

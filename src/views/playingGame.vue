@@ -59,6 +59,7 @@ data: function() {
   name: '',
   isHost: false,
   playerList: [],
+  answerList: [],
   sneakDict: {},
   currentPlayer: {},
   answerLock: false,
