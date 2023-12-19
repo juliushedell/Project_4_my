@@ -11,11 +11,21 @@
       </h3>
     </div>
 
-    <div class="podiumFrame">
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
+    <div class=podiumFrame>
+      <div class="placement" v-for="(i, index) in theScoreboard" :key="i" >
+            <template v-if="typeof i !=='undefined' && i.length > 0 ">
+              <div :class="{'placementNr': index === 0, 'silver': index === 1, 'bronze': index === 2}">{{ index + 1 }}</div>
+              <div id="points">{{uiLabels['points']}} {{ i[0].points }}</div>
+              <div v-for="j in i" :key="j">
+                <template v-if="(typeof j !=='undefined')">
+                <div id ="name">{{ j.name }} </div>
+                </template>
+              </div>
+            </template>
+        </div>
     </div>
+
+
   </div>
   </div>
 </template>
@@ -39,31 +49,30 @@ return {
   id: "",
   lang: localStorage.getItem("lang") || "en",
   hideNav: true,
-  // lagrar confessions i array
   conf:[],
   poll: {},
   gameCode: 0,
   players: {}, 
-  isInputDisabled: false //grundvariabel som gör att det går att redigera i iinput fieldsen
+  isInputDisabled: false, //grundvariabel som gör att det går att redigera i iinput fieldsen
+
+    name: '',
+    isHost: false,
+    playerList: [],
+    currentPlayer: {},
+    theScoreboard: [],
 }
 },
 
 created: function () {
-this.gameCode = this.$route.params.gameCode
-this.name = this.$route.params.name
-this.isHost = this.$route.params.isHost === 'true';
-socket.emit("pageLoaded", this.lang);
-socket.emit("getPoll", this.gameCode);
-socket.emit("getPlayers", this.gameCode);
-socket.on("pullPlayer", (players) => {
-  this.players = players
-})
-socket.on("pullPoll", (poll) => {
-  this.poll = poll
-})
-socket.on("init", (labels) => {
-  this.uiLabels = labels
-})
+  this.gameCode = this.$route.params.gameCode
+  socket.emit("pageLoaded", this.lang);
+  
+  socket.on('scoreBoard', (theScoreboard) => {
+    console.log(theScoreboard) 
+    this.theScoreboard = theScoreboard
+  });
+
+  socket.emit("getScoreboard", this.gameCode);
 },
 methods: {
 switchLanguage: function() {
