@@ -62,7 +62,6 @@ export default {
       });
     } else {
       alert(this.uiLabels['nameUsed']);
-      console.log('Name is already in use.');
     }
   });
 }
