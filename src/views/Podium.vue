@@ -13,12 +13,11 @@
     <div class=podiumFrame>
       <div class="placement" v-for="(i, index) in theScoreboard" :key="i" >
             <template v-if="typeof i !=='undefined' && i.length > 0 ">
-              <div id="placementNr">{{ index + 1 }}</div>
+              <div :class="{'placementNr': index === 0, 'silver': index === 1, 'bronze': index === 2}">{{ index + 1 }}</div>
               <div id="points">{{uiLabels['points']}} {{ i[0].points }}</div>
               <div v-for="j in i" :key="j">
                 <template v-if="(typeof j !=='undefined')">
                 <div id ="name">{{ j.name }} </div>
-                <br>
                 </template>
               </div>
             </template>
@@ -68,7 +67,6 @@ created: function () {
         this.currentPlayer = player
     })
   socket.on('scoreBoard', (theScoreboard) => {
-    console.log(theScoreboard) 
     this.theScoreboard = theScoreboard
   })
   socket.on("init", (labels) => {
@@ -103,7 +101,7 @@ methods: {
  }}
 </script>
 
-<style>
+<style scoped>
 .answerDisplay {
     color: green;
     font-family: 'Comic Sans MS';
@@ -114,8 +112,11 @@ methods: {
 .podiumFrame {
   border: 4px solid green;
   padding: 2vw; 
-  width: 80vw; 
-  height: 40vh; 
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center child elements horizontally */
+  width: 70vw; 
+  min-height: 40vh; 
   resize: none;
   overflow-wrap: break-word;
   margin: 0 auto;
@@ -123,14 +124,6 @@ methods: {
   font-family: 'Comic Sans MS';
   font-size: 2.0vw; 
   text-align: center;
-}
-
-.player {
-   padding-left: 5vw;;
-}
-
-.score {
-   padding-left: 40vw; 
 }
 
 li {
@@ -149,22 +142,53 @@ li {
     right: 8vw; 
 }
 
-.placement{
+.placement {
   margin-bottom: 20px;
-  text-align: center;
-  justify-content: center;
-  display:flex;
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center child elements horizontally */
+  text-align: center; /* Center text within each child element */
 }
 
-#placementNr{
-  width: 50px; 
-  height: 50px; 
-  border: 2px solid goldenrod; 
-  border-radius: 50%; 
-  background-color: gold;
-  justify-content: center;
-  display:flex;
+.placementNr {
+  width: 50px;
+  height: 50px;
+  border: 2px solid goldenrod;
+  border-radius: 50%;
+  background-color: rgb(255, 215, 0);
   text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+}
+
+.silver {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgb(161, 160, 160);
+  border-radius: 50%;
+  background-color: rgb(192,192,192);
+  text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+}
+
+.bronze {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgb(174, 100, 26);
+  border-radius: 50%;
+  background-color: rgb(205, 127, 50);
+  text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+}
+
+#points {
+  color: green;
+}
+
+#name {
+  margin-bottom: 5px; /* Adjust spacing between names */
 }
 
 
@@ -172,16 +196,31 @@ li {
   .podiumFrame{
     padding-top: 4vh;
     font-size: 2.8vw; 
-    height: 30vh;
+    min-height: 30vh;
   }
+  #placementNr {
+  width: 60px;
+  height: 60px;
+  border: 2px solid goldenrod;
+  border-radius: 50%;
+  background-color: gold;
+  text-align: center;
+  line-height: 60px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+  font-size: 20px;
+}
 
-  .player {
-   padding-left: 10vw;;
-  }
+#points {
+  color: forestgreen;
+  font-size: 20px;
+}
 
-  .score {
-    padding-left: 25vw; 
-  }
+#name {
+  color: red;
+  margin-bottom: 5px; /* Adjust spacing between names */
+  font-size: 18px;
+}
+
 
 }
 

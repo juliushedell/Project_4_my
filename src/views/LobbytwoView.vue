@@ -61,7 +61,6 @@ created: function () {
   socket.emit("getPlayers", this.gameCode);
   socket.on("pullPlayer", (players) => {
     this.players = players
-    console.log('lobby 2: ', this.players)
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
@@ -70,7 +69,7 @@ created: function () {
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
-  socket.on("startGame", () =>
+  socket.on("startGame", () => 
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   )
   socket.on('endTheGame', () => {
