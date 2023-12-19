@@ -1,5 +1,4 @@
 <template>
- <!-- Till denna sidan måste vi skicka alligations med tillhörande user, skapa en funkation osm plockar ut en alligation slumpmässigt och dispalyar den -->
     <header> 
         <h1>
             Game Time!
@@ -15,21 +14,23 @@
       <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
     </div>
 
-    <div class=timerDispaly style="text-align: center;">
+    <div class='timerDispaly' style="text-align: center;">
         <p v-if="timer > 0"> {{ timer }} </p>
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
+    <div class="wrap">
     <div>
-      <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" id="sneakPeak"> Sneak Peak! </button>
+      <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" class="lifeline"> Sneak Peak! </button>
     </div>
-    <div v-if="this.currentPlayer.visible">
+    <div v-if="this.currentPlayer.visible" class="sneakpeak">
       {{ uiLabels['opponentAnswer'] }}
-      <p v-for="(count, name) in this.poll.sneakDict">
+      <p v-for="(count, name) in this.sneakDict">
         {{ name }}: {{ count }}
       </p>
     </div>
     <div>
-      <button v-if="this.currentPlayer.fiftyfifty && this.poll.lifeLine" v-on:click="implementFiftyFifty" class="button"> 50/50 </button>
+      <button v-if="this.currentPlayer.fiftyfifty && this.poll.lifeLine" v-on:click="implementFiftyFifty" class="lifeline"> 50/50 </button>
+    </div>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
     <button v-for="(player, index) in randomizedPlayers" :key="index" v-on:click="submitAnswer(player)" id="pollName"> {{ player }} </button> 
@@ -58,6 +59,7 @@ components: {
     name: '',
     isHost: false,
     playerList: [],
+    sneakDict: {},
     currentPlayer: {},
     answerLock: false,
     allegationsLeft: 0,
@@ -70,7 +72,6 @@ components: {
       return (this.timer / 15) * 100; 
     },
     randomizedPlayers() {
-    
     const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
     return randomized.slice(0, 4);
     },
@@ -84,32 +85,26 @@ components: {
   socket.emit("getPoll", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
-    socket.emit('findCurrentPlayer', this.gameCode, this.name);
-    socket.on('currentPlayer', (player) => {
-        this.currentPlayer = player
-    })
     socket.emit('getPlayerList', this.gameCode, poll.correctAnswer);
     socket.on('playerList', (playerList) => {
-    this.playerList = playerList
-    for (let i = 0; i < this.playerList.length; i++) {
-          const name = this.playerList[i];
-          this.poll.sneakDict[name] = 0;
-      }
+      this.playerList = playerList
+    });
   });
-  });
+  socket.emit('findCurrentPlayer', this.gameCode, this.name);
+  socket.on('currentPlayer', (player) => {
+      this.currentPlayer = player
+  })
   socket.emit('allegationsLeft', this.gameCode)
   socket.on('allegationsRemaining', (aL) => {
     this.allegationsLeft = aL;
   })
   socket.on('answers', (answer) => {
-    for (const key in this.poll.sneakDict) {
-      if (answer === key) {
-        this.poll.sneakDict[answer] += 1;
-      }
-    }
+    socket.emit('updateSneakDict', this.gameCode, this.playerList)
+    socket.on('sneakDict', (sneakDict) => {
+      this.sneakDict = sneakDict
+    })
   })
   this.startCountdown();
-
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
@@ -141,7 +136,6 @@ components: {
 
     goToPodiumView() {
       this.currentPlayer.visible = false;
-      socket.emit('compareAnswer', this.gameCode, this.name);
       if (this.poll.counter > 0) {
         this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
       }
@@ -155,14 +149,18 @@ components: {
       if (!this.answerLock && this.timer !== 0) {
         socket.emit('submitAnswer', this.gameCode, this.name, player);
         this.answerLock = true;
+        this.currentPlayer.visible = false;
       }
     },
 
     sneakPeak: function () {
       if (this.currentPlayer.sneakPeak) {
         this.currentPlayer.visible = true;
-        this.currentPlayer.sneakPeak = false;
         socket.emit('usedSneakPeak', this.gameCode, this.name);
+        socket.emit('updateSneakDict', this.gameCode, this.playerList)
+        socket.on('sneakDict', (sneakDict) => {
+          this.sneakDict = sneakDict
+        })
     }
   }
 },
@@ -207,11 +205,40 @@ img {
   border-radius: 40px; 
   border: 3px solid blue;
   padding: 10px;
-  margin:40px auto;
+  margin:0px auto;
   color: blue;
   text-align: center;
   background-color: #81b8ce;
- 
+  width: 220px;
+  margin-top: -100px;
+}
+
+.lifeline {
+  width: 180px; 
+  height: 45px; 
+  border-radius: 25px; 
+  background-color: yellow;
+  border: 6px solid green;
+  text-align: center;
+  color: red; 
+  display: inline-block;
+  font-size: 20px;
+  position: relative;
+  top: -130px; 
+  font-weight: bold; 
+}
+
+.wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 150px 50px 0px 50px;
+  gap: 50px;
+}
+
+.sneakpeak {
+  margin-top: -200px;
+  color: green;
 }
 
 

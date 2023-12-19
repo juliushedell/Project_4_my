@@ -70,7 +70,7 @@ body {
   margin-bottom: 80px;
 }
 .li-list1 {
-  background: url('/img/50:50.png') no-repeat 0 center;
+  background: url('/img/fifty.png') no-repeat 0 center;
   background-size: 10em;
   padding: 5px 0px 5px 0px
 }
@@ -101,21 +101,6 @@ p {
 .back {
   margin-top: 50px;
 }
-
-/* .clues {
-  width: 200px; 
-  height: 50px; 
-  border-radius: 25px; 
-  background-color: yellow;
-  border: 6px solid green;
-  text-align: center;
-  color: red; 
-  display: inline-block;
-  font-size: 20px;
-  position: relative;
-  top: -130px; 
-  font-weight: bold; 
-} */
 
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {

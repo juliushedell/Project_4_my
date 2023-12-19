@@ -27,14 +27,22 @@
 	"name_of_host": "Name of host:",
 	"al_pp": "Allegations per player:",
 	"theme": "Theme:",
+<<<<<<< HEAD
 	"childhood": "Childhood",
 	"illegal": "Illegal",
 	"uti": "Under the influence",
 	"yourOwnTheme": "Own theme: ",
 	"lifeLines": "Play with lifelines",
+=======
+	"Childhood": "Childhood",
+	"Illegal": "Illegal",
+	"Under the influence": "Under the influence",
+	"Own theme: ": "Own theme: ",
+>>>>>>> 4a781c4ef960aba3f807c02c8fcc4a8bc60a6f01
 	"back": "Back",
 	"next": "Next",
 	"cg": "Create game",
+	"lifeLines": "Play with life lines",
 
 	"enterName": "Enter your name:",
 	"enterGameCode": "Join game",
@@ -54,6 +62,7 @@
 	"cancel": "Cancel",
 
 	"nameUsed": "The name is already in use, please choose another one.",
+	"tooLongName": "Ops! Your name seems to be too long for this game! If you need help changing your name in the legal sense, visit: ",
 
 	"nextQuestion": "Next allegation",
 	"Leaderboard": "LEADERBORD",

@@ -10,7 +10,7 @@
     </h2>
     <h3 id="theme">
       {{ uiLabels["theme"] }}
-      {{ poll.theme }}
+      {{ getTheme }}
     </h3>
     
       <!-- skapar fields till confessions -->
@@ -47,7 +47,14 @@ data: function () {
     gameCode: 0,
     players: [], 
     allegations: [],
+    theme: "",
     name:''
+  }
+},
+computed: {
+  getTheme: function() {
+    const theme = this.theme;
+    return this.uiLabels[theme] || ""
   }
 },
 
@@ -60,10 +67,10 @@ created: function () {
   socket.emit("getPlayers", this.gameCode);
   socket.on("pullPlayer", (players) => {
     this.players = players
-    console.log(players)
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
+    this.theme = poll.theme
   })
   socket.on("init", (labels) => {
     this.uiLabels = labels
@@ -87,7 +94,8 @@ methods: {
     socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost});
     this.$router.push ('/Lobbytwo/' + this.gameCode +'/' + this.name + '/' + this.isHost)
     }
- }}
+ }
+ }
 </script>
 
 
