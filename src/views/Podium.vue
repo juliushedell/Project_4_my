@@ -59,6 +59,7 @@ created: function () {
   this.name = this.$route.params.name
   this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
+  socket.emit('compareAnswer', this.gameCode);
   socket.emit("getPoll", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
