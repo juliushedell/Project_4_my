@@ -137,6 +137,7 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
   let array1st = [];
   let array2nd = [];
   let array3rd = [];
+  let arrayPlacement = [array1st, array2nd, array3rd];
 
   for (let i = 0; i < players.length; i++){ //Skapar en array innehållande alla spelares poäng 
     pointsArray.push(players[i].points)
@@ -147,21 +148,16 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
   console.log(uniquePoints)
   for (let i = 0; i < players.length; i++) { //Fyller arrayerna med de spelare som hamnar på pallplats 
     if (players[i].points === uniquePoints[0]) {
-      array1st.push(players[i]);
+      arrayPlacement[0].push(players[i]);
     } 
     else if (players[i].points === uniquePoints[1]) {
-      array2nd.push(players[i]);
+      arrayPlacement[1].push(players[i]);
     } 
     else if (players[i].points === uniquePoints[2]) {
-      array3rd.push(players[i]);
+      arrayPlacement[2].push(players[i]);
     }
   };
-
-  return {
-    array1st,
-    array2nd, 
-    array3rd
-  };
+  return arrayPlacement
 };
 
 Data.prototype.getPoll = function(gameCode) { //Hämter pollen

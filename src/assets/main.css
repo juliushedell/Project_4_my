@@ -36,8 +36,8 @@ body {
 }
 
 .button {
-  width: 96px;
-  height: 24px;
+  width:150px;
+  height:45px;
   border-radius: 3.125em;
   background-color: #3fbc6a;
   border: 0.1875em solid #2a9451;
@@ -73,6 +73,7 @@ body {
 .back:hover {
   background-color: #ffccd5;
 }
+
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .head_picture{

@@ -18,7 +18,7 @@
       <form id="confessionsform">
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
-            <label for="confession{{ i }}"> Allegation {{ i }} :  </label>
+            <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
             <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
             <br><br>
           </div>
@@ -28,7 +28,7 @@
       <!-- knapp som skickar confessions till submitConfessions  -->
       <div class="wrappp">
         <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
-        <button v-on:click="submitConfessions" id="submit" >{{ uiLabels["submit"] }}</button> 
+        <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
 </template>
@@ -107,11 +107,11 @@ methods: {
 
 #gameCode {
   text-align: center;
-  margin-top: 0.3em;
+  margin-top: 1em;
+  font-size: 40px;
 }
 .field{
   border-radius: 8px;
-  color: black;
   font-size: 20px;
 }
 #parent-container {
@@ -123,14 +123,14 @@ methods: {
   font-weight: bold;
   display: inline-block; 
 }
-.button{
+/* .button{
   width: 120px; 
   height: 1px;
   font-size: 30px;
   margin-left: auto;
   font-size: 20px;
   margin-right:10px;
-}
+} */
 #theme{
   text-align: center;
 }
@@ -140,23 +140,19 @@ methods: {
   align-items: center;
   justify-content: center;
   margin: 0px 50px 0px 50px;
-}
-
-#submit{
-  width: 170px; 
-  height: 60px;
-  border-radius: 40px;
-  background-color: #3fbc6a;;
-  border: 0.1875em solid #2a9451;
-  font-size: 20px;
-  color:yellow;
+  gap: 50px;
 }
 
 #theme{
   color: yellow;
+  font-size: 28px;
 }
 
-#pollName{
+.all {
+  font-size: 32px;
+}
+
+/* #pollName{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,6 +164,11 @@ methods: {
   margin:40px auto;
   color: blue;
   text-align: center;
- 
+} */
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  .all {
+  font-size: 27px;
+}
 }
 </style>

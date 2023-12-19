@@ -15,10 +15,10 @@
         {{ player.name }}
     </div>
     </div>
-    <br>
-    <br>
+    <div class="wrap">
         <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
+      </div>
 </template>
 <script>
 
@@ -101,34 +101,13 @@ methods: {
   gap: 20px;
 }
 
-.player-list{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width:min-content;
-  height: 40px; 
-  border-radius: 40px; 
-  border: 2px solid blue;
-  padding: 10px;
-  margin:10px auto;
-  color: blue;
-  text-align: center; 
-  font-size: 26px;
-  width: 220px;
-}
+.wrap{
+  grid-template-columns: auto auto;
+  display:grid; 
+  justify-content: space-between;
+  margin: 20px;
 
-.button{
-    position: fixed;
-    bottom: 10vh; 
-    right: 8vw; 
 }
-
-.back{
-    position: fixed;
-    bottom: 10vh; 
-    left: 8vw; 
-}
-
 .code{
     align-items: center;
     justify-content: center;
@@ -151,5 +130,11 @@ methods: {
   align-items: center;
 }
 
-
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+#gameCode {
+  width: 40vw; /* Adjusted width to 8% of viewport width */
+  height: 3vh; /* Adjusted height to 3% of viewport height */
+  font-size: 8vw;
+}
+}
 </style>

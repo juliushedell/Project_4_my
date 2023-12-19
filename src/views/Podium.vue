@@ -10,43 +10,22 @@
             {{ uiLabels['answer'] }} {{ poll.correctAnswer }}
         </h3>
     </div>
-
-
-    <!-- for (let i = 0; i < players.length; i++) { //Fyller arrayerna med de spelare som hamnar på pallplats 
-    if (players[i].points === uniquePoints[0]) {
-      array1st.push(players[i]);
-    } 
-    else if (players[i].points === uniquePoints[1]) {
-      array2nd.push(players[i]);
-    } 
-    else if (players[i].points === uniquePoints[2]) {
-      array3rd.push(players[i]);
-    }
-  }; -->
-
-
-
-  <!-- <div v-for="i in poll.numberAllegations" :key="i">
-            <label for="confession{{ i }}"> Allegation {{ i }} :  </label>
-            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
-            <br><br>
-          </div>
-
-
-          <div v-for="i in theScoreboard" :key="i">
-            <label for="Placering{{ i }}"> Placering {{ i }} :  </label>
-            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
-            <br><br>
-          </div>
-
-
- -->
-
-
     <div class=podiumFrame>
       <div>
-    <ul>
-      <li v-for="(object, index) in theScoreboard.array1st" :key="index">
+        {{theScoreboard}}
+    <div v-for="i in theScoreboard" :key="i" >
+        <template v-if="typeof i !=='undefined' && i.length > 0 ">
+        {{ i[0].points }}
+        <div v-for="j in i" :key="j">
+        <template v-if="(typeof j !=='undefined')">
+        {{ j.name }}
+        <br>
+       </template>
+      </div>
+        </template>
+    </div>
+
+      <!-- <li v-for="(object, index) in theScoreboard.array1st" :key="index">
        1st {{ theScoreboard.array1st[index].name }} <span class="score"> {{ theScoreboard.array1st[index].points }} points</span>
       </li>
       <li v-for="(object, index) in theScoreboard.array2nd" :key="index">
@@ -54,8 +33,8 @@
       </li>
       <li v-for="(object, index) in theScoreboard.array3rd" :key="index">
        3rd {{ theScoreboard.array3rd[index].name }} <span class="score"> {{ theScoreboard.array3rd[index].points }} points</span>
-      </li>
-    </ul>
+      </li> -->
+    <!-- </ul> -->
   </div>
     </div>
     Your current points: {{ currentPlayer.points }}
@@ -84,7 +63,7 @@ data: function () {
     isHost: false,
     playerList: [],
     currentPlayer: {},
-    theScoreboard: {}
+    theScoreboard: []
   }
 },
 created: function () {
@@ -94,17 +73,17 @@ created: function () {
   socket.emit("pageLoaded", this.lang);
   socket.emit('compareAnswer', this.gameCode);
   socket.emit("getPoll", this.gameCode);
-  socket.emit("getScoreboard", this.gameCode);
   socket.on("pullPoll", (poll) => {
     this.poll = poll
     socket.emit('findCurrentPlayer', this.gameCode, this.name);
-    socket.on('currentPlayer', (player) => {
+  });
+  socket.on('currentPlayer', (player) => {
         this.currentPlayer = player
     })
-    socket.on('scoreBoard', (theScoreboard) => {
-        this.theScoreboard = theScoreboard
-    })
-  });
+  socket.on('scoreBoard', (theScoreboard) => {
+    console.log(theScoreboard) 
+    this.theScoreboard = theScoreboard
+  })
   socket.on("init", (labels) => {
     this.uiLabels = labels
   });
@@ -114,6 +93,7 @@ created: function () {
   socket.on("nextAllegation", () =>
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   );
+  socket.emit("getScoreboard", this.gameCode);
 
 },
 methods: {

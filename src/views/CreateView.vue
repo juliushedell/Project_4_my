@@ -42,9 +42,13 @@
       <input type="text" id="otherTheme" v-model="theme"/>
   </div>
 
+
+
+
   <div class="lifeline">
-    <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">Play with lifelines</button>
+    <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">{{uiLabels["lifeLines"]}}</button>
   </div>
+
   <div class="align">
     <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
     <button v-on:click="createPoll" class="button">
@@ -119,8 +123,6 @@
   
 <style scoped> 
 .wrapper{
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
   padding-top: 50px;
   display: grid;
@@ -132,14 +134,10 @@
   font-weight: bolder;
   text-align: center;
 }
-  
 .wrap{
   padding-top: 40px; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  font-size: 28px;
-  color: #2a9451;
- 
 }
 
 .wrap2{
@@ -154,7 +152,7 @@
   border-radius: 15px;
   font-size: 14px;
   border: 3px solid yellow;
-  
+  color:#2a9451;
 }
 
 .themeTitle{
@@ -172,15 +170,7 @@
   padding: 10px;
   margin: 10px;
   background-color: #81b8ce;
-  text-decoration: none;
-}
-  
-.themebuttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-  
+}  
 .themebuttons input[type="radio"] {
   opacity: 0.01;
   z-index: 100;
@@ -198,6 +188,7 @@
   width: 150px; 
   border-radius: 15px;
   font-size: 14px;
+  color:#2a9451;
 }
 
 .themebuttons{
@@ -205,10 +196,8 @@
   align-items: center;
   justify-content: center;
 }
-  
 .themeTitle{
   display: flex; 
-  align-items: center;
   justify-content: center;
 }
 .plusminus {
@@ -222,6 +211,7 @@
   height: 30px;
   font-size: 22px;
   color: #2a9451;
+  line-height: 20px;
 }
 .plus:hover {
   background-color: yellow;
@@ -234,6 +224,7 @@
   height: 30px;
    font-size: 22px;
   color: #2a9451; 
+  line-height: 5px;
 }
 
 .minus:hover{
@@ -247,18 +238,18 @@
 }
 
 .align {
+  padding-top: 20px;
   display: flex;
   justify-content: center;
-  gap: 70vw;
+  gap: 60vw;
 }
 .lifelinebutton {
   border: 3px solid yellow;
   border-radius: 20px;
-  color: green;
+  color: #2a9451;
   font-size: 16px;
   padding: 10px;
-  margin: 10px;
-  background-color: white;
+  background-color: #81b8ce;
 }
 .lifelinebutton.active {
   background: yellow;
@@ -268,17 +259,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: green;
-  font-size: 18px;
 }
 
-.button{
-  height: 50px;
-  width: 150px; 
-}
-
-.back{
-  width: 150px; 
+.button {
+  width: 250px;
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
@@ -306,13 +290,17 @@
   }
 
   #otherTheme {
-    margin-top: 10px; /* Add margin between the input field and the buttons */
+    margin-top: 10px;
   }
 
   .align{
     margin-top: 20px;
     gap: 40px;
   }
+
+  .button {
+  width: 170px;
+}
 }
 
 </style>
