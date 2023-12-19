@@ -167,7 +167,7 @@ methods: {
 };
 </script>
 
-<style>
+<style scoped>
 
 .text-frame {
   border: 4px solid green;

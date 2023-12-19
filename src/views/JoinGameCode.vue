@@ -29,9 +29,9 @@ export default {
   name: 'JoinGameCode',
   data: function () {
     return {
+      gameCode: null,
       uiLabels: {},
-      lang: localStorage.getItem("lang") || "en",
-      gameCode: 0
+      lang: localStorage.getItem("lang") || "en"
     }
   },
   created: function () {
@@ -44,11 +44,10 @@ export default {
     codePlayer: function () {
       this.$router.push({ name: 'JoinGameName', params: { gameCode: this.gameCode } });
     }
-  }
-}
+}}
 </script>
 
-<style>
+<style scoped>
 
 #codeField{
   margin: 0px 10px 80px 10px;
@@ -66,8 +65,9 @@ export default {
 .wrapper{
   grid-template-columns: auto auto;
   display:grid; 
-  justify-content: space-between;
-  margin-top: 20px;
+  justify-content: center;
+  gap: 500px;
+  padding-top: 55px;
 }
 
 .back{

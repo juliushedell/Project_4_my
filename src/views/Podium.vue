@@ -103,7 +103,7 @@ methods: {
  }}
 </script>
 
-<style>
+<style scoped>
 .answerDisplay {
     color: green;
     font-family: 'Comic Sans MS';
