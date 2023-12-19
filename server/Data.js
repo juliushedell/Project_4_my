@@ -60,7 +60,7 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
 
 Data.prototype.randomAllegation = function(gameCode){ //Tar fram en random allegation och den som skrivit den 
   const poll = this.polls[gameCode];
-  const players = poll.players;
+  const players = this.getPlayers(gameCode);
   let randomPlayerIndex = Math.floor(Math.random()*players.length); //Tar fram ett random index från listan med spelare
   let correctAnswer = players[randomPlayerIndex]; //Tar fram spelaren på indexet i fråga
   let playerAllegations = correctAnswer.allegations; //Tar fram den spelaren lista med allegations 
@@ -94,14 +94,14 @@ Data.prototype.getRandomAllegation = function(gameCode){ //returnerar pollen til
 
 Data.prototype.countAllegations = function(gameCode){ //Räknar hur många allegations som finns totalt (kallas när spelet startas)
   const poll = this.polls[gameCode];
-  const players = poll.players;
+  const players = this.getPlayers(gameCode);
   poll.counter = players.length * poll.numberAllegations;
   poll.totalAllegations = players.length * poll.numberAllegations;
 }
 
 Data.prototype.findCurrentPlayer = function(gameCode, name) { //Funktion som letar upp vilken spelare som är den som gått in i data?
   const poll = this.polls[gameCode];
-  const players = poll.players;
+  const players = this.getPlayers(gameCode);
   for (let player of players) {
     if (player.name === name) {
       return player
@@ -111,7 +111,7 @@ Data.prototype.findCurrentPlayer = function(gameCode, name) { //Funktion som let
 
 Data.prototype.compareAnswers = function (gameCode) { // Jämför den aktuella spelarens svar med det rätta svaret lagrat i poll
   const poll = this.polls[gameCode];
-  const players = poll.players;
+  const players = this.getPlayers(gameCode);
   const currentAllegation = poll.numberAllegations * players.length - poll.counter - 1;
   for (let player of players) {
     if (poll.correctAnswer === player.currentAnswer) {
@@ -119,7 +119,6 @@ Data.prototype.compareAnswers = function (gameCode) { // Jämför den aktuella s
     }
     player.currentAnswer = "";
   }
-
   this.summerizePoints(gameCode, poll, players);
 }
 
@@ -131,7 +130,7 @@ Data.prototype.summerizePoints = function(gameCode, poll, players) {
 
 Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelare som hamnar på 1:a, 2:a och 3:e plats 
   const poll = this.polls[gameCode];
-  const players = poll.players
+  const players = this.getPlayers(gameCode);
   
   let pointsArray = [];
   let array1st = [];
@@ -178,7 +177,7 @@ Data.prototype.getPlayers = function(gameCode) { //Hämtar arrayen med spelare
 
 Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte? Jo det gör den!
   const poll = this.polls[gameCode];
-  const players = poll.players;
+  const players = this.getPlayers(gameCode);
   let currentPlayer = this.findCurrentPlayer(gameCode, name);
   currentPlayer.currentAnswer = answer;
 }
@@ -195,7 +194,7 @@ Data.prototype.addConfessions = function (gameCode, allegations, name) { //Anvä
 
 Data.prototype.checkName = function (gameCode, checkName) { //Kollar om namnet man vill använda redan finns eller inte
   const poll = this.polls[gameCode];
-  const players = poll.players;
+  const players = this.getPlayers(gameCode);
   if (poll && players) {
     const playerExists = players.some(player => player.name === checkName);
     if (playerExists) {
@@ -220,7 +219,7 @@ Data.prototype.getConfessions = function(gameCode) {
 
 Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
   const poll = this.polls[gameCode];
-  const players = poll.players;
+  const players = this.getPlayers(gameCode);
   let randPlayers = [];
   let i = 0;
   if (players.length > 4) {
@@ -244,7 +243,7 @@ Data.prototype.randomPlayers = function (gameCode, rightAnswer) {
 
 Data.prototype.updateSneakDict = function (gameCode, playerList) {
   const poll = this.polls[gameCode];
-  const players = poll.players;
+  const players = this.getPlayers(gameCode);
   let sneakDict = this.createSneakDict(gameCode, playerList);
   for (let i = 0; i < playerList.length; i++) {
     let counter = 0;
