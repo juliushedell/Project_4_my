@@ -27,18 +27,10 @@
 	"name_of_host": "Name of host:",
 	"al_pp": "Allegations per player:",
 	"theme": "Theme:",
-<<<<<<< HEAD
-	"childhood": "Childhood",
-	"illegal": "Illegal",
-	"uti": "Under the influence",
-	"yourOwnTheme": "Own theme: ",
-	"lifeLines": "Play with lifelines",
-=======
 	"Childhood": "Childhood",
 	"Illegal": "Illegal",
 	"Under the influence": "Under the influence",
 	"Own theme: ": "Own theme: ",
->>>>>>> 4a781c4ef960aba3f807c02c8fcc4a8bc60a6f01
 	"back": "Back",
 	"next": "Next",
 	"cg": "Create game",
