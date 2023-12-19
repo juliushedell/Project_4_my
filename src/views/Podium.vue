@@ -167,14 +167,6 @@ li {
   text-align: center;
 }
 
-#points{
-
-}
-
-#name{
-  
-}
-
 
 @media screen and (max-width:50em) {
   .podiumFrame{
