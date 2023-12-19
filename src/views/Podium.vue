@@ -67,7 +67,6 @@ created: function () {
         this.currentPlayer = player
     })
   socket.on('scoreBoard', (theScoreboard) => {
-    console.log(theScoreboard) 
     this.theScoreboard = theScoreboard
   })
   socket.on("init", (labels) => {
