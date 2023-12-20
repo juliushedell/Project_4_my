@@ -10,7 +10,7 @@
   <div class="wrapper">
     <div class="wrap" style="grid-area: a;">
       {{ uiLabels['name_of_host'] }}
-      <input class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" required>
+      <input class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !nameEntered && buttonClicked}" required>
    </div>
     <div class="wrap2" style="grid-area: b;" >
       {{ uiLabels["al_pp"] }}
@@ -72,7 +72,9 @@
       theme: "",
       isHost: true,
       name: '',
-      buttonState: false
+      buttonState: false,
+      nameEntered: false,
+      buttonClicked: false
     }
   },
   created: function () {
@@ -90,6 +92,7 @@
   },
   methods: {
     checkNameLength() {
+      this.nameEntered = this.name.length > 0;
       if (this.name.length === 15) {
         alert(this.uiLabels['tooLongName'] + 'https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
       }
@@ -99,6 +102,7 @@
       
     },
     createPoll: function () {
+      this.buttonClicked = true;
   let gameCode = this.generateGameCode();
   socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState });
   this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } });
@@ -264,6 +268,9 @@
 .button {
   width: 150px;
   height:50px;
+}
+.invalid-input {
+  border: 3px solid red; /* Change red to your desired color */
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {

@@ -6,7 +6,7 @@
         </h1>
     </header>
     <h2 id="gameCode">
-      {{ this.gameCode }}
+      {{ this.gameCode }} {{ this.allegations }} {{ poll.numberAllegations }} {{ this.allegations[1] }}
     </h2>
     <h3 id="theme">
       {{ uiLabels["theme"] }}
@@ -19,17 +19,15 @@
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
             <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
-            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" required="required" :placeholder="uiLabels.enterAllegations">
+            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" :maxlength="55" @input="checkAllegationLength" :class="{'invalid-input': (!allegationEntered || !allegations[i-1].trim()) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
             <br><br>
           </div>
         </div>
       </form>
     </div>
       <div class="wrappp">
-        <!-- <router-link v-if="this.isHost" to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
-        <router-link v-else to="/JoinGameName/{{this.gameCode}}" class="back" >{{ uiLabels["back"] }}</router-link> -->
-        <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
-        <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
+        <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
+        <button type = "submit" v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
 </template>
@@ -48,8 +46,13 @@ data: function () {
     gameCode: 0,
     players: [], 
     allegations: [],
+    numberAllegations: 1,
     theme: "",
-    name:''
+    name:'',
+    allegationEntered: false,
+    buttonClicked: false,
+    currentPlayer: {}
+  
   }
 },
 computed: {
@@ -73,6 +76,10 @@ created: function () {
     this.poll = poll
     this.theme = poll.theme
   })
+  socket.emit('findCurrentPlayer', this.gameCode, this.name);
+  socket.on('currentPlayer', (player) => {
+      this.currentPlayer = player
+  })
   socket.on("init", (labels) => {
     this.uiLabels = labels
   })
@@ -90,25 +97,35 @@ methods: {
     }
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
+  },
+  checkAllegationLength() {
+    for (let i = 0; i < this.allegations.length; i++)
+      if (this.allegations[i].length === 55) {
+        alert('Too much information, nobody cares!');
+      }
     },
-    submitConfessions: function() {
-      socket.emit("submitConfessions", {gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost});
-      this.$router.push ('/Lobbytwo/' + this.gameCode +'/' + this.name + '/' + this.isHost)
-    }, 
-    goBack: function(){
-      if (this.isHost === true){
-        this.$router.push('/Create/')
+
+  submitConfessions: function() {
+  this.buttonClicked = true;
+  
+    for (let i = 0; i < this.allegations.length; i++) {
+      console.log('TESTEN');
+      if (this.allegations[i].length < 1) {
+        alert('Can not submit empty allegation!!!!!');
+        return; // exit the loop early if an empty allegation is found
       }
-      else{
-        this.$router.push('/JoinGameName/'+this.gameCode)
-      }
-    }
   }
+
+  // Proceed with form submission
+  socket.emit("submitConfessions", { gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost });
+  this.$router.push('/Lobbytwo/' + this.gameCode + '/' + this.name + '/' + this.isHost);
+}
+    }
  }
 </script>
 
-
-<style scoped>
+:class=""{'over-limit': inputText.length}
+<style>
 #name {
   text-align: center;
   margin-top: 0.3em; 
@@ -174,6 +191,9 @@ methods: {
   color: blue;
   text-align: center;
 } */
+.invalid-input {
+  border: 3px solid red; /* Change to your desired color */
+}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {
