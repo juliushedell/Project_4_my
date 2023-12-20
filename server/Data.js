@@ -17,7 +17,7 @@ Data.prototype.getUILabels = function (lang = "en") { // Hämtar UILabels
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme, lifeLine) { //Skapar pollen 
+Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, theme, lifeLine, name) { //Skapar pollen 
   if (typeof this.polls[gameCode] === "undefined") {
     let poll = {};
     poll.lang = lang;
@@ -33,6 +33,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.totalAllegations = 0;
     poll.lifeLine = lifeLine;
     poll.answerList = [];
+    poll.nameList = [name];
     poll.sneakDict = {};
   }
   return this.polls[gameCode];
@@ -218,16 +219,13 @@ Data.prototype.checkName = function (gameCode, checkName) { //Kollar om namnet m
   const poll = this.polls[gameCode];
   const players = this.getPlayers(gameCode);
   if (poll && players) {
-    const playerExists = players.some(player => player.name === checkName);
-    if (playerExists) {
+    if (poll.nameList.includes(checkName)) {
       return true
     }
     else {
+      poll.nameList.push(checkName)
       return false
     }
-  }
-  else {
-    console.log("poll eller players existerar inte")
   }
 };
 
