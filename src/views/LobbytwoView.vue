@@ -64,7 +64,6 @@ created: function () {
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
-    socket.emit('countAllegations', this.gameCode)
   })
   socket.on("init", (labels) => {
     this.uiLabels = labels
@@ -74,6 +73,9 @@ created: function () {
   )
   socket.on('endTheGame', () => {
     this.$router.push('/')
+  })
+  socket.on('playerRemoved', (players) => {
+    this.players = players
   })
 },
 methods: {
@@ -92,6 +94,7 @@ methods: {
   },
 
   startGame: function() {
+    socket.emit('countAllegations', this.gameCode)
     socket.emit("startPoll", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)
     },
