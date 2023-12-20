@@ -11,10 +11,12 @@
 
       <div class="explainingText">
         {{ uiLabels["enterName"] }}
-        <p> 
-          <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
-        </p>
       </div>
+
+      <div class="gameNameField">
+        <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
+      </div>
+
       <div class="wrap">
         <router-link to="/JoinGameCode/" class="back">{{ uiLabels["back"] }}</router-link>
         <button @click="namePlayer" class="button" type="submit">{{ uiLabels["next"] }}</button>
@@ -60,7 +62,6 @@ export default {
       });
     } else {
       alert(this.uiLabels['nameUsed']);
-      console.log('Name is already in use.');
     }
   });
 }
@@ -68,7 +69,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .explainingText{
   margin-top: 100px;
   font-size: 20px;
@@ -85,18 +86,25 @@ export default {
 .wrap{
   grid-template-columns: auto auto;
   display:grid; 
-  justify-content: space-between;
-  padding-top: 130px;
+  justify-content: center;
+  gap: 500px;
+  padding-top: 55px;
  
 }
 
-#gameName{
+.gameNameField {
+  margin: 0px 10px 80px 10px;
+  text-align: center;
+}
+
+#gameName {
   border-radius: 8px;
   color: #2a9451; 
   font-size: 16px;
   padding: 10px;
   margin: 10px;
 }
+  
 
 @media screen and (max-width:50em) {
 .head_picture{

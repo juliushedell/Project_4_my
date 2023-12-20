@@ -25,10 +25,11 @@
         </div>
       </form>
     </div>
-      <!-- knapp som skickar confessions till submitConfessions  -->
       <div class="wrappp">
-        <router-link to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
-        <button type = "submit" v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
+        <!-- <router-link v-if="this.isHost" to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
+        <router-link v-else to="/JoinGameName/{{this.gameCode}}" class="back" >{{ uiLabels["back"] }}</router-link> -->
+        <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
+        <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
 </template>
@@ -120,13 +121,22 @@ methods: {
   // Proceed with form submission
   socket.emit("submitConfessions", { gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost });
   this.$router.push('/Lobbytwo/' + this.gameCode + '/' + this.name + '/' + this.isHost);
-}
+  },
+  
+  goBack: function(){
+      if (this.isHost === true){
+        this.$router.push('/Create/')
+      }
+      else{
+        this.$router.push('/JoinGameName/'+this.gameCode)
+      }
     }
- }
+  }
+}
 </script>
 
-:class=""{'over-limit': inputText.length}
-<style>
+
+<style scoped>
 #name {
   text-align: center;
   margin-top: 0.3em; 

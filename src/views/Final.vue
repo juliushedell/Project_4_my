@@ -11,11 +11,31 @@
       </h3>
     </div>
 
-    <div class="podiumFrame">
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
+    
+    <div>
+    <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGif">
+  
+    <div class=podiumFrame>
+      <div class="placement" v-for="(i, index) in theScoreboard" :key="i" >
+            <template v-if="typeof i !=='undefined' && i.length > 0 ">
+              <div :class="{'placementNr': index === 0, 'silver': index === 1, 'bronze': index === 2}">{{ index + 1 }}</div>
+              <div id="points">{{uiLabels['points']}} {{ i[0].points }}</div>
+              <div v-for="j in i" :key="j">
+                <template v-if="(typeof j !=='undefined')">
+                <div id ="name">{{ j.name }} </div>
+                </template>
+              </div>
+            </template>
+        </div>
     </div>
+
+    <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGif">
+
+
+  </div>
+
+
+
   </div>
   </div>
 </template>
@@ -39,31 +59,29 @@ return {
   id: "",
   lang: localStorage.getItem("lang") || "en",
   hideNav: true,
-  // lagrar confessions i array
   conf:[],
   poll: {},
   gameCode: 0,
   players: {}, 
-  isInputDisabled: false //grundvariabel som gör att det går att redigera i iinput fieldsen
+  isInputDisabled: false, 
+  name: '',
+  isHost: false,
+  playerList: [],
+  currentPlayer: {},
+  theScoreboard: []
 }
 },
 
 created: function () {
-this.gameCode = this.$route.params.gameCode
-this.name = this.$route.params.name
-this.isHost = this.$route.params.isHost === 'true';
-socket.emit("pageLoaded", this.lang);
-socket.emit("getPoll", this.gameCode);
-socket.emit("getPlayers", this.gameCode);
-socket.on("pullPlayer", (players) => {
-  this.players = players
-})
-socket.on("pullPoll", (poll) => {
-  this.poll = poll
-})
-socket.on("init", (labels) => {
-  this.uiLabels = labels
-})
+  this.gameCode = this.$route.params.gameCode
+  socket.emit("pageLoaded", this.lang);
+  
+  socket.on('scoreBoard', (theScoreboard) => {
+    console.log(theScoreboard) 
+    this.theScoreboard = theScoreboard
+  });
+
+  socket.emit("getScoreboard", this.gameCode);
 },
 methods: {
 switchLanguage: function() {
@@ -79,7 +97,7 @@ switchLanguage: function() {
 }}
 </script>
 
-<style>
+<style scoped>
 .answerDisplay {
   color: green;
   font-family: 'Comic Sans MS';
@@ -87,18 +105,71 @@ switchLanguage: function() {
   text-align: center; 
 }
 
+#alligatorGif{
+  width: 25%;
+  height: 25%; 
+}
+
 .podiumFrame {
-border: 4px solid green;
+  border: 4px solid green;
   padding: 2vw; 
-  width: 80vw; 
-  height: 40vh; 
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center child elements horizontally */
+  width: 40vw; 
+  min-height: 40vh; 
   resize: none;
   overflow-wrap: break-word;
   margin: 0 auto;
   margin-top: 4vh; 
   font-family: 'Comic Sans MS';
   font-size: 2.0vw; 
+  text-align: center;
 }
+
+.placement {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center child elements horizontally */
+  text-align: center; /* Center text within each child element */
+}
+
+.placementNr {
+  width: 50px;
+  height: 50px;
+  border: 2px solid goldenrod;
+  border-radius: 50%;
+  background-color: rgb(255, 215, 0);
+  text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+}
+
+.silver {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgb(161, 160, 160);
+  border-radius: 50%;
+  background-color: rgb(192,192,192);
+  text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+}
+
+.bronze {
+  width: 50px;
+  height: 50px;
+  border: 2px solid rgb(174, 100, 26);
+  border-radius: 50%;
+  background-color: rgb(205, 127, 50);
+  text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+}
+
+
+
 
 .player {
  padding-left: 5vw;;

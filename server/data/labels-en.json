@@ -59,5 +59,7 @@
 	"nextQuestion": "Next allegation",
 	"Leaderboard": "LEADERBORD",
 	"theWinner": "The winner is: ",
-	"opponentAnswer": "Your opponents answer: "
+	"opponentAnswer": "Your opponents answer: ",
+	
+	"points": "Points:"
 }
