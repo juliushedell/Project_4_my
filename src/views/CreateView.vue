@@ -56,6 +56,8 @@
     </button>
   </div>
 </template>
+
+<!-- hejhej -->
   
 <script>
   import io from 'socket.io-client';
