@@ -5,17 +5,31 @@
     <div class="header">
       <p>PODIUM</p>
     </div>
-    <div class="answerDisplay">
-      <h3>
-        {{ uiLabels['theWinner'] }} {{ this.array1st }}
-      </h3>
-    </div>
 
-    <div class="podiumFrame">
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-      <li class="player"> spelare 1 <span class="score">15 poäng</span></li>
-    </div>
+    
+    <div class="row-container">
+    <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifLeft" >
+  
+    <div class=podiumFrame>
+      <div class="placement" v-for="(i, index) in theScoreboard" :key="i" >
+            <template v-if="typeof i !=='undefined' && i.length > 0 ">
+              <div :class="{'placementNr': index === 0, 'silver': index === 1, 'bronze': index === 2}">{{ index + 1 }}</div>
+              <div id="points">{{uiLabels['points']}} {{ i[0].points }}</div>
+              <div v-for="j in i" :key="j">
+                <template v-if="(typeof j !=='undefined')">
+                <div id ="name">{{ j.name }} </div>
+                </template>
+              </div>
+            </template>
+        </div>
+  </div>
+    <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifRigth">
+  </div>
+
+<div class="quitGame">
+  <button v-on:click="quitGame" class="button" > {{ uiLabels["endGame"] }} </button> 
+</div>
+
   </div>
   </div>
 </template>
@@ -39,32 +53,34 @@ return {
   id: "",
   lang: localStorage.getItem("lang") || "en",
   hideNav: true,
-  // lagrar confessions i array
   conf:[],
   poll: {},
   gameCode: 0,
   players: {}, 
-  isInputDisabled: false //grundvariabel som gör att det går att redigera i iinput fieldsen
+  isInputDisabled: false, 
+  name: '',
+  isHost: false,
+  playerList: [],
+  currentPlayer: {},
+  theScoreboard: []
 }
 },
 
 created: function () {
-this.gameCode = this.$route.params.gameCode
-this.name = this.$route.params.name
-this.isHost = this.$route.params.isHost === 'true';
-socket.emit("pageLoaded", this.lang);
-socket.emit("getPoll", this.gameCode);
-socket.emit("getPlayers", this.gameCode);
-socket.on("pullPlayer", (players) => {
-  this.players = players
-})
-socket.on("pullPoll", (poll) => {
-  this.poll = poll
-})
-socket.on("init", (labels) => {
-  this.uiLabels = labels
-})
+  this.gameCode = this.$route.params.gameCode
+  socket.emit("pageLoaded", this.lang);
+  socket.emit('compareAnswer', this.gameCode);
+  socket.on('scoreBoard', (theScoreboard) => {
+    console.log(theScoreboard) 
+    this.theScoreboard = theScoreboard
+  });
+  
+  socket.emit("getScoreboard", this.gameCode);
+  socket.on("init", (labels) => {
+    this.uiLabels = labels
+  });
 },
+
 methods: {
 switchLanguage: function() {
   if (this.lang === "en") {
@@ -76,10 +92,14 @@ switchLanguage: function() {
   localStorage.setItem("lang", this.lang);
   socket.emit("switchLanguage", this.lang)
 },
+
+quitGame: function () {
+  //här ska vi avsluta spelet
+}
 }}
 </script>
 
-<style>
+<style scoped>
 .answerDisplay {
   color: green;
   font-family: 'Comic Sans MS';
@@ -87,17 +107,82 @@ switchLanguage: function() {
   text-align: center; 
 }
 
+.row-container {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center; 
+}
+
+#alligatorGifLeft{
+  transform: scaleX(-1);
+  width: 25%;
+  height: 25%; 
+}
+
+#alligatorGifRigth{
+  width: 25%;
+  height: 25%; 
+}
+
 .podiumFrame {
-border: 4px solid green;
+  border: 4px solid green;
   padding: 2vw; 
-  width: 80vw; 
-  height: 40vh; 
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center child elements horizontally */
+  width: 40vw; 
+  min-height: 40vh; 
   resize: none;
   overflow-wrap: break-word;
   margin: 0 auto;
   margin-top: 4vh; 
   font-family: 'Comic Sans MS';
   font-size: 2.0vw; 
+  text-align: center;
+}
+
+.placement {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; /* Stack child elements vertically */
+  align-items: center; /* Center child elements horizontally */
+  text-align: center; /* Center text within each child element */
+}
+
+.placementNr {
+  width: 50px;
+  height: 50px;
+  border: 4px solid goldenrod;
+  border-style: double;
+  border-radius: 50%;
+  background-color: rgb(255, 215, 0);
+  text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+}
+
+.silver {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgb(161, 160, 160);
+  border-style: double;
+  border-radius: 50%;
+  background-color: rgb(192,192,192);
+  text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
+}
+
+.bronze {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgb(174, 100, 26);
+    border-style: double;
+  border-radius: 50%;
+  background-color: rgb(205, 127, 50);
+  text-align: center;
+  line-height: 50px; /* Vertically center content within the circle */
+  margin-bottom: 5px; /* Adjust spacing between elements */
 }
 
 .player {
@@ -139,11 +224,18 @@ canvas {
   z-index: 2; 
   margin-top: -700px;
 }
+.quitGame{
+  position: fixed;
+    bottom: 2vh; 
+    right: 2vw; 
+    font-size: 22px;
+    color: yellow;
+}
 
 @media screen and (max-width:50em) {
 .podiumFrame{
   padding-top: 4vh;
-  font-size: 2.8vw; 
+  font-size: 22px; 
   height: 30vh;
 }
 
@@ -157,10 +249,32 @@ canvas {
 }
 .header {
   color: yellow;
-  /* font-family: 'Comic Sans MS'; */
   font-size: 34px;
   text-align: center; 
   font-weight: bold;
+}
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+
+
+  .placementNr {
+    font-size: 22px;
+  }
+
+  .content{
+    margin-top: -700px;
+  }
+
+.podiumFrame {
+  width: 60vw; 
+  font-size: 16px; 
+}
+  .row-container {
+    flex-direction: column; /* Switch to a column layout */
+    align-items: stretch; /* Adjust alignment for column layout if needed */
+    align-items: center; 
+  }
+
 }
 
 </style>

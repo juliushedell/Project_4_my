@@ -24,11 +24,11 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getPlayers', function(gameCode) {
-    io.to(gameCode).emit('pullPlayer', data.getPlayers(gameCode));
+    io.to(gameCode).emit('playerRemoved');
   })
 
   socket.on('submitAnswer', function(gameCode, name, answer) {
-    data.submitAnswer(gameCode, name, answer);
+    let answerList = data.submitAnswer(gameCode, name, answer);
     io.to(gameCode).emit('answers', answer)
   });
 
@@ -105,9 +105,23 @@ function sockets(io, socket, data) {
     socket.emit('currentPlayer', player);
   })
 
+  socket.on('endPoll', function(gameCode) {
+    io.to(gameCode).emit('endTheGame')
+  })
+
+  socket.on('removePlayer', function(gameCode, name) {
+    const playersUp = data.removePlayer(gameCode, name)
+    io.to(gameCode).emit('playerRemoved', playersUp)
+  })
+
   socket.on('usedSneakPeak', function(gameCode, name) {
     data.usedSneakPeak(gameCode, name);
   })
+
+  socket.on('removePoll', function(gameCode) {
+    data.removePoll(gameCode);
+  })
+
 
 }
 

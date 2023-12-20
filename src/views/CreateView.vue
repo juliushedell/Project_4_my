@@ -258,6 +258,7 @@
 .lifelinebutton.active {
   background: yellow;
 }
+
 .lifeline {
   padding-top: 40px;
   display: flex;
@@ -266,7 +267,8 @@
 }
 
 .button {
-  width: 250px;
+  width: 150px;
+  height:50px;
 }
 .invalid-input {
   border: 3px solid red; /* Change red to your desired color */
