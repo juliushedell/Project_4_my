@@ -258,6 +258,7 @@
 .lifelinebutton.active {
   background: yellow;
 }
+
 .lifeline {
   padding-top: 40px;
   display: flex;

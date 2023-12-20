@@ -6,7 +6,7 @@
         </h1>
     </header>
     <h2 id="gameCode">
-      {{ this.gameCode }} {{ this.allegations }} {{ poll.numberAllegations }} {{ this.allegations[1] }}
+      {{ this.gameCode }}
     </h2>
     <h3 id="theme">
       {{ uiLabels["theme"] }}
@@ -19,7 +19,7 @@
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
             <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
-            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" :maxlength="55" @input="checkAllegationLength" :class="{'invalid-input': (!allegationEntered || !allegations[i-1].trim()) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
+            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" :maxlength="55" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
             <br><br>
           </div>
         </div>
@@ -51,7 +51,6 @@ data: function () {
     numberAllegations: 1,
     theme: "",
     name:'',
-    allegationEntered: false,
     buttonClicked: false,
     currentPlayer: {}
   
@@ -101,28 +100,39 @@ methods: {
     socket.emit("switchLanguage", this.lang)
   },
   checkAllegationLength() {
-    for (let i = 0; i < this.allegations.length; i++)
+    for (let i = 0; i < this.allegations.length; i++) {
       if (this.allegations[i].length === 55) {
         alert('Too much information, nobody cares!');
       }
-    },
+    }
+  },
+
+  isInputEmpty(i) {
+    return this.allegations[i] === undefined || !this.allegations[i];
+  },
 
   submitConfessions: function() {
-  this.buttonClicked = true;
-  
-    for (let i = 0; i < this.allegations.length; i++) {
-      console.log('TESTEN');
-      if (this.allegations[i].length < 1) {
-        alert('Can not submit empty allegation!!!!!');
-        return; // exit the loop early if an empty allegation is found
-      }
-  }
+    this.buttonClicked = true;
 
-  // Proceed with form submission
-  socket.emit("submitConfessions", { gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost });
-  this.$router.push('/Lobbytwo/' + this.gameCode + '/' + this.name + '/' + this.isHost);
+    // Flag to check if any input field is empty
+    let isEmptyField = false;
+
+    for (let i = 0; i < this.poll.numberAllegations; i++) {
+      // Call isInputEmpty method to check if the input is empty
+      if (this.isInputEmpty(i)) {
+        isEmptyField = true;
+        break; // exit the loop early if an empty allegation is found
+      }
+    }
+    // If any field is empty, do not proceed
+    if (isEmptyField) {
+      return;
+    }
+    // Proceed with form submission
+    socket.emit("submitConfessions", { gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost });
+    this.$router.push('/Lobbytwo/' + this.gameCode + '/' + this.name + '/' + this.isHost);
   },
-  
+
   goBack: function(){
       if (this.isHost === true){
         this.$router.push('/Create/')
@@ -203,7 +213,7 @@ methods: {
   text-align: center;
 } */
 .invalid-input {
-  border: 3px solid red; /* Change to your desired color */
+  border: 3px solid red;
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
