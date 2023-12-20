@@ -18,9 +18,9 @@
     <div class="center">
     <div class="wrap">
       <div class="wrap1" style="grid-area: a;">
-        <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
       </div>
       <div class="wrap2" style="grid-area: b;">
+        <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
       </div>
       </div>
@@ -58,7 +58,6 @@ created: function () {
   this.isHost = this.$route.params.isHost === 'true';
   socket.emit("pageLoaded", this.lang);
   socket.emit("getPoll", this.gameCode);
-  socket.emit('countAllegations', this.gameCode)
   socket.emit("getPlayers", this.gameCode);
   socket.on("pullPlayer", (players) => {
     this.players = players
@@ -72,6 +71,12 @@ created: function () {
   socket.on("startGame", () => 
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   )
+  socket.on('endTheGame', () => {
+    this.$router.push('/')
+  })
+  socket.on('playerRemoved', (players) => {
+    this.players = players
+  })
 },
 methods: {
   switchLanguage: function() {
@@ -83,15 +88,27 @@ methods: {
     }
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
+  },
+  toggleNav: function () {
+    this.hideNav = ! this.hideNav;
+  },
+
+  startGame: function() {
+    socket.emit('countAllegations', this.gameCode)
+    socket.emit("startPoll", this.gameCode)
+    socket.emit('randomAllegation', this.gameCode)
     },
-     toggleNav: function () {
-      this.hideNav = ! this.hideNav;
-    },
-    startGame: function() {
-      socket.emit("startPoll", this.gameCode)
-      socket.emit('randomAllegation', this.gameCode)
+
+  endGame: function() {
+    if (this.isHost) {
+      socket.emit('endPoll', this.gameCode)
     }
- }}
+    else {
+      socket.emit('removePlayer', this.gameCode, this.name)
+      this.$router.push('/')
+    }
+  }
+}}
 </script>
 
 <style scoped>

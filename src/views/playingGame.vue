@@ -34,7 +34,7 @@
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
       <label v-for="(player, index) in randomizedPlayers" :key="index" class="pollOption">
-      <input type="radio" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" :class="{active:answerLock}">
+      <input type="radio" class="pollOptionButtons" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" />
       {{ player }}
       </label>
     </div>
@@ -62,6 +62,7 @@ data: function() {
   name: '',
   isHost: false,
   playerList: [],
+  answerList: [],
   sneakDict: {},
   currentPlayer: {},
   answerLock: false,
@@ -172,26 +173,28 @@ methods: {
 </script>
 
 <style scoped>
-
-.pollOption input[type="radio"] {
+.pollOption :deep(input[type="radio"].pollOptionButtons) {
   opacity: 0.01;
-  }
+  z-index: 1000;
+}
 
-.pollOption input[type="radio"]:checked+label,
-  
-.pollOption label:hover {
-  background:yellow;
-  }
+.pollOption :deep(input[type="radio"].pollOptionButtons:checked) + label {
+  background: yellow;
+}
 
-  .pollOption {
-    border: 3px solid yellow;
-    border-radius: 20px;
-    color: #2a9451;
-    font-size: 16px;
-    padding: 10px;
-    margin: 10px;
-    background-color: #81b8ce;
-  }
+.pollOption :deep(input[type="radio"].pollOptionButtons:hover) + label {
+  background: yellow;
+}
+
+.pollOption :deep(label.pollOptionButtons) {
+  border: 3px solid yellow;
+  border-radius: 20px;
+  color: #2a9451;
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #81b8ce;
+}
 
 .text-frame {
   border: 4px solid green;
