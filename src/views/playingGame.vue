@@ -173,20 +173,20 @@ methods: {
 </script>
 
 <style scoped>
-.pollOption input[type="radio"].pollOptionButtons {
+.pollOption :deep(input[type="radio"].pollOptionButtons) {
   opacity: 0.01;
   z-index: 1000;
 }
 
-.pollOption input[type="radio"].pollOptionButtons:checked + label {
+.pollOption :deep(input[type="radio"].pollOptionButtons:checked) + label {
   background: yellow;
 }
 
-.pollOption input[type="radio"].pollOptionButtons:hover + label {
-  background: yellow
+.pollOption :deep(input[type="radio"].pollOptionButtons:hover) + label {
+  background: yellow;
 }
 
-.pollOption label.pollOptionButtons {
+.pollOption :deep(label.pollOptionButtons) {
   border: 3px solid yellow;
   border-radius: 20px;
   color: #2a9451;
