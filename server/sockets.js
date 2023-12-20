@@ -23,10 +23,6 @@ function sockets(io, socket, data) {
     io.to(gameCode).emit('pullPoll', data.getPoll(gameCode))
   });
 
-  socket.on('getPlayers', function(gameCode) {
-    io.to(gameCode).emit('playerRemoved');
-  })
-
   socket.on('submitAnswer', function(gameCode, name, answer) {
     let answerList = data.submitAnswer(gameCode, name, answer);
     io.to(gameCode).emit('answers', answer)
@@ -107,11 +103,6 @@ function sockets(io, socket, data) {
 
   socket.on('endPoll', function(gameCode) {
     io.to(gameCode).emit('endTheGame')
-  })
-
-  socket.on('removePlayer', function(gameCode, name) {
-    const playersUp = data.removePlayer(gameCode, name)
-    io.to(gameCode).emit('playerRemoved', playersUp)
   })
 
   socket.on('usedSneakPeak', function(gameCode, name) {

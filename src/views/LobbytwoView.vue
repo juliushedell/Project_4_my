@@ -11,7 +11,7 @@
         </h2>
     </div>
     <div class="playerLists">
-    <div class="player-list" v-for="(player, index) in this.players" :key="index">
+    <div class="player-list" v-for="(player, index) in poll.players" :key="index">
         {{ player.name }}
     </div>
     </div>
@@ -47,7 +47,7 @@ data: function () {
     conf:[],
     poll: {},
     gameCode: 0,
-    players: {}, 
+    players: [], 
     name:'',
     isHost: false
   }
@@ -73,9 +73,6 @@ created: function () {
   )
   socket.on('endTheGame', () => {
     this.$router.push('/')
-  })
-  socket.on('playerRemoved', (players) => {
-    this.players = players
   })
 },
 methods: {
