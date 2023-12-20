@@ -51,8 +51,10 @@ body {
   font-size: 18px;
 }
 
+
 .button:hover {
   background-color: darkgreen;
+  cursor: pointer;
 }
 
 .back {
@@ -72,6 +74,7 @@ body {
 
 .back:hover {
   background-color: #ffccd5;
+  cursor:pointer; 
 }
 
 

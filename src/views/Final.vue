@@ -5,15 +5,10 @@
     <div class="header">
       <p>PODIUM</p>
     </div>
-    <div class="answerDisplay">
-      <h3>
-        {{ uiLabels['theWinner'] }} {{ this.array1st }}
-      </h3>
-    </div>
 
     
-    <div>
-    <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGif">
+    <div class="row-container">
+    <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifLeft" >
   
     <div class=podiumFrame>
       <div class="placement" v-for="(i, index) in theScoreboard" :key="i" >
@@ -27,14 +22,13 @@
               </div>
             </template>
         </div>
-    </div>
-
-    <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGif">
-
-
+  </div>
+    <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifRigth">
   </div>
 
-
+<div class="quitGame">
+  <button v-on:click="quitGame" class="button" > {{ uiLabels["endGame"] }} </button> 
+</div>
 
   </div>
   </div>
@@ -75,14 +69,18 @@ return {
 created: function () {
   this.gameCode = this.$route.params.gameCode
   socket.emit("pageLoaded", this.lang);
-  
+  socket.emit('compareAnswer', this.gameCode);
   socket.on('scoreBoard', (theScoreboard) => {
     console.log(theScoreboard) 
     this.theScoreboard = theScoreboard
   });
-
+  
   socket.emit("getScoreboard", this.gameCode);
+  socket.on("init", (labels) => {
+    this.uiLabels = labels
+  });
 },
+
 methods: {
 switchLanguage: function() {
   if (this.lang === "en") {
@@ -94,6 +92,10 @@ switchLanguage: function() {
   localStorage.setItem("lang", this.lang);
   socket.emit("switchLanguage", this.lang)
 },
+
+quitGame: function () {
+  //här ska vi avsluta spelet
+}
 }}
 </script>
 
@@ -105,7 +107,19 @@ switchLanguage: function() {
   text-align: center; 
 }
 
-#alligatorGif{
+.row-container {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center; 
+}
+
+#alligatorGifLeft{
+  transform: scaleX(-1);
+  width: 25%;
+  height: 25%; 
+}
+
+#alligatorGifRigth{
   width: 25%;
   height: 25%; 
 }
@@ -138,7 +152,8 @@ switchLanguage: function() {
 .placementNr {
   width: 50px;
   height: 50px;
-  border: 2px solid goldenrod;
+  border: 4px solid goldenrod;
+  border-style: double;
   border-radius: 50%;
   background-color: rgb(255, 215, 0);
   text-align: center;
@@ -149,7 +164,8 @@ switchLanguage: function() {
 .silver {
   width: 50px;
   height: 50px;
-  border: 2px solid rgb(161, 160, 160);
+  border: 4px solid rgb(161, 160, 160);
+  border-style: double;
   border-radius: 50%;
   background-color: rgb(192,192,192);
   text-align: center;
@@ -160,16 +176,14 @@ switchLanguage: function() {
 .bronze {
   width: 50px;
   height: 50px;
-  border: 2px solid rgb(174, 100, 26);
+  border: 4px solid rgb(174, 100, 26);
+    border-style: double;
   border-radius: 50%;
   background-color: rgb(205, 127, 50);
   text-align: center;
   line-height: 50px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
 }
-
-
-
 
 .player {
  padding-left: 5vw;;
@@ -210,11 +224,18 @@ canvas {
   z-index: 2; 
   margin-top: -700px;
 }
+.quitGame{
+  position: fixed;
+    bottom: 2vh; 
+    right: 2vw; 
+    font-size: 22px;
+    color: yellow;
+}
 
 @media screen and (max-width:50em) {
 .podiumFrame{
   padding-top: 4vh;
-  font-size: 2.8vw; 
+  font-size: 22px; 
   height: 30vh;
 }
 
@@ -228,10 +249,32 @@ canvas {
 }
 .header {
   color: yellow;
-  /* font-family: 'Comic Sans MS'; */
   font-size: 34px;
   text-align: center; 
   font-weight: bold;
+}
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+
+
+  .placementNr {
+    font-size: 22px;
+  }
+
+  .content{
+    margin-top: -700px;
+  }
+
+.podiumFrame {
+  width: 60vw; 
+  font-size: 16px; 
+}
+  .row-container {
+    flex-direction: column; /* Switch to a column layout */
+    align-items: stretch; /* Adjust alignment for column layout if needed */
+    align-items: center; 
+  }
+
 }
 
 </style>

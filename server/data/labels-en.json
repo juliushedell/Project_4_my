@@ -61,5 +61,6 @@
 	"theWinner": "The winner is: ",
 	"opponentAnswer": "Your opponents answer: ",
 	
-	"points": "Points:"
+	"points": "Points:", 
+	"endGame": "End game"
 }
