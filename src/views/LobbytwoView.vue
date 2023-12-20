@@ -99,6 +99,7 @@ methods: {
   endGame: function() {
     if (this.isHost) {
       socket.emit('endPoll', this.gameCode)
+      this.$router.push('/')
     }
     else {
       socket.emit('removePlayer', {gameCode: this.gameCode, name: this.name})

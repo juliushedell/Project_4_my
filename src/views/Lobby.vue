@@ -134,7 +134,7 @@ methods: {
   },
 
   goBack: function(){
-      if (this.isHost === true){
+      if (this.isHost){
         this.$router.push('/Create/')
       }
       else{
