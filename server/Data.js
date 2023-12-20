@@ -170,8 +170,11 @@ Data.prototype.getPoll = function(gameCode) { //Hämter pollen
 Data.prototype.removePlayer = function(gameCode, name) {
   const poll = this.polls[gameCode];
   const players = this.getPlayers(gameCode);
-  const indexToRemove = players.findIndex(player => player.name === name);
-  players.splice(indexToRemove, 1);
+  for (let [index, player] of players.entries()) {
+    if (player.name === name) {
+      players.splice(index, 1)
+    }
+  }
   return players
 }
 

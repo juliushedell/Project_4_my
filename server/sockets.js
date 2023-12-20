@@ -105,8 +105,8 @@ function sockets(io, socket, data) {
   })
 
   socket.on('removePlayer', function(gameCode, name) {
-    let players = data.removePlayer(gameCode, name)
-    io.to(gameCode).emit('pullPlayer', players)
+    const playersUp = data.removePlayer(gameCode, name)
+    io.to(gameCode).emit('playerRemoved', playersUp)
   })
 
   socket.on('usedSneakPeak', function(gameCode, name) {
