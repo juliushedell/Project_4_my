@@ -308,5 +308,11 @@ Data.prototype.changeFiftyFifty = function (gameCode, name){ //Ändrar till flas
   player.fiftyfifty = false; 
 }
 
+Data.prototype.removePoll = function(gameCode) {
+  if (typeof this.polls[gameCode] !== "undefined") {
+    delete this.polls[gameCode];
+  }
+}
+
 export { Data };
 

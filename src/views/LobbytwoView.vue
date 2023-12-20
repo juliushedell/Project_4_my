@@ -163,12 +163,14 @@ methods: {
   width:min-content;
   height: 50px; 
   border-radius: 40px; 
-  border: 3px solid blue;
+  border: 3px solid rgb(54, 54, 54);
   padding: 10px;
   margin:0px auto;
-  color: blue;
+  color: rgb(54, 54, 54);
   text-align: center;
   background-color: #81b8ce;
+  font-weight: bold;
+  font-size: 25px;
   width: 220px;
 }
 
@@ -178,7 +180,7 @@ methods: {
   border-radius: 3.125em;
   background-color: #81b8ce;
   border: 0.1875em solid yellow;
-  color: blue;
+  color:rgb(54, 54, 54);
   font-size: 6vw;
   text-align: center;
   text-decoration: none;

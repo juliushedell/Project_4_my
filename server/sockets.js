@@ -113,6 +113,10 @@ function sockets(io, socket, data) {
     data.usedSneakPeak(gameCode, name);
   })
 
+  socket.on('removePoll', function(gameCode) {
+    data.removePoll(gameCode);
+  })
+
 
 }
 
