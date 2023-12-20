@@ -286,5 +286,16 @@ Data.prototype.changeFiftyFifty = function (gameCode, name){ //Ändrar till flas
   player.fiftyfifty = false; 
 }
 
+Data.prototype.removePlayer = function(gameCode, name) {
+  const poll = this.polls[gameCode];
+  const player = this.findCurrentPlayer(gameCode, name);
+  for (let i = 0; i < poll.players.length; i += 1) {
+    if (poll.players[i].name === name) {
+      poll.players.splice(i,1)
+      break
+    }
+  }
+}
+
 export { Data };
 

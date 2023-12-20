@@ -72,6 +72,11 @@ function sockets(io, socket, data) {
     io.to(gameCode).emit('nextAllegation');
   });
 
+  socket.on('removePlayer', function(d) {
+    data.removePlayer(d.gameCode, d.name)
+    io.to(d.gameCode).emit('pullPlayer', data.getPlayers(d.gameCode))
+  })
+
   socket.on('getPlayerList', function(gameCode, rightAnswer) {
     const playerList = data.randomPlayers(gameCode, rightAnswer);
     socket.emit('playerList', playerList);

@@ -11,12 +11,12 @@
         </h2>
     </div>
     <div class="playerLists">
-    <div class="player-list" v-for="(player, index) in poll.players" :key="index">
+    <div class="player-list" v-for="(player, index) in this.players" :key="index">
         {{ player.name }}
     </div>
     </div>
     <div class="wrap">
-        <router-link to="/" class="back"> {{ uiLabels["cancel"] }}</router-link>
+        <button  v-on:click="endGame" class="button">{{ uiLabels["cancel"] }}</button>
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
       </div>
 </template>
@@ -86,7 +86,11 @@ methods: {
   startGame: function() {
     socket.emit("startPoll", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)
-    }
+    },
+  endGame: function() {
+  socket.emit('removePlayer', {gameCode: this.gameCode, name: this.name})
+  this.$router.push ('/')
+  }
  }}
 </script>
 
