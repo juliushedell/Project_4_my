@@ -174,7 +174,7 @@ methods: {
   color: #2a9451;
   font-weight: bold;
   font-family: monospace;
-  display: inline-block; 
+  display: inline-block;
   vertical-align: top;
 }
 /* .button{
@@ -227,6 +227,11 @@ methods: {
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {
   font-size: 27px;
+}
+
+.field {
+  width: 350px;
+  height: 70px;
 }
 }
 </style>
