@@ -32,14 +32,14 @@
     </div>
   
   <div class="themebuttons">
-      <input type="radio" id="childhood" v-model="theme" name="the_theme" value="Childhood"/>
-      <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
-      <input type="radio" id="illegal" v-model="theme" name="the_theme" value="Illegal"/>
-      <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
-      <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence"/>
-      <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
-      <p class="ot">{{ uiLabels["Own theme: "] }}</p>
-      <input type="text" id="otherTheme" v-model="theme"/>
+    <input type="radio" id="childhood" v-model="theme" name="the_theme" value="Childhood" @change="updateTheme('Childhood')"/>
+    <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
+    <input type="radio" id="illegal" v-model="theme" name="the_theme" value="Illegal" @change="updateTheme('Illegal')"/>
+    <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
+    <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence" @change="updateTheme('Under the influence')"/>
+    <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
+    <p class="ot">{{ uiLabels["Own theme: "] }}</p>
+    <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required/>
   </div>
 
 
@@ -56,8 +56,6 @@
     </button>
   </div>
 </template>
-
-<!-- hejhej -->
   
 <script>
   import io from 'socket.io-client';
@@ -93,6 +91,9 @@
       )
   },
   methods: {
+    updateTheme(themeKey) {
+      this.theme = this.uiLabels[themeKey];
+    },
     checkNameLength() {
       this.nameEntered = this.name.length > 0;
       if (this.name.length === 15) {
@@ -105,10 +106,11 @@
     },
     createPoll: function () {
       this.buttonClicked = true;
-    let gameCode = this.generateGameCode();
-    socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState, name: this.name });
-    this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } });
-    },
+      if (this.name.length && this.theme.length > 0) {
+  let gameCode = this.generateGameCode();
+  socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState });
+  this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } })};
+  },
 
     generateGameCode: function () {
     return Math.floor(Math.random() * 900000 + 100000);
@@ -188,7 +190,7 @@
   background:yellow;
   }
   
-#otherTheme{
+.otherTheme{
   border: 3px solid yellow;
   height: 30px; 
   width: 150px; 
@@ -300,7 +302,7 @@
     align-items: center;
   }
 
-  #otherTheme {
+  .otherTheme {
     margin-top: 10px;
   }
 

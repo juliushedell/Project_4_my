@@ -27,7 +27,8 @@
   </div>
 
 <div class="quitGame">
-  <button v-on:click="quitGame" class="button" > {{ uiLabels["endGame"] }} </button> 
+
+  <router-link to= "/" class="button" > {{ uiLabels["endGame"] }} </router-link>
 </div>
 
   </div>
@@ -91,20 +92,17 @@ switchLanguage: function() {
   }
   localStorage.setItem("lang", this.lang);
   socket.emit("switchLanguage", this.lang)
-},
-
-quitGame: function () {
-  //här ska vi avsluta spelet
 }
 }}
 </script>
 
 <style scoped>
-.answerDisplay {
+
+.content {
   color: green;
-  font-family: 'Comic Sans MS';
-  font-size: 22px;
+  font-size: 28px;
   text-align: center; 
+  font-weight: bald;
 }
 
 .row-container {
@@ -128,8 +126,8 @@ quitGame: function () {
   border: 4px solid green;
   padding: 2vw; 
   display: flex;
-  flex-direction: column; /* Stack child elements vertically */
-  align-items: center; /* Center child elements horizontally */
+  flex-direction: column; 
+  align-items: center; 
   width: 40vw; 
   min-height: 40vh; 
   resize: none;
@@ -137,16 +135,17 @@ quitGame: function () {
   margin: 0 auto;
   margin-top: 4vh; 
   font-family: 'Comic Sans MS';
-  font-size: 2.0vw; 
+ font-size: 20px;
   text-align: center;
 }
+
 
 .placement {
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column; /* Stack child elements vertically */
-  align-items: center; /* Center child elements horizontally */
-  text-align: center; /* Center text within each child element */
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
 }
 
 .placementNr {
@@ -154,6 +153,7 @@ quitGame: function () {
   height: 50px;
   border: 4px solid goldenrod;
   border-style: double;
+  color:black;
   border-radius: 50%;
   background-color: rgb(255, 215, 0);
   text-align: center;
@@ -177,7 +177,7 @@ quitGame: function () {
   width: 50px;
   height: 50px;
   border: 4px solid rgb(174, 100, 26);
-    border-style: double;
+  border-style: double;
   border-radius: 50%;
   background-color: rgb(205, 127, 50);
   text-align: center;
@@ -185,13 +185,6 @@ quitGame: function () {
   margin-bottom: 5px; /* Adjust spacing between elements */
 }
 
-.player {
- padding-left: 5vw;;
-}
-
-.score {
- padding-left: 40vw; 
-}
 
 li {
 list-style: none;
@@ -232,48 +225,49 @@ canvas {
     color: yellow;
 }
 
+.button {
+  height: 20px;
+}
+
+#name{
+  color:black;
+}
+
+
 @media screen and (max-width:50em) {
 .podiumFrame{
   padding-top: 4vh;
   font-size: 22px; 
   height: 30vh;
-}
-
-.player {
- padding-left: 10vw;;
-}
-
-.score {
- padding-left: 25vw; 
-}
-}
-.header {
-  color: yellow;
-  font-size: 34px;
-  text-align: center; 
-  font-weight: bold;
-}
+}}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
-
-
   .placementNr {
     font-size: 22px;
-  }
-
-  .content{
-    margin-top: -700px;
   }
 
 .podiumFrame {
   width: 60vw; 
   font-size: 16px; 
+  height: 45vh;
+}
+
+.content {
+  margin-top: -700px;;
 }
   .row-container {
     flex-direction: column; /* Switch to a column layout */
     align-items: stretch; /* Adjust alignment for column layout if needed */
     align-items: center; 
   }
+
+  #alligatorGifRigth{
+    margin-top: 20px;
+
+  }
+  .button {
+  height: 30px;
+}
 
 }
 

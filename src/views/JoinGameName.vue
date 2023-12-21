@@ -52,8 +52,7 @@ export default {
       isHost: false,
       player: {},
       poll: {},
-      buttonClicked: false,
-      showAlert: false
+      buttonClicked: false
     }
   },
   created: function () {
@@ -169,7 +168,9 @@ export default {
   gap: 20px; 
 }
 }
-
+.invalid-input {
+  border: 3px solid red; /* Change red to your desired color */
+}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {

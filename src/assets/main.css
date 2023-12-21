@@ -59,10 +59,11 @@ body {
 
 .back {
   line-height: 45px; 
-  background-color: pink;
-  border: 3px solid #2a9451;
+  background-color: #81b8ce;
+  border: 3px solid #234e5f; 
   text-align: center;
-  color: #2a9451;
+  color: #234e5f;
+  font-weight: bold;
   display: inline-block;
   width:150px;
   height:45px;
@@ -73,7 +74,7 @@ body {
 }
 
 .back:hover {
-  background-color: #ffccd5;
+  background-color: whitesmoke;
   cursor:pointer; 
 }
 

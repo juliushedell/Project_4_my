@@ -34,7 +34,7 @@
 	"back": "Back",
 	"next": "Next",
 	"cg": "Create game",
-	"lifeLines": "Play with life lines",
+	"lifeLines": "Play with lifelines",
 
 	"enterName": "Enter your name:",
 	"enterGameCode": "Join game",
@@ -47,7 +47,7 @@
 	"gameCode": "Game code",
 	"Choosename": "Choose name",
 	
-	"submit": "submit",
+	"submit": "Submit",
 	"start": "start game", 
 
 	"answer": "Correct answer: ",

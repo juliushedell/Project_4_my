@@ -61,6 +61,7 @@ created: function () {
   socket.emit("getPlayers", this.gameCode);
   socket.on("pullPlayer", (players) => {
     this.players = players
+    console.log(this.players)
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
@@ -132,22 +133,23 @@ methods: {
   display: flex;
   justify-content: center;
 }
-.wrap{
+
+.wrap {
   justify-content: flex-start;
   padding-top: 50px;
   display: grid;
-  gap: 130px;
-  grid-template-areas: 
-  'a b';
+  grid-template-areas: 'a b';
   width: 440px;
 }
-.wrap1{
+
+.wrap1 {
   grid-area: a;
 }
 
-.wrap2{
+.wrap2 {
   grid-area: b;
-  
+  display: flex;
+  gap: 130px;
 }
 .code{
     align-items: center;
@@ -194,6 +196,34 @@ methods: {
   width: 40vw; /* Adjusted width to 8% of viewport width */
   height: 3vh; /* Adjusted height to 3% of viewport height */
   font-size: 8vw;
+}
+
+.wrap {
+  justify-content: flex-start;
+  padding-top: 50px;
+  display: grid;
+  grid-template-areas: 'a b';
+  width: 80vw;
+}
+
+.wrap1 {
+  grid-area: a;
+}
+
+.wrap2 {
+  grid-area: b;
+  display: flex;
+  gap: 20px;
+}
+
+.player-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:min-content;
+  padding: 10px;
+  margin:0px auto;
+  width: 220px;
 }
 }
 </style>
