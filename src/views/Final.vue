@@ -27,7 +27,8 @@
   </div>
 
 <div class="quitGame">
-  <button v-on:click="quitGame" class="button" > {{ uiLabels["endGame"] }} </button> 
+
+  <router-link to= "/" class="button" > {{ uiLabels["endGame"] }} </router-link>
 </div>
 
   </div>
@@ -137,7 +138,7 @@ quitGame: function () {
   margin: 0 auto;
   margin-top: 4vh; 
   font-family: 'Comic Sans MS';
-  font-size: 2.0vw; 
+ font-size: 20px;
   text-align: center;
 }
 
@@ -232,6 +233,10 @@ canvas {
     color: yellow;
 }
 
+.button {
+  height: 20px;
+}
+
 @media screen and (max-width:50em) {
 .podiumFrame{
   padding-top: 4vh;
@@ -239,20 +244,12 @@ canvas {
   height: 30vh;
 }
 
-.player {
- padding-left: 10vw;;
-}
-
-.score {
- padding-left: 25vw; 
-}
-}
 .header {
   color: yellow;
   font-size: 34px;
   text-align: center; 
   font-weight: bold;
-}
+}}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
 
@@ -261,19 +258,28 @@ canvas {
     font-size: 22px;
   }
 
-  .content{
-    margin-top: -700px;
-  }
-
 .podiumFrame {
   width: 60vw; 
   font-size: 16px; 
+}
+
+.content {
+  margin-top: -850px;;
 }
   .row-container {
     flex-direction: column; /* Switch to a column layout */
     align-items: stretch; /* Adjust alignment for column layout if needed */
     align-items: center; 
   }
+
+  #alligatorGifRigth{
+    margin-top: 40px;
+
+  }
+
+  .button {
+  height: 30px;
+}
 
 }
 
