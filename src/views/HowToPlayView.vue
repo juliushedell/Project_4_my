@@ -90,6 +90,7 @@ li {
   margin-bottom: 30px;
   text-align: left;
   font-size: 20px;
+  font-family: monospace;
 }
 
 p {

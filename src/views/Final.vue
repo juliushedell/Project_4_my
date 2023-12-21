@@ -255,9 +255,6 @@ canvas {
   height: 45vh;
 }
 
-.content {
-  margin-top: -700px;;
-}
   .row-container {
     flex-direction: column; /* Switch to a column layout */
     align-items: stretch; /* Adjust alignment for column layout if needed */
