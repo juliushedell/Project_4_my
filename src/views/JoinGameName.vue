@@ -39,11 +39,16 @@ export default {
       gameCode: 0,
       isHost: false,
       player: {},
+      poll: {},
     }
   },
   created: function () {
     this.gameCode = this.$route.params.gameCode
     socket.emit("pageLoaded", this.lang);
+    socket.emit("getPoll", this.gameCode);
+    socket.on("pullPoll", (poll) => {
+    this.poll = poll
+    })
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
@@ -55,8 +60,9 @@ export default {
       }
     },
     namePlayer: function () {
-  socket.emit('checkName', { gameCode: this.gameCode, name: this.name });
-  socket.on('nameChecked', (checkedName) => {
+    this.buttonClicked = true;
+    socket.emit('checkName', { gameCode: this.gameCode, name: this.name });
+    socket.on('nameChecked', (checkedName) => {
     if (!checkedName) {
       this.$router.push({name: 'Lobby',params: { gameCode: this.gameCode, name: this.name, isHost: this.isHost },
       });

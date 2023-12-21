@@ -115,14 +115,14 @@ methods: {
   display: flex;
   flex-direction: column; /* Stack child elements vertically */
   align-items: center; /* Center child elements horizontally */
-  width: 70vw; 
+  width: 64vw; 
   min-height: 40vh; 
   resize: none;
   overflow-wrap: break-word;
   margin: 0 auto;
   margin-top: 4vh; 
   font-family: 'Comic Sans MS';
-  font-size: 2.0vw; 
+  font-size: 20px;
   text-align: center;
 }
 
@@ -138,8 +138,9 @@ li {
 
 .button{
     position: fixed;
-    bottom: 10vh; 
-    right: 8vw; 
+    bottom: 4vh; 
+    right: 3vw;
+    height: 60px; 
 }
 
 .placement {
@@ -207,7 +208,7 @@ li {
   text-align: center;
   line-height: 60px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #points {

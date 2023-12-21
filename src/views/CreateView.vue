@@ -39,7 +39,16 @@
       <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence"/>
       <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
       <p class="ot">{{ uiLabels["Own theme: "] }}</p>
+
       <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required/>
+    <input type="radio" id="childhood" v-model="theme" name="the_theme" value="Childhood" @change="updateTheme('Childhood')"/>
+    <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
+    <input type="radio" id="illegal" v-model="theme" name="the_theme" value="Illegal" @change="updateTheme('Illegal')"/>
+    <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
+    <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence" @change="updateTheme('Under the influence')"/>
+    <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
+    <p class="ot">{{ uiLabels["Own theme: "] }}</p>
+    <input type="text" class="otherTheme" :value="theme" @input="updateTheme('otherTheme')" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required/>
   </div>
 
 
@@ -56,8 +65,6 @@
     </button>
   </div>
 </template>
-
-<!-- hejhej -->
   
 <script>
   import io from 'socket.io-client';
@@ -93,6 +100,9 @@
       )
   },
   methods: {
+    updateTheme(themeKey) {
+      this.theme = this.uiLabels[themeKey];
+    },
     checkNameLength() {
       this.nameEntered = this.name.length > 0;
       if (this.name.length === 15) {
