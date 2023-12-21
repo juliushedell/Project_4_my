@@ -168,11 +168,11 @@ methods: {
 #parent-container {
   text-align: center; 
 }
-#confessionsform {
+#confessionsform label.all {
   font-size: 30px;
   color: #2a9451;
   font-weight: bold;
-  display: inline-block; 
+  vertical-align: top;
 }
 /* .button{
   width: 120px; 
