@@ -162,6 +162,7 @@ methods: {
 .field{
   border-radius: 8px;
   font-size: 15px;
+  font-family: monospace;
   width: 450px;
   height: 55px;
   padding: 8px;
