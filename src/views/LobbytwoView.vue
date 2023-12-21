@@ -11,7 +11,7 @@
         </h2>
     </div>
     <div class="playerLists">
-    <div class="player-list" v-for="(player, index) in poll.players" :key="index">
+    <div class="player-list" v-for="(player, index) in this.players" :key="index">
         {{ player.name }}
     </div>
     </div>
