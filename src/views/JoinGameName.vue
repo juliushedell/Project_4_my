@@ -17,7 +17,7 @@
         <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
       </div>
 
-      <div class="custom-alert" v-if="this.showAlert">
+      <div class="custom-alert" v-if="this.showAlertTooLong">
         <div class="alert-content">
           {{uiLabels["tooLongName"]}} 
           <br><br>
@@ -25,7 +25,7 @@
             https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html
           </a>
           <br><br>
-        <button id="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+        <button class="closeButton" @click="closeAlertTooLong">{{uiLabels["closePopUp"]}}</button>
       </div>
     </div>
 
@@ -35,6 +35,15 @@
       </div>
     </body>
   </div>
+
+  <div class="custom-alert" v-if="this.showAlertNameTaken">
+        <div class="alert-content">
+          {{uiLabels["nameUsed"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlertNameTaken">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
+
 </template>
 
 <script>
@@ -53,7 +62,8 @@ export default {
       player: {},
       poll: {},
       buttonClicked: false, 
-      showAlert: false 
+      showAlertTooLong: false, 
+      showAlertNameTaken: false 
     }
   },
   created: function () {
@@ -70,11 +80,11 @@ export default {
   methods: {
     checkNameLength() {
       if (this.name.length === 15) {
-        this.showAlert = true; 
+        this.showAlertTooLong = true; 
       }
     },
-    closeAlert(){
-      this.showAlert = false;
+    closeAlertTooLong(){
+      this.showAlertTooLong = false;
     },
     namePlayer: function () {
     this.buttonClicked = true;
@@ -84,10 +94,13 @@ export default {
       this.$router.push({name: 'Lobby',params: { gameCode: this.gameCode, name: this.name, isHost: this.isHost },
       });
     } else {
-      alert(this.uiLabels['nameUsed']);
+      this.showAlertNameTaken = true; 
     }
-  });
-}
+    });
+    }, 
+    closeAlertNameTaken(){
+      this.showAlertNameTaken = false; 
+    }
   }
 }
 </script>
@@ -128,35 +141,6 @@ export default {
   font-family: monospace;
   padding: 10px;
   margin: 10px;
-}
-
-.custom-alert {
-  position: fixed;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  background-color: whitesmoke; 
-  border: 3px solid red;
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
-  z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
-  text-align: center;
-  font-weight: bold;
-  color: #234e5f; 
-  font-size: large;
-}
-
-.alert-content {
-  background-color: whitesmoke;
-}
-
-#closeButton{
-  float: right;
-  background-color: red;
-  color: whitesmoke;
-  text-decoration: underline;
-  font-weight: bolder;
 }
   
 

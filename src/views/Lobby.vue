@@ -31,7 +31,7 @@
         <div class="alert-content">
           {{uiLabels["tooMuchInfo"]}} 
           <br><br>
-        <button id="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
       </div>
     </div>
 
@@ -240,34 +240,6 @@ methods: {
   border: 3px solid red;
 }
 
-.custom-alert {
-  position: fixed;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
-  background-color: whitesmoke; 
-  border: 3px solid red;
-  border-radius: 20px;
-  padding: 10px;
-  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
-  z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
-  text-align: center;
-  font-weight: bold;
-  color: #234e5f; 
-  font-size: large;
-}
-
-.alert-content {
-  background-color: whitesmoke;
-}
-
-#closeButton{
-  float: right;
-  background-color: red;
-  color: whitesmoke;
-  text-decoration: underline;
-  font-weight: bolder;
-}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {
