@@ -56,8 +56,6 @@
     </button>
   </div>
 </template>
-
-<!-- hejhej -->
   
 <script>
   import io from 'socket.io-client';
@@ -105,10 +103,10 @@
     },
     createPoll: function () {
       this.buttonClicked = true;
-    let gameCode = this.generateGameCode();
-    socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState, name: this.name });
-    this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } });
-    },
+  let gameCode = this.generateGameCode();
+  socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState });
+  this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } });
+  },
 
     generateGameCode: function () {
     return Math.floor(Math.random() * 900000 + 100000);

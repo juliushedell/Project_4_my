@@ -132,22 +132,23 @@ methods: {
   display: flex;
   justify-content: center;
 }
-.wrap{
+
+.wrap {
   justify-content: flex-start;
   padding-top: 50px;
   display: grid;
-  gap: 130px;
-  grid-template-areas: 
-  'a b';
+  grid-template-areas: 'a b';
   width: 440px;
 }
-.wrap1{
+
+.wrap1 {
   grid-area: a;
 }
 
-.wrap2{
+.wrap2 {
   grid-area: b;
-  
+  display: flex;
+  gap: 130px;
 }
 .code{
     align-items: center;
