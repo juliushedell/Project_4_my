@@ -217,7 +217,7 @@ li {
 }
 
 #name {
-  color: red;
+  color:  green;
   margin-bottom: 5px; /* Adjust spacing between names */
   font-size: 18px;
 }

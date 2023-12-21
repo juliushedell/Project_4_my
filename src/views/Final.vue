@@ -101,11 +101,12 @@ quitGame: function () {
 </script>
 
 <style scoped>
-.answerDisplay {
+
+.content {
   color: green;
-  font-family: 'Comic Sans MS';
-  font-size: 22px;
+  font-size: 28px;
   text-align: center; 
+  font-weight: bald;
 }
 
 .row-container {
@@ -243,13 +244,7 @@ canvas {
   font-size: 22px; 
   height: 30vh;
 }
-
-.header {
-  color: yellow;
-  font-size: 34px;
-  text-align: center; 
-  font-weight: bold;
-}}
+}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
 
@@ -261,10 +256,11 @@ canvas {
 .podiumFrame {
   width: 60vw; 
   font-size: 16px; 
+  height: 45vh;
 }
 
 .content {
-  margin-top: -850px;;
+  margin-top: -650px;;
 }
   .row-container {
     flex-direction: column; /* Switch to a column layout */
@@ -273,7 +269,7 @@ canvas {
   }
 
   #alligatorGifRigth{
-    margin-top: 40px;
+    margin-top: 20px;
 
   }
 
