@@ -64,5 +64,9 @@
 	"points": "Points:", 
 	"endGame": "End game",
 
-	"closePopUp": "Close"
+	"closePopUp": "Close",
+
+	"tooMuchInfo": "Too much information, nobody cares!",
+
+	"hostEndedGame": "The host has ended the game"
 }

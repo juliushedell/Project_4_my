@@ -26,6 +26,15 @@
         </div>
       </form>
     </div>
+
+    <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["tooMuchInfo"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
+
       <div class="wrappp">
         <!-- <router-link v-if="this.isHost" to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
         <router-link v-else to="/JoinGameName/{{this.gameCode}}" class="back" >{{ uiLabels["back"] }}</router-link> -->
@@ -53,7 +62,8 @@ data: function () {
     theme: "",
     name:'',
     buttonClicked: false,
-    currentPlayer: {}
+    currentPlayer: {}, 
+    showAlert: false
   
   }
 },
@@ -103,10 +113,14 @@ methods: {
   checkAllegationLength() {
     for (let i = 0; i < this.allegations.length; i++) {
       if (this.allegations[i].length === 145) {
-        alert('Too much information, nobody cares!');
+        // alert('Too much information, nobody cares!');
+        this.showAlert = true;
       }
     }
   },
+  closeAlert(){
+      this.showAlert = false;
+    },
 
   isInputEmpty(i) {
     return this.allegations[i] === undefined || !this.allegations[i];
@@ -225,6 +239,7 @@ methods: {
 .invalid-input {
   border: 3px solid red;
 }
+
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {

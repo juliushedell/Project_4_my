@@ -25,6 +25,14 @@
       </div>
       </div>
     </div>
+
+    <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["hostEndedGame"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
 </template>
 <script>
 
@@ -49,7 +57,8 @@ data: function () {
     gameCode: 0,
     players: [], 
     name:'',
-    isHost: false
+    isHost: false, 
+    showAlert: false 
   }
 },
 created: function () {
@@ -75,10 +84,9 @@ created: function () {
   socket.on('endTheGame', () => {
     console.log(this.isHost)
     if (!this.isHost) {
-      
-      alert('The host ended the game')
+      this.showAlert = true; 
     }
-    this.$router.push('/')
+      // this.$router.push('/')
   })
 },
 methods: {
@@ -111,7 +119,11 @@ methods: {
       socket.emit('removePlayer', {gameCode: this.gameCode, name: this.name})
       this.$router.push('/')
     }
-  }
+  },
+  closeAlert(){
+      this.showAlert = false;
+      this.$router.push('/')
+    }
 }}
 </script>
 
