@@ -12,6 +12,19 @@
       {{ uiLabels['name_of_host'] }}
       <input class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !nameEntered && buttonClicked}" required>
    </div>
+
+   <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["tooLongName"]}} 
+          <br><br>
+          <a href="https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html">
+            https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html
+          </a>
+          <br><br>
+        <button id="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
+
     <div class="wrap2" style="grid-area: b;" >
       {{ uiLabels["al_pp"] }}
 
@@ -42,9 +55,6 @@
     <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required/>
   </div>
 
-
-
-
   <div class="lifeline">
     <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">{{uiLabels["lifeLines"]}}</button>
   </div>
@@ -74,7 +84,8 @@
       name: '',
       buttonState: false,
       nameEntered: false,
-      buttonClicked: false
+      buttonClicked: false,
+      showAlert: false 
     }
   },
   created: function () {
@@ -95,10 +106,12 @@
       this.theme = this.uiLabels[themeKey];
     },
     checkNameLength() {
-      this.nameEntered = this.name.length > 0;
       if (this.name.length === 15) {
-        alert(this.uiLabels['tooLongName'] + 'https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
+        this.showAlert = true; 
       }
+    },
+    closeAlert(){
+      this.showAlert = false;
     },
     toggleButton() {
       this.buttonState = !this.buttonState;
@@ -280,6 +293,35 @@
 
 .back {
   line-height: 45px; 
+}
+.custom-alert {
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  background-color: whitesmoke; 
+  border: 3px solid red;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
+  z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
+  text-align: center;
+  font-weight: bold;
+  color: #234e5f; 
+  font-size: large;
+
+}
+
+.alert-content {
+  background-color: whitesmoke;
+}
+
+#closeButton{
+  float: right;
+  background-color: red;
+  color: whitesmoke;
+  text-decoration: underline;
+  font-weight: bolder;
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
