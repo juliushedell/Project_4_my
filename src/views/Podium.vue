@@ -104,7 +104,7 @@ methods: {
 <style scoped>
 .answerDisplay {
     color: green;
-    font-family: 'Comic Sans MS';
+    font-family: monospace;
     font-size: 22px;
     text-align: center; 
 }
@@ -121,7 +121,7 @@ methods: {
   overflow-wrap: break-word;
   margin: 0 auto;
   margin-top: 4vh; 
-  font-family: 'Comic Sans MS';
+  font-family: monospace;
   font-size: 20px;
   text-align: center;
 }
@@ -134,6 +134,7 @@ li {
   margin-bottom: 30px;
   text-align: left;
   font-size: 1.5em;
+  font-family: monospace
 }
 
 .button{
@@ -198,6 +199,7 @@ li {
     padding-top: 4vh;
     font-size: 2.8vw; 
     min-height: 30vh;
+    font-family: monospace;
   }
   #placementNr {
   width: 60px;
@@ -209,20 +211,21 @@ li {
   line-height: 60px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
   font-size: 22px;
+  font-family: monospace;
 }
 
 #points {
   color: forestgreen;
   font-size: 20px;
+  font-family: monospace;
 }
 
 #name {
   color:  green;
   margin-bottom: 5px; /* Adjust spacing between names */
   font-size: 18px;
+  font-family: monospace;
 }
-
-
 }
 
 

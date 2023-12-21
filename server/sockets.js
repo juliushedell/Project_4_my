@@ -73,6 +73,10 @@ function sockets(io, socket, data) {
     io.to(d.gameCode).emit('pullPlayer', data.getPlayers(d.gameCode))
   })
 
+  socket.on('getPlayers', function (gameCode) {
+    io.to(gameCode).emit('pullPlayer', data.getPlayers(gameCode))
+  })
+
   socket.on('getPlayerList', function(gameCode, rightAnswer) {
     const playerList = data.randomPlayers(gameCode, rightAnswer);
     socket.emit('playerList', playerList);

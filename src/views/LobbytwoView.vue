@@ -11,7 +11,7 @@
         </h2>
     </div>
     <div class="playerLists">
-    <div class="player-list" v-for="(player, index) in poll.players" :key="index">
+    <div class="player-list" v-for="(player, index) in this.players" :key="index">
         {{ player.name }}
     </div>
     </div>
@@ -61,6 +61,7 @@ created: function () {
   socket.emit("getPlayers", this.gameCode);
   socket.on("pullPlayer", (players) => {
     this.players = players
+    console.log(this.players)
   })
   socket.on("pullPoll", (poll) => {
     this.poll = poll
@@ -170,6 +171,7 @@ methods: {
   background-color: #81b8ce;
   font-weight: bold;
   font-size: 25px;
+  font-family: monospace;
   width: 220px;
 }
 
@@ -181,6 +183,7 @@ methods: {
   border: 0.1875em solid yellow;
   color:rgb(54, 54, 54);
   font-size: 6vw;
+  font-family: monospace;
   text-align: center;
   text-decoration: none;
   margin: 7vh auto;
@@ -195,6 +198,34 @@ methods: {
   width: 40vw; /* Adjusted width to 8% of viewport width */
   height: 3vh; /* Adjusted height to 3% of viewport height */
   font-size: 8vw;
+}
+
+.wrap {
+  justify-content: flex-start;
+  padding-top: 50px;
+  display: grid;
+  grid-template-areas: 'a b';
+  width: 80vw;
+}
+
+.wrap1 {
+  grid-area: a;
+}
+
+.wrap2 {
+  grid-area: b;
+  display: flex;
+  gap: 20px;
+}
+
+.player-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:min-content;
+  padding: 10px;
+  margin:0px auto;
+  width: 220px;
 }
 }
 </style>

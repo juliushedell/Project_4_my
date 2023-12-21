@@ -73,6 +73,7 @@ export default {
   border-radius: 8px;
   color: #2a9451; 
   font-size: 16px;
+  font-family: monospace;
   padding: 10px;
   margin: 10px;
 }
@@ -107,6 +108,7 @@ export default {
   margin-top: 100px;
   font-size: 20px;
   color: #2a9451;
+  font-family: monospace;
   font-weight: bolder;
   text-align: center;
 }

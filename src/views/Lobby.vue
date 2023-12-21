@@ -19,7 +19,8 @@
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
             <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
-            <input type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" :maxlength="55" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
+            <textarea type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
+              </textarea>
             <br><br>
           </div>
         </div>
@@ -101,7 +102,7 @@ methods: {
   },
   checkAllegationLength() {
     for (let i = 0; i < this.allegations.length; i++) {
-      if (this.allegations[i].length === 55) {
+      if (this.allegations[i].length === 145) {
         alert('Too much information, nobody cares!');
       }
     }
@@ -156,19 +157,25 @@ methods: {
   text-align: center;
   margin-top: 1em;
   font-size: 40px;
+  font-family: monospace;
 }
 .field{
   border-radius: 8px;
-  font-size: 20px;
+  font-size: 15px;
+  width: 450px;
+  height: 55px;
+  padding: 8px;
 }
 #parent-container {
   text-align: center; 
 }
-#confessionsform {
+#confessionsform label.all {
   font-size: 30px;
   color: #2a9451;
   font-weight: bold;
+  font-family: monospace;
   display: inline-block; 
+  vertical-align: top;
 }
 /* .button{
   width: 120px; 
@@ -193,6 +200,7 @@ methods: {
 #theme{
   color: yellow;
   font-size: 28px;
+  font-family: monospace;
 }
 
 .all {

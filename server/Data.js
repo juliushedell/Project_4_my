@@ -185,7 +185,6 @@ Data.prototype.getPlayers = function(gameCode) { //Hämtar arrayen med spelare
     return {};
   }
   return poll.players
-  
 }
 
 Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte? Jo det gör den!
@@ -309,6 +308,8 @@ Data.prototype.changeFiftyFifty = function (gameCode, name){ //Ändrar till flas
 Data.prototype.removePlayer = function(gameCode, name) {
   const poll = this.polls[gameCode];
   const player = this.findCurrentPlayer(gameCode, name);
+  let indexRemove = poll.nameList.indexOf(name);
+  poll.nameList.splice(indexRemove, 1);
   for (let i = 0; i < poll.players.length; i += 1) {
     if (poll.players[i].name === name) {
       poll.players.splice(i,1)

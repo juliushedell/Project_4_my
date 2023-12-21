@@ -19,7 +19,7 @@
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
     <div class="wrap">
-    <div>
+    <div v-if="showSneakPeakButton">
       <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" class="lifeline"> Sneak Peak! </button>
     </div>
     <div v-if="this.currentPlayer.visible" class="sneakpeak">
@@ -70,6 +70,7 @@ data: function() {
   answers: [],
   selectedPlayer: null,
   answerLock: false,
+  showSneakPeakButton: true,
   };
 },
 
@@ -127,7 +128,6 @@ methods: {
       }
     }, 1000);
   },
-
   implementFiftyFifty: function() {
     let index = this.playerList.indexOf(this.poll.correctAnswer);
     if (index === 0 || index === 1){
@@ -166,6 +166,7 @@ methods: {
       socket.on('sneakDict', (sneakDict) => {
         this.sneakDict = sneakDict
       })
+      this.showSneakPeakButton = false;
   }
 }
 },
@@ -174,22 +175,26 @@ methods: {
 
 <style scoped>
 
+.head_picture{
+  height: 8vh; 
+  margin: 1.5vh; 
+
+}
+
 .pollOption input[type="radio"] {
   opacity: 0.01;
   z-index: 1000;
 }
 
-/* Style for checked radio buttons */
 .pollOption input[type="radio"]:checked + label {
   background: yellow;
 }
 
-/* Style for hovered radio buttons */
+
 .pollOption label:hover {
   background: yellow;
 }
 
-/* Style for the label */
 .pollOption label {
   border: 3px solid yellow;
   border-radius: 20px;
@@ -200,7 +205,6 @@ methods: {
   background-color: #81b8ce;
 }
 
-
 .text-frame {
   border: 4px solid green;
   padding: 2vw; 
@@ -210,7 +214,7 @@ methods: {
   overflow-wrap: break-word;
   margin: 0 auto;
   margin-top: 4vh; 
-  font-family: 'Comic Sans MS';
+  font-family: monospace;
   font-size: 1.5vw; 
 }
 
@@ -254,6 +258,7 @@ text-align: center;
 color: red; 
 display: inline-block;
 font-size: 20px;
+font-family: monospace;
 position: relative;
 top: -130px; 
 font-weight: bold; 
@@ -268,8 +273,13 @@ gap: 50px;
 }
 
 .sneakpeak {
-margin-top: -200px;
 color: green;
+border: 4px solid green;
+font-weight: bold;
+border-radius: 15%;
+font-size: 20px;
+padding: 15px;
+margin: -160px 0px 10px 0px;
 }
 
 
@@ -282,8 +292,6 @@ color: green;
 
 img {
 max-width: 35vw;
-}
-
-}
+}}
 
 </style>

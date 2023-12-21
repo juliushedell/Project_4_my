@@ -92,10 +92,6 @@ switchLanguage: function() {
   }
   localStorage.setItem("lang", this.lang);
   socket.emit("switchLanguage", this.lang)
-},
-
-quitGame: function () {
-  //här ska vi avsluta spelet
 }
 }}
 </script>
@@ -105,6 +101,7 @@ quitGame: function () {
 .content {
   color: green;
   font-size: 28px;
+  font-family: monospace;
   text-align: center; 
   font-weight: bald;
 }
@@ -130,25 +127,26 @@ quitGame: function () {
   border: 4px solid green;
   padding: 2vw; 
   display: flex;
-  flex-direction: column; /* Stack child elements vertically */
-  align-items: center; /* Center child elements horizontally */
+  flex-direction: column; 
+  align-items: center; 
   width: 40vw; 
   min-height: 40vh; 
   resize: none;
   overflow-wrap: break-word;
   margin: 0 auto;
   margin-top: 4vh; 
-  font-family: 'Comic Sans MS';
+  font-family: monospace;
  font-size: 20px;
   text-align: center;
 }
 
+
 .placement {
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column; /* Stack child elements vertically */
-  align-items: center; /* Center child elements horizontally */
-  text-align: center; /* Center text within each child element */
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
 }
 
 .placementNr {
@@ -156,6 +154,7 @@ quitGame: function () {
   height: 50px;
   border: 4px solid goldenrod;
   border-style: double;
+  color:black;
   border-radius: 50%;
   background-color: rgb(255, 215, 0);
   text-align: center;
@@ -179,7 +178,7 @@ quitGame: function () {
   width: 50px;
   height: 50px;
   border: 4px solid rgb(174, 100, 26);
-    border-style: double;
+  border-style: double;
   border-radius: 50%;
   background-color: rgb(205, 127, 50);
   text-align: center;
@@ -187,13 +186,6 @@ quitGame: function () {
   margin-bottom: 5px; /* Adjust spacing between elements */
 }
 
-.player {
- padding-left: 5vw;;
-}
-
-.score {
- padding-left: 40vw; 
-}
 
 li {
 list-style: none;
@@ -203,6 +195,7 @@ padding-left: 50px;
 margin-bottom: 30px;
 text-align: left;
 font-size: 1.5em;
+font-family: monospace;
 }
 
 .confetti-wrapper {
@@ -232,23 +225,26 @@ canvas {
     right: 2vw; 
     font-size: 22px;
     color: yellow;
+    font-family: monospace;
 }
 
 .button {
   height: 20px;
 }
 
+#name{
+  color:black;
+}
+
+
 @media screen and (max-width:50em) {
 .podiumFrame{
   padding-top: 4vh;
   font-size: 22px; 
   height: 30vh;
-}
-}
+}}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
-
-
   .placementNr {
     font-size: 22px;
   }
@@ -260,7 +256,7 @@ canvas {
 }
 
 .content {
-  margin-top: -650px;;
+  margin-top: -700px;;
 }
   .row-container {
     flex-direction: column; /* Switch to a column layout */
@@ -272,11 +268,8 @@ canvas {
     margin-top: 20px;
 
   }
-
   .button {
   height: 30px;
-}
-
-}
+}}
 
 </style>
