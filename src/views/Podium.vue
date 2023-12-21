@@ -23,7 +23,6 @@
             </template>
         </div>
     </div>
-    {{theScoreboard}}
     Your current points: {{ currentPlayer.points }}
     <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
 </template>

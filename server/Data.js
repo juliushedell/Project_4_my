@@ -163,7 +163,7 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
 
 Data.prototype.getPoll = function(gameCode) { //Hämter pollen
   if (typeof this.polls[gameCode] === "undefined") {
-    return {}
+    return "undefined"
   }
   return this.polls[gameCode];
 }

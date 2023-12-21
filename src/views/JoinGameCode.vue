@@ -17,7 +17,7 @@
 
   <div class="wrapper">
     <router-link to="/"  class="back" >{{ uiLabels["back"] }}</router-link>
-    <button @click="codePlayer" class="button" >{{ uiLabels["joinGame"] }}</button>
+    <button @click="checkPollId" class="button" >{{ uiLabels["joinGame"] }}</button>
   </div>
 </template>
 
@@ -41,10 +41,25 @@ export default {
     })
   },
   methods: {
-    codePlayer: function () {
-      this.$router.push({ name: 'JoinGameName', params: { gameCode: this.gameCode } });
-    }
-}}
+    checkPollId() {
+      if (!this.gameCode) {
+        alert('Please enter a game code.');
+      } 
+      else {
+        socket.emit("getPoll", this.gameCode);
+        socket.on("pullPoll", (poll) => {
+          this.poll = poll
+          console.log(poll)
+          if (poll === "undefined") {
+            alert('This game does not exist!');
+          } else {
+            this.$router.push({ name: 'JoinGameName', params: { gameCode: this.gameCode } });
+          }
+        });
+      }
+    },
+  }
+}
 </script>
 
 <style scoped>

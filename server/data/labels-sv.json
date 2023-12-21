@@ -13,7 +13,7 @@
     "li2": "Andra spelare ansluter genom att trycka på 'Gå med i spelet', anger den spelkod som värden tillhandahåller och fyller sedan i sitt namn.",
     "li3": "Målet med spelet är att matcha påståendena med rätt spelare så snabbt som möjligt.", 
     "li4": "Det finns två livlinor tillgängliga för att användas vid behov:",
-    "50/50": "Minskar antalet alternativ så att det är två kvar", 
+    "50/50": "Minskar antalet svarsalternativ till 2", 
     "sneakPeak": "Tillåter en tjuvtitt på vad andra spelare har svarat",
 
 	"enterAllegations": "Ange allegations",

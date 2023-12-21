@@ -45,11 +45,11 @@
     </div>
   
   <div class="themebuttons">
-    <input type="radio" id="childhood" v-model="theme" name="the_theme" value="Childhood" @change="updateTheme('Childhood')"/>
+    <input type="radio" id="childhood" v-model="theme" name="the_theme" :value="uiLabels['Childhood']" @change="updateTheme('Childhood')"/>
     <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
-    <input type="radio" id="illegal" v-model="theme" name="the_theme" value="Illegal" @change="updateTheme('Illegal')"/>
+    <input type="radio" id="illegal" v-model="theme" name="the_theme" :value="uiLabels['Illegal']" @change="updateTheme('Illegal')"/>
     <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
-    <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence" @change="updateTheme('Under the influence')"/>
+    <input type="radio" id="uti" v-model="theme" name="the_theme" :value="uiLabels['Under the influence']" @change="updateTheme('Under the influence')"/>
     <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
     <p class="ot">{{ uiLabels["Own theme: "] }}</p>
     <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required/>
