@@ -161,6 +161,7 @@ methods: {
 }
 .field{
   border-radius: 8px;
+  border: 3px solid yellow;
   font-size: 15px;
   width: 450px;
   height: 55px;
@@ -227,6 +228,11 @@ methods: {
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {
   font-size: 27px;
+}
+
+.field {
+  width: 350px;
+  height: 70px;
 }
 }
 </style>
