@@ -286,8 +286,8 @@ margin: -160px 0px 10px 0px;
 @media screen and (max-width:50em) {
   
 .text-frame {
-  font-size: 2.8vw; 
-  height: 30vh; 
+  font-size: 22px; 
+  height: 30vh;
 }
 
 img {

@@ -255,6 +255,7 @@ canvas {
   height: 45vh;
 }
 
+
   .row-container {
     flex-direction: column; /* Switch to a column layout */
     align-items: stretch; /* Adjust alignment for column layout if needed */
