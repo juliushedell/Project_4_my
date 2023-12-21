@@ -309,7 +309,6 @@
   font-weight: bold;
   color: #234e5f; 
   font-size: large;
-
 }
 
 .alert-content {

@@ -61,5 +61,7 @@
 	"points": "Poäng:", 
 	"endGame": "Avsluta spel",
 
-	"closePopUp": "Stäng"
+	"closePopUp": "Stäng",
+
+	"tooMuchInfo": "För mycket information, ingen bryr sig!"
 }

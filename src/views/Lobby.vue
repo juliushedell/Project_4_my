@@ -26,6 +26,15 @@
         </div>
       </form>
     </div>
+
+    <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["tooMuchInfo"]}} 
+          <br><br>
+        <button id="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
+
       <div class="wrappp">
         <!-- <router-link v-if="this.isHost" to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
         <router-link v-else to="/JoinGameName/{{this.gameCode}}" class="back" >{{ uiLabels["back"] }}</router-link> -->
@@ -53,7 +62,8 @@ data: function () {
     theme: "",
     name:'',
     buttonClicked: false,
-    currentPlayer: {}
+    currentPlayer: {}, 
+    showAlert: false
   
   }
 },
@@ -103,10 +113,14 @@ methods: {
   checkAllegationLength() {
     for (let i = 0; i < this.allegations.length; i++) {
       if (this.allegations[i].length === 145) {
-        alert('Too much information, nobody cares!');
+        // alert('Too much information, nobody cares!');
+        this.showAlert = true;
       }
     }
   },
+  closeAlert(){
+      this.showAlert = false;
+    },
 
   isInputEmpty(i) {
     return this.allegations[i] === undefined || !this.allegations[i];
@@ -223,6 +237,35 @@ methods: {
 } */
 .invalid-input {
   border: 3px solid red;
+}
+
+.custom-alert {
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  background-color: whitesmoke; 
+  border: 3px solid red;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
+  z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
+  text-align: center;
+  font-weight: bold;
+  color: #234e5f; 
+  font-size: large;
+}
+
+.alert-content {
+  background-color: whitesmoke;
+}
+
+#closeButton{
+  float: right;
+  background-color: red;
+  color: whitesmoke;
+  text-decoration: underline;
+  font-weight: bolder;
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
