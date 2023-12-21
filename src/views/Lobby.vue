@@ -175,6 +175,10 @@ methods: {
   font-weight: bold;
   font-family: monospace;
   display: inline-block; 
+<<<<<<< HEAD
+=======
+  vertical-align: top;
+>>>>>>> 9850fbbf09fd65dc1533a16a7468ee74079d66f0
 }
 /* .button{
   width: 120px; 
