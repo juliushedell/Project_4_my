@@ -5,7 +5,6 @@
         <img src="/img/Head_picture.png" class="head_picture">
       </h1>
     </header>
-    <body>
     <div class="liList">
       <li> {{ uiLabels["li1"] }} </li>
       <li> {{ uiLabels["li2"] }} </li>
@@ -19,7 +18,6 @@
       <p> {{ uiLabels["sneakPeak"] }}</p>
     </div>
       <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
-    </body>
 
     
   
@@ -66,18 +64,22 @@ body {
   padding-top: 25px;
 }
 .liList {
-  padding-top: 50px;
-  margin-bottom: 80px;
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 50px;
+  margin-bottom: 50px;
 }
 .li-list1 {
   background: url('/img/fifty.png') no-repeat 0 center;
   background-size: 10em;
+  margin-left: 100px;
   padding: 5px 0px 5px 0px
 }
 
 .li-list2 {
   background: url('/img/Sneakpeak.png') no-repeat 0 center;
   background-size: 10em;
+  margin-left: 100px;
   padding: 5px 0px 5px 0px
 }
 
@@ -101,6 +103,7 @@ p {
 
 .back {
   margin-top: 50px;
+  margin-left: 10px;
 }
 
 
@@ -112,7 +115,7 @@ p {
 
 .liList {
   padding-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .li-list1 {
   background: url('/img/fifty.png') no-repeat 0 center;

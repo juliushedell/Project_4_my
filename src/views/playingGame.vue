@@ -5,7 +5,9 @@
           <img src="/img/Head_picture.png" class="head_picture">
       </h1>
     </header>
-    Allegation:  {{ this.allegationsLeft }} / {{ poll.totalAllegations }}
+    <div class="allNr">
+      {{ this.allegationsLeft }} / {{ poll.totalAllegations }}
+    </div>
 
   <div class=text-frame>
       <p>{{ poll.randomAllegation }}</p></div>
@@ -178,7 +180,18 @@ methods: {
 .head_picture{
   height: 8vh; 
   margin: 1.5vh; 
+}
 
+.allNr {
+  font-size: 14px;
+  font-weight: bold;
+  border: 4px solid yellow;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pollOption input[type="radio"] {
@@ -275,8 +288,8 @@ gap: 50px;
 .sneakpeak {
 color: green;
 border: 4px solid green;
-font-weight: bold;
 border-radius: 15%;
+font-weight: bold;
 font-size: 20px;
 padding: 15px;
 margin: -160px 0px 10px 0px;
@@ -286,8 +299,8 @@ margin: -160px 0px 10px 0px;
 @media screen and (max-width:50em) {
   
 .text-frame {
-  font-size: 2.8vw; 
-  height: 30vh; 
+  font-size: 22px; 
+  height: 30vh;
 }
 
 img {

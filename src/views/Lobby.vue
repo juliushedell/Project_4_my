@@ -163,6 +163,7 @@ methods: {
   border-radius: 8px;
   border: 3px solid yellow;
   font-size: 15px;
+  font-family: monospace;
   width: 450px;
   height: 55px;
   padding: 8px;
@@ -175,7 +176,7 @@ methods: {
   color: #2a9451;
   font-weight: bold;
   font-family: monospace;
-  display: inline-block; 
+  display: inline-block;
   vertical-align: top;
 }
 /* .button{

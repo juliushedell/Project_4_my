@@ -217,7 +217,7 @@ canvas {
 .content {
   position: relative;
   z-index: 2; 
-  margin-top: -850px;
+  margin-top: -700px;
 }
 .quitGame{
   position: fixed;
@@ -254,6 +254,7 @@ canvas {
   font-size: 16px; 
   height: 45vh;
 }
+
 
   .row-container {
     flex-direction: column; /* Switch to a column layout */
