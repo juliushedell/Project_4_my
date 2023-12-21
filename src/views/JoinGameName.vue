@@ -139,11 +139,12 @@ export default {
   border: 3px solid red;
   border-radius: 20px;
   padding: 10px;
-  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (30px) blurret (10px) hur långt skuggan ska sträcka sig*/
+  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
   z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
   text-align: center;
   font-weight: bold;
-
+  color: #234e5f; 
+  font-size: large;
 }
 
 .alert-content {
