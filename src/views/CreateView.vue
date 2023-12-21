@@ -39,7 +39,7 @@
       <input type="radio" id="uti" v-model="theme" name="the_theme" value="Under the influence"/>
       <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
       <p class="ot">{{ uiLabels["Own theme: "] }}</p>
-      <input type="text" id="otherTheme" v-model="theme"/>
+      <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required/>
   </div>
 
 
@@ -105,9 +105,10 @@
     },
     createPoll: function () {
       this.buttonClicked = true;
+      if (this.name.length && this.theme.length > 0) {
   let gameCode = this.generateGameCode();
   socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState });
-  this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } });
+  this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } })};
   },
 
     generateGameCode: function () {
@@ -188,7 +189,7 @@
   background:yellow;
   }
   
-#otherTheme{
+.otherTheme{
   border: 3px solid yellow;
   height: 30px; 
   width: 150px; 
@@ -300,7 +301,7 @@
     align-items: center;
   }
 
-  #otherTheme {
+  .otherTheme {
     margin-top: 10px;
   }
 

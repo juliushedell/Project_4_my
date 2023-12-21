@@ -14,7 +14,7 @@
       </div>
 
       <div class="gameNameField">
-        <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" :class="{'invalid-input': buttonClicked}" @input="checkNameLength"> 
+        <input type="text" id="gameName" v-model="name" required :maxlength="15" @input="checkNameLength"> 
       </div>
 
       <div class="wrap">
@@ -39,7 +39,6 @@ export default {
       gameCode: 0,
       isHost: false,
       player: {},
-      buttonClicked: false
     }
   },
   created: function () {
@@ -56,7 +55,6 @@ export default {
       }
     },
     namePlayer: function () {
-      this.buttonClicked = true;
   socket.emit('checkName', { gameCode: this.gameCode, name: this.name });
   socket.on('nameChecked', (checkedName) => {
     if (!checkedName) {
@@ -119,9 +117,6 @@ export default {
   justify-content: center;
   gap: 20px; 
 }
-}
-.invalid-input {
-  border: 3px solid red; /* Change red to your desired color */
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {

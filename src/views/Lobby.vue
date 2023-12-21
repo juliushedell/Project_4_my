@@ -59,7 +59,7 @@ data: function () {
 computed: {
   getTheme: function() {
     const theme = this.theme;
-    return this.uiLabels[theme] || ""
+    return this.uiLabels[theme] || this.theme
   }
 },
 
