@@ -159,7 +159,7 @@
   width: 300px; 
   border-radius: 15px;
   font-size: 14px;
-  border: 3px solid yellow;
+  border: 3px solid #3fbc6a;
   color:#2a9451;
 }
 
@@ -191,7 +191,7 @@
   }
   
 .otherTheme{
-  border: 3px solid yellow;
+  border: 3px solid #3fbc6a;
   height: 30px; 
   width: 150px; 
   border-radius: 15px;

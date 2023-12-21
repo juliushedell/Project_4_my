@@ -175,7 +175,8 @@ methods: {
   color: #2a9451;
   font-weight: bold;
   font-family: monospace;
-  display: inline-block; 
+  display: inline-block;
+  vertical-align: top;
 }
 /* .button{
   width: 120px; 
