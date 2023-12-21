@@ -19,7 +19,7 @@
         <p v-else="timer === 0" > {{ goToPodiumView() }} </p> 
     </div>
     <div class="wrap">
-    <div>
+    <div v-if="showSneakPeakButton">
       <button v-if="this.currentPlayer.sneakPeak && this.poll.lifeLine" v-on:click="sneakPeak" class="lifeline"> Sneak Peak! </button>
     </div>
     <div v-if="this.currentPlayer.visible" class="sneakpeak">
@@ -70,6 +70,7 @@ data: function() {
   answers: [],
   selectedPlayer: null,
   answerLock: false,
+  showSneakPeakButton: true,
   };
 },
 
@@ -127,7 +128,6 @@ methods: {
       }
     }, 1000);
   },
-
   implementFiftyFifty: function() {
     let index = this.playerList.indexOf(this.poll.correctAnswer);
     if (index === 0 || index === 1){
@@ -166,6 +166,7 @@ methods: {
       socket.on('sneakDict', (sneakDict) => {
         this.sneakDict = sneakDict
       })
+      this.showSneakPeakButton = false;
   }
 }
 },
@@ -271,8 +272,13 @@ gap: 50px;
 }
 
 .sneakpeak {
-margin-top: -200px;
 color: green;
+border: 4px solid green;
+font-weight: bold;
+border-radius: 15%;
+font-size: 20px;
+padding: 15px;
+margin: -160px 0px 10px 0px;
 }
 
 
