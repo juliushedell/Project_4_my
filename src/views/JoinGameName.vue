@@ -14,8 +14,20 @@
       </div>
 
       <div class="gameNameField">
-        <input type="text" id="gameName" v-model="name" required :maxlength="15" @input="checkNameLength"> 
+        <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
       </div>
+
+      <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["tooLongName"]}} 
+          <br><br>
+          <a href="https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html">
+            https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html
+          </a>
+          <br><br>
+        <button id="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
 
       <div class="wrap">
         <router-link to="/JoinGameCode/" class="back">{{ uiLabels["back"] }}</router-link>
@@ -40,6 +52,8 @@ export default {
       isHost: false,
       player: {},
       poll: {},
+      buttonClicked: false, 
+      showAlert: false 
     }
   },
   created: function () {
@@ -56,8 +70,11 @@ export default {
   methods: {
     checkNameLength() {
       if (this.name.length === 15) {
-        alert(this.uiLabels['tooLongName'] + 'https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html');
+        this.showAlert = true; 
       }
+    },
+    closeAlert(){
+      this.showAlert = false;
     },
     namePlayer: function () {
     this.buttonClicked = true;
@@ -112,6 +129,34 @@ export default {
   padding: 10px;
   margin: 10px;
 }
+
+.custom-alert {
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  background-color: whitesmoke; 
+  border: 3px solid red;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (30px) blurret (10px) hur långt skuggan ska sträcka sig*/
+  z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
+  text-align: center;
+  font-weight: bold;
+
+}
+
+.alert-content {
+  background-color: whitesmoke;
+}
+
+#closeButton{
+  float: right;
+  background-color: red;
+  color: whitesmoke;
+  text-decoration: underline;
+  font-weight: bolder;
+}
   
 
 @media screen and (max-width:50em) {
@@ -125,6 +170,9 @@ export default {
   justify-content: center;
   gap: 20px; 
 }
+}
+.invalid-input {
+  border: 3px solid red; /* Change red to your desired color */
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {

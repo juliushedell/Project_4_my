@@ -278,6 +278,10 @@
   border: 3px solid red; /* Change red to your desired color */
 }
 
+.back {
+  line-height: 45px; 
+}
+
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
     margin-top: -50px; 
