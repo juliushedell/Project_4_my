@@ -174,22 +174,26 @@ methods: {
 
 <style scoped>
 
+.head_picture{
+  height: 8vh; 
+  margin: 1.5vh; 
+
+}
+
 .pollOption input[type="radio"] {
   opacity: 0.01;
   z-index: 1000;
 }
 
-/* Style for checked radio buttons */
 .pollOption input[type="radio"]:checked + label {
   background: yellow;
 }
 
-/* Style for hovered radio buttons */
+
 .pollOption label:hover {
   background: yellow;
 }
 
-/* Style for the label */
 .pollOption label {
   border: 3px solid yellow;
   border-radius: 20px;
@@ -199,7 +203,6 @@ methods: {
   margin: 10px;
   background-color: #81b8ce;
 }
-
 
 .text-frame {
   border: 4px solid green;
@@ -282,8 +285,6 @@ color: green;
 
 img {
 max-width: 35vw;
-}
-
-}
+}}
 
 </style>

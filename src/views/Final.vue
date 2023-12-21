@@ -92,10 +92,6 @@ switchLanguage: function() {
   }
   localStorage.setItem("lang", this.lang);
   socket.emit("switchLanguage", this.lang)
-},
-
-quitGame: function () {
-  //här ska vi avsluta spelet
 }
 }}
 </script>
@@ -143,6 +139,7 @@ quitGame: function () {
   text-align: center;
 }
 
+
 .placement {
   margin-bottom: 20px;
   display: flex;
@@ -156,6 +153,7 @@ quitGame: function () {
   height: 50px;
   border: 4px solid goldenrod;
   border-style: double;
+  color:black;
   border-radius: 50%;
   background-color: rgb(255, 215, 0);
   text-align: center;
@@ -231,17 +229,19 @@ canvas {
   height: 20px;
 }
 
+#name{
+  color:black;
+}
+
+
 @media screen and (max-width:50em) {
 .podiumFrame{
   padding-top: 4vh;
   font-size: 22px; 
   height: 30vh;
-}
-}
+}}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
-
-
   .placementNr {
     font-size: 22px;
   }
@@ -265,7 +265,6 @@ canvas {
     margin-top: 20px;
 
   }
-
   .button {
   height: 30px;
 }
