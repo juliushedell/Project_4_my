@@ -12,7 +12,7 @@
   </div>
 
   <div id="codeField">
-    <input type="number" id="gameCode" v-model="gameCode" :class="{'invalid-input': buttonClicked}" required="required" >
+    <input type="number" id="gameCode" v-model="gameCode" required >
   </div>
 
   <div class="wrapper">
@@ -32,7 +32,6 @@ export default {
       gameCode: null,
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
-      buttonClicked: false
     }
   },
   created: function () {
@@ -43,7 +42,6 @@ export default {
   },
   methods: {
     codePlayer: function () {
-      this.buttonClicked = true;
       this.$router.push({ name: 'JoinGameName', params: { gameCode: this.gameCode } });
     }
 }}
@@ -108,9 +106,6 @@ export default {
   margin-top:300px;
   justify-content: center;
   gap: 20px; 
-}
-.invalid-input {
-  border: 3px solid red; /* Change red to your desired color */
 }
 }
 
