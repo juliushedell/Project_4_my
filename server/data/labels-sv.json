@@ -63,5 +63,7 @@
 
 	"closePopUp": "Stäng",
 
-	"tooMuchInfo": "För mycket information, ingen bryr sig!"
+	"tooMuchInfo": "För mycket information, ingen bryr sig!", 
+
+	"hostEndedGame": "Spelledaren har avslutat spelet"
 }

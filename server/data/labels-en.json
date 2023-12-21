@@ -66,5 +66,7 @@
 
 	"closePopUp": "Close",
 
-	"tooMuchInfo": "Too much information, nobody cares!"
+	"tooMuchInfo": "Too much information, nobody cares!",
+
+	"hostEndedGame": "The host has ended the game"
 }
