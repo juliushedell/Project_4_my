@@ -173,12 +173,8 @@ methods: {
   font-size: 30px;
   color: #2a9451;
   font-weight: bold;
-<<<<<<< HEAD
   font-family: monospace;
   display: inline-block; 
-=======
-  vertical-align: top;
->>>>>>> fc5b8e6d66c2c07784bd0cc0f63156afafa9f5e0
 }
 /* .button{
   width: 120px; 
@@ -230,6 +226,11 @@ methods: {
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {
   font-size: 27px;
+}
+
+.field {
+  width: 350px;
+  height: 70px;
 }
 }
 </style>
