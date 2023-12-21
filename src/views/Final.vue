@@ -130,8 +130,8 @@ quitGame: function () {
   border: 4px solid green;
   padding: 2vw; 
   display: flex;
-  flex-direction: column; /* Stack child elements vertically */
-  align-items: center; /* Center child elements horizontally */
+  flex-direction: column; 
+  align-items: center; 
   width: 40vw; 
   min-height: 40vh; 
   resize: none;
@@ -146,9 +146,9 @@ quitGame: function () {
 .placement {
   margin-bottom: 20px;
   display: flex;
-  flex-direction: column; /* Stack child elements vertically */
-  align-items: center; /* Center child elements horizontally */
-  text-align: center; /* Center text within each child element */
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
 }
 
 .placementNr {
@@ -179,7 +179,7 @@ quitGame: function () {
   width: 50px;
   height: 50px;
   border: 4px solid rgb(174, 100, 26);
-    border-style: double;
+  border-style: double;
   border-radius: 50%;
   background-color: rgb(205, 127, 50);
   text-align: center;
@@ -187,13 +187,6 @@ quitGame: function () {
   margin-bottom: 5px; /* Adjust spacing between elements */
 }
 
-.player {
- padding-left: 5vw;;
-}
-
-.score {
- padding-left: 40vw; 
-}
 
 li {
 list-style: none;
@@ -260,7 +253,7 @@ canvas {
 }
 
 .content {
-  margin-top: -650px;;
+  margin-top: -700px;;
 }
   .row-container {
     flex-direction: column; /* Switch to a column layout */

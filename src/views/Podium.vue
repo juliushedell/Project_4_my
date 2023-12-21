@@ -221,8 +221,6 @@ li {
   margin-bottom: 5px; /* Adjust spacing between names */
   font-size: 18px;
 }
-
-
 }
 
 
