@@ -170,6 +170,7 @@ methods: {
   background-color: #81b8ce;
   font-weight: bold;
   font-size: 25px;
+  font-family: monospace;
   width: 220px;
 }
 
@@ -181,6 +182,7 @@ methods: {
   border: 0.1875em solid yellow;
   color:rgb(54, 54, 54);
   font-size: 6vw;
+  font-family: monospace;
   text-align: center;
   text-decoration: none;
   margin: 7vh auto;

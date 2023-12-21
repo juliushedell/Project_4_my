@@ -78,11 +78,13 @@ export default {
 
 h2 {
   font-size: 3vw;
+  font-family: monospace;
   letter-spacing: 0.4vw;
 }
 
 h4{
   font-size: 1.5vw;
+  font-family: monospace;
   letter-spacing: 0.1vw;
 }
 
@@ -91,7 +93,8 @@ body{
   }
 
 #frontText{
-  color: #2a9451; 
+  color: #2a9451;
+  font-family: monospace; 
   text-align: center;
 }
 
@@ -127,11 +130,13 @@ body{
 
 h2 {
   font-size: 26px;
+  font-family: monospace;
   letter-spacing: 2px;
 } 
 
 h4{
   font-size: 13px;
+  font-family: monospace;
 letter-spacing: 1.0px;
 }
 

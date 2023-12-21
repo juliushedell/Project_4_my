@@ -82,6 +82,7 @@ export default {
   color: #2a9451;
   font-weight: bolder;
   text-align: center;
+  font-family: monospace;
 }
 
 .nameField{
@@ -107,6 +108,7 @@ export default {
   border-radius: 8px;
   color: #2a9451; 
   font-size: 16px;
+  font-family: monospace;
   padding: 10px;
   margin: 10px;
 }

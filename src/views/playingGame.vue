@@ -213,7 +213,7 @@ methods: {
   overflow-wrap: break-word;
   margin: 0 auto;
   margin-top: 4vh; 
-  font-family: 'Comic Sans MS';
+  font-family: monospace;
   font-size: 1.5vw; 
 }
 
@@ -257,6 +257,7 @@ text-align: center;
 color: red; 
 display: inline-block;
 font-size: 20px;
+font-family: monospace;
 position: relative;
 top: -130px; 
 font-weight: bold; 

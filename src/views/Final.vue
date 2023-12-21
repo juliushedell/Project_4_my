@@ -101,6 +101,7 @@ switchLanguage: function() {
 .content {
   color: green;
   font-size: 28px;
+  font-family: monospace;
   text-align: center; 
   font-weight: bald;
 }
@@ -134,7 +135,7 @@ switchLanguage: function() {
   overflow-wrap: break-word;
   margin: 0 auto;
   margin-top: 4vh; 
-  font-family: 'Comic Sans MS';
+  font-family: monospace;
  font-size: 20px;
   text-align: center;
 }
@@ -194,6 +195,7 @@ padding-left: 50px;
 margin-bottom: 30px;
 text-align: left;
 font-size: 1.5em;
+font-family: monospace;
 }
 
 .confetti-wrapper {
@@ -223,6 +225,7 @@ canvas {
     right: 2vw; 
     font-size: 22px;
     color: yellow;
+    font-family: monospace;
 }
 
 .button {
@@ -267,8 +270,6 @@ canvas {
   }
   .button {
   height: 30px;
-}
-
-}
+}}
 
 </style>
