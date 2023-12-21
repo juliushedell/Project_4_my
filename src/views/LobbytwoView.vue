@@ -196,5 +196,33 @@ methods: {
   height: 3vh; /* Adjusted height to 3% of viewport height */
   font-size: 8vw;
 }
+
+.wrap {
+  justify-content: flex-start;
+  padding-top: 50px;
+  display: grid;
+  grid-template-areas: 'a b';
+  width: 80vw;
+}
+
+.wrap1 {
+  grid-area: a;
+}
+
+.wrap2 {
+  grid-area: b;
+  display: flex;
+  gap: 20px;
+}
+
+.player-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:min-content;
+  padding: 10px;
+  margin:0px auto;
+  width: 220px;
+}
 }
 </style>
