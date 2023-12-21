@@ -214,6 +214,7 @@ li {
   font-family: monospace;
 }
 
+
 #points {
   color: forestgreen;
   font-size: 20px;

@@ -162,6 +162,7 @@ methods: {
 .field{
   border-radius: 8px;
   font-size: 15px;
+  font-family: monospace;
   width: 450px;
   height: 55px;
   padding: 8px;
@@ -175,10 +176,6 @@ methods: {
   font-weight: bold;
   font-family: monospace;
   display: inline-block; 
-<<<<<<< HEAD
-=======
-  vertical-align: top;
->>>>>>> 9850fbbf09fd65dc1533a16a7468ee74079d66f0
 }
 /* .button{
   width: 120px; 

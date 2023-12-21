@@ -217,7 +217,7 @@ canvas {
 .content {
   position: relative;
   z-index: 2; 
-  margin-top: -850px;
+  margin-top: -700px;
 }
 .quitGame{
   position: fixed;
