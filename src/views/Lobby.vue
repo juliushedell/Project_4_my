@@ -157,6 +157,7 @@ methods: {
   text-align: center;
   margin-top: 1em;
   font-size: 40px;
+  font-family: monospace;
 }
 .field{
   border-radius: 8px;
@@ -168,11 +169,13 @@ methods: {
 #parent-container {
   text-align: center; 
 }
-#confessionsform {
+#confessionsform label.all {
   font-size: 30px;
   color: #2a9451;
   font-weight: bold;
+  font-family: monospace;
   display: inline-block; 
+  vertical-align: top;
 }
 /* .button{
   width: 120px; 
@@ -197,6 +200,7 @@ methods: {
 #theme{
   color: yellow;
   font-size: 28px;
+  font-family: monospace;
 }
 
 .all {

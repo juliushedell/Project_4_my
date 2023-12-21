@@ -1,7 +1,7 @@
 @import './base.css';
 
 #app {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,11 +19,13 @@ h1 {
 
 h2 {
   font-size: 3.5vw;
+  font-family: monospace;
   letter-spacing: 0.6vw;
 }
 
 body {
   background-color: #81b8ce;
+  font-family: monospace;
   font-size: 1em; /* Keep font size in em for better responsiveness */
 }
 
@@ -49,6 +51,7 @@ body {
   justify-content: center;
   align-items: center;  
   font-size: 18px;
+  font-family: monospace;
 }
 
 
@@ -58,12 +61,13 @@ body {
 }
 
 .back {
-  line-height: 45px; 
+  line-height: 35px; 
   background-color: #81b8ce;
   border: 3px solid #234e5f; 
   text-align: center;
   color: #234e5f;
   font-weight: bold;
+  font-family: monospace;
   display: inline-block;
   width:150px;
   height:45px;
