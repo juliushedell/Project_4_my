@@ -52,7 +52,8 @@ export default {
       isHost: false,
       player: {},
       poll: {},
-      buttonClicked: false
+      buttonClicked: false, 
+      showAlert: false 
     }
   },
   created: function () {
