@@ -145,8 +145,6 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
   }
   pointsArray.sort((a, b) => b - a); // Sorterar arrayen från högst poäng till lägst 
   const uniquePoints = [...new Set(pointsArray)]; //Skapar en array med bara unika element 
-  console.log(pointsArray.sort((a, b) => b - a))
-  console.log(uniquePoints)
   for (let i = 0; i < players.length; i++) { //Fyller arrayerna med de spelare som hamnar på pallplats 
     if (players[i].points === uniquePoints[0]) {
       arrayPlacement[0].push(players[i]);
