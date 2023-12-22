@@ -69,7 +69,7 @@
   
 <script>
   import io from 'socket.io-client';
-  const socket = io("localhost:3000");
+  const socket = io(sessionStorage.getItem("dataServer"));
   
   export default {
   name: 'CreateView',
@@ -120,10 +120,10 @@
     createPoll: function () {
       this.buttonClicked = true;
       if (this.name.length && this.theme.length > 0) {
-  let gameCode = this.generateGameCode();
-  socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState });
-  this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } })};
-  },
+      let gameCode = this.generateGameCode();
+      socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState, name: this.name});
+      this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } })};
+    },
 
     generateGameCode: function () {
     return Math.floor(Math.random() * 900000 + 100000);
