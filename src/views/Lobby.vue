@@ -36,8 +36,6 @@
     </div>
 
       <div class="wrappp">
-        <!-- <router-link v-if="this.isHost" to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
-        <router-link v-else to="/JoinGameName/{{this.gameCode}}" class="back" >{{ uiLabels["back"] }}</router-link> -->
         <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
         <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
       </div>
@@ -175,7 +173,7 @@ methods: {
 }
 .field{
   border-radius: 8px;
-  border: 3px solid yellow;
+  border: 3px solid #3fbc6a;
   font-size: 15px;
   font-family: monospace;
   width: 450px;

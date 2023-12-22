@@ -24,7 +24,15 @@
         </div>
     </div>
     Your current points: {{ currentPlayer.points }}
+    <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
     <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
+    <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["hostEndedGame"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -46,6 +54,7 @@ data: function () {
     gameCode: 0,
     name: '',
     isHost: false,
+    showAlert: false,
     playerList: [],
     currentPlayer: {},
     theScoreboard: [],
@@ -78,6 +87,12 @@ created: function () {
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   );
   socket.emit("getScoreboard", this.gameCode);
+  socket.on('endTheGame', () => {
+    console.log(this.isHost)
+    if (!this.isHost) {
+      this.showAlert = true; 
+    }
+  })
 
 },
 methods: {
@@ -95,9 +110,23 @@ methods: {
   nextAllegation: function() {
     socket.emit("jumpToNextAllegation", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)
-  }, 
-
- }}
+  },
+  
+  endGame: function() {
+    if (this.isHost) {
+      socket.emit('endPoll', this.gameCode)
+      this.$router.push('/')
+    }
+    else {
+      this.$router.push('/')
+    }
+  },
+  closeAlert(){
+    this.showAlert = false;
+    this.$router.push('/')
+  }
+}
+}
 </script>
 
 <style scoped>
