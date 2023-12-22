@@ -117,6 +117,11 @@ this.startCountdown();
 socket.on("init", (labels) => {
   this.uiLabels = labels
 })
+socket.on('allCheckDone', (check) => {
+  if (check) {
+    this.goToPodiumView()
+  }
+})
 },
 
 methods: {
@@ -154,6 +159,7 @@ methods: {
     
     submitAnswer: function () {
     if (!this.answerLock && this.timer !== 0 && this.selectedPlayer !== null) {
+      socket.emit('checkAllDone', this.gameCode)
       socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
       this.answerLock = true;
       this.currentPlayer.visible = false;

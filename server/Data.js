@@ -322,5 +322,16 @@ Data.prototype.removePoll = function(gameCode) {
   }
 }
 
+Data.prototype.checkAllDone = function(gameCode) {
+  const poll = this.polls[gameCode];
+  const players = this.getPlayers(gameCode);
+  for (let player of players) {
+    if (player.currentAnswer === "") {
+      return false
+    }
+    return true
+  }
+}
+
 export { Data };
 

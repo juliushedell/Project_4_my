@@ -117,6 +117,10 @@ function sockets(io, socket, data) {
     data.removePoll(gameCode);
   })
 
+  socket.on('checkAllDone', function(gameCode) {
+    const check = data.checkAllDone(gameCode)
+    io.to(gameCode).emit('allCheckDone', check)
+  })
 
 }
 
