@@ -60,14 +60,16 @@ data: function () {
     theme: "",
     name:'',
     buttonClicked: false,
+    textAreaOne: true,
     currentPlayer: {}, 
     showAlert: false
   
   }
 },
 updated() {
-  if (this.$refs[this.textareaRef(0)]) {
+  if (this.$refs[this.textareaRef(0)] && this.textAreaOne) {
     this.$refs[this.textareaRef(0)][0].focus();
+    this.textAreaOne = false;
   }
 },
 computed: {
@@ -155,7 +157,7 @@ methods: {
   },
 
   goBack: function(){
-      if (this.isHost){
+      if (this.isHost === true){
         this.$router.push('/Create/')
       }
       else{
