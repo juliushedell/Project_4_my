@@ -158,7 +158,7 @@ methods: {
     },
     
     submitAnswer: function () {
-    if (!this.answerLock && this.timer !== 0 && this.selectedPlayer !== null) {
+    if (!this.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
       socket.emit('checkAllDone', this.gameCode)
       socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
       this.answerLock = true;

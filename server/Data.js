@@ -331,8 +331,8 @@ Data.prototype.checkAllDone = function(gameCode) {
     if (player.currentAnswer === "") {
       return false
     }
-    return true
   }
+  return true
 }
 
 export { Data };
