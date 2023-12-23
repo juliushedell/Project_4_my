@@ -35,8 +35,8 @@
     </div>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
-      <label v-for="(player, index) in randomizedPlayers" :key="index" class="pollOption">
-      <input type="radio" class="pollOptionButtons" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" />
+      <label v-for="(player, index) in randomizedPlayers" :key="index" id="testing2">
+      <input type="radio" id="testing" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" />
       {{ player }}
       </label>
     </div>
@@ -149,12 +149,12 @@ methods: {
 
   goToPodiumView() {
     this.currentPlayer.visible = false;
-    if (this.poll.counter > 0) {
-      this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
-    }
-    else {
-      this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
-    }
+    // if (this.poll.counter > 0) {
+    //   this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+    // }
+    // else {
+    //   this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+    // }
     },
     
     submitAnswer: function () {
@@ -183,12 +183,27 @@ methods: {
 
 <style scoped>
 
+#testing {
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#testing2 {
+  font-size: 20px;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
 .head_picture{
   height: 8vh; 
   margin: 1.5vh; 
 }
 
 .allNr {
+  padding: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
   font-size: 14px;
   font-weight: bold;
   border: 4px solid yellow;
@@ -200,7 +215,7 @@ methods: {
   align-items: center;
 }
 
-.pollOption input[type="radio"] {
+/* .pollOption input[type="radio"] {
   opacity: 0.01;
   z-index: 1000;
 }
@@ -222,7 +237,7 @@ methods: {
   padding: 10px;
   margin: 10px;
   background-color: #81b8ce;
-}
+} */
 
 .text-frame {
   border: 4px solid green;
@@ -268,7 +283,7 @@ margin-top: -100px;
 }
 
 .lifeline {
-width: 180px; 
+width: 150px; 
 height: 45px; 
 border-radius: 25px; 
 background-color: yellow;
@@ -276,10 +291,10 @@ border: 6px solid green;
 text-align: center;
 color: red; 
 display: inline-block;
-font-size: 20px;
+font-size: 15px;
 font-family: monospace;
 position: relative;
-top: -130px; 
+top: -40px; 
 font-weight: bold; 
 }
 
@@ -287,8 +302,8 @@ font-weight: bold;
 display: flex;
 align-items: center;
 justify-content: center;
-margin: 150px 50px 0px 50px;
-gap: 50px;
+margin: 75px 50px 0px 50px;
+gap: 30px;
 }
 
 .sneakpeak {

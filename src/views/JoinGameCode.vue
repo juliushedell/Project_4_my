@@ -12,7 +12,7 @@
   </div>
 
   <div id="codeField">
-    <input type="number" id="gameCode" v-model="gameCode" required >
+    <input ref="gameCodeInput" type="number" id="gameCode" v-model="gameCode" required >
   </div>
 
   <div class="wrapper">
@@ -33,6 +33,9 @@ export default {
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
     }
+  },
+  mounted() {
+    this.$refs.gameCodeInput.focus();
   },
   created: function () {
     socket.emit("pageLoaded", this.lang);
@@ -128,7 +131,7 @@ export default {
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
-    margin-top: 450px; 
+    margin-top: 200px; 
   }
 }
 

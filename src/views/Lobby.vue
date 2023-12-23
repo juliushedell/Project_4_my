@@ -19,7 +19,7 @@
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
             <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
-            <textarea type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
+            <textarea :ref="textareaRef(i - 1)" type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
               </textarea>
             <br><br>
           </div>
@@ -65,6 +65,11 @@ data: function () {
   
   }
 },
+updated() {
+  if (this.$refs[this.textareaRef(0)]) {
+    this.$refs[this.textareaRef(0)][0].focus();
+  }
+},
 computed: {
   getTheme: function() {
     const theme = this.theme;
@@ -108,6 +113,9 @@ methods: {
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
   },
+  textareaRef(index) {
+      return `textarea${index}`;
+    },
   checkAllegationLength() {
     for (let i = 0; i < this.allegations.length; i++) {
       if (this.allegations[i].length === 145) {

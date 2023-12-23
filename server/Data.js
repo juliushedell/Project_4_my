@@ -216,7 +216,9 @@ Data.prototype.checkName = function (gameCode, checkName) { //Kollar om namnet m
   const poll = this.polls[gameCode];
   const players = this.getPlayers(gameCode);
   if (poll && players) {
-    if (poll.nameList.includes(checkName)) {
+    const normalizedCheckName = checkName.trim().toLowerCase();
+    const nameExists = poll.nameList.some((name) => name.trim().toLowerCase() === normalizedCheckName);
+    if (nameExists) {
       return true
     }
     else {

@@ -10,7 +10,7 @@
   <div class="wrapper">
     <div class="wrap" style="grid-area: a;">
       {{ uiLabels['name_of_host'] }}
-      <input class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !nameEntered && buttonClicked}" required>
+      <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !nameEntered && buttonClicked}" required>
    </div>
 
    <div class="custom-alert" v-if="this.showAlert">
@@ -87,6 +87,9 @@
       buttonClicked: false,
       showAlert: false 
     }
+  },
+  mounted() {
+    this.$refs.nameInput.focus();
   },
   created: function () {
     socket.emit("pageLoaded", this.lang);

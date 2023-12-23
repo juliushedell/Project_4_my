@@ -14,7 +14,7 @@
       </div>
 
       <div class="gameNameField">
-        <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
+        <input ref="nameInput" type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
       </div>
 
       <div class="custom-alert" v-if="this.showAlertTooLong">
@@ -65,6 +65,9 @@ export default {
       showAlertTooLong: false, 
       showAlertNameTaken: false 
     }
+  },
+  mounted() {
+    this.$refs.nameInput.focus();
   },
   created: function () {
     this.gameCode = this.$route.params.gameCode
@@ -163,7 +166,7 @@ export default {
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
-    margin-top: 450px; 
+    margin-top: 200px; 
   }
 }
 </style>
