@@ -93,7 +93,6 @@ export default {
     this.buttonClicked = true;
     socket.emit('checkName', { gameCode: this.gameCode, name: this.name });
     socket.on('nameChecked', (checkedName) => {
-      console.log(this.poll.nameList)
     if (!checkedName) {
       this.$router.push({name: 'Lobby',params: { gameCode: this.gameCode, name: this.name, isHost: this.isHost },
       });

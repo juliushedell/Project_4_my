@@ -82,7 +82,6 @@ created: function () {
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   )
   socket.on('endTheGame', () => {
-    console.log(this.isHost)
     if (!this.isHost) {
       this.showAlert = true; 
     }
