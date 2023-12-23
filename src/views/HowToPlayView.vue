@@ -58,11 +58,6 @@ export default {
 </script>
 
 <style scoped>
-body {
-  height: 40em;
-  padding-left: 10%;
-  padding-top: 25px;
-}
 .liList {
   margin-top: 50px;
   margin-left: 100px;
@@ -109,36 +104,31 @@ p {
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   li {
-  font-size: 16px;
+  font-size: 12px;
   background-size: 40px;
 } 
 
 .liList {
-  padding-top: 20px;
   margin-bottom: 10px;
+  margin-left: 15px;
 }
 .li-list1 {
   background: url('/img/fifty.png') no-repeat 0 center;
   background-size: 7em;
-  padding: 5px 0px 5px 0px
+  padding: 5px 0px 5px 0px;
+  margin-left: 15px;
 }
 
 .li-list2 {
   background: url('/img/Sneakpeak.png') no-repeat 0 center;
   background-size: 7em;
-  padding: 5px 0px 5px 0px
+  padding: 5px 0px 5px 0px;
+  margin-left: 15px;
 }
 p {
   text-align: left;
   padding-left: 130px;
-  font-size: 16px;
-}
-
-body {
-  height: 40em;
-  padding-left: 10%;
-  padding-top: 25px;
-  margin-right: 10px;
+  font-size: 12px;
 }
 
 .back {
