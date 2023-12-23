@@ -24,8 +24,10 @@
         </div>
     </div>
     Your current points: {{ currentPlayer.points }}
-    <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
-    <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
+    <div class="wrapper">
+      <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
+      <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
+    </div>
     <div class="custom-alert" v-if="this.showAlert">
         <div class="alert-content">
           {{uiLabels["hostEndedGame"]}} 
@@ -165,12 +167,12 @@ li {
   font-family: monospace
 }
 
-.button{
+/* .button{
     position: fixed;
     bottom: 4vh; 
     right: 3vw;
     height: 60px; 
-}
+} */
 
 .placement {
   margin-bottom: 20px;
@@ -221,6 +223,14 @@ li {
   margin-bottom: 5px; /* Adjust spacing between names */
 }
 
+.wrapper {
+  grid-template-columns: auto auto;
+  display:grid; 
+  justify-content: center;
+  gap: 200px;
+  padding: 50px;
+}
+
 
 @media screen and (max-width:50em) {
   .podiumFrame{
@@ -228,6 +238,7 @@ li {
     font-size: 2.8vw; 
     min-height: 30vh;
     font-family: monospace;
+
   }
   #placementNr {
   width: 60px;
@@ -242,7 +253,6 @@ li {
   font-family: monospace;
 }
 
-
 #points {
   color: forestgreen;
   font-size: 20px;
@@ -254,6 +264,13 @@ li {
   margin-bottom: 5px; /* Adjust spacing between names */
   font-size: 18px;
   font-family: monospace;
+}
+.wrapper {
+  grid-template-columns: auto auto;
+  display:grid; 
+  justify-content: center;
+  gap: 20px;
+  padding: 50px;
 }
 }
 
