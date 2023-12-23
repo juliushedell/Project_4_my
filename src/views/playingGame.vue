@@ -35,11 +35,11 @@
     </div>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
-      <label v-for="(player, index) in randomizedPlayers" :key="index" id="testing2">
-      <input type="radio" id="testing" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" />
-      {{ player }}
-      </label>
-    </div>
+    <label v-for="(player, index) in randomizedPlayers" :key="index" class="custom-radio-label">
+      <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" class="custom-radio-input"/>
+      <span class="custom-radio-button">{{ player }}</span>
+    </label>
+  </div>
 </template>
 
 <script>
@@ -149,12 +149,12 @@ methods: {
 
   goToPodiumView() {
     this.currentPlayer.visible = false;
-    // if (this.poll.counter > 0) {
-    //   this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
-    // }
-    // else {
-    //   this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
-    // }
+    if (this.poll.counter > 0) {
+      this.$router.push('/Podium/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+    }
+    else {
+      this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
+    }
     },
     
     submitAnswer: function () {
@@ -183,16 +183,29 @@ methods: {
 
 <style scoped>
 
-#testing {
-  margin-bottom: 30px;
-  font-weight: bold;
-  font-size: 25px;
+/* custom-radio-label {
+  display: inline-block;
+} */
+
+.custom-radio-input {
+  display: none;
 }
 
-#testing2 {
+.custom-radio-button {
+  display: flex;
+  gap: 25px;
+  padding: 15px;
   font-size: 20px;
-  gap: 50px;
-  margin-bottom: 50px;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+
+.custom-radio-input:checked + .custom-radio-button {
+  background-color: #3fbc6a;
+  color: white;
 }
 
 .head_picture{
@@ -204,6 +217,7 @@ methods: {
   padding: 5px;
   margin-left: 10px;
   margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 14px;
   font-weight: bold;
   border: 4px solid yellow;
@@ -215,41 +229,17 @@ methods: {
   align-items: center;
 }
 
-/* .pollOption input[type="radio"] {
-  opacity: 0.01;
-  z-index: 1000;
-}
-
-.pollOption input[type="radio"]:checked + label {
-  background: yellow;
-}
-
-
-.pollOption label:hover {
-  background: yellow;
-}
-
-.pollOption label {
-  border: 3px solid yellow;
-  border-radius: 20px;
-  color: #2a9451;
-  font-size: 16px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #81b8ce;
-} */
-
 .text-frame {
   border: 4px solid green;
-  padding: 2vw; 
+  padding: 5px;
   width: 80vw; 
-  height: 25vh; 
+  font-size: 22px;
+  font-weight: bold;
+  height: 15vh; 
   resize: none;
   overflow-wrap: break-word;
   margin: 0 auto;
-  margin-top: 4vh; 
   font-family: monospace;
-  font-size: 1.5vw; 
 }
 
 .alligator-container {
@@ -303,7 +293,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 margin: 75px 50px 0px 50px;
-gap: 30px;
+gap: 150px;
 }
 
 .sneakpeak {
@@ -320,12 +310,29 @@ margin: -160px 0px 10px 0px;
 @media screen and (max-width:50em) {
   
 .text-frame {
-  font-size: 22px; 
-  height: 30vh;
+  font-size: 20px; 
+  height: 27vh;
 }
 
 img {
 max-width: 35vw;
 }}
 
+.wrap{
+margin: 25px 50px 0px 50px;
+gap: 25px;
+}
+
+.custom-radio-button {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.sneakpeak {
+border: 2px solid green;
+border-radius: 15%;
+font-size: 10px;
+padding: 8px;
+margin: -50px 15px 5px -25px;
+}
 </style>
