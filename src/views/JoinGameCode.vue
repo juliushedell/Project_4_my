@@ -19,6 +19,14 @@
     <router-link to="/"  class="back" >{{ uiLabels["back"] }}</router-link>
     <button @click="checkPollId" class="button" >{{ uiLabels["joinGame"] }}</button>
   </div>
+
+  <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["enterGameCode"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
 </template>
 
 <script>
@@ -32,6 +40,7 @@ export default {
       gameCode: null,
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
+      showAlert: false
     }
   },
   mounted() {
@@ -46,7 +55,8 @@ export default {
   methods: {
     checkPollId() {
       if (!this.gameCode) {
-        alert('Please enter a game code.');
+        // alert('Please enter a game code.');
+        this.showAlert = true; 
       } 
       else {
         socket.emit("getPoll", this.gameCode);
@@ -61,6 +71,9 @@ export default {
         });
       }
     },
+    closeAlert(){
+      this.showAlert = false;
+    }
   }
 }
 </script>

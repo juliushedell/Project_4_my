@@ -68,5 +68,7 @@
 
 	"tooMuchInfo": "Too much information, nobody cares!",
 
-	"hostEndedGame": "The host has ended the game"
+	"hostEndedGame": "The host has ended the game", 
+
+	"enterGameCode": "Please enter a gamecode"
 }
