@@ -14,7 +14,7 @@
       </div>
 
       <div class="gameNameField">
-        <input ref="nameInput" type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
+        <input ref="nameInput" type="text" id="gameName" v-model="name" @keyup.enter="namePlayer" required="required" :maxlength="15" @input="checkNameLength"> 
       </div>
 
       <div class="custom-alert" v-if="this.showAlertTooLong">
@@ -130,7 +130,11 @@ export default {
   justify-content: center;
   gap: 500px;
   padding-top: 55px;
- 
+}
+
+.back {
+  line-height: 45px; 
+
 }
 
 .gameNameField {

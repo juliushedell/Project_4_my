@@ -12,7 +12,7 @@
   </div>
 
   <div id="codeField">
-    <input ref="gameCodeInput" type="number" id="gameCode" v-model="gameCode" required >
+    <input ref="gameCodeInput" type="number" id="gameCode" v-model="gameCode" @keyup.enter="checkPollId" required >
   </div>
 
   <div class="wrapper">
@@ -92,6 +92,7 @@ export default {
 .back{
   justify-self: start;
   margin-left: 25vw;
+  line-height: 45px; 
 }
 
 .button{
