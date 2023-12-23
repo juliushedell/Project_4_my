@@ -65,5 +65,7 @@
 
 	"tooMuchInfo": "För mycket information, ingen bryr sig!", 
 
-	"hostEndedGame": "Spelledaren har avslutat spelet"
+	"hostEndedGame": "Spelledaren har avslutat spelet", 
+
+	"enterGameCode": "Skriv in en spelkod"
 }
