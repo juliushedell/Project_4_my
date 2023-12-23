@@ -1,10 +1,14 @@
 <template>
   <header>
-      <button v-on:click="switchLanguage" id="language_button">
-      <img :src="uiLabels['changeLanguage']" id="language_button">
+    <div id="languageWrapper">
+      <button v-on:click="switchLanguageEnglish" id="language_button">
+      <img src="img/britishFlagga.png" id="language_button">
       </button>
+      <button v-on:click="switchLanguageSwedish" id="language_button">
+      <img src="img/svenskFlagga.png" id="language_button">
+      </button>
+    </div>
   </header>
-  <body>
     <div id="frontText">
       <h2>ALLEGATIONS</h2>
       <h4>{{ uiLabels['sales-pitch'] }}</h4> 
@@ -18,8 +22,6 @@
     <disp class=rightButton>
     <router-link to="/HowToPlayView/" class="button" style="grid-area:d;">{{uiLabels.howToPlay}}</router-link>
     </disp>
-
-  </body>
 </template>
 
 <script>
@@ -43,13 +45,13 @@ export default {
     })
   },
   methods: {
-    switchLanguage: function() {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
+    switchLanguageEnglish: function() {
+      this.lang = "en"
+      localStorage.setItem("lang", this.lang);
+      socket.emit("switchLanguage", this.lang)
+    },
+    switchLanguageSwedish: function() {
+      this.lang = "sv"
       localStorage.setItem("lang", this.lang);
       socket.emit("switchLanguage", this.lang)
     },
@@ -103,8 +105,16 @@ body{
 #language_button {
   border: none;
   background: none;
-  margin-top: 5px;
-  margin-right: 5px;
+  width: 80px;
+  height: 40px;
+}
+
+#languageWrapper {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+  margin-top: 20px;
+  margin-right: 30px;
 }
 
 #language_button:hover {
@@ -149,7 +159,7 @@ letter-spacing: 1.0px;
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   h2 {
-  padding-top: 100px;
+  padding-top: 75px;
 } 
 
   #startpage_picture {
