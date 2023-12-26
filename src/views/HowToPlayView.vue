@@ -99,6 +99,7 @@ p {
 .back {
   margin-top: 50px;
   margin-left: 10px;
+  line-height: 45px; 
 }
 
 

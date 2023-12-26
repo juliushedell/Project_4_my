@@ -37,7 +37,6 @@
 	"lifeLines": "Play with lifelines",
 
 	"enterName": "Enter your name:",
-	"enterGameCode": "Join game",
 	"joinGame": "Join Game",
 	"lobby": "Kod",
 	"explain": "Enter your game code", 
@@ -48,7 +47,7 @@
 	"Choosename": "Choose name",
 	
 	"submit": "Submit",
-	"start": "start game", 
+	"start": "Start game", 
 
 	"answer": "Correct answer: ",
 	"cancel": "Cancel",
