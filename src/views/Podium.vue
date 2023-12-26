@@ -23,7 +23,9 @@
             </template>
         </div>
     </div>
-    Your current points: {{ currentPlayer.points }}
+    <div class="yourpoints">
+      Your current points: {{ currentPlayer.points }}
+    </div>
     <div class="wrapper">
       <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
       <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
@@ -229,6 +231,14 @@ li {
   justify-content: center;
   gap: 200px;
   padding: 50px;
+}
+
+.yourpoints {
+  color: green;
+  margin-top: 20px;
+  font-size: 16px;
+  display:grid; 
+  justify-content: center;
 }
 
 

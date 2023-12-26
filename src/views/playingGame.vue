@@ -214,16 +214,16 @@ methods: {
 }
 
 .allNr {
-  padding: 5px;
+  padding: 3px;
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   border: 4px solid yellow;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

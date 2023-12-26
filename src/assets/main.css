@@ -61,14 +61,15 @@ body {
 }
 
 .back {
-  line-height: 35px; 
   background-color: #81b8ce;
   border: 3px solid #234e5f; 
   text-align: center;
   color: #234e5f;
   font-weight: bold;
   font-family: monospace;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
   width:150px;
   height:45px;
   font-size: 18px; 

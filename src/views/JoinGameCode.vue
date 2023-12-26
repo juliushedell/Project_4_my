@@ -105,7 +105,6 @@ export default {
 .back{
   justify-self: start;
   margin-left: 25vw;
-  line-height: 45px; 
 }
 
 .button{
