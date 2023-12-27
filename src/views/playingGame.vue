@@ -6,7 +6,9 @@
       </h1>
     </header>
     <div class="allNr">
-      {{ this.allegationsLeft }} / {{ poll.totalAllegations }}
+      <span class="topNumber">{{ this.allegationsLeft }}</span>
+      <span class="bottomNumber">{{ "&frasl;" }}</span>
+      <span class="bottomNumber">{{ poll.totalAllegations }}</span>
     </div>
 
   <div class=text-frame>
@@ -218,15 +220,21 @@ methods: {
   margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 5px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   border: 4px solid yellow;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.topNumber {
+  padding: 3px
+}
+.bottomNumber {
+  padding: 3px
 }
 
 .text-frame {
