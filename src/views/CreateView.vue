@@ -10,7 +10,7 @@
   <div class="wrapper">
     <div class="wrap" style="grid-area: a;">
       {{ uiLabels['name_of_host'] }}
-      <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !nameEntered && buttonClicked}" required>
+      <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !this.name.length>0 && buttonClicked}" required>
    </div>
 
    <div class="custom-alert" v-if="this.showAlert">
@@ -83,7 +83,6 @@
       isHost: true,
       name: '',
       buttonState: false,
-      nameEntered: false,
       buttonClicked: false,
       showAlert: false 
     }

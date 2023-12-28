@@ -26,15 +26,15 @@ h2 {
 body {
   background-color: #81b8ce;
   font-family: monospace;
-  font-size: 1em; /* Keep font size in em for better responsiveness */
+  font-size: 1em; 
 }
 
 .head_picture {
-  height: 8vh; /* Adjusted height to 8% of viewport height */
+  height: 8vh; 
   position: absolute;
   top: 0;
   right: 0;
-  margin: 1.5vh; /* Adjusted margin to 1.5% of viewport height */
+  margin: 1.5vh; 
 }
 
 .button {
