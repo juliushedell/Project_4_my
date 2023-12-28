@@ -23,14 +23,26 @@
             </template>
         </div>
     </div>
-    Your current points: {{ currentPlayer.points }}
-    <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
+    <div class="yourpoints">
+      Your current points: {{ currentPlayer.points }}
+    </div>
+    <div class="wrapper">
+      <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
+      <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
+    </div>
+    <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["hostEndedGame"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
 </template>
 
 <script>
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
-const socket = io("localhost:3000");
+const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
 name: 'LobbytwoView',
@@ -46,6 +58,7 @@ data: function () {
     gameCode: 0,
     name: '',
     isHost: false,
+    showAlert: false,
     playerList: [],
     currentPlayer: {},
     theScoreboard: [],
@@ -78,6 +91,12 @@ created: function () {
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   );
   socket.emit("getScoreboard", this.gameCode);
+  socket.on('endTheGame', () => {
+    console.log(this.isHost)
+    if (!this.isHost) {
+      this.showAlert = true; 
+    }
+  })
 
 },
 methods: {
@@ -95,9 +114,23 @@ methods: {
   nextAllegation: function() {
     socket.emit("jumpToNextAllegation", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)
-  }, 
-
- }}
+  },
+  
+  endGame: function() {
+    if (this.isHost) {
+      socket.emit('endPoll', this.gameCode)
+      this.$router.push('/')
+    }
+    else {
+      this.$router.push('/')
+    }
+  },
+  closeAlert(){
+    this.showAlert = false;
+    this.$router.push('/')
+  }
+}
+}
 </script>
 
 <style scoped>
@@ -136,12 +169,12 @@ li {
   font-family: monospace
 }
 
-.button{
+/* .button{
     position: fixed;
     bottom: 4vh; 
     right: 3vw;
     height: 60px; 
-}
+} */
 
 .placement {
   margin-bottom: 20px;
@@ -192,6 +225,22 @@ li {
   margin-bottom: 5px; /* Adjust spacing between names */
 }
 
+.wrapper {
+  grid-template-columns: auto auto;
+  display:grid; 
+  justify-content: center;
+  gap: 200px;
+  padding: 50px;
+}
+
+.yourpoints {
+  color: green;
+  margin-top: 20px;
+  font-size: 16px;
+  display:grid; 
+  justify-content: center;
+}
+
 
 @media screen and (max-width:50em) {
   .podiumFrame{
@@ -199,6 +248,7 @@ li {
     font-size: 2.8vw; 
     min-height: 30vh;
     font-family: monospace;
+
   }
   #placementNr {
   width: 60px;
@@ -213,7 +263,6 @@ li {
   font-family: monospace;
 }
 
-
 #points {
   color: forestgreen;
   font-size: 20px;
@@ -225,6 +274,13 @@ li {
   margin-bottom: 5px; /* Adjust spacing between names */
   font-size: 18px;
   font-family: monospace;
+}
+.wrapper {
+  grid-template-columns: auto auto;
+  display:grid; 
+  justify-content: center;
+  gap: 20px;
+  padding: 50px;
 }
 }
 

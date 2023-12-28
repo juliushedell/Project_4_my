@@ -38,7 +38,7 @@
 
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
-const socket = io("localhost:3000");
+const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
 name: 'LobbytwoView',
@@ -82,7 +82,6 @@ created: function () {
   this.$router.push ('/playingGame/' + this.gameCode +'/' + this.name + '/' + this.isHost)
   )
   socket.on('endTheGame', () => {
-    console.log(this.isHost)
     if (!this.isHost) {
       this.showAlert = true; 
     }

@@ -10,7 +10,7 @@
   <div class="wrapper">
     <div class="wrap" style="grid-area: a;">
       {{ uiLabels['name_of_host'] }}
-      <input class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !nameEntered && buttonClicked}" required>
+      <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !nameEntered && buttonClicked}" required>
    </div>
 
    <div class="custom-alert" v-if="this.showAlert">
@@ -69,7 +69,7 @@
   
 <script>
   import io from 'socket.io-client';
-  const socket = io("localhost:3000");
+  const socket = io(sessionStorage.getItem("dataServer"));
   
   export default {
   name: 'CreateView',
@@ -87,6 +87,9 @@
       buttonClicked: false,
       showAlert: false 
     }
+  },
+  mounted() {
+    this.$refs.nameInput.focus();
   },
   created: function () {
     socket.emit("pageLoaded", this.lang);
@@ -117,10 +120,10 @@
     createPoll: function () {
       this.buttonClicked = true;
       if (this.name.length && this.theme.length > 0) {
-  let gameCode = this.generateGameCode();
-  socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState });
-  this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } })};
-  },
+      let gameCode = this.generateGameCode();
+      socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState, name: this.name});
+      this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } })};
+    },
 
     generateGameCode: function () {
     return Math.floor(Math.random() * 900000 + 100000);
@@ -286,10 +289,6 @@
 }
 .invalid-input {
   border: 3px solid red; /* Change red to your desired color */
-}
-
-.back {
-  line-height: 45px; 
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {

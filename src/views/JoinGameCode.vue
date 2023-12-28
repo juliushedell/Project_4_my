@@ -12,18 +12,26 @@
   </div>
 
   <div id="codeField">
-    <input type="number" id="gameCode" v-model="gameCode" required >
+    <input ref="gameCodeInput" type="number" id="gameCode" v-model="gameCode" @keyup.enter="checkPollId" required >
   </div>
 
   <div class="wrapper">
     <router-link to="/"  class="back" >{{ uiLabels["back"] }}</router-link>
     <button @click="checkPollId" class="button" >{{ uiLabels["joinGame"] }}</button>
   </div>
+
+  <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["enterGameCode"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
 </template>
 
 <script>
 import io from 'socket.io-client';
-const socket = io("localhost:3000");
+const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
   name: 'JoinGameCode',
@@ -32,7 +40,11 @@ export default {
       gameCode: null,
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
+      showAlert: false
     }
+  },
+  mounted() {
+    this.$refs.gameCodeInput.focus();
   },
   created: function () {
     socket.emit("pageLoaded", this.lang);
@@ -43,7 +55,8 @@ export default {
   methods: {
     checkPollId() {
       if (!this.gameCode) {
-        alert('Please enter a game code.');
+        // alert('Please enter a game code.');
+        this.showAlert = true; 
       } 
       else {
         socket.emit("getPoll", this.gameCode);
@@ -58,6 +71,9 @@ export default {
         });
       }
     },
+    closeAlert(){
+      this.showAlert = false;
+    }
   }
 }
 </script>
@@ -128,7 +144,7 @@ export default {
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
-    margin-top: 450px; 
+    margin-top: 200px; 
   }
 }
 

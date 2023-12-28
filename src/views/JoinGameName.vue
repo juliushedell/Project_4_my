@@ -14,7 +14,7 @@
       </div>
 
       <div class="gameNameField">
-        <input type="text" id="gameName" v-model="name" required="required" :maxlength="15" @input="checkNameLength"> 
+        <input ref="nameInput" type="text" id="gameName" v-model="name" @keyup.enter="namePlayer" required="required" :maxlength="15" @input="checkNameLength"> 
       </div>
 
       <div class="custom-alert" v-if="this.showAlertTooLong">
@@ -48,7 +48,7 @@
 
 <script>
 import io from 'socket.io-client';
-const socket = io("localhost:3000");
+const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
   name: 'JoinGameName',
@@ -65,6 +65,9 @@ export default {
       showAlertTooLong: false, 
       showAlertNameTaken: false 
     }
+  },
+  mounted() {
+    this.$refs.nameInput.focus();
   },
   created: function () {
     this.gameCode = this.$route.params.gameCode
@@ -115,18 +118,12 @@ export default {
   font-family: monospace;
 }
 
-.nameField{
-  margin: 0px 10px 80px 10px;
-  text-align: center;
-}
-
 .wrap{
   grid-template-columns: auto auto;
   display:grid; 
   justify-content: center;
   gap: 500px;
   padding-top: 55px;
- 
 }
 
 .gameNameField {
@@ -161,8 +158,6 @@ export default {
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
-  .wrapper {
-    margin-top: 450px; 
-  }
+
 }
 </style>

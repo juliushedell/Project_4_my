@@ -52,6 +52,7 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       fiftyfifty: true,
       scoreArray: new Array(length).fill(0),
       visible: false,
+      answerLock: false,
       sneakPeak: true
     }
     poll.players.push(thePlaya)
@@ -119,6 +120,7 @@ Data.prototype.compareAnswers = function (gameCode) { // Beräknar alla spelares
       player.scoreArray[currentAllegation] = 5 + this.firstSubmitList(gameCode, player);
     }
     player.currentAnswer = "";
+    player.answerLock = false;
   }
   poll.answerList = [];
   this.summerizePoints(gameCode, poll, players);
@@ -145,8 +147,6 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
   }
   pointsArray.sort((a, b) => b - a); // Sorterar arrayen från högst poäng till lägst 
   const uniquePoints = [...new Set(pointsArray)]; //Skapar en array med bara unika element 
-  console.log(pointsArray.sort((a, b) => b - a))
-  console.log(uniquePoints)
   for (let i = 0; i < players.length; i++) { //Fyller arrayerna med de spelare som hamnar på pallplats 
     if (players[i].points === uniquePoints[0]) {
       arrayPlacement[0].push(players[i]);
@@ -198,6 +198,12 @@ Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte
   return poll.answerList
 }
 
+Data.prototype.lockAnswer = function(gameCode, name) {
+  let currentPlayer = this.findCurrentPlayer(gameCode, name);
+  currentPlayer.answerLock = true;
+  return currentPlayer
+}
+
 Data.prototype.firstSubmitList = function(gameCode, player) {
   const poll = this.polls[gameCode];
   const answerList = poll.answerList;
@@ -218,7 +224,9 @@ Data.prototype.checkName = function (gameCode, checkName) { //Kollar om namnet m
   const poll = this.polls[gameCode];
   const players = this.getPlayers(gameCode);
   if (poll && players) {
-    if (poll.nameList.includes(checkName)) {
+    const normalizedCheckName = checkName.trim().toLowerCase();
+    const nameExists = poll.nameList.some((name) => name.trim().toLowerCase() === normalizedCheckName);
+    if (nameExists) {
       return true
     }
     else {
@@ -322,6 +330,17 @@ Data.prototype.removePoll = function(gameCode) {
   if (typeof this.polls[gameCode] !== "undefined") {
     delete this.polls[gameCode];
   }
+}
+
+Data.prototype.checkAllDone = function(gameCode) {
+  const poll = this.polls[gameCode];
+  const players = this.getPlayers(gameCode);
+  for (let player of players) {
+    if (player.currentAnswer === "") {
+      return false
+    }
+  }
+  return true
 }
 
 export { Data };

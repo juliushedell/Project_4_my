@@ -40,7 +40,7 @@
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 import Confetti from "@/components/Confetti.vue";
-const socket = io("localhost:3000");
+const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
 name: 'Final',

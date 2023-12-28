@@ -19,7 +19,7 @@
         <div>
           <div v-for="i in poll.numberAllegations" :key="i">
             <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
-            <textarea type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
+            <textarea :ref="textareaRef(i - 1)" type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" @keyup.enter="submitConfessions" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
               </textarea>
             <br><br>
           </div>
@@ -36,8 +36,6 @@
     </div>
 
       <div class="wrappp">
-        <!-- <router-link v-if="this.isHost" to="/Create/" class="back" >{{ uiLabels["back"] }}</router-link>
-        <router-link v-else to="/JoinGameName/{{this.gameCode}}" class="back" >{{ uiLabels["back"] }}</router-link> -->
         <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
         <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
       </div>
@@ -47,7 +45,7 @@
 <script>
 
 import io from 'socket.io-client';
-const socket = io("localhost:3000");
+const socket = io(sessionStorage.getItem("dataServer"));
 export default {
 name: 'enterAllegations',
 data: function () {
@@ -62,9 +60,16 @@ data: function () {
     theme: "",
     name:'',
     buttonClicked: false,
+    textAreaOne: true,
     currentPlayer: {}, 
     showAlert: false
   
+  }
+},
+updated() {
+  if (this.$refs[this.textareaRef(0)] && this.textAreaOne) {
+    this.$refs[this.textareaRef(0)][0].focus();
+    this.textAreaOne = false;
   }
 },
 computed: {
@@ -110,6 +115,9 @@ methods: {
     localStorage.setItem("lang", this.lang);
     socket.emit("switchLanguage", this.lang)
   },
+  textareaRef(index) {
+      return `textarea${index}`;
+    },
   checkAllegationLength() {
     for (let i = 0; i < this.allegations.length; i++) {
       if (this.allegations[i].length === 145) {
@@ -149,7 +157,7 @@ methods: {
   },
 
   goBack: function(){
-      if (this.isHost){
+      if (this.isHost === true){
         this.$router.push('/Create/')
       }
       else{
@@ -172,10 +180,11 @@ methods: {
   margin-top: 1em;
   font-size: 40px;
   font-family: monospace;
+  color: rgb(54, 54, 54);
 }
 .field{
   border-radius: 8px;
-  border: 3px solid yellow;
+  border: 3px solid #3fbc6a;
   font-size: 15px;
   font-family: monospace;
   width: 450px;

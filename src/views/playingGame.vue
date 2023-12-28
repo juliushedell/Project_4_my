@@ -6,14 +6,16 @@
       </h1>
     </header>
     <div class="allNr">
-      {{ this.allegationsLeft }} / {{ poll.totalAllegations }}
+      <span class="topNumber">{{ this.allegationsLeft }}</span>
+      <span class="bottomNumber">{{ "&frasl;" }}</span>
+      <span class="bottomNumber">{{ poll.totalAllegations }}</span>
     </div>
 
   <div class=text-frame>
       <p>{{ poll.randomAllegation }}</p></div>
 
       <div class="alligator-container">
-      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
+      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../img/alligatorTimer.png"  alt="countDownAlligator" />
     </div>
 
     <div class='timerDispaly' style="text-align: center;">
@@ -35,18 +37,18 @@
     </div>
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
-      <label v-for="(player, index) in randomizedPlayers" :key="index" class="pollOption">
-      <input type="radio" class="pollOptionButtons" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" />
-      {{ player }}
-      </label>
-    </div>
+    <label v-for="(player, index) in randomizedPlayers" :key="index" class="custom-radio-label">
+      <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="this.currentPlayer.answerLock" class="custom-radio-input"/>
+      <span class="custom-radio-button">{{ player }}</span>
+    </label>
+  </div>
 </template>
 
 <script>
 
 import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
-const socket = io("localhost:3000");
+const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
 name: 'playingGame',
@@ -67,11 +69,9 @@ data: function() {
   answerList: [],
   sneakDict: {},
   currentPlayer: {},
-  answerLock: false,
   allegationsLeft: 0,
   answers: [],
   selectedPlayer: null,
-  answerLock: false,
   showSneakPeakButton: true,
   };
 },
@@ -117,6 +117,11 @@ this.startCountdown();
 socket.on("init", (labels) => {
   this.uiLabels = labels
 })
+socket.on('allCheckDone', (check) => {
+  if (check) {
+    this.goToPodiumView()
+  }
+})
 },
 
 methods: {
@@ -153,10 +158,10 @@ methods: {
     },
     
     submitAnswer: function () {
-    if (!this.answerLock && this.timer !== 0 && this.selectedPlayer !== null) {
+    if (!this.currentPlayer.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
       socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
-      this.answerLock = true;
       this.currentPlayer.visible = false;
+      // socket.emit('checkAllDone', this.gameCode)
     }
   },
 
@@ -177,58 +182,69 @@ methods: {
 
 <style scoped>
 
+/* custom-radio-label {
+  display: inline-block;
+} */
+
+.custom-radio-input {
+  display: none;
+}
+
+.custom-radio-button {
+  display: flex;
+  gap: 25px;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+
+.custom-radio-input:checked + .custom-radio-button {
+  background-color: #3fbc6a;
+  color: white;
+}
+
 .head_picture{
   height: 8vh; 
   margin: 1.5vh; 
 }
 
 .allNr {
+  padding: 3px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 14px;
   font-weight: bold;
   border: 4px solid yellow;
   border-radius: 50%;
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.pollOption input[type="radio"] {
-  opacity: 0.01;
-  z-index: 1000;
+.topNumber {
+  padding: 3px
 }
-
-.pollOption input[type="radio"]:checked + label {
-  background: yellow;
-}
-
-
-.pollOption label:hover {
-  background: yellow;
-}
-
-.pollOption label {
-  border: 3px solid yellow;
-  border-radius: 20px;
-  color: #2a9451;
-  font-size: 16px;
-  padding: 10px;
-  margin: 10px;
-  background-color: #81b8ce;
+.bottomNumber {
+  padding: 3px
 }
 
 .text-frame {
   border: 4px solid green;
-  padding: 2vw; 
+  padding: 5px;
   width: 80vw; 
-  height: 25vh; 
+  font-size: 22px;
+  font-weight: bold;
+  height: 15vh; 
   resize: none;
   overflow-wrap: break-word;
   margin: 0 auto;
-  margin-top: 4vh; 
   font-family: monospace;
-  font-size: 1.5vw; 
 }
 
 .alligator-container {
@@ -262,7 +278,7 @@ margin-top: -100px;
 }
 
 .lifeline {
-width: 180px; 
+width: 150px; 
 height: 45px; 
 border-radius: 25px; 
 background-color: yellow;
@@ -270,10 +286,10 @@ border: 6px solid green;
 text-align: center;
 color: red; 
 display: inline-block;
-font-size: 20px;
+font-size: 15px;
 font-family: monospace;
 position: relative;
-top: -130px; 
+top: -40px; 
 font-weight: bold; 
 }
 
@@ -281,8 +297,8 @@ font-weight: bold;
 display: flex;
 align-items: center;
 justify-content: center;
-margin: 150px 50px 0px 50px;
-gap: 50px;
+margin: 75px 50px 0px 50px;
+gap: 150px;
 }
 
 .sneakpeak {
@@ -299,12 +315,29 @@ margin: -160px 0px 10px 0px;
 @media screen and (max-width:50em) {
   
 .text-frame {
-  font-size: 22px; 
-  height: 30vh;
+  font-size: 20px; 
+  height: 27vh;
 }
 
 img {
 max-width: 35vw;
 }}
 
+.wrap{
+margin: 25px 50px 0px 50px;
+gap: 25px;
+}
+
+.custom-radio-button {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.sneakpeak {
+border: 2px solid green;
+border-radius: 15%;
+font-size: 10px;
+padding: 8px;
+margin: -50px 15px 5px -25px;
+}
 </style>

@@ -24,7 +24,9 @@ function sockets(io, socket, data) {
   });
 
   socket.on('submitAnswer', function(gameCode, name, answer) {
-    let answerList = data.submitAnswer(gameCode, name, answer);
+    data.submitAnswer(gameCode, name, answer);
+    const player = data.lockAnswer(gameCode, name);
+    socket.emit('currentPlayer', player)
     io.to(gameCode).emit('answers', answer)
   });
 
@@ -117,6 +119,10 @@ function sockets(io, socket, data) {
     data.removePoll(gameCode);
   })
 
+  socket.on('checkAllDone', function(gameCode) {
+    const check = data.checkAllDone(gameCode)
+    io.to(gameCode).emit('allCheckDone', check)
+  })
 
 }
 
