@@ -36,7 +36,7 @@
     </div>
 
       <div class="wrappp">
-        <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
+        <button v-on:click="goBack" class="back">{{ uiLabels["back"] }} {{ isHost }}</button>
         <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
@@ -62,7 +62,8 @@ data: function () {
     buttonClicked: false,
     textAreaOne: true,
     currentPlayer: {}, 
-    showAlert: false
+    showAlert: false,
+    isHost: false
   
   }
 },
@@ -157,10 +158,11 @@ methods: {
   },
 
   goBack: function(){
-      if (this.isHost === true){
+      if (this.isHost === "true"){
+        console.log(this.isHost)
         this.$router.push('/Create/')
       }
-      else{
+      else{ //här är det som om den alltid tar else 
         this.$router.push('/JoinGameName/'+this.gameCode)
       }
     }

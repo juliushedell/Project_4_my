@@ -1,6 +1,6 @@
 <template>
   <div class="confetti-wrapper">
-  <Confetti />
+  <Confetti /> </div>
   <div class="content">
     <div class="header">
       <p>PODIUM</p>
@@ -32,7 +32,7 @@
 </div>
 
   </div>
-  </div>
+
 </template>
 
 <script>
@@ -217,7 +217,7 @@ canvas {
 .content {
   position: relative;
   z-index: 2; 
-  margin-top: -700px;
+
 }
 .quitGame{
   position: fixed;
