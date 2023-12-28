@@ -118,22 +118,12 @@ export default {
   font-family: monospace;
 }
 
-.nameField{
-  margin: 0px 10px 80px 10px;
-  text-align: center;
-}
-
 .wrap{
   grid-template-columns: auto auto;
   display:grid; 
   justify-content: center;
   gap: 500px;
   padding-top: 55px;
-}
-
-.back {
-  line-height: 45px; 
-
 }
 
 .gameNameField {
@@ -168,8 +158,6 @@ export default {
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
-  .wrapper {
-    margin-top: 200px; 
-  }
+
 }
 </style>

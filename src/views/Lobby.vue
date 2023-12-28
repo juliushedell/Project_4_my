@@ -180,6 +180,7 @@ methods: {
   margin-top: 1em;
   font-size: 40px;
   font-family: monospace;
+  color: rgb(54, 54, 54);
 }
 .field{
   border-radius: 8px;
