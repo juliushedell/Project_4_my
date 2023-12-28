@@ -161,7 +161,7 @@ methods: {
     if (!this.currentPlayer.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
       socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
       this.currentPlayer.visible = false;
-      socket.emit('checkAllDone', this.gameCode)
+      // socket.emit('checkAllDone', this.gameCode)
     }
   },
 
