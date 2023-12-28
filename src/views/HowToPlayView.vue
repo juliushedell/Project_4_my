@@ -18,10 +18,6 @@
       <p> {{ uiLabels["sneakPeak"] }}</p>
     </div>
       <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
-
-    
-  
-
 </template>
 
 <script>

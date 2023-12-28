@@ -52,6 +52,7 @@ Data.prototype.submitConfessions = function(gameCode, allegations, name, isHost)
       fiftyfifty: true,
       scoreArray: new Array(length).fill(0),
       visible: false,
+      answerLock: false,
       sneakPeak: true
     }
     poll.players.push(thePlaya)
@@ -119,6 +120,7 @@ Data.prototype.compareAnswers = function (gameCode) { // Beräknar alla spelares
       player.scoreArray[currentAllegation] = 5 + this.firstSubmitList(gameCode, player);
     }
     player.currentAnswer = "";
+    player.answerLock = false;
   }
   poll.answerList = [];
   this.summerizePoints(gameCode, poll, players);
@@ -194,6 +196,12 @@ Data.prototype.submitAnswer = function(gameCode, name, answer) { //Används inte
     poll.answerList.push(currentPlayer.name)
   }
   return poll.answerList
+}
+
+Data.prototype.lockAnswer = function(gameCode, name) {
+  let currentPlayer = this.findCurrentPlayer(gameCode, name);
+  currentPlayer.answerLock = true;
+  return currentPlayer
 }
 
 Data.prototype.firstSubmitList = function(gameCode, player) {

@@ -13,7 +13,7 @@
       <p>{{ poll.randomAllegation }}</p></div>
 
       <div class="alligator-container">
-      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../public/img/alligatorTimer.png"  alt="countDownAlligator" />
+      <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }" src="../../img/alligatorTimer.png"  alt="countDownAlligator" />
     </div>
 
     <div class='timerDispaly' style="text-align: center;">
@@ -36,7 +36,7 @@
     </div>
     <div style="text-align: center; display: flex; justify-content: center;">
     <label v-for="(player, index) in randomizedPlayers" :key="index" class="custom-radio-label">
-      <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="answerLock" class="custom-radio-input"/>
+      <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="this.currentPlayer.answerLock" class="custom-radio-input"/>
       <span class="custom-radio-button">{{ player }}</span>
     </label>
   </div>
@@ -67,11 +67,9 @@ data: function() {
   answerList: [],
   sneakDict: {},
   currentPlayer: {},
-  answerLock: false,
   allegationsLeft: 0,
   answers: [],
   selectedPlayer: null,
-  answerLock: false,
   showSneakPeakButton: true,
   };
 },
@@ -158,11 +156,10 @@ methods: {
     },
     
     submitAnswer: function () {
-    if (!this.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
-      socket.emit('checkAllDone', this.gameCode)
+    if (!this.currentPlayer.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
       socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
-      this.answerLock = true;
       this.currentPlayer.visible = false;
+      socket.emit('checkAllDone', this.gameCode)
     }
   },
 

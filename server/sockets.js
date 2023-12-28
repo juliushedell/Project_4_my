@@ -24,7 +24,9 @@ function sockets(io, socket, data) {
   });
 
   socket.on('submitAnswer', function(gameCode, name, answer) {
-    let answerList = data.submitAnswer(gameCode, name, answer);
+    data.submitAnswer(gameCode, name, answer);
+    const player = data.lockAnswer(gameCode, name);
+    socket.emit('currentPlayer', player)
     io.to(gameCode).emit('answers', answer)
   });
 

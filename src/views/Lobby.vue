@@ -66,12 +66,12 @@ data: function () {
   
   }
 },
-// updated() {
-//   if (this.$refs[this.textareaRef(0)] && this.textAreaOne) {
-//     this.$refs[this.textareaRef(0)][0].focus();
-//     this.textAreaOne = false;
-//   }
-// },
+updated() {
+  if (this.$refs[this.textareaRef(0)] && this.textAreaOne) {
+    this.$refs[this.textareaRef(0)][0].focus();
+    this.textAreaOne = false;
+  }
+},
 computed: {
   getTheme: function() {
     const theme = this.theme;
