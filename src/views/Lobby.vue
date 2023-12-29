@@ -157,7 +157,7 @@ methods: {
         console.log(this.isHost)
         this.$router.push('/Create/')
       }
-      else{ //här är det som om den alltid tar else 
+      else{ 
         this.$router.push('/JoinGameName/'+this.gameCode)
       }
     }
