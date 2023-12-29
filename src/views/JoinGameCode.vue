@@ -20,13 +20,21 @@
     <button @click="checkPollId" class="button" >{{ uiLabels["joinGame"] }}</button>
   </div>
 
-  <div class="custom-alert" v-if="this.showAlert">
+  <div class="custom-alert" v-if="this.showAlertEnter">
         <div class="alert-content">
           {{uiLabels["enterGameCode"]}} 
           <br><br>
-        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+        <button class="closeButton" @click="closeAlertEnterCode">{{uiLabels["closePopUp"]}}</button>
       </div>
-    </div>
+  </div>
+
+  <div class="custom-alert" v-if="this.showAlertDontExist">
+        <div class="alert-content">
+          {{uiLabels["enterGameCode"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlertDontExist">{{uiLabels["closePopUp"]}}</button>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -40,7 +48,8 @@ export default {
       gameCode: null,
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
-      showAlert: false
+      showAlertEnter: false,
+      showAlertDontExist: false 
     }
   },
   mounted() {
@@ -56,7 +65,7 @@ export default {
     checkPollId() {
       if (!this.gameCode) {
         // alert('Please enter a game code.');
-        this.showAlert = true; 
+        this.showAlertEnter = true; 
       } 
       else {
         socket.emit("getPoll", this.gameCode);
@@ -64,15 +73,19 @@ export default {
           this.poll = poll
           console.log(poll)
           if (poll === "undefined") {
-            alert('This game does not exist!');
+            // alert('This game does not exist!');  
+            this.showAlertDontExist = true; 
           } else {
             this.$router.push({ name: 'JoinGameName', params: { gameCode: this.gameCode } });
           }
         });
       }
     },
-    closeAlert(){
-      this.showAlert = false;
+    closeAlertEnterCode(){
+      this.showAlertEnter = false;
+    },
+    closeAlertDontExist(){
+      this.showAlertDontExist = false; 
     }
   }
 }
