@@ -20,7 +20,7 @@
     <button @click="checkPollId" class="button" >{{ uiLabels["joinGame"] }}</button>
   </div>
 
-  <div class="custom-alert" v-if="this.showAlertEnter">
+  <div class="custom-alert" v-if="this.showAlertEnterCode">
         <div class="alert-content">
           {{uiLabels["enterGameCode"]}} 
           <br><br>
@@ -48,7 +48,7 @@ export default {
       gameCode: null,
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
-      showAlertEnter: false,
+      showAlertEnterCode: false,
       showAlertDontExist: false 
     }
   },
@@ -65,7 +65,7 @@ export default {
     checkPollId() {
       if (!this.gameCode) {
         // alert('Please enter a game code.');
-        this.showAlertEnter = true; 
+        this.showAlertEnterCode = true; 
       } 
       else {
         socket.emit("getPoll", this.gameCode);
@@ -82,7 +82,7 @@ export default {
       }
     },
     closeAlertEnterCode(){
-      this.showAlertEnter = false;
+      this.showAlertEnterCode = false;
     },
     closeAlertDontExist(){
       this.showAlertDontExist = false; 
