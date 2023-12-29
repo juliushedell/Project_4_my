@@ -122,7 +122,6 @@ methods: {
   checkAllegationLength() {
     for (let i = 0; i < this.allegations.length; i++) {
       if (this.allegations[i].length === 145) {
-        // alert('Too much information, nobody cares!');
         this.showAlert = true;
       }
     }
@@ -138,21 +137,17 @@ methods: {
   submitConfessions: function() {
     this.buttonClicked = true;
 
-    // Flag to check if any input field is empty
     let isEmptyField = false;
 
     for (let i = 0; i < this.poll.numberAllegations; i++) {
-      // Call isInputEmpty method to check if the input is empty
       if (this.isInputEmpty(i)) {
         isEmptyField = true;
-        break; // exit the loop early if an empty allegation is found
+        break; 
       }
     }
-    // If any field is empty, do not proceed
     if (isEmptyField) {
       return;
     }
-    // Proceed with form submission
     socket.emit("submitConfessions", { gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost });
     this.$router.push('/Lobbytwo/' + this.gameCode + '/' + this.name + '/' + this.isHost);
   },
