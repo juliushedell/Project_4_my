@@ -69,5 +69,6 @@
 
 	"hostEndedGame": "The host has ended the game", 
 
-	"enterGameCode": "Please enter a gamecode"
+	"enterGameCode": "Please enter a gamecode",
+	"notAGame": "This game doesn't exist"
 }

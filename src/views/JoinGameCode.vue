@@ -30,7 +30,7 @@
 
   <div class="custom-alert" v-if="this.showAlertDontExist">
         <div class="alert-content">
-          {{uiLabels["enterGameCode"]}} 
+          {{uiLabels["notAGame"]}} 
           <br><br>
         <button class="closeButton" @click="closeAlertDontExist">{{uiLabels["closePopUp"]}}</button>
       </div>
@@ -49,7 +49,7 @@ export default {
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
       showAlertEnterCode: false,
-      showAlertDontExist: false 
+      showAlertDontExist: true 
     }
   },
   mounted() {
