@@ -49,7 +49,7 @@ export default {
       uiLabels: {},
       lang: localStorage.getItem("lang") || "en",
       showAlertEnterCode: false,
-      showAlertDontExist: true 
+      showAlertDontExist: false  
     }
   },
   mounted() {
@@ -64,7 +64,6 @@ export default {
   methods: {
     checkPollId() {
       if (!this.gameCode) {
-        // alert('Please enter a game code.');
         this.showAlertEnterCode = true; 
       } 
       else {
@@ -73,7 +72,6 @@ export default {
           this.poll = poll
           console.log(poll)
           if (poll === "undefined") {
-            // alert('This game does not exist!');  
             this.showAlertDontExist = true; 
           } else {
             this.$router.push({ name: 'JoinGameName', params: { gameCode: this.gameCode } });
