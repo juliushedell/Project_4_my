@@ -287,7 +287,7 @@
   height:50px;
 }
 .invalid-input {
-  border: 3px solid red; /* Change red to your desired color */
+  border: 3px solid red; 
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {

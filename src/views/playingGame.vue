@@ -182,9 +182,9 @@ methods: {
 
 <style scoped>
 
-/* custom-radio-label {
-  display: inline-block;
-} */
+ .custom-radio label {
+  font-size: 30px;
+} 
 
 .custom-radio-input {
   display: none;

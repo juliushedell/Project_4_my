@@ -58,10 +58,15 @@ function sockets(io, socket, data) {
     socket.emit("recieveCode", gameCode);
   });
 
+  socket.on('checkGameCode', function (gameCode) {
+    socket.emit('isGameCodeOK', data.checkGameCode(gameCode));
+  });
+
   socket.on('checkName', function (d) {
     const checkedName = data.checkName(d.gameCode, d.name);
     socket.emit('nameChecked', checkedName);
   });
+
   socket.on('startPoll', function (gameCode) {
     io.to(gameCode).emit('startGame');
   });

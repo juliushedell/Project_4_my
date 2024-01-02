@@ -51,24 +51,22 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-  },
-  methods: {
-    checkPollId() {
-      if (!this.gameCode) {
-        // alert('Please enter a game code.');
-        this.showAlert = true; 
-      } 
-      else {
-        socket.emit("getPoll", this.gameCode);
-        socket.on("pullPoll", (poll) => {
-          this.poll = poll
-          console.log(poll)
-          if (poll === "undefined") {
+    socket.on("isGameCodeOK", (gameExists) => {
+          if (!gameExists) {
             alert('This game does not exist!');
           } else {
             this.$router.push({ name: 'JoinGameName', params: { gameCode: this.gameCode } });
           }
         });
+  },
+  methods: {
+    checkPollId() {
+      if (!this.gameCode) {
+        this.showAlert = true; 
+      } 
+      else {
+        socket.emit("checkGameCode", this.gameCode);
+
       }
     },
     closeAlert(){
