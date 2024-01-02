@@ -36,7 +36,7 @@
     </div>
 
       <div class="wrappp">
-        <button v-on:click="goBack" class="back">{{ uiLabels["back"] }} {{ isHost }}</button>
+        <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
         <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
@@ -157,7 +157,7 @@ methods: {
         console.log(this.isHost)
         this.$router.push('/Create/')
       }
-      else{ //här är det som om den alltid tar else 
+      else{ 
         this.$router.push('/JoinGameName/'+this.gameCode)
       }
     }
