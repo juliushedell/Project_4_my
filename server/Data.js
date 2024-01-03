@@ -32,6 +32,7 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     poll.correctAnswer = "";
     poll.totalAllegations = 0;
     poll.lifeLine = lifeLine;
+    poll.locked = false;
     poll.answerList = [];
     poll.nameList = [name];
     poll.sneakDict = {};
@@ -163,6 +164,9 @@ Data.prototype.scoreBoard = function (gameCode){ //Skapar 3 arrays med de spelar
 
 Data.prototype.checkGameCode = function(gameCode) {
   if (typeof this.polls[gameCode]==="undefined") {
+    return false;
+  }
+  else if (this.polls[gameCode].locked) {
     return false;
   }
   return true;
@@ -337,6 +341,11 @@ Data.prototype.removePoll = function(gameCode) {
   if (typeof this.polls[gameCode] !== "undefined") {
     delete this.polls[gameCode];
   }
+}
+
+Data.prototype.lockGame = function(gameCode) {
+  const poll = this.polls[gameCode];
+  poll.locked = true;
 }
 
 Data.prototype.checkAllDone = function(gameCode) {
