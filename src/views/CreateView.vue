@@ -18,7 +18,7 @@
           {{uiLabels["tooLongName"]}} 
           <br><br>
           <a href="https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html">
-            https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html
+            www.skatteverket.se
           </a>
           <br><br>
         <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
@@ -285,6 +285,14 @@
 .button {
   width: 150px;
   height:50px;
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
 }
 .invalid-input {
   border: 3px solid red; 
@@ -326,6 +334,9 @@
   .button {
   width: 170px;
 }
+.custom-alert {
+    top: 13%;
+  }
 }
 
 </style>

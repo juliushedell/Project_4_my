@@ -22,7 +22,7 @@
           {{uiLabels["tooLongName"]}} 
           <br><br>
           <a href="https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html">
-            https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html
+            www.skatteverket.se
           </a>
           <br><br>
         <button class="closeButton" @click="closeAlertTooLong">{{uiLabels["closePopUp"]}}</button>
@@ -138,6 +138,17 @@ export default {
   font-family: monospace;
   padding: 10px;
   margin: 10px;
+}
+
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
 }
   
 

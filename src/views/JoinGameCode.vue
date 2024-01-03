@@ -113,7 +113,7 @@ export default {
   padding-top: 55px;
 }
 
-.back{
+/* .back{
   justify-self: start;
   margin-left: 25vw;
 }
@@ -123,6 +123,17 @@ export default {
   justify-self:end;
   width: 150px; 
   height: 50px;  
+} */
+
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
 }
 
 #gameCode::-webkit-outer-spin-button,
@@ -155,7 +166,7 @@ export default {
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
-    margin-top: 200px; 
+    margin-top: 300px; 
   }
 }
 

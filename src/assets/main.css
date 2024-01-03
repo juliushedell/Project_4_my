@@ -52,7 +52,10 @@ body {
   justify-content: center;
   align-items: center;  
   font-size: 18px;
-  padding: 1.25vw; 
+  padding: 1.25vw;
+  /* position: absolute;
+  right: 50px;
+  bottom: 50px;  */
 }
 
 .button:hover {
@@ -75,6 +78,9 @@ body {
   justify-content: center;
   align-items: center; 
   font-size: 18px; 
+  /* position: absolute;
+  left: 50px;
+  bottom: 50px; */
 }
 
 .back:hover {
@@ -84,9 +90,9 @@ body {
 
 .custom-alert {
   position: fixed;
-  top: 35%;
+  top: 30%;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%); 
   background-color: whitesmoke; 
   border: 3px solid red;
   border-radius: 20px;
@@ -120,6 +126,23 @@ body {
 
   h1 {
     font-size: 24px;
+  }
+  .custom-alert {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%); 
+    width: 250px;
+    background-color: whitesmoke; 
+    border: 3px solid red;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
+    z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
+    text-align: center;
+    font-weight: bold;
+    color: #234e5f; 
+    font-size: large;
   }
 }
 

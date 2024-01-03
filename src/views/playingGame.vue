@@ -138,15 +138,17 @@ methods: {
     }, 1000);
   },
   implementFiftyFifty: function() {
-    let index = this.playerList.indexOf(this.poll.correctAnswer);
-    if (index === 0 || index === 1){
-      this.playerList.splice(2);
+    if (!this.currentPlayer.answerLock) {
+      let index = this.playerList.indexOf(this.poll.correctAnswer);
+      if (index === 0 || index === 1){
+        this.playerList.splice(2);
+      }
+      else {
+        this.playerList.splice(0, this.playerList.length-2);
+      }
+      this.currentPlayer.fiftyfifty = false; 
+      socket.emit('changeFiftyFifty', this.gameCode, this.name)
     }
-    else {
-      this.playerList.splice(0, this.playerList.length-2);
-    }
-    this.currentPlayer.fiftyfifty = false; 
-    socket.emit('changeFiftyFifty', this.gameCode, this.name)
   },
   goToPodiumView() {
     this.currentPlayer.visible = false;
@@ -165,7 +167,7 @@ methods: {
     }
   },
   sneakPeak: function () {
-    if (this.currentPlayer.sneakPeak) {
+    if (this.currentPlayer.sneakPeak && !this.currentPlayer.answerLock) {
       this.currentPlayer.visible = true;
       socket.emit('usedSneakPeak', this.gameCode, this.name);
       socket.emit('updateSneakDict', this.gameCode, this.playerList)
@@ -294,6 +296,10 @@ font-family: monospace;
 position: relative;
 top: -40px; 
 font-weight: bold; 
+}
+
+.lifeline:hover {
+  cursor: pointer;
 }
 
 .wrap{

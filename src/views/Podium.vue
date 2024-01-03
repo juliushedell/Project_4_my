@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="yourpoints">
-      Your current points: {{ currentPlayer.points }}
+      {{ uiLabels['yourCurrentPoints'] }} {{ currentPlayer.points }}
     </div>
     <div class="wrapper">
       <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
@@ -169,13 +169,6 @@ li {
   font-family: monospace
 }
 
-/* .button{
-    position: fixed;
-    bottom: 4vh; 
-    right: 3vw;
-    height: 60px; 
-} */
-
 .placement {
   margin-bottom: 20px;
   display: flex;
@@ -193,6 +186,7 @@ li {
   text-align: center;
   line-height: 50px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
+  font-weight: bold;
 }
 
 .silver {
@@ -204,6 +198,7 @@ li {
   text-align: center;
   line-height: 50px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
+  font-weight: bold;
 }
 
 .bronze {
@@ -215,14 +210,17 @@ li {
   text-align: center;
   line-height: 50px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
+  font-weight: bold;
 }
 
 #points {
   color: green;
+  font-weight: bold;
 }
 
 #name {
   margin-bottom: 5px; /* Adjust spacing between names */
+  font-weight: bold;
 }
 
 .wrapper {
@@ -239,6 +237,17 @@ li {
   font-size: 16px;
   display:grid; 
   justify-content: center;
+}
+
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
 }
 
 
@@ -270,7 +279,6 @@ li {
 }
 
 #name {
-  color:  green;
   margin-bottom: 5px; /* Adjust spacing between names */
   font-size: 18px;
   font-family: monospace;
