@@ -146,7 +146,6 @@ methods: {
     this.currentPlayer.fiftyfifty = false; 
     socket.emit('changeFiftyFifty', this.gameCode, this.name)
   },
-
   goToPodiumView() {
     this.currentPlayer.visible = false;
     if (this.poll.counter > 0) {
