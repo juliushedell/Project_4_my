@@ -146,7 +146,6 @@ methods: {
     this.currentPlayer.fiftyfifty = false; 
     socket.emit('changeFiftyFifty', this.gameCode, this.name)
   },
-
   goToPodiumView() {
     this.currentPlayer.visible = false;
     if (this.poll.counter > 0) {
@@ -156,7 +155,6 @@ methods: {
       this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
     }
     },
-    
     submitAnswer: function () {
     if (!this.currentPlayer.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
       socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
@@ -164,7 +162,6 @@ methods: {
       // socket.emit('checkAllDone', this.gameCode)
     }
   },
-
   sneakPeak: function () {
     if (this.currentPlayer.sneakPeak) {
       this.currentPlayer.visible = true;
