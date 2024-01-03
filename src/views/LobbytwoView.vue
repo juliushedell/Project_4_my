@@ -104,6 +104,7 @@ methods: {
   },
 
   startGame: function() {
+    socket.emit('lockGame', this.gameCode)
     socket.emit('countAllegations', this.gameCode)
     socket.emit("startPoll", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)

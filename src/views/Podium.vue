@@ -121,7 +121,7 @@ methods: {
       socket.emit('endPoll', this.gameCode)
       this.$router.push('/')
     }
-    else {
+    else { //DENNA DEL ONÖDIG?? 
       this.$router.push('/')
     }
   },
