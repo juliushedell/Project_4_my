@@ -230,6 +230,9 @@ canvas {
 
 .button {
   height: 20px;
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
 }
 
 #name{

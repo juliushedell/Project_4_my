@@ -246,6 +246,17 @@ methods: {
   border: 3px solid red;
 }
 
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+}
+
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {

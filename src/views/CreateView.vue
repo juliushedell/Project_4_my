@@ -285,6 +285,14 @@
 .button {
   width: 150px;
   height:50px;
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
 }
 .invalid-input {
   border: 3px solid red; 

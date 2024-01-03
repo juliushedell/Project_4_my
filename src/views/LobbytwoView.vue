@@ -203,6 +203,16 @@ methods: {
   justify-content: center;
   align-items: center;
 }
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
 #gameCode {

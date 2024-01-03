@@ -139,6 +139,17 @@ export default {
   padding: 10px;
   margin: 10px;
 }
+
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+}
   
 
 @media screen and (max-width:50em) {
