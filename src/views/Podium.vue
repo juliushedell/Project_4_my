@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="yourpoints">
-      Your current points: {{ currentPlayer.points }}
+      {{ uiLabels['yourCurrentPoints'] }} {{ currentPlayer.points }}
     </div>
     <div class="wrapper">
       <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
@@ -168,13 +168,6 @@ li {
   font-size: 1.5em;
   font-family: monospace
 }
-
-/* .button{
-    position: fixed;
-    bottom: 4vh; 
-    right: 3vw;
-    height: 60px; 
-} */
 
 .placement {
   margin-bottom: 20px;

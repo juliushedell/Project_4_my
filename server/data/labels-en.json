@@ -60,7 +60,8 @@
 	"theWinner": "The winner is: ",
 	"opponentAnswer": "Your opponents answer: ",
 	
-	"points": "Points:", 
+	"points": "Points:",
+	"yourCurrentPoints": "Your current points: ",
 	"endGame": "End game",
 
 	"closePopUp": "Close",

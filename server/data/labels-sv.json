@@ -58,7 +58,8 @@
 	"theWinner": "Vinnaren är: ",
 	"opponentAnswer": "Dina motspelares svar: ",
 
-	"points": "Poäng:", 
+	"points": "Poäng:",
+	"yourCurrentPoints": "Dina nuvarande poäng: ",
 	"endGame": "Avsluta spel",
 
 	"closePopUp": "Stäng",
