@@ -192,15 +192,18 @@ methods: {
   padding: 15px;
   font-size: 25px;
   font-weight: bold;
+  font-family: monospace;
   border: 2px solid black;
   border-radius: 50px;
   cursor: pointer;
+  width: 220px;
+  justify-content: center;
   margin-bottom: 25px;
+  border: 0.1875em solid #2a9451;
 }
 
 .custom-radio-input:checked + .custom-radio-button {
   background-color: #3fbc6a;
-  color: white;
 }
 
 .head_picture{
@@ -308,17 +311,6 @@ margin: -160px 0px 10px 0px;
 }
 
 
-@media screen and (max-width:50em) {
-  
-.text-frame {
-  font-size: 20px; 
-  height: 27vh;
-}
-
-img {
-max-width: 35vw;
-}}
-
 .wrap{
 margin: 25px 50px 0px 50px;
 gap: 25px;
@@ -333,6 +325,7 @@ margin: -50px 15px 5px -25px;
 }
 
 .playerLists {
+  color: yellow;
   display: flex;
   flex-direction: row; 
   justify-content: center;
@@ -341,4 +334,17 @@ margin: -50px 15px 5px -25px;
   text-align: center;
   gap: 100px;
 }
+
+
+@media screen and (max-width:50em) {
+  
+.text-frame {
+  font-size: 20px; 
+  height: 27vh;
+}
+
+img {
+max-width: 35vw;
+}}
+
 </style>
