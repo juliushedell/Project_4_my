@@ -172,8 +172,9 @@ methods: {
   align-items: center;
   width:min-content;
   height: 50px; 
+  width: 220px;
   border-radius: 40px; 
-  border: 3px solid rgb(54, 54, 54);
+  border: 0.1875em solid #2a9451;
   padding: 10px;
   margin:0px auto;
   color: rgb(54, 54, 54);
@@ -182,7 +183,7 @@ methods: {
   font-weight: bold;
   font-size: 25px;
   font-family: monospace;
-  width: 220px;
+  color: yellow;
 }
 
 #gameCode {
