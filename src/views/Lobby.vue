@@ -1,4 +1,5 @@
 <template>
+ 
     <header> 
         <h1>
             Allegations
@@ -40,6 +41,7 @@
         <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
       </div>
       <br>
+
 </template>
 
 <script>
@@ -256,7 +258,6 @@ methods: {
   left: 50px;
   bottom: 50px;
 }
-
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {
