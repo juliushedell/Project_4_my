@@ -18,9 +18,9 @@
     <div class="center">
     <div class="wrap">
       <div class="wrap1" style="grid-area: a;">
+        <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
       </div>
       <div class="wrap2" style="grid-area: b;">
-        <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
       </div>
       </div>
@@ -104,6 +104,7 @@ methods: {
   },
 
   startGame: function() {
+    socket.emit('lockGame', this.gameCode)
     socket.emit('countAllegations', this.gameCode)
     socket.emit("startPoll", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)
@@ -138,16 +139,17 @@ methods: {
 }
 
 .center {
-  display: flex;
+  grid-template-columns: auto auto;
+  display:grid; 
   justify-content: center;
 }
 
 .wrap {
-  justify-content: flex-start;
   padding-top: 50px;
   display: grid;
   grid-template-areas: 'a b';
   width: 440px;
+  place-items: center;
 }
 
 .wrap1 {
@@ -210,11 +212,11 @@ methods: {
 }
 
 .wrap {
-  justify-content: flex-start;
-  padding-top: 50px;
+  padding-top: 300px;
   display: grid;
   grid-template-areas: 'a b';
-  width: 80vw;
+  width: 90vw;
+  place-items: center;
 }
 
 .wrap1 {
