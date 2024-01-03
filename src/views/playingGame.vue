@@ -36,8 +36,8 @@
       <button v-if="this.currentPlayer.fiftyfifty && this.poll.lifeLine" v-on:click="implementFiftyFifty" class="lifeline"> 50/50 </button>
     </div>
     </div>
-    <div style="text-align: center; display: flex; justify-content: center;">
-    <label v-for="(player, index) in randomizedPlayers" :key="index" class="custom-radio-label">
+    <div class = "playerLists">
+    <label v-for="(player, index) in randomizedPlayers" :key="index">
       <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="this.currentPlayer.answerLock" class="custom-radio-input"/>
       <span class="custom-radio-button">{{ player }}</span>
     </label>
@@ -179,10 +179,6 @@ methods: {
 
 <style scoped>
 
- .custom-radio label {
-  font-size: 30px;
-} 
-
 .custom-radio-input {
   display: none;
 }
@@ -191,7 +187,7 @@ methods: {
   display: flex;
   gap: 25px;
   padding: 15px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   border: 2px solid black;
   border-radius: 50px;
@@ -325,16 +321,21 @@ margin: 25px 50px 0px 50px;
 gap: 25px;
 }
 
-.custom-radio-button {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
 .sneakpeak {
 border: 2px solid green;
 border-radius: 15%;
 font-size: 10px;
 padding: 8px;
 margin: -50px 15px 5px -25px;
+}
+
+.playerLists {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; 
+  text-align: center;
+  gap: 100px;
 }
 </style>
