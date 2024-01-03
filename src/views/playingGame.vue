@@ -291,6 +291,10 @@ top: -40px;
 font-weight: bold; 
 }
 
+.lifeline:hover {
+  cursor: pointer;
+}
+
 .wrap{
 display: flex;
 align-items: center;
