@@ -37,10 +37,12 @@
     </div>
     </div>
     <div class = "playerLists">
-    <label v-for="(player, index) in randomizedPlayers" :key="index">
+      <div class="grid-container">
+    <label v-for="(player, index) in randomizedPlayers" :key="index" class="grid-item">
       <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="this.currentPlayer.answerLock" class="custom-radio-input"/>
       <span class="custom-radio-button">{{ player }}</span>
     </label>
+    </div>
   </div>
 </template>
 
@@ -178,6 +180,11 @@ methods: {
 </script>
 
 <style scoped>
+
+.grid-container {
+  display: flex;
+  gap: 30px;
+}
 
 .custom-radio-input {
   display: none;
@@ -329,19 +336,46 @@ margin: -50px 15px 5px -25px;
   align-items: center;
   flex-wrap: wrap; 
   text-align: center;
-  gap: 100px;
+  gap: 5.5vw;
 }
 
 
-@media screen and (max-width:50em) {
-  
+@media screen and (max-width:74em) {
 .text-frame {
   font-size: 20px; 
-  height: 27vh;
+  height: 20vh;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px; 
+}
+}
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+
 img {
-max-width: 35vw;
-}}
+max-width: 30vw;
+}
+
+.custom-radio-button {
+  font-size: 16px;
+  width: 125px;
+ 
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px; 
+}
+
+.grid-item{
+  margin-bottom: -20px;
+}
+
+
+}
 
 </style>
