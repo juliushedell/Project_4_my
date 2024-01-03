@@ -256,5 +256,8 @@ methods: {
   width: 350px;
   height: 70px;
 }
+.custom-alert {
+    top: 35%;
+  }
 }
 </style>
