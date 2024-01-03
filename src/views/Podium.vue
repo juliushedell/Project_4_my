@@ -241,6 +241,17 @@ li {
   justify-content: center;
 }
 
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+}
+
 
 @media screen and (max-width:50em) {
   .podiumFrame{

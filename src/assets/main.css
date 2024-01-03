@@ -52,7 +52,10 @@ body {
   justify-content: center;
   align-items: center;  
   font-size: 18px;
-  padding: 1.25vw; 
+  padding: 1.25vw;
+  /* position: absolute;
+  right: 50px;
+  bottom: 50px;  */
 }
 
 .button:hover {
@@ -75,6 +78,9 @@ body {
   justify-content: center;
   align-items: center; 
   font-size: 18px; 
+  /* position: absolute;
+  left: 50px;
+  bottom: 50px; */
 }
 
 .back:hover {
