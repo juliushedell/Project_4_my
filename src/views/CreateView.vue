@@ -300,7 +300,7 @@
 }
 
 .allContent{
-  height: 100%;
+  position: relative;
 }
 .back{
   position: sticky;
