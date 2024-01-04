@@ -37,24 +37,22 @@
     </div>
     </div>
     <div class = "playerLists">
-    <label v-for="(player, index) in randomizedPlayers" :key="index">
+      <div class="grid-container">
+    <label v-for="(player, index) in randomizedPlayers" :key="index" class="grid-item">
       <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer" :disabled="this.currentPlayer.answerLock" class="custom-radio-input"/>
       <span class="custom-radio-button">{{ player }}</span>
     </label>
+    </div>
   </div>
 </template>
 
 <script>
-
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
 name: 'playingGame',
-components: {
-ResponsiveNav
-},
+
 data: function() {
   return {
   timer: 15, 
@@ -136,17 +134,18 @@ methods: {
     }, 1000);
   },
   implementFiftyFifty: function() {
-    let index = this.playerList.indexOf(this.poll.correctAnswer);
-    if (index === 0 || index === 1){
-      this.playerList.splice(2);
+    if (!this.currentPlayer.answerLock) {
+      let index = this.playerList.indexOf(this.poll.correctAnswer);
+      if (index === 0 || index === 1){
+        this.playerList.splice(2);
+      }
+      else {
+        this.playerList.splice(0, this.playerList.length-2);
+      }
+      this.currentPlayer.fiftyfifty = false; 
+      socket.emit('changeFiftyFifty', this.gameCode, this.name)
     }
-    else {
-      this.playerList.splice(0, this.playerList.length-2);
-    }
-    this.currentPlayer.fiftyfifty = false; 
-    socket.emit('changeFiftyFifty', this.gameCode, this.name)
   },
-
   goToPodiumView() {
     this.currentPlayer.visible = false;
     if (this.poll.counter > 0) {
@@ -156,7 +155,6 @@ methods: {
       this.$router.push('/Final/' + this.gameCode +'/' + this.name + '/' + this.isHost);
     }
     },
-    
     submitAnswer: function () {
     if (!this.currentPlayer.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
       socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
@@ -164,9 +162,8 @@ methods: {
       // socket.emit('checkAllDone', this.gameCode)
     }
   },
-
   sneakPeak: function () {
-    if (this.currentPlayer.sneakPeak) {
+    if (this.currentPlayer.sneakPeak && !this.currentPlayer.answerLock) {
       this.currentPlayer.visible = true;
       socket.emit('usedSneakPeak', this.gameCode, this.name);
       socket.emit('updateSneakDict', this.gameCode, this.playerList)
@@ -182,6 +179,11 @@ methods: {
 
 <style scoped>
 
+.grid-container {
+  display: flex;
+  gap: 30px;
+}
+
 .custom-radio-input {
   display: none;
 }
@@ -192,15 +194,18 @@ methods: {
   padding: 15px;
   font-size: 25px;
   font-weight: bold;
+  font-family: monospace;
   border: 2px solid black;
   border-radius: 50px;
   cursor: pointer;
+  width: 220px;
+  justify-content: center;
   margin-bottom: 25px;
+  border: 0.1875em solid #2a9451;
 }
 
 .custom-radio-input:checked + .custom-radio-button {
   background-color: #3fbc6a;
-  color: white;
 }
 
 .head_picture{
@@ -289,56 +294,76 @@ top: -40px;
 font-weight: bold; 
 }
 
+.lifeline:hover {
+  cursor: pointer;
+}
+
 .wrap{
 display: flex;
 align-items: center;
 justify-content: center;
-margin: 75px 50px 0px 50px;
-gap: 150px;
+margin: 45px 50px 0px 50px;
+gap: 25px;
 }
 
 .sneakpeak {
 color: green;
 border: 4px solid green;
-border-radius: 15%;
 font-weight: bold;
-font-size: 20px;
-padding: 15px;
-margin: -160px 0px 10px 0px;
-}
-
-
-@media screen and (max-width:50em) {
-  
-.text-frame {
-  font-size: 20px; 
-  height: 27vh;
-}
-
-img {
-max-width: 35vw;
-}}
-
-.wrap{
-margin: 25px 50px 0px 50px;
-gap: 25px;
-}
-
-.sneakpeak {
-border: 2px solid green;
-border-radius: 15%;
 font-size: 10px;
 padding: 8px;
-margin: -50px 15px 5px -25px;
+margin: -30px 5px 10px 0px;
+box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .playerLists {
+  color: yellow;
   display: flex;
   flex-direction: row; 
   justify-content: center;
   align-items: center;
   flex-wrap: wrap; 
   text-align: center;
-  gap: 100px;
+  gap: 5.5vw;
 }
+
+
+@media screen and (max-width:74em) {
+.text-frame {
+  font-size: 20px; 
+  height: 20vh;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px; 
+}
+}
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+
+img {
+max-width: 30vw;
+}
+
+.custom-radio-button {
+  font-size: 16px;
+  width: 125px;
+ 
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px; 
+}
+
+.grid-item{
+  margin-bottom: -20px;
+}
+
+
+}
+
 </style>

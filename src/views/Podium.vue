@@ -24,10 +24,11 @@
         </div>
     </div>
     <div class="yourpoints">
-      Your current points: {{ currentPlayer.points }}
+      {{ uiLabels['yourCurrentPoints'] }} {{ currentPlayer.points }}
     </div>
     <div class="wrapper">
-      <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
+      <button v-if="this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["endGame"] }} </button>
+      <button v-if="!this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["leaveGame"] }} </button>
       <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
     </div>
     <div class="custom-alert" v-if="this.showAlert">
@@ -40,15 +41,12 @@
 </template>
 
 <script>
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
 name: 'LobbytwoView',
-components: {
-  ResponsiveNav
-},
+
 data: function () {
   return {
     uiLabels: {},
@@ -121,7 +119,7 @@ methods: {
       socket.emit('endPoll', this.gameCode)
       this.$router.push('/')
     }
-    else {
+    else { //DENNA DEL ONÖDIG?? 
       this.$router.push('/')
     }
   },
@@ -169,13 +167,6 @@ li {
   font-family: monospace
 }
 
-/* .button{
-    position: fixed;
-    bottom: 4vh; 
-    right: 3vw;
-    height: 60px; 
-} */
-
 .placement {
   margin-bottom: 20px;
   display: flex;
@@ -193,6 +184,7 @@ li {
   text-align: center;
   line-height: 50px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
+  font-weight: bold;
 }
 
 .silver {
@@ -204,6 +196,7 @@ li {
   text-align: center;
   line-height: 50px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
+  font-weight: bold;
 }
 
 .bronze {
@@ -215,14 +208,17 @@ li {
   text-align: center;
   line-height: 50px; /* Vertically center content within the circle */
   margin-bottom: 5px; /* Adjust spacing between elements */
+  font-weight: bold;
 }
 
 #points {
   color: green;
+  font-weight: bold;
 }
 
 #name {
   margin-bottom: 5px; /* Adjust spacing between names */
+  font-weight: bold;
 }
 
 .wrapper {
@@ -239,6 +235,17 @@ li {
   font-size: 16px;
   display:grid; 
   justify-content: center;
+}
+
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
 }
 
 
@@ -270,7 +277,6 @@ li {
 }
 
 #name {
-  color:  green;
   margin-bottom: 5px; /* Adjust spacing between names */
   font-size: 18px;
   font-family: monospace;

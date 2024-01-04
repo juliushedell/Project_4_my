@@ -18,9 +18,10 @@
     <div class="center">
     <div class="wrap">
       <div class="wrap1" style="grid-area: a;">
+        <button v-if="this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["endGame"] }} </button>
+        <button v-if="!this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["leaveGame"] }} </button>
       </div>
       <div class="wrap2" style="grid-area: b;">
-        <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
       </div>
       </div>
@@ -36,15 +37,12 @@
 </template>
 <script>
 
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
 name: 'LobbytwoView',
-components: {
-  ResponsiveNav
-},
+
 data: function () {
   return {
     uiLabels: {},
@@ -85,7 +83,6 @@ created: function () {
     if (!this.isHost) {
       this.showAlert = true; 
     }
-      // this.$router.push('/')
   })
 },
 methods: {
@@ -104,6 +101,7 @@ methods: {
   },
 
   startGame: function() {
+    socket.emit('lockGame', this.gameCode)
     socket.emit('countAllegations', this.gameCode)
     socket.emit("startPoll", this.gameCode)
     socket.emit('randomAllegation', this.gameCode)
@@ -122,7 +120,7 @@ methods: {
   closeAlert(){
       this.showAlert = false;
       this.$router.push('/')
-    }
+  }
 }}
 </script>
 
@@ -137,25 +135,18 @@ methods: {
   gap: 20px;
 }
 
-/* .wrap{
-  grid-template-columns:auto auto;
-  display:grid; 
-  justify-content: space-between;
-  margin: 20px;
-  justify-content: space-evenly;
-  gap: 20px; 
-} */
 .center {
-  display: flex;
+  grid-template-columns: auto auto;
+  display:grid; 
   justify-content: center;
 }
 
 .wrap {
-  justify-content: flex-start;
   padding-top: 50px;
   display: grid;
   grid-template-areas: 'a b';
   width: 440px;
+  place-items: center;
 }
 
 .wrap1 {
@@ -178,8 +169,9 @@ methods: {
   align-items: center;
   width:min-content;
   height: 50px; 
+  width: 220px;
   border-radius: 40px; 
-  border: 3px solid rgb(54, 54, 54);
+  border: 0.1875em solid #2a9451;
   padding: 10px;
   margin:0px auto;
   color: rgb(54, 54, 54);
@@ -188,7 +180,7 @@ methods: {
   font-weight: bold;
   font-size: 25px;
   font-family: monospace;
-  width: 220px;
+  color: yellow;
 }
 
 #gameCode {
@@ -208,6 +200,16 @@ methods: {
   justify-content: center;
   align-items: center;
 }
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
 #gameCode {
@@ -217,11 +219,11 @@ methods: {
 }
 
 .wrap {
-  justify-content: flex-start;
-  padding-top: 50px;
+  padding-top: 300px;
   display: grid;
   grid-template-areas: 'a b';
-  width: 80vw;
+  width: 90vw;
+  place-items: center;
 }
 
 .wrap1 {

@@ -60,7 +60,8 @@
 	"theWinner": "The winner is: ",
 	"opponentAnswer": "Your opponents answer: ",
 	
-	"points": "Points:", 
+	"points": "Points:",
+	"yourCurrentPoints": "Your current points: ",
 	"endGame": "End game",
 
 	"closePopUp": "Close",
@@ -70,5 +71,7 @@
 	"hostEndedGame": "The host has ended the game", 
 
 	"enterGameCode": "Please enter a gamecode",
-	"notAGame": "This game doesn't exist"
+	"notAGame": "This game doesn't exist",
+
+	"leaveGame": "Leave Game"
 }

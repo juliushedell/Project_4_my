@@ -1,49 +1,51 @@
 <template>
-    <header> 
-        <h1>
-            Allegations
-            <img src="/img/Head_picture.png" class="head_picture">
-        </h1>
-    </header>
-    <h2 id="gameCode">
-      {{ this.gameCode }}
-    </h2>
-    <h3 id="theme">
-      {{ uiLabels["theme"] }}
-      {{ getTheme }}
-    </h3>
-    
-      <!-- skapar fields till confessions -->
-      <div id="parent-container">
-      <form id="confessionsform">
-        <div>
-          <div v-for="i in poll.numberAllegations" :key="i">
-            <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
-            <textarea :ref="textareaRef(i - 1)" type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" @keyup.enter="submitConfessions" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
-              </textarea>
-            <br><br>
-          </div>
+  <header> 
+    <h1>
+      Allegations
+      <img src="/img/Head_picture.png" class="head_picture">
+    </h1>
+  </header>
+  <h2 id="gameCode">
+    {{ this.gameCode }}
+  </h2>
+  <h3 id="theme">
+    {{ uiLabels["theme"] }}
+    {{ getTheme }}
+  </h3>
+  <div id="parent-container">
+    <form id="confessionsform">
+      <div>
+        <div v-for="i in poll.numberAllegations" :key="i">
+          <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
+          <textarea :ref="textareaRef(i - 1)" type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" @keyup.enter="submitConfessions" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
+          </textarea>
+          <br><br> <!--FULT? -->
         </div>
-      </form>
-    </div>
-
-    <div class="custom-alert" v-if="this.showAlert">
-        <div class="alert-content">
-          {{uiLabels["tooMuchInfo"]}} 
-          <br><br>
-        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
       </div>
+    </form>
+  </div>
+  <div class="custom-alert" v-if="this.showAlert">
+    <div class="alert-content">
+      {{uiLabels["tooMuchInfo"]}} 
+      <br><br>
+      <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
     </div>
-
-      <div class="wrappp">
-        <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
-        <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
-      </div>
-      <br>
+  </div>
+  <div class="custom-alert" v-if="this.showAlertEnd">
+    <div class="alert-content">
+      {{uiLabels["hostEndedGame"]}} 
+      <br><br>
+      <button class="closeButton" @click="closeAlertEnd">{{uiLabels["closePopUp"]}}</button>
+    </div>
+  </div>
+  <div class="wrappp">
+    <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
+    <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
+  </div>
+  <br>
 </template>
 
 <script>
-
 import io from 'socket.io-client';
 const socket = io(sessionStorage.getItem("dataServer"));
 export default {
@@ -63,8 +65,8 @@ data: function () {
     textAreaOne: true,
     currentPlayer: {}, 
     showAlert: false,
+    showAlertEnd: false,
     isHost: false
-  
   }
 },
 updated() {
@@ -79,7 +81,6 @@ computed: {
     return this.uiLabels[theme] || this.theme
   }
 },
-
 created: function () { 
   this.gameCode = this.$route.params.gameCode
   this.name = this.$route.params.name
@@ -103,6 +104,14 @@ created: function () {
   })
   socket.on("confessionsSubmitted", (players) => {
     this.players = players
+  })
+  socket.on('endTheGame', () => {
+    console.log('tar den sig till socket.on??', this.showAlertEnd)
+    if (this.isHost === "false") {
+      console.log('Tar den sig innanför if??')
+      this.showAlertEnd = true
+      console.log('Är den true??? ', this.showAlertEnd)
+    }
   })
 },
 methods: {
@@ -129,16 +138,16 @@ methods: {
   closeAlert(){
       this.showAlert = false;
     },
-
+  closeAlertEnd(){
+    this.showAlertEnd = false;
+    this.$router.push('/')
+  },
   isInputEmpty(i) {
     return this.allegations[i] === undefined || !this.allegations[i];
   },
-
   submitConfessions: function() {
     this.buttonClicked = true;
-
     let isEmptyField = false;
-
     for (let i = 0; i < this.poll.numberAllegations; i++) {
       if (this.isInputEmpty(i)) {
         isEmptyField = true;
@@ -151,10 +160,9 @@ methods: {
     socket.emit("submitConfessions", { gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost });
     this.$router.push('/Lobbytwo/' + this.gameCode + '/' + this.name + '/' + this.isHost);
   },
-
-  goBack: function(){
+  goBack: function() {
       if (this.isHost === "true"){
-        console.log(this.isHost)
+        socket.emit('endPoll', this.gameCode)
         this.$router.push('/Create/')
       }
       else{ 
@@ -165,13 +173,11 @@ methods: {
 }
 </script>
 
-
 <style scoped>
 #name {
   text-align: center;
   margin-top: 0.3em; 
 }
-
 #gameCode {
   text-align: center;
   margin-top: 1em;
@@ -210,7 +216,6 @@ methods: {
 #theme{
   text-align: center;
 }
-
 .wrappp{
   display: flex;
   align-items: center;
@@ -218,17 +223,14 @@ methods: {
   margin: 0px 50px 0px 50px;
   gap: 50px;
 }
-
 #theme{
   color: yellow;
   font-size: 28px;
   font-family: monospace;
 }
-
 .all {
   font-size: 32px;
 }
-
 /* #pollName{
   display: flex;
   justify-content: center;
@@ -245,16 +247,27 @@ methods: {
 .invalid-input {
   border: 3px solid red;
 }
-
+.button{
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+.back{
+  position: absolute;
+  left: 50px;
+  bottom: 50px;
+}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .all {
   font-size: 27px;
 }
-
 .field {
   width: 350px;
   height: 70px;
 }
+.custom-alert {
+    top: 35%;
+  }
 }
 </style>

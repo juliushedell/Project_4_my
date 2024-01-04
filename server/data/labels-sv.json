@@ -20,7 +20,7 @@
 	"Allegation1": "Allegation 1:",
 	"Allegation2": "Allegation 2:",
 	"Allegation3": "Allegation 3:",
-	"submit": "skicka in",
+	"submit": "Skicka in",
 
 	"host": "Skapa spel",
 	"name_of_host": "Fyll i ditt namn:",
@@ -57,7 +57,8 @@
 	"theWinner": "Vinnaren är: ",
 	"opponentAnswer": "Dina motspelares svar: ",
 
-	"points": "Poäng:", 
+	"points": "Poäng:",
+	"yourCurrentPoints": "Dina nuvarande poäng: ",
 	"endGame": "Avsluta spel",
 
 	"closePopUp": "Stäng",
@@ -67,5 +68,7 @@
 	"hostEndedGame": "Spelledaren har avslutat spelet", 
 
 	"enterGameCode": "Skriv in en spelkod",
-	"notAGame": "Detta spel finns inte"
+	"notAGame": "Detta spel finns inte",
+
+	"leaveGame": "Lämna spelet"
 }

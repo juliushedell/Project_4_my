@@ -37,7 +37,6 @@
 
 <script>
 
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 import Confetti from "@/components/Confetti.vue";
 const socket = io(sessionStorage.getItem("dataServer"));
@@ -45,7 +44,6 @@ const socket = io(sessionStorage.getItem("dataServer"));
 export default {
 name: 'Final',
 components: {
-ResponsiveNav,
 Confetti,
 },
 data: function () {
@@ -124,11 +122,10 @@ switchLanguage: function() {
 }
 
 .podiumFrame {
-  border: 4px solid green;
+  border: 8px double green;
   padding: 2vw; 
   display: flex;
   flex-direction: column; 
-  align-items: center; 
   width: 40vw; 
   min-height: 40vh; 
   resize: none;
@@ -136,7 +133,7 @@ switchLanguage: function() {
   margin: 0 auto;
   margin-top: 4vh; 
   font-family: monospace;
- font-size: 20px;
+  font-size: 20px;
   text-align: center;
 }
 
@@ -157,10 +154,9 @@ switchLanguage: function() {
   color:black;
   border-radius: 50%;
   background-color: rgb(255, 215, 0);
-  text-align: center;
-  line-height: 50px; /* Vertically center content within the circle */
-  margin-bottom: 5px; /* Adjust spacing between elements */
-}
+  line-height: 50px; 
+  margin-bottom: 5px;
+} 
 
 .silver {
   width: 50px;
@@ -230,6 +226,9 @@ canvas {
 
 .button {
   height: 20px;
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
 }
 
 #name{
@@ -238,11 +237,22 @@ canvas {
 
 
 @media screen and (max-width:50em) {
-.podiumFrame{
-  padding-top: 4vh;
-  font-size: 22px; 
-  height: 30vh;
-}}
+.podiumFrame {
+  border: 6px double green;
+  padding: 2vw; 
+  display: flex;
+  flex-direction: column; 
+  width: 40vw; 
+  min-height: 40vh; 
+  resize: none;
+  overflow-wrap: break-word;
+  margin: 0 auto;
+  margin-top: 4vh; 
+  font-family: monospace;
+  font-size: 20px;
+  text-align: center;
+}
+}
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .placementNr {
@@ -250,11 +260,20 @@ canvas {
   }
 
 .podiumFrame {
-  width: 60vw; 
-  font-size: 16px; 
-  height: 45vh;
+  border: 6px double green;
+  padding: 2vw; 
+  display: flex;
+  flex-direction: column; 
+  width: 40vw; 
+  min-height: 40vh; 
+  resize: none;
+  overflow-wrap: break-word;
+  margin: 0 auto;
+  margin-top: 4vh; 
+  font-family: monospace;
+  font-size: 20px;
+  text-align: center;
 }
-
 
   .row-container {
     flex-direction: column; /* Switch to a column layout */
