@@ -34,14 +34,14 @@
 	"back": "Back",
 	"next": "Next",
 	"cg": "Create game",
-	"lifeLines": "Play with lifelines",
+	"lifeLines": "Play with lifelines: ",
 
 	"enterName": "Enter your name:",
 	"joinGame": "Join Game",
 	"lobby": "Kod",
 	"explain": "Enter your game code", 
 
-	"eyt": "Enter you theme:",
+	"enterOwnTheme": "Enter own theme...",
 
 	"gameCode": "Game code",
 	"Choosename": "Choose name",

@@ -33,15 +33,14 @@
 	"back": "Tillbaka",
 	"next": "Nästa",
 	"cg": "Skapa spel",
-	"lifeLines": "Spela med livlinor",
+	"lifeLines": "Spela med livlinor: ",
 
 	"enterName": "Fyll i ditt namn:",
 	"joinGame": "Delta i spel",
 	"lobby": "Game code",
 	"explain": "Fyll i din spelkod",
 
-	"eyt": "Ange ditt tema:",
-
+	"enterOwnTheme": "Ange ett eget tema...",
 	"gameCode": "Spelkod",
 	"Choosename": "Välj namn",
 	"start": "starta spel",

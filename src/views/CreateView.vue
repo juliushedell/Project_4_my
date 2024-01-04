@@ -1,70 +1,74 @@
 <template>
-  <div class="allContent">
-    <header>
-      <h1>
-        {{ uiLabels["host"] }}
-        <img src="/img/Head_picture.png" class="head_picture">
-      </h1>
-    </header>
-    
-    <div class="wrapper">
-      <div class="wrap" style="grid-area: a;">
-        {{ uiLabels['name_of_host'] }}
-        <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !this.name.length>0 && buttonClicked}" required>
+
+  <header>
+    <h1>
+      {{ uiLabels["host"] }}
+      <img src="/img/Head_picture.png" class="head_picture">
+    </h1>
+  </header>
+  
+  <div class="wrapper">
+    <div class="wrap">
+      {{ uiLabels['name_of_host'] }}
+      <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !this.name.length>0 && buttonClicked}" required>
+   </div>
+
+   <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["tooLongName"]}} 
+          <br><br>
+          <a href="https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html">
+            wwww.skatteverket.se
+          </a>
+          <br><br>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
     </div>
 
-    <div class="custom-alert" v-if="this.showAlert">
-          <div class="alert-content">
-            {{uiLabels["tooLongName"]}} 
-            <br><br>
-            <a href="https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html">
-              www.skatteverket.se
-            </a>
-            <br><br>
-          <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
-        </div>
-      </div>
+    <div class="wrap2" >
+      {{ uiLabels["al_pp"] }}
 
-      <div class="wrap2" style="grid-area: b;" >
-        {{ uiLabels["al_pp"] }}
-
-        <div class="plusminus"  >
-        <button class="minus" @click="removeAllegation">
-          -
-        </button>
-        {{numberAllegations}}
-        <button class="plus" @click="addAllegation">
-          +
-        </button>
-      </div>
-      </div>
-
-    </div>
-      <div class=themeTitle>
-        {{ uiLabels["theme"] }}
-      </div>
-    
-    <div class="themebuttons">
-      <input type="radio" id="childhood" v-model="theme" name="the_theme" :value="uiLabels['Childhood']"/>
-      <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
-      <input type="radio" id="illegal" v-model="theme" name="the_theme" :value="uiLabels['Illegal']"/>
-      <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
-      <input type="radio" id="uti" v-model="theme" name="the_theme" :value="uiLabels['Under the influence']"/>
-      <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
-      <p class="ot">{{ uiLabels["Own theme: "] }}</p>
-      <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required/>
-    </div>
-
-    <div class="lifeline">
-      <button type="button" class="lifelinebutton" @click="toggleButton" :class="{ active: buttonState }">{{uiLabels["lifeLines"]}}</button>
-    </div>
-
-    <div class="align">
-      <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-      <button v-on:click="createPoll" class="button">
-          {{uiLabels["cg"]}}
+      <div class="plusminus"  >
+      <button class="minus" @click="removeAllegation">
+        -
+      </button>
+      {{numberAllegations}}
+      <button class="plus" @click="addAllegation">
+        +
       </button>
     </div>
+    </div>
+
+  
+  <div class = "wrap3">
+ 
+      <div class="themebuttons">
+        {{ uiLabels["theme"] }}
+    <input type="radio" id="childhood" v-model="theme" name="the_theme" :value="uiLabels['Childhood']"/>
+    <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
+    <input type="radio" id="illegal" v-model="theme" name="the_theme" :value="uiLabels['Illegal']"/>
+    <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
+    <input type="radio" id="uti" v-model="theme" name="the_theme" :value="uiLabels['Under the influence']"/>
+    <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
+    <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required :placeholder = "uiLabels['enterOwnTheme']"/>
+  </div>
+  </div>
+  
+  <div class="lifeline">
+    {{ uiLabels["lifeLines"] }}
+    <label class="switch">
+  <input type="checkbox" @click="toggleButton">
+  <span class="slider round"></span>
+</label>
+  </div>
+</div>
+
+
+  <div class="align">
+    <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
+    <button v-on:click="createPoll" class="button">
+        {{uiLabels["cg"]}}
+    </button>
   </div>
 </template>
   
@@ -144,21 +148,21 @@
   
 <style scoped> 
 .wrapper{
-  justify-content: center;
   padding-top: 50px;
-  display: grid;
-  grid-template-areas: 
-  'a a'
-  'b c';
   color: #2a9451;
   font-size: 28px;
   font-weight: bolder;
-  text-align: center;
+  position: relative;
+  width: 75%;
+  margin:0 auto;
+  
+ 
 }
 .wrap{
   padding-top: 40px; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  
 }
 
 .wrap2{
@@ -169,20 +173,18 @@
 
 .textInputField {
   height: 30px; 
-  width: 300px; 
+  width: 20em; 
   border-radius: 15px;
   font-size: 14px;
   border: 3px solid #3fbc6a;
   color:#2a9451;
+  margin: auto;
 }
-
-.themeTitle{
-  padding-top: 60px;
-  font-size: 28px;
-  font-weight: bolder;
-  color: #2a9451;
+.wrap3{
+  padding-top: 40px; 
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
 }
-  
 .themes{
   border: 3px solid yellow;
   border-radius: 20px;
@@ -191,6 +193,7 @@
   padding: 10px;
   margin: 10px;
   background-color: #81b8ce;
+  white-space: nowrap;
 }  
 .themebuttons input[type="radio"] {
   opacity: 0.01;
@@ -201,28 +204,32 @@
   
 .themebuttons label:hover {
   background:yellow;
+  cursor: pointer;
   }
-  
 .otherTheme{
   border: 3px solid #3fbc6a;
-  height: 30px; 
-  width: 150px; 
-  border-radius: 15px;
+  border-radius: 20px;
+  margin-left: 20px;
+  height: 40px; 
+  width: 15em; 
   font-size: 14px;
   color:#2a9451;
+  font-family: monospace;
+  text-indent: 1em;
 }
-
+::placeholder {
+  color: #2a9451;
+  opacity: 1; /* Firefox */
+  font-family: monospace;
+  
+}
 .themebuttons{
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-.themeTitle{
-  display: flex; 
-  justify-content: center;
 }
 .plusminus {
-  width: 300px;
+  margin: auto;
+
 }
 .plus {
   border: 3px solid yellow;
@@ -232,7 +239,9 @@
   height: 30px;
   font-size: 22px;
   color: #2a9451;
-  line-height: 20px;
+  line-height: 5px;
+  margin: 0 auto;
+  cursor: pointer;
 }
 .plus:hover {
   background-color: yellow;
@@ -243,117 +252,152 @@
   background-color: #81b8ce;
   width: 30px;
   height: 30px;
-   font-size: 22px;
+  font-size: 22px;
   color: #2a9451; 
   line-height: 5px;
+  margin: 0 auto;
+  cursor: pointer;
 }
-
 .minus:hover{
   background-color: yellow;
 }
-
-.ot {
-  color: #2a9451;
-  font-size: 18px;
-  padding-right: 8px;
-}
-
 .align {
   padding-top: 20px;
   display: flex;
   justify-content: center;
   gap: 60vw;
 }
-.lifelinebutton {
-  border: 3px solid yellow;
-  border-radius: 20px;
-  color: #2a9451;
-  font-size: 16px;
-  padding: 10px;
-  background-color: #81b8ce;
-}
-.lifelinebutton.active {
-  background: yellow;
-}
 
 .lifeline {
   padding-top: 40px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  
 }
 
-/* .button {
+.button {
   width: 150px;
   height:50px;
-  position: absolute;
-  right: 50px;
-  bottom: 50px;
 }
-.back{
-  position: absolute;
-  left: 50px;
-  bottom: 50px;
-} */
 .invalid-input {
   border: 3px solid red; 
 }
 
-.allContent{
+
+
+/* The switch - the box around the slider */
+.switch {
   position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 1em;
 }
-.back{
-  position: sticky;
-  bottom: 0;
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
   left: 0;
-  margin: 30px;
-}
-.button{
-  position: sticky;
-  bottom: 0;
   right: 0;
-  margin: 30px;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: yellow;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px yellow;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
     margin-top: -50px; 
+    text-align: center;
+    font-size: 18px;
   }
   .textInputField {
     width: 150px;
+    margin-top: 1em;
   }
   .wrap {
-    font-size: 20px;
-    padding-left: 20px;
+    text-align: center;
+    align-content: 0 auto;
+    grid-template-columns: 1fr;
   }
   .wrap2 {
-    font-size: 20px;
-    padding-left: 80px;
+    text-align: center;
+    grid-template-columns: 1fr;
   }
-  .themeTitle {
-    margin-top: -40px;
-    font-size: 20px;
+  .wrap3,.themeTitle {
+    text-align: center;
+  }
+  .plusminus {
+    margin-top: 1em;
   }
   .themebuttons {
     flex-direction: column;
     align-items: center;
   }
-
-  .otherTheme {
-    margin-top: 10px;
+  .otherTheme{
+    font-size: 12px;
+    text-indent: 1.5em;
+    margin-left: 0;
+    margin-top: 1em;
   }
-
+  .themes {
+    font-size: 12px;
+    margin: auto;
+  }
   .align{
     margin-top: 20px;
     gap: 40px;
   }
-
   .button {
   width: 170px;
 }
-.custom-alert {
-    top: 13%;
-  }
+.lifeline {
+align-content: center;
+grid-template-columns: 1fr;
+}
 }
 
 </style>
