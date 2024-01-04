@@ -3,6 +3,12 @@ import StartView from '../views/StartView.vue'
 import JoinGameCode from '../views/JoinGameCode.vue'
 import CreateView from '../views/CreateView.vue'
 import JoinGameName from '../views/JoinGameName.vue'
+import HowToPlayView from '../views/HowToPlayView.vue'
+import Lobby from '../views/Lobby.vue'
+import playingGame from '../views/playingGame.vue'
+import LobbytwoView from '../views/LobbytwoView.vue'
+import Podium from '../views/Podium.vue'
+import Final from '../views/Final.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,7 +26,7 @@ const router = createRouter({
     {
       path: '/HowToPlayView/',
       name: 'HowToPlayView',
-      component: () => import('../views/HowToPlayView.vue')
+      component: HowToPlayView
     },
     {
       path: '/JoinGameName/:gameCode',
@@ -35,28 +41,28 @@ const router = createRouter({
     {
       path: '/Lobby/:gameCode/:name/:isHost',
       name: 'Lobby',
-      component: () => import('../views/Lobby.vue'),
+      component: Lobby,
       props: true
     },
     {
       path: '/playingGame/:gameCode/:name/:isHost',
       name: 'playingGame',
-      component: () => import('../views/playingGame.vue')
+      component: playingGame
     },
     {
       path: '/Lobbytwo/:gameCode/:name/:isHost',
       name: 'Lobbytwo',
-      component: () => import('../views/LobbytwoView.vue')
+      component: LobbytwoView
     }, 
     {
       path: '/Podium/:gameCode/:name/:isHost', 
       name: 'Podium',
-      component: () => import('../views/Podium.vue')
+      component: Podium
     },
     {
       path: '/Final/:gameCode/:name/:isHost', 
       name: 'final',
-      component: () => import('../views/Final.vue')
+      component: Final
     },
     {
       path: '/Confetti/', 

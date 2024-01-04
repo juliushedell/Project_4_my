@@ -79,7 +79,18 @@ export default {
 #frontText {
   color: #2a9451;
   font-family: monospace;
+  font-size: 20px;
   text-align: center;
+}
+
+#frontText h2{
+  font-size: 65px;
+  margin: 0.2em auto;
+ 
+}
+#frontText h4{
+  font-size: 20px;
+ margin-top: 0;
 }
 
 .wrapper {

@@ -16,25 +16,19 @@
     </div>
   </div>
   <div class="wrap">
-    <div class="wrap1" style="grid-area: a;">
-      <button v-if="this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["endGame"] }} </button>
-      <button v-if="!this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["leaveGame"] }} </button>
-    </div>
-    <div class="wrap2" style="grid-area: b;">
-      <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
-    </div>
+    <button v-if="this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["endGame"] }} </button>
+    <button v-if="!this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["leaveGame"] }} </button>
+    <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
   </div>
   <div class="custom-alert" v-if="this.showAlert">
     <div class="alert-content">
       {{ uiLabels["hostEndedGame"] }}
-      <br><br>
       <button class="closeButton" @click="closeAlert">{{ uiLabels["closePopUp"] }}</button>
     </div>
   </div>
 </template>
 
 <script>
-
 import io from 'socket.io-client';
 const socket = io(sessionStorage.getItem("dataServer"));
 
@@ -47,7 +41,6 @@ export default {
       id: "",
       lang: localStorage.getItem("lang") || "en",
       hideNav: true,
-      // lagrar confessions i array
       conf: [],
       poll: {},
       gameCode: 0,
@@ -84,27 +77,12 @@ export default {
     })
   },
   methods: {
-    switchLanguage: function () {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    },
-    toggleNav: function () {
-      this.hideNav = !this.hideNav;
-    },
-
     startGame: function () {
       socket.emit('lockGame', this.gameCode)
       socket.emit('countAllegations', this.gameCode)
       socket.emit("startPoll", this.gameCode)
       socket.emit('randomAllegation', this.gameCode)
     },
-
     endGame: function () {
       if (this.isHost) {
         socket.emit('endPoll', this.gameCode)
@@ -133,7 +111,7 @@ export default {
   gap: 20px;
 }
 
-.wrap {
+/* .wrap {
   grid-template-columns: auto auto;
   display: grid;
   justify-content: center;
@@ -143,16 +121,7 @@ export default {
   width: 440px;
   place-items: center;
 }
-
-.wrap1 {
-  grid-area: a;
-}
-
-.wrap2 {
-  grid-area: b;
-  display: flex;
-  gap: 130px;
-}
+*/
 
 .code {
   align-items: center;
@@ -181,9 +150,7 @@ export default {
 
 #gameCode {
   width: 16vw;
-  /* Adjusted width to 8% of viewport width */
   height: 3vh;
-  /* Adjusted height to 3% of viewport height */
   border-radius: 3.125em;
   background-color: #81b8ce;
   border: 0.1875em solid yellow;
@@ -194,7 +161,6 @@ export default {
   text-decoration: none;
   margin: 7vh auto;
   padding: 6vw;
-  /* Adjusted padding to 1.25% of viewport width */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,32 +178,35 @@ export default {
   bottom: 50px;
 }
 
+@media screen and (max-hight: 900px) {
+  .button {
+    position: relative;
+    right: 50px;
+    bottom: 50px;
+  }
+
+  .back {
+    position: relative;
+    left: 50px;
+    bottom: 50px;
+  }
+}
+
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   #gameCode {
     width: 40vw;
-    /* Adjusted width to 8% of viewport width */
     height: 3vh;
-    /* Adjusted height to 3% of viewport height */
     font-size: 8vw;
   }
 
-  .wrap {
+  /* .wrap {
     padding-top: 300px;
     display: grid;
     grid-template-areas: 'a b';
     width: 90vw;
     place-items: center;
   }
-
-  .wrap1 {
-    grid-area: a;
-  }
-
-  .wrap2 {
-    grid-area: b;
-    display: flex;
-    gap: 20px;
-  }
+*/
 
   .player-list {
     display: flex;
@@ -248,4 +217,5 @@ export default {
     margin: 0px auto;
     width: 220px;
   }
-}</style>
+}
+</style>
