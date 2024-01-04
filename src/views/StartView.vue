@@ -12,13 +12,13 @@
     <h4>{{ uiLabels['sales-pitch'] }}</h4>
     <img src="img/alligatorStart.png" id="startpage_picture">
   </div>
-  <disp class=wrapper>
+  <nav class=wrapper>
     <router-link to="/create/" class="button" style="grid-area:a;">{{ uiLabels.host }}</router-link>
     <router-link to="/JoinGameCode/" class="button" style="grid-area:b;">{{ uiLabels.joinGame }}</router-link>
-  </disp>
-  <disp class=rightButton>
+  </nav>
+  <div class=rightButton>
     <router-link to="/HowToPlayView/" class="button" style="grid-area:d;">{{ uiLabels.howToPlay }}</router-link>
-  </disp>
+  </div>
 </template>
 
 <script>
