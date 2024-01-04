@@ -10,65 +10,60 @@
   <div class="wrapper">
     <div class="wrap">
       {{ uiLabels['name_of_host'] }}
-      <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !this.name.length>0 && buttonClicked}" required>
+        <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !this.name.length>0 && buttonClicked}" required>
    </div>
 
    <div class="custom-alert" v-if="this.showAlert">
-        <div class="alert-content">
-          {{uiLabels["tooLongName"]}} 
-          <br><br>
+      <div class="alert-content">
+        {{uiLabels["tooLongName"]}} 
           <a href="https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html">
             wwww.skatteverket.se
           </a>
-          <br><br>
-        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+            <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
       </div>
-    </div>
+   </div>
 
-    <div class="wrap2" >
+   <div class="wrap2" >
       {{ uiLabels["al_pp"] }}
+        <div class="plusminus"  >
+          <button class="minus" @click="removeAllegation">
+           -
+          </button>
+            {{numberAllegations}}
+          <button class="plus" @click="addAllegation">
+          +
+          </button>
+        </div>
+   </div>
 
-      <div class="plusminus"  >
-      <button class="minus" @click="removeAllegation">
-        -
-      </button>
-      {{numberAllegations}}
-      <button class="plus" @click="addAllegation">
-        +
-      </button>
-    </div>
-    </div>
-
-  
-  <div class = "wrap3">
- 
+    <div class = "wrap3">
       <div class="themebuttons">
         {{ uiLabels["theme"] }}
-    <input type="radio" id="childhood" v-model="theme" name="the_theme" :value="uiLabels['Childhood']"/>
-    <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
-    <input type="radio" id="illegal" v-model="theme" name="the_theme" :value="uiLabels['Illegal']"/>
-    <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
-    <input type="radio" id="uti" v-model="theme" name="the_theme" :value="uiLabels['Under the influence']"/>
-    <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
-    <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required :placeholder = "uiLabels['enterOwnTheme']"/>
-  </div>
-  </div>
+          <input type="radio" id="childhood" v-model="theme" name="the_theme" :value="uiLabels['Childhood']"/>
+          <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
+          <input type="radio" id="illegal" v-model="theme" name="the_theme" :value="uiLabels['Illegal']"/>
+          <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
+          <input type="radio" id="uti" v-model="theme" name="the_theme" :value="uiLabels['Under the influence']"/>
+          <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
+          <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required :placeholder = "uiLabels['enterOwnTheme']"/>
+      </div>
+    </div>
   
-  <div class="lifeline">
-    {{ uiLabels["lifeLines"] }}
-    <label class="switch">
-  <input type="checkbox" @click="toggleButton">
-  <span class="slider round"></span>
-</label>
+    <div class="lifeline">
+      {{ uiLabels["lifeLines"] }}
+        <label class="switch">
+          <input type="checkbox" @click="toggleButton">
+            <span class="slider round"></span>
+        </label>
+    </div>
   </div>
-</div>
 
 
   <div class="align">
     <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-    <button v-on:click="createPoll" class="button">
+      <button v-on:click="createPoll" class="button">
         {{uiLabels["cg"]}}
-    </button>
+      </button>
   </div>
 </template>
   
@@ -100,13 +95,12 @@
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-    socket.on("dataUpdate", (data) =>
+    socket.on("dataUpdate", (data) => {
       this.data = data
-    )
+  })
     socket.on("pollCreated", (data) => {
       this.data = data
-    }
-      )
+  })
   },
   methods: {
     checkNameLength() {
@@ -179,6 +173,7 @@
   border: 3px solid #3fbc6a;
   color:#2a9451;
   margin: auto;
+  text-indent: 1em;
 }
 .wrap3{
   padding-top: 60px; 
