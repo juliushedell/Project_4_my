@@ -15,8 +15,8 @@
   <div id="parent-container">
     <form id="confessionsform">
       <div>
-        <div v-for="i in poll.numberAllegations" :key="i">
-          <label for="confession{{ i }}" class="all"> Allegation {{ i }} :  </label>
+        <div class= "hej" v-for="i in poll.numberAllegations" :key="i">
+          <label for="confession{{ i }}" class="all"> Allegation {{ i }} : </label>
           <textarea :ref="textareaRef(i - 1)" type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" @keyup.enter="submitConfessions" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
           </textarea>
           <br><br> <!--FULT? -->
