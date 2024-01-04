@@ -37,7 +37,6 @@
 
 <script>
 
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 import Confetti from "@/components/Confetti.vue";
 const socket = io(sessionStorage.getItem("dataServer"));
@@ -45,7 +44,6 @@ const socket = io(sessionStorage.getItem("dataServer"));
 export default {
 name: 'Final',
 components: {
-ResponsiveNav,
 Confetti,
 },
 data: function () {
