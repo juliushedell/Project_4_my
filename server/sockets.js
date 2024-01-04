@@ -42,7 +42,7 @@ function sockets(io, socket, data) {
 
   socket.on('submitConfessions', function(d) {
     data.submitConfessions(d.gameCode, d.allegations, d.name, d.isHost);
-    io.to(d.gameCode).emit('confessionsSubmitted', data.getConfessions(d.gameCode))
+    io.to(d.gameCode).emit('confessionsSubmitted', data.getPlayers(d.gameCode))
   });
 
   socket.on('randomAllegation', function(gameCode){
@@ -118,10 +118,6 @@ function sockets(io, socket, data) {
 
   socket.on('usedSneakPeak', function(gameCode, name) {
     data.usedSneakPeak(gameCode, name);
-  })
-
-  socket.on('removePoll', function(gameCode) {
-    data.removePoll(gameCode);
   })
 
   socket.on('lockGame', function(gameCode) {

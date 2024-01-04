@@ -83,7 +83,6 @@ export default {
       socket.emit("startPoll", this.gameCode)
       socket.emit('randomAllegation', this.gameCode)
     },
-
     endGame: function () {
       if (this.isHost) {
         socket.emit('endPoll', this.gameCode)
