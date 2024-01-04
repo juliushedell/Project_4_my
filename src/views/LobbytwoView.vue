@@ -16,18 +16,13 @@
     </div>
   </div>
   <div class="wrap">
-    <div class="wrap1" style="grid-area: a;">
-      <button v-if="this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["endGame"] }} </button>
-      <button v-if="!this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["leaveGame"] }} </button>
-    </div>
-    <div class="wrap2" style="grid-area: b;">
-      <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
-    </div>
+    <button v-if="this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["endGame"] }} </button>
+    <button v-if="!this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["leaveGame"] }} </button>
+    <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
   </div>
   <div class="custom-alert" v-if="this.showAlert">
     <div class="alert-content">
       {{ uiLabels["hostEndedGame"] }}
-      <br><br>
       <button class="closeButton" @click="closeAlert">{{ uiLabels["closePopUp"] }}</button>
     </div>
   </div>
@@ -46,7 +41,6 @@ export default {
       id: "",
       lang: localStorage.getItem("lang") || "en",
       hideNav: true,
-      // lagrar confessions i array
       conf: [],
       poll: {},
       gameCode: 0,
@@ -117,7 +111,7 @@ export default {
   gap: 20px;
 }
 
-.wrap {
+/* .wrap {
   grid-template-columns: auto auto;
   display: grid;
   justify-content: center;
@@ -127,16 +121,7 @@ export default {
   width: 440px;
   place-items: center;
 }
-
-.wrap1 {
-  grid-area: a;
-}
-
-.wrap2 {
-  grid-area: b;
-  display: flex;
-  gap: 130px;
-}
+*/
 
 .code {
   align-items: center;
@@ -193,6 +178,20 @@ export default {
   bottom: 50px;
 }
 
+@media screen and (max-hight: 900px) {
+  .button {
+    position: relative;
+    right: 50px;
+    bottom: 50px;
+  }
+
+  .back {
+    position: relative;
+    left: 50px;
+    bottom: 50px;
+  }
+}
+
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   #gameCode {
     width: 40vw;
@@ -200,23 +199,14 @@ export default {
     font-size: 8vw;
   }
 
-  .wrap {
+  /* .wrap {
     padding-top: 300px;
     display: grid;
     grid-template-areas: 'a b';
     width: 90vw;
     place-items: center;
   }
-
-  .wrap1 {
-    grid-area: a;
-  }
-
-  .wrap2 {
-    grid-area: b;
-    display: flex;
-    gap: 20px;
-  }
+*/
 
   .player-list {
     display: flex;
