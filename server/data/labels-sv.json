@@ -69,5 +69,7 @@
 	"hostEndedGame": "Spelledaren har avslutat spelet", 
 
 	"enterGameCode": "Skriv in en spelkod",
-	"notAGame": "Detta spel finns inte"
+	"notAGame": "Detta spel finns inte",
+
+	"leaveGame": "Lämna spelet"
 }
