@@ -351,19 +351,5 @@ Data.prototype.lockGame = function(gameCode) {
   }
 }
 
-Data.prototype.checkAllDone = function(gameCode) {
-  const poll = this.polls[gameCode];
-  if (typeof poll !== "undefined") {
-    const players = this.getPlayers(gameCode);
-    for (let player of players) {
-      if (player.currentAnswer === "") {
-        return false
-      }
-    }
-    return true
-  }
-  return false
-}
-
 export { Data };
 
