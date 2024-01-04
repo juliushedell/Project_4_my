@@ -153,20 +153,20 @@
   font-size: 28px;
   font-weight: bolder;
   position: relative;
-  width: 75%;
+  width: 80%;
   margin:0 auto;
   
  
 }
 .wrap{
-  padding-top: 40px; 
+  padding-top: 10px; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   
 }
 
 .wrap2{
-  padding-top: 40px; 
+  padding-top: 60px; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
@@ -181,8 +181,8 @@
   margin: auto;
 }
 .wrap3{
-  padding-top: 40px; 
-  display: grid;
+  padding-top: 60px; 
+  display: flex;
   grid-template-columns: repeat(1, 1fr);
 }
 .themes{
@@ -209,13 +209,13 @@
 .otherTheme{
   border: 3px solid #3fbc6a;
   border-radius: 20px;
-  margin-left: 20px;
   height: 40px; 
   width: 15em; 
   font-size: 14px;
   color:#2a9451;
   font-family: monospace;
   text-indent: 1em;
+  margin-left: 2em;
 }
 ::placeholder {
   color: #2a9451;
@@ -225,7 +225,10 @@
 }
 .themebuttons{
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  width: 100%;
+  
 }
 .plusminus {
   margin: auto;
@@ -269,9 +272,9 @@
 }
 
 .lifeline {
-  padding-top: 40px;
+  padding-top: 60px;
   display: flex;
-  
+  margin-bottom: 2em;
 }
 
 
@@ -291,8 +294,6 @@
 .invalid-input {
   border: 3px solid red; 
 }
-
-
 
 /* The switch - the box around the slider */
 .switch {
@@ -350,10 +351,14 @@ input:checked + .slider:before {
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
+  border-width: 0.1px;
 }
 
 .slider.round:before {
   border-radius: 50%;
+  border-style: solid;
+  border-color: green;
+  border-width: 0.1px;
 }
 
 
@@ -369,16 +374,20 @@ input:checked + .slider:before {
     margin-top: 1em;
   }
   .wrap {
+    padding-top: 30px; 
     text-align: center;
     align-content: 0 auto;
     grid-template-columns: 1fr;
   }
   .wrap2 {
+    padding-top: 40px; 
     text-align: center;
     grid-template-columns: 1fr;
   }
-  .wrap3,.themeTitle {
+  .wrap3 {
+    padding-top: 45px; 
     text-align: center;
+    grid-template-columns: 1fr;
   }
   .plusminus {
     margin-top: 1em;
@@ -404,9 +413,11 @@ input:checked + .slider:before {
   .button {
   width: 170px;
 }
-.lifeline {
-align-content: center;
+.lifeline, text  {
+justify-content: center;
 grid-template-columns: 1fr;
+align-items: center;
+white-space: nowrap;
 }
 }
 
