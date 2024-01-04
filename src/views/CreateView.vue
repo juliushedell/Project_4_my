@@ -274,9 +274,19 @@
   
 }
 
+
+.back{
+  position: fixed;
+  left: 2em;
+  bottom: 2em;
+}
+
 .button {
   width: 150px;
   height:50px;
+  position: fixed;
+  right: 2em;
+  bottom: 2em;
 }
 .invalid-input {
   border: 3px solid red; 
