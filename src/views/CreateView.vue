@@ -353,18 +353,13 @@ input:checked + .slider:before {
     font-size: 12px;
     margin: auto;
   }
-  .align{
-    margin-top: 20px;
-    gap: 3em;
-  }
   .button {
-  width: 170px;
-  position: relative;
-  right:2em;
+    width: 100px;
+    position: relative;
 }
   .back{
+    width:100px; 
     position: relative;
-    left: 2em;
   }
   .lifeline, text  {
   justify-content: center;
@@ -373,21 +368,14 @@ input:checked + .slider:before {
   white-space: nowrap;
   }
 }
+  @media only screen and (max-height: 608px){
 
-@media only screen and (max-height: 608px){
+    .back{
+    position: relative;
+  }
 
-  .back{
-  position: relative;
-  left: 2em;
+  .button {
+    position: relative;
+  }
 }
-
-.button {
-  position: relative;
-  right:2em;
-}
-
-}
-
-
-
 </style>
