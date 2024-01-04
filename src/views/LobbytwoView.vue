@@ -165,9 +165,7 @@ export default {
 
 #gameCode {
   width: 16vw;
-  /* Adjusted width to 8% of viewport width */
   height: 3vh;
-  /* Adjusted height to 3% of viewport height */
   border-radius: 3.125em;
   background-color: #81b8ce;
   border: 0.1875em solid yellow;
@@ -178,7 +176,6 @@ export default {
   text-decoration: none;
   margin: 7vh auto;
   padding: 6vw;
-  /* Adjusted padding to 1.25% of viewport width */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -199,9 +196,7 @@ export default {
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   #gameCode {
     width: 40vw;
-    /* Adjusted width to 8% of viewport width */
     height: 3vh;
-    /* Adjusted height to 3% of viewport height */
     font-size: 8vw;
   }
 
@@ -232,4 +227,5 @@ export default {
     margin: 0px auto;
     width: 220px;
   }
-}</style>
+}
+</style>
