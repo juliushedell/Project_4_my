@@ -93,7 +93,6 @@ export default {
   top: 0;
   left: 0;
 }
-
 .content {
   color: green;
   font-size: 28px;
@@ -111,7 +110,6 @@ export default {
   width: 25%;
   height: 25%;
 }
-
 .podiumFrame {
   border: 8px double green;
   padding: 2vw;
@@ -125,7 +123,6 @@ export default {
   font-family: monospace;
   font-size: 20px;
 }
-
 .placement {
   margin-bottom: 20px;
   display: flex;
@@ -133,7 +130,6 @@ export default {
   flex-direction: column;
   text-align: center;
 }
-
 .placementNr {
   width: 50px;
   height: 50px;
@@ -154,7 +150,6 @@ export default {
   width: 25%;
   height: 25%;
 }
-
 .silver {
   width: 50px;
   height: 50px;
@@ -166,7 +161,6 @@ export default {
   line-height: 50px;
   margin-bottom: 5px;
 }
-
 .bronze {
   width: 50px;
   height: 50px;
@@ -178,7 +172,6 @@ export default {
   line-height: 50px;
   margin-bottom: 5px;
 }
-
 .quitGame {
   position: fixed;
   bottom: 0.1vh;
@@ -187,7 +180,6 @@ export default {
   color: yellow;
   font-family: monospace;
 }
-
 .button {
   height: 20px;
   position: absolute;
@@ -196,12 +188,10 @@ export default {
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
-
   .podiumFrame {
     border: 6px double green;
     width: 60vw;
   }
-
   .row-container {
     flex-direction: column;
     align-items: center;
@@ -211,8 +201,8 @@ export default {
     margin-top: 20px;
 
   }
-
   .button {
     height: 30px;
   }
-}</style>
+}
+</style>
