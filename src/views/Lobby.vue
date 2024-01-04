@@ -37,7 +37,7 @@
     <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
     <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
   </div>
-</template>
+</template>\
 
 <script>
   import io from 'socket.io-client';
