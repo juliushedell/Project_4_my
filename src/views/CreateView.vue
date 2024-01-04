@@ -353,16 +353,13 @@ input:checked + .slider:before {
     font-size: 12px;
     margin: auto;
   }
-  .align{
-    margin-top: 20px;
-    gap: 3em;
-  }
   .button {
-  width: 170px;
-  position: relative;
-  right:2em;
+    width: 100px;
+    position: relative;
+    right:2em;
 }
   .back{
+    width:100px; 
     position: relative;
     left: 2em;
   }
