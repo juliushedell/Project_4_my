@@ -109,16 +109,6 @@
     })
   },
   methods: {
-    switchLanguage: function() {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    },
     textareaRef(index) {
         return `textarea${index}`;
       },
