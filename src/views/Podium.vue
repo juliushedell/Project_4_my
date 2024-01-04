@@ -224,4 +224,18 @@ export default {
   left: 50px;
   bottom: 50px;
 }
+
+@media only screen and (max-width: 1100px){
+.button{
+  position: relative; 
+  margin-top: 30px;
+}
+.back{
+  position: relative;
+  margin-top: 30px;
+}
+  
+}
+
+
 </style>
