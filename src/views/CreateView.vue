@@ -1,17 +1,4 @@
 <template>
-  <div class="allContent">
-    <header>
-      <h1>
-        {{ uiLabels["host"] }}
-        <img src="/img/Head_picture.png" class="head_picture">
-      </h1>
-    </header>
-    
-    <div class="wrapper">
-      <div class="wrap" style="grid-area: a;">
-        {{ uiLabels['name_of_host'] }}
-        <input ref="nameInput" class="textInputField" type="text" v-model="name" :maxlength="15" @input="checkNameLength" :class="{'invalid-input': !this.name.length>0 && buttonClicked}" required>
-    </div>
 
   <header>
     <h1>
@@ -31,49 +18,23 @@
           {{uiLabels["tooLongName"]}} 
           <br><br>
           <a href="https://www.skatteverket.se/privat/folkbokforing/namn.4.18e1b10334ebe8bc80004083.html">
-            www.skatteverket.se
+            wwww.skatteverket.se
           </a>
           <br><br>
         <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
       </div>
-
-      <div class="wrap2" style="grid-area: b;" >
-        {{ uiLabels["al_pp"] }}
-
-        <div class="plusminus"  >
-        <button class="minus" @click="removeAllegation">
-          -
-        </button>
-        {{numberAllegations}}
-        <button class="plus" @click="addAllegation">
-          +
-        </button>
-      </div>
-      </div>
-
-    </div>
-      <div class=themeTitle>
-        {{ uiLabels["theme"] }}
-      </div>
-    
-    <div class="themebuttons">
-      <input type="radio" id="childhood" v-model="theme" name="the_theme" :value="uiLabels['Childhood']"/>
-      <label class="themes" for="childhood">{{ uiLabels["Childhood"] }}</label>
-      <input type="radio" id="illegal" v-model="theme" name="the_theme" :value="uiLabels['Illegal']"/>
-      <label class="themes" for="illegal">{{ uiLabels["Illegal"] }}</label>
-      <input type="radio" id="uti" v-model="theme" name="the_theme" :value="uiLabels['Under the influence']"/>
-      <label class="themes" for="uti">{{ uiLabels["Under the influence"] }}</label>
-      <p class="ot">{{ uiLabels["Own theme: "] }}</p>
-      <input type="text" class="otherTheme" v-model="theme" :maxlength="35" :class="{'invalid-input': (!this.theme.length > 0) && buttonClicked}" required/>
     </div>
 
     <div class="wrap2" >
       {{ uiLabels["al_pp"] }}
 
-    <div class="align">
-      <router-link to="/" class="back" >{{ uiLabels["back"] }}</router-link>
-      <button v-on:click="createPoll" class="button">
-          {{uiLabels["cg"]}}
+      <div class="plusminus"  >
+      <button class="minus" @click="removeAllegation">
+        -
+      </button>
+      {{numberAllegations}}
+      <button class="plus" @click="addAllegation">
+        +
       </button>
     </div>
     </div>
@@ -313,18 +274,10 @@
   
 }
 
-/* .button {
+.button {
   width: 150px;
   height:50px;
-  position: absolute;
-  right: 50px;
-  bottom: 50px;
 }
-.back{
-  position: absolute;
-  left: 50px;
-  bottom: 50px;
-} */
 .invalid-input {
   border: 3px solid red; 
 }
@@ -395,22 +348,6 @@ input:checked + .slider:before {
 
 
 
-.allContent{
-  position: relative;
-}
-.back{
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  margin: 30px;
-}
-.button{
-  position: sticky;
-  bottom: 0;
-  right: 0;
-  margin: 30px;
-}
-
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
     margin-top: -50px; 
@@ -461,9 +398,6 @@ input:checked + .slider:before {
 align-content: center;
 grid-template-columns: 1fr;
 }
-.custom-alert {
-    top: 13%;
-  }
 }
 
 </style>
