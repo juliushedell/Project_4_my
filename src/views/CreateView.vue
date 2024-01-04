@@ -356,12 +356,10 @@ input:checked + .slider:before {
   .button {
     width: 100px;
     position: relative;
-    right:2em;
 }
   .back{
     width:100px; 
     position: relative;
-    left: 2em;
   }
   .lifeline, text  {
   justify-content: center;
@@ -370,19 +368,14 @@ input:checked + .slider:before {
   white-space: nowrap;
   }
 }
+  @media only screen and (max-height: 608px){
 
-@media only screen and (max-height: 608px){
+    .back{
+    position: relative;
+  }
 
-  .back{
-  position: relative;
+  .button {
+    position: relative;
+  }
 }
-
-.button {
-  position: relative;
-}
-
-}
-
-
-
 </style>
