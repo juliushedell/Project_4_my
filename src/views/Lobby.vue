@@ -207,7 +207,6 @@
     align-items: center;
     justify-content: center;
     margin: 0px 50px 0px 50px;
-    gap: 50px;
   }
   #theme{
     color: yellow;
@@ -227,9 +226,27 @@
     left: 3em;
     bottom: 3em;
   }
+
   #spacingFields{
     margin-top: 1em;
   }
+
+  @media screen and (max-width: 1161px){
+    .wrappp{
+    padding-top: 30px;
+    }
+    .back{
+    position: relative;
+    bottom: 1em;
+    margin-left: -10px;
+    min-width: 150px;
+  }
+  .button{
+    position: relative;
+    bottom: 1em; 
+    margin-left: 150px;
+    min-width: 150px;
+  }}
 
   @media only screen and (max-width: 2532px) and (orientation: portrait) {
     .all {

@@ -173,7 +173,8 @@ export default {
   margin-bottom: 5px;
 }
 .quitGame {
-  position: fixed;
+  padding-top: 120px;
+  position: relative;
   bottom: 0.1vh;
   right: 0.1vw;
   font-size: 22px;
@@ -199,7 +200,9 @@ export default {
 
   #alligatorGifRigth {
     margin-top: 20px;
-
+  }
+  .quitGame{
+    margin-right: 50px;
   }
   .button {
     height: 30px;
