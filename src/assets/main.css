@@ -54,22 +54,17 @@ body {
   align-items: center;  
   font-size: 18px;
   padding: 1.25vw;
-  /* position: absolute;
-  right: 50px;
-  bottom: 50px;  */
 }
-
 .button:hover {
   background-color: darkgreen;
   cursor: pointer;
 }
-
 .back {
   width:150px;
   height:45px;
   border-radius: 40px;  
   background-color: #81b8ce;
-  border: 3px solid #234e5f; 
+  border: 0.1875em solid #234e5f; 
   color: #234e5f;
   text-align: center;
   text-decoration: none;
@@ -79,9 +74,6 @@ body {
   justify-content: center;
   align-items: center; 
   font-size: 18px; 
-  /* position: absolute;
-  left: 50px;
-  bottom: 50px; */
 }
 
 .back:hover {
@@ -92,13 +84,13 @@ body {
 .custom-alert {
   position: fixed;
   top: 30%;
-  left: 50%;
+  left: 50%; 
   transform: translate(-50%); 
   background-color: whitesmoke; 
   border: 3px solid red;
   border-radius: 20px;
   padding: 2em 2em 0 2em;
-  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
+  box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (5px, 5px) centrerad, (20px) blurret, (5px) hur långt skuggan ska sträcka sig*/
   z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
   text-align: center;
   font-weight: bold;
@@ -126,7 +118,6 @@ body {
     height: 50px; 
     margin: 10px;
   }
-
   h1 {
     font-size: 24px;
   }
