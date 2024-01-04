@@ -218,14 +218,14 @@
     border: 3px solid red;
   }
   .button{
-    position: absolute;
-    right: 50px;
-    bottom: 50px;
+    position: fixed;
+    right: 3em;
+    bottom: 3em;
   }
   .back{
-    position: absolute;
-    left: 50px;
-    bottom: 50px;
+    position: fixed;
+    left: 3em;
+    bottom: 3em;
   }
   #spacingFields{
     margin-top: 1em;

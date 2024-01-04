@@ -408,17 +408,39 @@ input:checked + .slider:before {
   }
   .align{
     margin-top: 20px;
-    gap: 40px;
+    gap: 3em;
   }
   .button {
   width: 170px;
+  position: relative;
+  right:2em;
 }
-.lifeline, text  {
-justify-content: center;
-grid-template-columns: 1fr;
-align-items: center;
-white-space: nowrap;
+  .back{
+    position: relative;
+    left: 2em;
+  }
+  .lifeline, text  {
+  justify-content: center;
+  grid-template-columns: 1fr;
+  align-items: center;
+  white-space: nowrap;
+  }
 }
+
+@media only screen and (max-height: 608px){
+
+  .back{
+  position: relative;
+  left: 2em;
 }
+
+.button {
+  position: relative;
+  right:2em;
+}
+
+}
+
+
 
 </style>
