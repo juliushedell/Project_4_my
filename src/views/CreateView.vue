@@ -26,11 +26,11 @@
    <div class="wrap2" >
       {{ uiLabels["al_pp"] }}
         <div class="plusminus"  >
-          <button class="minus" @click="removeAllegation">
+          <button class="addRemove" @click="removeAllegation">
            -
           </button>
             {{numberAllegations}}
-          <button class="plus" @click="addAllegation">
+          <button class="addRemove" @click="addAllegation">
           +
           </button>
         </div>
@@ -68,10 +68,10 @@
 </template>
   
 <script>
-  import io from 'socket.io-client';
-  const socket = io(sessionStorage.getItem("dataServer"));
+import io from 'socket.io-client';
+const socket = io(sessionStorage.getItem("dataServer"));
   
-  export default {
+export default {
   name: 'CreateView',
   data: function () {
     return {
@@ -97,10 +97,10 @@
     })
     socket.on("dataUpdate", (data) => {
       this.data = data
-  })
+    })
     socket.on("pollCreated", (data) => {
       this.data = data
-  })
+    })
   },
   methods: {
     checkNameLength() {
@@ -108,55 +108,52 @@
         this.showAlert = true; 
       }
     },
-    closeAlert(){
+    closeAlert() {
       this.showAlert = false;
     },
     toggleButton() {
       this.buttonState = !this.buttonState;
-      
     },
     createPoll: function () {
       this.buttonClicked = true;
-      if (this.name.length && this.theme.length > 0) {
-      let gameCode = this.generateGameCode();
-      socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState, name: this.name});
-      this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost } })};
+        if (this.name.length && this.theme.length > 0) {
+          let gameCode = this.generateGameCode();
+          socket.emit("createPoll", { lang: this.lang, gameCode: gameCode, numberAllegations: this.numberAllegations, theme: this.theme, lifeLine: this.buttonState, name: this.name });
+          this.$router.push({ name: 'Lobby', params: { gameCode: gameCode, name: this.name, isHost: this.isHost }})
+        };
     },
 
     generateGameCode: function () {
-    return Math.floor(Math.random() * 900000 + 100000);
+      return Math.floor(Math.random() * 900000 + 100000);
     },
-      removeAllegation: function(){
-    if (this.numberAllegations > 1){
-      this.numberAllegations --;
+    removeAllegation: function() {
+      if (this.numberAllegations > 1){
+        this.numberAllegations --;
      }
     }, 
-    addAllegation: function(){
+    addAllegation: function() {
       if (this.numberAllegations < 8){
-      this.numberAllegations ++;
+        this.numberAllegations ++;
       }
     }
-   }
   }
+}
 </script>
   
 <style scoped> 
 .wrapper{
   padding-top: 50px;
   color: #2a9451;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bolder;
   position: relative;
   width: 80%;
   margin:0 auto;
-  
- 
 }
 .wrap{
   padding-top: 10px; 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  
 }
 
 .wrap2{
@@ -164,7 +161,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-
 .textInputField {
   height: 30px; 
   width: 20em; 
@@ -177,14 +173,12 @@
 }
 .wrap3{
   padding-top: 60px; 
-  display: flex;
-  grid-template-columns: repeat(1, 1fr);
 }
 .themes{
   border: 3px solid yellow;
   border-radius: 20px;
   color: #2a9451;
-  font-size: 16px;
+  font-size: 12px;
   padding: 10px;
   margin: 10px;
   background-color: #81b8ce;
@@ -193,14 +187,12 @@
 .themebuttons input[type="radio"] {
   opacity: 0.01;
   z-index: 100;
-  }
-  
+}
 .themebuttons input[type="radio"]:checked+label,
-  
 .themebuttons label:hover {
   background:yellow;
   cursor: pointer;
-  }
+}
 .otherTheme{
   border: 3px solid #3fbc6a;
   border-radius: 20px;
@@ -214,22 +206,17 @@
 }
 ::placeholder {
   color: #2a9451;
-  opacity: 1; /* Firefox */
   font-family: monospace;
-  
 }
 .themebuttons{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: 100%;
-  
 }
 .plusminus {
   margin: auto;
-
 }
-.plus {
+.addRemove {
   border: 3px solid yellow;
   border-radius: 12px;
   background-color: #81b8ce;
@@ -241,22 +228,7 @@
   margin: 0 auto;
   cursor: pointer;
 }
-.plus:hover {
-  background-color: yellow;
-}
-.minus {
-  border: 3px solid yellow;
-  border-radius:12px;
-  background-color: #81b8ce;
-  width: 30px;
-  height: 30px;
-  font-size: 22px;
-  color: #2a9451; 
-  line-height: 5px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-.minus:hover{
+.addRemove:hover {
   background-color: yellow;
 }
 .align {
@@ -265,20 +237,16 @@
   justify-content: center;
   gap: 60vw;
 }
-
 .lifeline {
   padding-top: 60px;
   display: flex;
   margin-bottom: 2em;
 }
-
-
 .back{
   position: fixed;
   left: 2em;
   bottom: 2em;
 }
-
 .button {
   width: 150px;
   height:50px;
@@ -289,8 +257,6 @@
 .invalid-input {
   border: 3px solid red; 
 }
-
-/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
@@ -298,13 +264,9 @@
   height: 34px;
   margin-left: 1em;
 }
-
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
 }
-
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -316,7 +278,6 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -328,35 +289,27 @@
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 input:checked + .slider {
   background-color: yellow;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px yellow;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
   border-width: 0.1px;
 }
-
 .slider.round:before {
   border-radius: 50%;
   border-style: solid;
   border-color: green;
   border-width: 0.1px;
 }
-
-
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   .wrapper {
@@ -382,7 +335,6 @@ input:checked + .slider:before {
   .wrap3 {
     padding-top: 45px; 
     text-align: center;
-    grid-template-columns: 1fr;
   }
   .plusminus {
     margin-top: 1em;
