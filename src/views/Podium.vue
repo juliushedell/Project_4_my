@@ -96,17 +96,6 @@ export default {
     })
   },
   methods: {
-    switchLanguage: function () {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    },
-
     nextAllegation: function () {
       socket.emit("jumpToNextAllegation", this.gameCode)
       socket.emit('randomAllegation', this.gameCode)

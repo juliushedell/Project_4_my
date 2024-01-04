@@ -13,11 +13,6 @@ function sockets(io, socket, data) {
     socket.emit('pollCreated', data.createPoll(d.lang, d.gameCode, d.numberAllegations, d.theme, d.lifeLine, d.name));
   });
 
-  socket.on('joinPoll', function(gameCode) {
-    socket.join(gameCode);
-    io.to(gameCode).emit('pullPoll', data.getPoll(gameCode));
-  });
-
   socket.on('getPoll', function(gameCode) {
     socket.join(gameCode);
     io.to(gameCode).emit('pullPoll', data.getPoll(gameCode))
@@ -35,11 +30,6 @@ function sockets(io, socket, data) {
     socket.emit('sneakDict', sneakDict)
   })
 
-  socket.on('resetAll', () => {
-    data = new Data();
-    data.initializeData();
-  });
-
   socket.on('submitConfessions', function(d) {
     data.submitConfessions(d.gameCode, d.allegations, d.name, d.isHost);
     io.to(d.gameCode).emit('confessionsSubmitted', data.getPlayers(d.gameCode))
@@ -52,10 +42,6 @@ function sockets(io, socket, data) {
   //ska räkna allegations när spelet startar OBS endast en gång 
   socket.on('countAllegations', function(gameCode){
     data.countAllegations(gameCode);
-  });
-
-  socket.on("sendCode", function (gameCode) {
-    socket.emit("recieveCode", gameCode);
   });
 
   socket.on('checkGameCode', function (gameCode) {
