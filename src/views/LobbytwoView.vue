@@ -34,7 +34,6 @@
 </template>
 
 <script>
-
 import io from 'socket.io-client';
 const socket = io(sessionStorage.getItem("dataServer"));
 
@@ -84,27 +83,12 @@ export default {
     })
   },
   methods: {
-    switchLanguage: function () {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    },
-    toggleNav: function () {
-      this.hideNav = !this.hideNav;
-    },
-
     startGame: function () {
       socket.emit('lockGame', this.gameCode)
       socket.emit('countAllegations', this.gameCode)
       socket.emit("startPoll", this.gameCode)
       socket.emit('randomAllegation', this.gameCode)
     },
-
     endGame: function () {
       if (this.isHost) {
         socket.emit('endPoll', this.gameCode)
