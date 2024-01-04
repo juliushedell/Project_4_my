@@ -375,12 +375,10 @@ input:checked + .slider:before {
 
   .back{
   position: relative;
-  left: 2em;
 }
 
 .button {
   position: relative;
-  right:2em;
 }
 
 }
