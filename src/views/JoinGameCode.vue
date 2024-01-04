@@ -12,7 +12,7 @@
     <input ref="gameCodeInput" type="number" id="gameCode" v-model="gameCode" @keyup.enter="checkPollId" required>
   </div>
   <div class="wrapper">
-    <router-link to="/" class="back">{{ uiLabels["back"] }}</router-link>
+    <button @click="goBack" class="back">{{ uiLabels["back"] }}</button>
     <button @click="checkPollId" class="button">{{ uiLabels["joinGame"] }}</button>
   </div>
   <div class="custom-alert" v-if="this.showAlertEnterCode">
@@ -55,6 +55,7 @@ export default {
       this.uiLabels = labels
     })
     socket.on("isGameCodeOK", (gameExists) => {
+      console.log('Socket game OK', this.gameCode)
       if (!gameExists) {
         this.showAlertDontExist = true;
       } else {
@@ -77,6 +78,10 @@ export default {
     },
     closeAlertDontExist() {
       this.showAlertDontExist = false;
+    },
+    goBack: function() {
+      socket.removeAllListeners();
+      this.$router.push('/')
     }
   }
 }
