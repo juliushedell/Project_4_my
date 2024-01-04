@@ -97,7 +97,7 @@ body {
   background-color: whitesmoke; 
   border: 3px solid red;
   border-radius: 20px;
-  padding: 10px;
+  padding: 2em 2em 0 2em;
   box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
   z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
   text-align: center;
@@ -116,6 +116,8 @@ body {
   color: whitesmoke;
   text-decoration: underline;
   font-weight: bolder;
+  margin-top: 3em;
+  margin-bottom: 0.5em;
 }
 
 
@@ -128,22 +130,9 @@ body {
   h1 {
     font-size: 24px;
   }
-  .custom-alert {
-    position: fixed;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%); 
-    width: 250px;
-    background-color: whitesmoke; 
-    border: 3px solid red;
-    border-radius: 20px;
-    padding: 10px;
-    box-shadow: 5px 5px 20px 5px rgb(131, 131, 131); /* (0 0) centrerad (20px) blurret (5px) hur långt skuggan ska sträcka sig*/
-    z-index: 9999; /* Högre z-värde = lägs ovanför element med lägr z-värde*/
-    text-align: center;
-    font-weight: bold;
-    color: #234e5f; 
-    font-size: large;
+  .custom-alert{
+    left: 10%;
+    transform: translate(-5%); 
   }
 }
 
