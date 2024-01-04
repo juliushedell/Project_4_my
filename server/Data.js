@@ -22,7 +22,6 @@ Data.prototype.createPoll = function(lang="en", gameCode, numberAllegations, the
     let poll = {};
     poll.lang = lang;
     this.polls[gameCode] = poll;
-    console.log("poll created", gameCode, poll);
     poll.numberAllegations = numberAllegations;
     poll.theme = theme;
     poll.players = [];

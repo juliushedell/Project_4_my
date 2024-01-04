@@ -85,7 +85,6 @@ created: function () {
     if (!this.isHost) {
       this.showAlert = true; 
     }
-      // this.$router.push('/')
   })
 },
 methods: {
