@@ -181,7 +181,7 @@ export default {
   font-size: 12px;
   padding: 10px;
   margin: 10px;
-  background-color: #81b8ce;
+  background-color: #cdf1ff;
   white-space: nowrap;
 }  
 .themebuttons input[type="radio"] {
