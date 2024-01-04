@@ -84,7 +84,6 @@ export default {
 
 <style scoped>
 #codeField {
-  margin: 0px 10px 80px 10px;
   text-align: center;
 }
 
@@ -95,14 +94,6 @@ export default {
   font-family: monospace;
   padding: 10px;
   margin: 10px;
-}
-
-.wrapper {
-  grid-template-columns: auto auto;
-  display: grid;
-  justify-content: center;
-  gap: 500px;
-  padding-top: 55px;
 }
 
 .button {
@@ -133,20 +124,9 @@ export default {
 
 @media screen and (max-width:50em) {
   .head_picture {
-    height: 60px;
-    margin: 10px;
-  }
-
-  .wrapper {
-    margin-top: 300px;
-    justify-content: center;
-    gap: 20px;
+    height: 50px;
+    margin: 10 10 0 0;
   }
 }
 
-@media only screen and (max-width: 2532px) and (orientation: portrait) {
-  .wrapper {
-    margin-top: 300px;
-  }
-}
 </style>
