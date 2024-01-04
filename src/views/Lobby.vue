@@ -1,5 +1,4 @@
 <template>
- 
     <header> 
         <h1>
             Allegations
@@ -13,8 +12,6 @@
       {{ uiLabels["theme"] }}
       {{ getTheme }}
     </h3>
-    
-      <!-- skapar fields till confessions -->
       <div id="parent-container">
       <form id="confessionsform">
         <div>
@@ -33,6 +30,14 @@
           {{uiLabels["tooMuchInfo"]}} 
           <br><br>
         <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
+
+    <div class="custom-alert" v-if="this.showAlertEnd">
+        <div class="alert-content">
+          {{uiLabels["hostEndedGame"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlertEnd">{{uiLabels["closePopUp"]}}</button>
       </div>
     </div>
 
@@ -65,8 +70,8 @@ data: function () {
     textAreaOne: true,
     currentPlayer: {}, 
     showAlert: false,
+    showAlertEnd: false,
     isHost: false
-  
   }
 },
 updated() {
@@ -106,6 +111,14 @@ created: function () {
   socket.on("confessionsSubmitted", (players) => {
     this.players = players
   })
+  socket.on('endTheGame', () => {
+    console.log('tar den sig till socket.on??', this.showAlertEnd)
+    if (this.isHost === "false") {
+      console.log('Tar den sig innanför if??')
+      this.showAlertEnd = true
+      console.log('Är den true??? ', this.showAlertEnd)
+    }
+  })
 },
 methods: {
   switchLanguage: function() {
@@ -131,6 +144,11 @@ methods: {
   closeAlert(){
       this.showAlert = false;
     },
+  
+  closeAlertEnd(){
+    this.showAlertEnd = false;
+    this.$router.push('/')
+  },
 
   isInputEmpty(i) {
     return this.allegations[i] === undefined || !this.allegations[i];
@@ -138,9 +156,7 @@ methods: {
 
   submitConfessions: function() {
     this.buttonClicked = true;
-
     let isEmptyField = false;
-
     for (let i = 0; i < this.poll.numberAllegations; i++) {
       if (this.isInputEmpty(i)) {
         isEmptyField = true;
@@ -154,9 +170,9 @@ methods: {
     this.$router.push('/Lobbytwo/' + this.gameCode + '/' + this.name + '/' + this.isHost);
   },
 
-  goBack: function(){
+  goBack: function() {
       if (this.isHost === "true"){
-        console.log(this.isHost)
+        socket.emit('endPoll', this.gameCode)
         this.$router.push('/Create/')
       }
       else{ 

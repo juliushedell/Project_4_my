@@ -41,15 +41,12 @@
 </template>
 
 <script>
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
 import io from 'socket.io-client';
 const socket = io(sessionStorage.getItem("dataServer"));
 
 export default {
 name: 'LobbytwoView',
-components: {
-  ResponsiveNav
-},
+
 data: function () {
   return {
     uiLabels: {},

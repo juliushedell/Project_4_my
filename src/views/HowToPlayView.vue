@@ -55,23 +55,20 @@ export default {
 
 <style scoped>
 .liList {
-  margin-top: 50px;
-  margin-left: 100px;
-  margin-right: 50px;
-  margin-bottom: 50px;
+  margin: 50px 100px 50px 50px;
 }
 .li-list1 {
   background: url('/img/fifty.png') no-repeat 0 center;
   background-size: 10em;
   margin-left: 100px;
-  padding: 5px 0px 5px 0px
+  padding: 5px 0px;
 }
 
 .li-list2 {
   background: url('/img/Sneakpeak.png') no-repeat 0 center;
-  background-size: 10em;
+  background-size: 10.2em;
   margin-left: 100px;
-  padding: 5px 0px 5px 0px
+  padding: 5px 0px;
 }
 
 
@@ -87,15 +84,22 @@ li {
 }
 
 p {
-  text-align: left;
-  padding-left: 250px;
+  padding-left: 175px;
   font-size: 20px;
 }
 
 .back {
-  margin-top: 50px;
-  margin-left: 10px;
-  line-height: 45px; 
+  margin: 50px 0 0 10px;
+}
+
+@media screen and (max-width:50em) {
+  li {
+    font-size: 18px;
+  }
+
+  p{
+    font-size: 18px;
+  }
 }
 
 
@@ -106,8 +110,7 @@ p {
 } 
 
 .liList {
-  margin-bottom: 10px;
-  margin-left: 15px;
+  margin: 30px 0 0 10px;
 }
 .li-list1 {
   background: url('/img/fifty.png') no-repeat 0 center;
@@ -123,7 +126,6 @@ p {
   margin-left: 15px;
 }
 p {
-  text-align: left;
   padding-left: 130px;
   font-size: 12px;
 }
@@ -133,6 +135,5 @@ p {
   height:40px;
 }
 }
-
 
 </style>
