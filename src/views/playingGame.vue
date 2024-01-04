@@ -306,32 +306,18 @@ font-weight: bold;
 display: flex;
 align-items: center;
 justify-content: center;
-margin: 75px 50px 0px 50px;
-gap: 150px;
+margin: 45px 50px 0px 50px;
+gap: 25px;
 }
 
 .sneakpeak {
 color: green;
 border: 4px solid green;
-border-radius: 15%;
 font-weight: bold;
-font-size: 20px;
-padding: 15px;
-margin: -160px 0px 10px 0px;
-}
-
-
-.wrap{
-margin: 25px 50px 0px 50px;
-gap: 25px;
-}
-
-.sneakpeak {
-border: 2px solid green;
-border-radius: 15%;
 font-size: 10px;
 padding: 8px;
-margin: -50px 15px 5px -25px;
+margin: -30px 5px 10px 0px;
+box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .playerLists {
