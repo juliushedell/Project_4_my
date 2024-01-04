@@ -27,7 +27,8 @@
       {{ uiLabels['yourCurrentPoints'] }} {{ currentPlayer.points }}
     </div>
     <div class="wrapper">
-      <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
+      <button v-if="this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["endGame"] }} </button>
+      <button v-if="!this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["leaveGame"] }} </button>
       <button v-if="this.isHost" v-on:click="nextAllegation" class="button">{{ uiLabels["nextQuestion"] }}</button>
     </div>
     <div class="custom-alert" v-if="this.showAlert">

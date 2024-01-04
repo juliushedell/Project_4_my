@@ -44,6 +44,14 @@
       </div>
     </div>
 
+    <div class="custom-alert" v-if="this.showAlert">
+        <div class="alert-content">
+          {{uiLabels["hostEndedGame"]}} 
+          <br><br>
+        <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      </div>
+    </div>
+
 </template>
 
 <script>
@@ -62,7 +70,8 @@ export default {
       player: {},
       poll: {},
       buttonClicked: false, 
-      showAlertTooLong: false, 
+      showAlertTooLong: false,
+      showAlert: false, 
       showAlertNameTaken: false 
     }
   },
@@ -79,6 +88,11 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
+    socket.on('endTheGame', () => {
+    if (!this.isHost) {
+      this.showAlert = true; 
+    }
+  })
   },
   methods: {
     checkNameLength() {
@@ -103,6 +117,10 @@ export default {
     }, 
     closeAlertNameTaken(){
       this.showAlertNameTaken = false; 
+    },
+    closeAlert(){
+      this.showAlert = false;
+      this.$router.push('/')
     }
   }
 }

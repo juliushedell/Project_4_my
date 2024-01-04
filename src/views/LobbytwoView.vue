@@ -18,7 +18,8 @@
     <div class="center">
     <div class="wrap">
       <div class="wrap1" style="grid-area: a;">
-        <button v-on:click="endGame" class="back">{{ uiLabels["cancel"] }}</button>
+        <button v-if="this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["endGame"] }} </button>
+        <button v-if="!this.isHost" v-on:click="endGame" class="back"> {{ uiLabels["leaveGame"] }} </button>
       </div>
       <div class="wrap2" style="grid-area: b;">
         <button v-if="this.isHost" v-on:click="startGame" class="button">{{ uiLabels["start"] }}</button>
@@ -85,7 +86,6 @@ created: function () {
     if (!this.isHost) {
       this.showAlert = true; 
     }
-      // this.$router.push('/')
   })
 },
 methods: {
@@ -123,7 +123,7 @@ methods: {
   closeAlert(){
       this.showAlert = false;
       this.$router.push('/')
-    }
+  }
 }}
 </script>
 
