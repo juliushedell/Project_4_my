@@ -354,11 +354,9 @@ input:checked + .slider:before {
     margin: auto;
   }
   .button {
-    width: 100px;
     position: relative;
 }
   .back{
-    width:100px; 
     position: relative;
   }
   .lifeline, text  {
