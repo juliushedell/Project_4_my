@@ -196,7 +196,7 @@ export default {
     display: flex;
     align-items: center;
     padding: 30px;
-    width: 85%;
+    width: 90%;
     background-color: rgba(236, 236, 236, 0.3);
   }
 
