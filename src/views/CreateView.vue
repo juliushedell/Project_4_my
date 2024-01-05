@@ -196,9 +196,9 @@ export default {
 .otherTheme{
   border: 3px solid #3fbc6a;
   border-radius: 20px;
-  height: 40px; 
+  height: 37px; 
   width: 15em; 
-  font-size: 14px;
+  font-size: 12px;
   color:#2a9451;
   font-family: monospace;
   text-indent: 1em;
@@ -219,7 +219,7 @@ export default {
 .addRemove {
   border: 3px solid yellow;
   border-radius: 12px;
-  background-color: #81b8ce;
+  background-color: #cdf1ff;
   width: 30px;
   height: 30px;
   font-size: 22px;
@@ -364,6 +364,35 @@ input:checked + .slider:before {
   grid-template-columns: 1fr;
   align-items: center;
   white-space: nowrap;
+  }
+
+  .align {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    margin: 0px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
+  }
+
+  .align .button {
+    position: fixed;
+    right: 30px;
+    bottom: 10px;
+    height: 45px;
+  }
+
+  .align .back {
+    position: fixed;
+    left: 30px;
+    bottom: 10px;
+    height: 39px;
+    }
+
+  .lifeline {
+    padding-bottom: 40px;
   }
 }
   @media only screen and (max-height: 608px){

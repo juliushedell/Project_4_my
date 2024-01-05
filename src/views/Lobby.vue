@@ -179,6 +179,7 @@
   }
   #parent-container {
     text-align: center; 
+    padding-bottom: 60px;
   }
   #confessionsform label.all {
     font-size: 30px;
@@ -244,6 +245,29 @@
     }
     .custom-alert {
         top: 35%;
+    }
+
+  .wrappp {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    margin: 0px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
+  }
+
+  .wrappp .button {
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+  }
+
+  .wrappp .back {
+    position: absolute;
+    left: 30px;
+    bottom: 10px;
     }
   }
 </style>
