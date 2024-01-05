@@ -193,6 +193,7 @@ export default {
 .button:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+  cursor: pointer;
 }
 .button {
   height: 20px;
