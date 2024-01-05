@@ -390,13 +390,13 @@ img {
     display: flex;
     gap: 25px;
     padding: 15px;
-    font-size: 25px;
+    font-size: 16px;
+    width: 125px;
     font-weight: bold;
     font-family: monospace;
     border: 2px solid rgb(54, 54, 54);
     border-radius: 50px;
     cursor: pointer;
-    width: 220px;
     justify-content: center;
     margin-bottom: 15px;
     border: 0.1875em solid #2a9451;
