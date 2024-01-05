@@ -187,7 +187,6 @@ export default {
 
  .themebuttons input[type="radio"] {
   display: none;
-   /* opacity: 0.01; */
    z-index: 100;
  }
 
