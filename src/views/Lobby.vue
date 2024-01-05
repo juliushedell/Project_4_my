@@ -1,5 +1,5 @@
 <template>
-  <header> 
+  <header>
     <h1>
       Allegations
       <img src="/img/Head_picture.png" class="head_picture">
@@ -16,32 +16,36 @@
     <form id="confessionsform">
       <div id="spacingFields" v-for="i in poll.numberAllegations" :key="i">
         <label for="confession{{ i }}" class="all"> Allegation {{ i }}: &nbsp;</label>
-        <textarea :ref="textareaRef(i - 1)" type="text" class="field" id="field{{ i }}" v-model="allegations[i-1]" @keyup.enter="submitConfessions" :maxlength="145" @input="checkAllegationLength" :class="{'invalid-input': isInputEmpty(i - 1) && buttonClicked}" :placeholder="uiLabels.enterAllegations" required>
+        <textarea :ref="textareaRef(i - 1)" type="text" class="field" id="field{{ i }}" v-model="allegations[i - 1]"
+          @keyup.enter="submitConfessions" :maxlength="145" @input="checkAllegationLength"
+          :class="{ 'invalid-input': isInputEmpty(i - 1) && buttonClicked }" :placeholder="uiLabels.enterAllegations"
+          required>
         </textarea>
       </div>
     </form>
   </div>
   <div class="custom-alert" v-if="this.showAlert">
     <div class="alert-content">
-      {{uiLabels["tooMuchInfo"]}} 
-      <button class="closeButton" @click="closeAlert">{{uiLabels["closePopUp"]}}</button>
+      {{ uiLabels["tooMuchInfo"] }}
+      <button class="closeButton" @click="closeAlert">{{ uiLabels["closePopUp"] }}</button>
     </div>
   </div>
   <div class="custom-alert" v-if="this.showAlertEnd">
     <div class="alert-content">
-      {{uiLabels["hostEndedGame"]}} 
-      <button class="closeButton" @click="closeAlertEnd">{{uiLabels["closePopUp"]}}</button>
+      {{ uiLabels["hostEndedGame"] }}
+      <button class="closeButton" @click="closeAlertEnd">{{ uiLabels["closePopUp"] }}</button>
     </div>
   </div>
   <div class="wrappp">
     <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
-    <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
+    <button v-on:click="submitConfessions" class="button">{{ uiLabels["submit"] }}</button>
   </div>
 </template>
+
 <script>
-  import io from 'socket.io-client';
-  const socket = io(sessionStorage.getItem("dataServer"));
-  export default {
+import io from 'socket.io-client';
+const socket = io(sessionStorage.getItem("dataServer"));
+export default {
   name: 'enterAllegations',
   data: function () {
     return {
@@ -49,14 +53,14 @@
       lang: localStorage.getItem("lang") || "en",
       poll: {},
       gameCode: 0,
-      players: [], 
+      players: [],
       allegations: [],
       numberAllegations: 1,
       theme: "",
-      name:'',
+      name: '',
       buttonClicked: false,
       textAreaOne: true,
-      currentPlayer: {}, 
+      currentPlayer: {},
       showAlert: false,
       showAlertEnd: false,
       isHost: false
@@ -69,12 +73,12 @@
     }
   },
   computed: {
-    getTheme: function() {
+    getTheme: function () {
       const theme = this.theme;
       return this.uiLabels[theme] || this.theme
     }
   },
-  created: function () { 
+  created: function () {
     this.gameCode = this.$route.params.gameCode
     this.name = this.$route.params.name
     this.isHost = this.$route.params.isHost;
@@ -90,7 +94,7 @@
     })
     socket.emit('findCurrentPlayer', this.gameCode, this.name);
     socket.on('currentPlayer', (player) => {
-        this.currentPlayer = player
+      this.currentPlayer = player
     })
     socket.on("init", (labels) => {
       this.uiLabels = labels
@@ -109,8 +113,8 @@
   },
   methods: {
     textareaRef(index) {
-        return `textarea${index}`;
-      },
+      return `textarea${index}`;
+    },
     checkAllegationLength() {
       for (let i = 0; i < this.allegations.length; i++) {
         if (this.allegations[i].length === 145) {
@@ -118,23 +122,23 @@
         }
       }
     },
-    closeAlert(){
-        this.showAlert = false;
-      },
-    closeAlertEnd(){
+    closeAlert() {
+      this.showAlert = false;
+    },
+    closeAlertEnd() {
       this.showAlertEnd = false;
       this.$router.push('/')
     },
     isInputEmpty(i) {
       return this.allegations[i] === undefined || !this.allegations[i];
     },
-    submitConfessions: function() {
+    submitConfessions: function () {
       this.buttonClicked = true;
       let isEmptyField = false;
       for (let i = 0; i < this.poll.numberAllegations; i++) {
         if (this.isInputEmpty(i)) {
           isEmptyField = true;
-          break; 
+          break;
         }
       }
       if (isEmptyField) {
@@ -143,114 +147,124 @@
       socket.emit("submitConfessions", { gameCode: this.gameCode, allegations: this.allegations, name: this.name, isHost: this.isHost });
       this.$router.push('/Lobbytwo/' + this.gameCode + '/' + this.name + '/' + this.isHost);
     },
-    goBack: function() {
-        if (this.isHost === "true"){
-          socket.emit('endPoll', this.gameCode)
-          this.$router.push('/Create/')
-        }
-        else{ 
-          this.$router.push('/JoinGameName/'+this.gameCode)
-        }
+    goBack: function () {
+      if (this.isHost === "true") {
+        socket.emit('endPoll', this.gameCode)
+        this.$router.push('/Create/')
+      }
+      else {
+        this.$router.push('/JoinGameName/' + this.gameCode)
       }
     }
   }
+}
 </script>
 
 <style scoped>
-  /* #name {
-    text-align: center;
-    margin-top: 0.3em; 
-  } */
-  #gameCode {
-    text-align: center;
-    margin-top: 1em;
-    font-size: 40px;
-    font-family: monospace;
-    color: rgb(54, 54, 54);
-  }
-  .field{
-    border-radius: 8px;
-    border: 3px solid #3fbc6a;
-    font-size: 15px;
-    font-family: monospace;
-    width: 450px;
-    height: 55px;
-    padding: 8px;
-  }
-  #parent-container {
-    text-align: center; 
-    padding-bottom: 60px;
-  }
-  #confessionsform label.all {
-    font-size: 30px;
-    color: #2a9451;
-    font-weight: bold;
-    /* font-family: monospace; */
-    /* display: inline-block; */
-    vertical-align: top;
-  }
-  #theme{
-    text-align: center;
-  }
-  .wrappp{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px 50px 0px 50px;
-  }
-  #theme{
-    color: yellow;
-    font-size: 28px;
-  }
-  .invalid-input {
-    border: 3px solid red;
-  }
-  .button{
-    position: fixed;
-    right: 3em;
-    bottom: 3em;
-  }
-  .back{
-    position: fixed;
-    left: 3em;
-    bottom: 3em;
-  }
-  #spacingFields{
-    margin-top: 1em;
-  }
-@media screen and (max-width: 1161px){
-    .wrappp{
+#gameCode {
+  text-align: center;
+  margin-top: 1em;
+  font-size: 40px;
+  font-family: monospace;
+  color: rgb(54, 54, 54);
+}
+
+.field {
+  border-radius: 8px;
+  border: 3px solid #3fbc6a;
+  font-size: 15px;
+  font-family: monospace;
+  width: 450px;
+  height: 55px;
+  padding: 8px;
+}
+
+#parent-container {
+  text-align: center;
+  padding-bottom: 60px;
+}
+
+#confessionsform label.all {
+  font-size: 30px;
+  color: #2a9451;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+#theme {
+  text-align: center;
+}
+
+.wrappp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 50px 0px 50px;
+}
+
+#theme {
+  color: yellow;
+  font-size: 28px;
+}
+
+.invalid-input {
+  border: 3px solid red;
+}
+
+.button {
+  position: fixed;
+  right: 3em;
+  bottom: 3em;
+}
+
+.back {
+  position: fixed;
+  left: 3em;
+  bottom: 3em;
+}
+
+#spacingFields {
+  margin-top: 1em;
+}
+
+@media screen and (max-width: 1161px) {
+  .wrappp {
     padding-top: 30px;
-    }
-    .back{
+  }
+
+  .back {
     position: relative;
     bottom: 1em;
     margin-left: -10px;
     min-width: 150px;
-   }
-    .button{
-      position: relative;
-      bottom: 1em; 
-      margin-left: 150px;
-      min-width: 150px;
-    }
   }
-  @media only screen and (max-width: 2532px) and (orientation: portrait) {
-      .all {
-      font-size: 27px;
-    }
-    .field {
-      width: 350px;
-      height: 70px;
-    }
-    .custom-alert {
-        top: 35%;
-    }
 
-  .wrappp {  
+  .button {
+    position: relative;
+    bottom: 1em;
+    margin-left: 150px;
+    min-width: 150px;
+  }
+}
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  .all {
+    font-size: 27px;
+  }
+
+  .field {
+    width: 350px;
+    height: 70px;
+  }
+
+  .custom-alert {
+    top: 35%;
+  }
+
+  .wrappp {
     position: fixed;
     bottom: 0px;
-    display: flex; 
+    display: flex;
     align-items: center;
     padding: 30px;
     margin: 0px;
@@ -268,6 +282,6 @@
     position: absolute;
     left: 30px;
     bottom: 10px;
-    }
   }
+}
 </style>

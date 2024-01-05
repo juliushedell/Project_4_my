@@ -111,7 +111,6 @@ export default {
   gap: 20px;
 }
 
-
 .code {
   align-items: center;
   justify-content: center;
@@ -169,11 +168,13 @@ export default {
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   #gameCode {
-    width: 40vw;
-    height: 3vh;
-    font-size: 8vw;
+    width: 55vw;
+    height: 8vh;
+    font-size: 14vw;
+    border: 0.25em solid yellow;
   }
-  .playerLists{
+
+  .playerLists {
     padding-bottom: 80px;
   }
 
@@ -182,16 +183,17 @@ export default {
     justify-content: center;
     align-items: center;
     width: min-content;
-    padding:10px;
+    padding: 10px;
     margin: 0px auto;
-    width: 220px;
-    
+    width: 200px;
+    height: auto;
+    font-size: 20px;
   }
 
-  .wrap {  
+  .wrap {
     position: fixed;
     bottom: 0px;
-    display: flex; 
+    display: flex;
     align-items: center;
     padding: 30px;
     width: 85%;
@@ -206,6 +208,6 @@ export default {
   .wrap .back {
     left: 30px;
     bottom: 10px;
-    }
+  }
 }
 </style>
