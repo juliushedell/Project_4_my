@@ -268,7 +268,7 @@ export default {
     align-items: center;
     padding: 30px;
     margin: 0px;
-    width: 85%;
+    width: 90%;
     background-color: rgba(236, 236, 236, 0.3);
   }
 

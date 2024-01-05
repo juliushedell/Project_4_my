@@ -152,15 +152,15 @@ export default {
         socket.emit('changeFiftyFifty', this.gameCode, this.name)
       }
     },
-    // goToPodiumView() {
-    //   this.currentPlayer.visible = false;
-    //   if (this.poll.counter > 0) {
-    //     this.$router.push('/Podium/' + this.gameCode + '/' + this.name + '/' + this.isHost);
-    //   }
-    //   else {
-    //     this.$router.push('/Final/' + this.gameCode + '/' + this.name + '/' + this.isHost);
-    //   }
-    // },
+     goToPodiumView() {
+       this.currentPlayer.visible = false;
+       if (this.poll.counter > 0) {
+         this.$router.push('/Podium/' + this.gameCode + '/' + this.name + '/' + this.isHost);
+       }
+       else {
+         this.$router.push('/Final/' + this.gameCode + '/' + this.name + '/' + this.isHost);
+       }
+     },
     submitAnswer: function () {
       if (!this.currentPlayer.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
         socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
