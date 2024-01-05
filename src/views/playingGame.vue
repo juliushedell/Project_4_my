@@ -16,7 +16,7 @@
       src="../../img/alligatorTimer.png" alt="countDownAlligator" />
   </div>
   <div style="text-align: center;">
-    <p v-if="timer > 0"> {{ timer }} </p>
+    <div v-if="timer > 0" class="timer"> {{ timer }} </div>
     <p v-else="timer === 0"> {{ goToPodiumView() }} </p>
   </div>
   <div class="wrap">
@@ -39,9 +39,9 @@
   <div class="playerLists">
     <div class="grid-container">
       <label v-for="(player, index) in randomizedPlayers" :key="index" class="grid-item">
-        <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer"
+        <input type="radio" :value="player" v-model="selectedPlayer" @change="submitAnswer"
           :disabled="this.currentPlayer.answerLock" class="custom-radio-input" />
-        <span class="custom-radio-button">{{ player }}</span>
+        <span :class="getClass(player)">{{ player }}</span>
       </label>
     </div>
   </div>
@@ -66,6 +66,7 @@ export default {
       isHost: false,
       playerList: [],
       answerList: [],
+      randomPlayers: [],
       sneakDict: {},
       currentPlayer: {},
       allegationsLeft: 0,
@@ -79,10 +80,10 @@ export default {
     countPercentageAlligator() {
       return (this.timer / 15) * 100;
     },
-    randomizedPlayers() {
+    randomizedPlayers: function() {
       const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
       return randomized.slice(0, 4);
-    },
+    }
   },
 
   created() {
@@ -96,6 +97,7 @@ export default {
       socket.emit('getPlayerList', this.gameCode, poll.correctAnswer);
       socket.on('playerList', (playerList) => {
         this.playerList = playerList
+        this.randomizeIt(playerList)
       });
     });
     socket.emit('findCurrentPlayer', this.gameCode, this.name);
@@ -119,6 +121,14 @@ export default {
   },
 
   methods: {
+    getClass: function(player) {
+      if (player === this.currentPlayer.currentAnswer) {
+        return 'cssAnswer'
+      }
+      else {
+        return 'custom-radio-button'
+      }
+    },
     startCountdown() {
       var countdownInterval = setInterval(() => {
         if (this.timer > 0) {
@@ -142,15 +152,15 @@ export default {
         socket.emit('changeFiftyFifty', this.gameCode, this.name)
       }
     },
-    goToPodiumView() {
-      this.currentPlayer.visible = false;
-      if (this.poll.counter > 0) {
-        this.$router.push('/Podium/' + this.gameCode + '/' + this.name + '/' + this.isHost);
-      }
-      else {
-        this.$router.push('/Final/' + this.gameCode + '/' + this.name + '/' + this.isHost);
-      }
-    },
+     goToPodiumView() {
+       this.currentPlayer.visible = false;
+       if (this.poll.counter > 0) {
+         this.$router.push('/Podium/' + this.gameCode + '/' + this.name + '/' + this.isHost);
+       }
+       else {
+         this.$router.push('/Final/' + this.gameCode + '/' + this.name + '/' + this.isHost);
+       }
+     },
     submitAnswer: function () {
       if (!this.currentPlayer.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
         socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
@@ -213,12 +223,32 @@ img {
   overflow-wrap: break-word;
   margin: 0 auto;
   font-family: monospace;
+  color:  rgb(54, 54, 54);
 }
 
 .alligator-container {
   overflow: hidden;
   text-align: center;
   margin-top: 10px;
+}
+.timer {
+  font-size: 24px; 
+  color: black; 
+  font-weight: bold;
+  padding: 3px;
+  margin: 2em auto;
+  font-size: 14px;
+  font-weight: bold;
+  border: 4px solid yellow;
+  opacity: 50%;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+ 
 }
 
 .wrap {
@@ -286,7 +316,7 @@ img {
   font-size: 25px;
   font-weight: bold;
   font-family: monospace;
-  border: 2px solid black;
+  border: 2px solid rgb(54, 54, 54);
   border-radius: 50px;
   cursor: pointer;
   width: 220px;
@@ -295,7 +325,20 @@ img {
   border: 0.1875em solid #2a9451;
 }
 
-.custom-radio-input:checked+.custom-radio-button {
+.cssAnswer {
+  display: flex;
+  gap: 25px;
+  padding: 15px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: monospace;
+  border: 2px solid rgb(54, 54, 54);
+  border-radius: 50px;
+  cursor: pointer;
+  width: 220px;
+  justify-content: center;
+  margin-bottom: 15px;
+  border: 0.1875em solid #2a9451;
   background-color: #3fbc6a;
 }
 
@@ -331,4 +374,26 @@ img {
   .grid-item {
     margin-bottom: -15px;
   }
-}</style>
+
+  .sneakpeak {
+    margin-bottom: 28px;
+  }
+
+  .cssAnswer {
+    display: flex;
+    gap: 25px;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: monospace;
+    border: 2px solid rgb(54, 54, 54);
+    border-radius: 50px;
+    cursor: pointer;
+    width: 220px;
+    justify-content: center;
+    margin-bottom: 15px;
+    border: 0.1875em solid #2a9451;
+    background-color: #3fbc6a;
+  }
+}
+</style>

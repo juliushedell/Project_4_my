@@ -223,6 +223,7 @@ export default {
   position: absolute;
   right: 3em;
   bottom: 3em;
+  white-space: wrap;
 }
 
 .back {
@@ -236,6 +237,7 @@ export default {
   position: fixed; 
   right: 30px;
   bottom: 10px;
+  white-space: wrap;
 }
 .back{
   position: fixed;

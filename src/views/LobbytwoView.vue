@@ -168,9 +168,10 @@ export default {
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   #gameCode {
-    width: 40vw;
-    height: 3vh;
-    font-size: 8vw;
+    width: 55vw;
+    height: 8vh;
+    font-size: 14vw;
+    border: 0.25em solid yellow;
   }
 
   .playerLists {
@@ -184,7 +185,9 @@ export default {
     width: min-content;
     padding: 10px;
     margin: 0px auto;
-    width: 220px;
+    width: 200px;
+    height: auto;
+    font-size: 20px;
   }
 
   .wrap {
@@ -193,7 +196,7 @@ export default {
     display: flex;
     align-items: center;
     padding: 30px;
-    width: 85%;
+    width: 90%;
     background-color: rgba(236, 236, 236, 0.3);
   }
 

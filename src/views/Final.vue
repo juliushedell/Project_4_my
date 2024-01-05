@@ -127,7 +127,7 @@ export default {
   height: 50px;
   border: 4px solid goldenrod;
   border-style: double;
-  color: black;
+  color: rgb(54, 54, 54);
   border-radius: 50%;
   background-color: rgb(255, 215, 0);
   line-height: 50px;
@@ -135,7 +135,7 @@ export default {
 }
 
 #name {
-  color: black;
+  color: rgb(54, 54, 54);
 }
 
 #alligatorGifRigth {
@@ -190,9 +190,10 @@ export default {
   transition: opacity 0.3s;
 }
 
-.quitGame:hover .tooltiptext {
+.button:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+  cursor: pointer;
 }
 .button {
   height: 20px;
