@@ -23,11 +23,7 @@
 
 <script>
 import io from 'socket.io-client';
-<<<<<<< HEAD
 //sessionStorage.setItem("dataServer", "172.20.10.2:3000") // Julius IP 
-=======
-// sessionStorage.setItem("dataServer", "172.20.10.2:3000") // Julius IP 
->>>>>>> 9542f868ba20da97a63762fb60c2da8e0427d11d
 sessionStorage.setItem("dataServer", "localhost:3000")
 const socket = io(sessionStorage.getItem("dataServer"));
 
