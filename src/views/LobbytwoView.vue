@@ -173,15 +173,19 @@ export default {
     height: 3vh;
     font-size: 8vw;
   }
+  .playerLists{
+    padding-bottom: 80px;
+  }
 
   .player-list {
     display: flex;
     justify-content: center;
     align-items: center;
     width: min-content;
-    padding: 10px;
+    padding:10px;
     margin: 0px auto;
     width: 220px;
+    
   }
 
   .wrap {  

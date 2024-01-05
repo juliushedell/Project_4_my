@@ -211,29 +211,41 @@ export default {
   font-size: 16px;
   display: grid;
   justify-content: center;
+  padding-bottom:80px; 
 }
 
 .button {
   position: absolute;
-  right: 50px;
-  bottom: 50px;
+  right: 3em;
+  bottom: 3em;
 }
 
 .back {
   position: absolute;
-  left: 50px;
-  bottom: 50px;
+  left: 3em;
+  bottom: 3em;
 }
 
 @media only screen and (max-width: 1100px){
 .button{
-  position: relative; 
-  margin-top: 30px;
+  position: fixed; 
+  right: 30px;
+  bottom: 10px;
 }
 .back{
-  position: relative;
-  margin-top: 30px;
+  position: fixed;
+  left: 30px;
+  bottom: 10px;
 }
+.wrapper {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
+  }
   
 }
 
