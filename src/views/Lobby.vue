@@ -37,8 +37,7 @@
     <button v-on:click="goBack" class="back">{{ uiLabels["back"] }}</button>
     <button v-on:click="submitConfessions" class="button" >{{ uiLabels["submit"] }}</button> 
   </div>
-</template>\
-
+</template>
 <script>
   import io from 'socket.io-client';
   const socket = io(sessionStorage.getItem("dataServer"));
@@ -158,10 +157,10 @@
 </script>
 
 <style scoped>
-  #name {
+  /* #name {
     text-align: center;
     margin-top: 0.3em; 
-  }
+  } */
   #gameCode {
     text-align: center;
     margin-top: 1em;
@@ -185,8 +184,8 @@
     font-size: 30px;
     color: #2a9451;
     font-weight: bold;
-    font-family: monospace;
-    display: inline-block;
+    /* font-family: monospace; */
+    /* display: inline-block; */
     vertical-align: top;
   }
   #theme{
@@ -201,7 +200,6 @@
   #theme{
     color: yellow;
     font-size: 28px;
-    font-family: monospace;
   }
   .invalid-input {
     border: 3px solid red;
@@ -216,12 +214,10 @@
     left: 3em;
     bottom: 3em;
   }
-
   #spacingFields{
     margin-top: 1em;
   }
-
-  @media screen and (max-width: 1161px){
+@media screen and (max-width: 1161px){
     .wrappp{
     padding-top: 30px;
     }
@@ -230,24 +226,24 @@
     bottom: 1em;
     margin-left: -10px;
     min-width: 150px;
+   }
+    .button{
+      position: relative;
+      bottom: 1em; 
+      margin-left: 150px;
+      min-width: 150px;
+    }
   }
-  .button{
-    position: relative;
-    bottom: 1em; 
-    margin-left: 150px;
-    min-width: 150px;
-  }}
-
   @media only screen and (max-width: 2532px) and (orientation: portrait) {
-    .all {
-    font-size: 27px;
-  }
-  .field {
-    width: 350px;
-    height: 70px;
-  }
-  .custom-alert {
-      top: 35%;
+      .all {
+      font-size: 27px;
+    }
+    .field {
+      width: 350px;
+      height: 70px;
+    }
+    .custom-alert {
+        top: 35%;
     }
   }
 </style>

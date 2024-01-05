@@ -10,7 +10,7 @@
       {{ uiLabels['answer'] }} {{ poll.correctAnswer }}
     </h3>
   </div>
-  <div class=podiumFrame>
+  <div class=podiumFrame :style="{ backgroundImage: 'url(https://cdn.pixabay.com/photo/2022/03/27/14/42/podium-7095300_1280.png)' }">
     <div class="placement" v-for="(i, index) in theScoreboard" :key="i">
       <template v-if="typeof i !== 'undefined' && i.length > 0">
         <div :class="{ 'gold': index === 0, 'silver': index === 1, 'bronze': index === 2 }">{{ index + 1 }}</div>
@@ -141,6 +141,9 @@ export default {
   font-family: monospace;
   font-size: 20px;
   text-align: center;
+  background-size: contain;
+  background-position: bottom;
+  background-repeat: no-repeat;
 }
 
 .placement {

@@ -23,7 +23,11 @@
 
 <script>
 import io from 'socket.io-client';
+<<<<<<< HEAD
 //sessionStorage.setItem("dataServer", "172.20.10.2:3000") // Julius IP 
+=======
+// sessionStorage.setItem("dataServer", "172.20.10.2:3000") // Julius IP 
+>>>>>>> b47b0d748aa2f5f60f826c0ee0670879b58ed835
 sessionStorage.setItem("dataServer", "localhost:3000")
 const socket = io(sessionStorage.getItem("dataServer"));
 
@@ -84,15 +88,21 @@ export default {
 }
 
 #frontText h2{
-  font-size: 65px;
+  font-size: 70px;
   margin: 0.2em auto;
- 
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #28834a;
 }
 #frontText h4{
-  font-size: 20px;
- margin-top: 0;
+  font-size: 18px;
+  margin-top: 0;
+  animation: fadeIn 5s;
+  -webkit-animation: fadeIn 5s;
 }
-
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 .wrapper {
   display: flex;
   justify-content: center;
@@ -135,6 +145,16 @@ body {
     width: 266px;
     height: 166px;
   }
+  #frontText h2{
+    font-size: 50px;
+  }
+  #frontText h4{
+    font-size: 18px;
+  }
+  #frontText {
+    margin: 2em 0 2em;
+  }
+
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {

@@ -117,8 +117,6 @@ export default {
   justify-content: center;
   padding-top: 50px;
   display: grid;
-  grid-template-areas: 'a b';
-  width: 440px;
   place-items: center;
 }
 */
@@ -178,7 +176,30 @@ export default {
   bottom: 50px;
 }
 
-@media screen and (max-hight: 900px) {
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  #gameCode {
+    width: 40vw;
+    height: 3vh;
+    font-size: 8vw;
+  }
+
+  .wrap {
+    padding-top: 70px;
+    display: flex;
+    align-items: center;
+    gap: 120px;
+  } 
+
+  .player-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: min-content;
+    padding: 10px;
+    margin: 0px auto;
+    width: 220px;
+  }
+
   .button {
     position: relative;
     right: 50px;
@@ -189,33 +210,6 @@ export default {
     position: relative;
     left: 50px;
     bottom: 50px;
-  }
-}
-
-@media only screen and (max-width: 2532px) and (orientation: portrait) {
-  #gameCode {
-    width: 40vw;
-    height: 3vh;
-    font-size: 8vw;
-  }
-
-  /* .wrap {
-    padding-top: 300px;
-    display: grid;
-    grid-template-areas: 'a b';
-    width: 90vw;
-    place-items: center;
-  }
-*/
-
-  .player-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: min-content;
-    padding: 10px;
-    margin: 0px auto;
-    width: 220px;
   }
 }
 </style>

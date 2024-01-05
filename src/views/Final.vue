@@ -7,7 +7,7 @@
       <p>PODIUM</p>
     </div>
     <div class="row-container">
-      <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifLeft">
+      <img src="../../img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifLeft">
       <div class=podiumFrame>
         <div class="placement" v-for="(i, index) in theScoreboard" :key="i">
           <template v-if="typeof i !== 'undefined' && i.length > 0">
