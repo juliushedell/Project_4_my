@@ -40,7 +40,7 @@
     <div class="grid-container">
       <label v-for="(player, index) in this.randomPlayers" :key="index" class="grid-item">
         <input type="radio" :value="player" v-model="selectedPlayer" @change="submitAnswer"
-          :disabled="this.currentPlayer.answerLock" class="custom-radio-button" />
+          :disabled="this.currentPlayer.answerLock" class="custom-radio-input" />
         <span :class="getClass(player)">{{ player }}</span>
       </label>
     </div>
