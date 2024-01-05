@@ -23,8 +23,12 @@
 
 <script>
 import io from 'socket.io-client';
+<<<<<<< HEAD
+//sessionStorage.setItem("dataServer", "172.20.10.2:3000") // Julius IP 
+=======
 // sessionStorage.setItem("dataServer", "172.20.10.2:3000") // Julius IP 
 // sessionStorage.setItem("dataServer", "172.20.10.3:3000") // Hugo IP
+>>>>>>> 0c0d5abb2e8c715fbe55a1d3132c3f2e91746243
 sessionStorage.setItem("dataServer", "localhost:3000")
 const socket = io(sessionStorage.getItem("dataServer"));
 
@@ -108,10 +112,14 @@ export default {
 }
 
 .rightButton {
-  display: flex;
+  /* display: flex;
   justify-content: right;
-  margin-top: 80px;
-  padding-right: 30px;
+  margin-top: 70px;
+  margin-bottom: 20px;
+  padding-right: 30px; */
+  position: absolute;
+  right: 3em;
+  bottom: 3em;
 }
 
 body {
@@ -181,8 +189,11 @@ body {
   }
 
   .rightButton{
-    margin-top: 20px;
-    padding-right: 5px;
+  display: flex;
+  position: relative; 
+  margin: 50px 0px 0px 75px;
+  justify-content: center;
+  text-align: center;
   }
 }
 </style>
