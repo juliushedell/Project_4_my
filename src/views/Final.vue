@@ -27,7 +27,9 @@
       <img src="../../img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifRigth">
     </div>
     <div class="quitGame">
-      <router-link to="/" class="button"> {{ uiLabels["endGame"] }} </router-link>
+      <router-link to="/" class="button"> {{ uiLabels["endGame"] }} 
+        <span class="tooltiptext">See ya later, allegator!</span>
+      </router-link>
     </div>
   </div>
 </template>
@@ -109,7 +111,7 @@ export default {
   min-height: 40vh;
   overflow-wrap: break-word;
   margin: 0 auto;
-  margin-top: 15vh;
+  margin-top: 10vh;
   font-family: monospace;
   font-size: 20px;
 }
@@ -170,6 +172,27 @@ export default {
   font-size: 22px;
   color: yellow;
   font-family: monospace;
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.quitGame:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 .button {
   height: 20px;
