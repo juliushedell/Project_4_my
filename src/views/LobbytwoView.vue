@@ -178,20 +178,6 @@ export default {
   bottom: 50px;
 }
 
-@media screen and (max-hight: 900px) {
-  .button {
-    position: relative;
-    right: 50px;
-    bottom: 50px;
-  }
-
-  .back {
-    position: relative;
-    left: 50px;
-    bottom: 50px;
-  }
-}
-
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
   #gameCode {
     width: 40vw;
@@ -216,6 +202,18 @@ export default {
     padding: 10px;
     margin: 0px auto;
     width: 220px;
+  }
+
+  .button {
+    position: relative;
+    right: 50px;
+    bottom: 50px;
+  }
+
+  .back {
+    position: relative;
+    left: 50px;
+    bottom: 50px;
   }
 }
 </style>

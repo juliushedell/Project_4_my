@@ -116,11 +116,6 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     })
-    socket.on('allCheckDone', (check) => {
-      if (check) {
-        this.goToPodiumView()
-      }
-    })
   },
 
   methods: {
@@ -160,7 +155,6 @@ export default {
       if (!this.currentPlayer.answerLock && this.timer > 0 && this.selectedPlayer !== null) {
         socket.emit('submitAnswer', this.gameCode, this.name, this.selectedPlayer);
         this.currentPlayer.visible = false;
-        // socket.emit('checkAllDone', this.gameCode)
       }
     },
     sneakPeak: function () {

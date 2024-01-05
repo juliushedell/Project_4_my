@@ -7,7 +7,7 @@
       <p>PODIUM</p>
     </div>
     <div class="row-container">
-      <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifLeft">
+      <img src="../../img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifLeft">
       <div class=podiumFrame>
         <div class="placement" v-for="(i, index) in theScoreboard" :key="i">
           <template v-if="typeof i !== 'undefined' && i.length > 0">
@@ -160,7 +160,8 @@ export default {
   margin-bottom: 5px;
 }
 .quitGame {
-  position: fixed;
+  padding-top: 120px;
+  position: relative;
   bottom: 0.1vh;
   right: 0.1vw;
   font-size: 22px;
@@ -186,7 +187,9 @@ export default {
 
   #alligatorGifRigth {
     margin-top: 20px;
-
+  }
+  .quitGame{
+    margin-right: 50px;
   }
   .button {
     height: 30px;

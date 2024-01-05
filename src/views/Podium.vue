@@ -96,17 +96,6 @@ export default {
     })
   },
   methods: {
-    switchLanguage: function () {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    },
-
     nextAllegation: function () {
       socket.emit("jumpToNextAllegation", this.gameCode)
       socket.emit('randomAllegation', this.gameCode)
@@ -238,4 +227,18 @@ export default {
   left: 50px;
   bottom: 50px;
 }
+
+@media only screen and (max-width: 1100px){
+.button{
+  position: relative; 
+  margin-top: 30px;
+}
+.back{
+  position: relative;
+  margin-top: 30px;
+}
+  
+}
+
+
 </style>
