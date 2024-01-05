@@ -9,7 +9,7 @@
     {{ this.allegationsLeft }}/{{ poll.totalAllegations }}
   </div>
   <div class=text-frame>
-    <p>"{{ poll.randomAllegation }}"</p>
+    <p>{{ poll.randomAllegation }}</p>
   </div>
   <div class="alligator-container">
     <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }"
@@ -203,7 +203,6 @@ img {
   font-size: 14px;
   font-weight: bold;
   border: 4px solid yellow;
-  opacity: 50%;
   border-radius: 50%;
   width: 35px;
   height: 35px;
@@ -214,11 +213,6 @@ img {
 }
 
 .text-frame {
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   border: 4px solid green;
   padding: 5px;
   width: 80vw;
@@ -348,7 +342,7 @@ img {
   background-color: #3fbc6a;
 }
 
-@media screen and (max-width:1134px) {
+@media screen and (max-width:50em) {
   .text-frame {
     font-size: 20px;
     height: 20vh;
@@ -368,7 +362,6 @@ img {
     font-size: 16px;
     width: 125px;
   }
-
   .playerLists {
     margin-top: -20px;
   }
