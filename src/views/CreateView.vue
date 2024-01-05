@@ -147,19 +147,25 @@ export default {
   font-size: 20px;
   font-weight: bolder;
   position: relative;
-  width: 80%;
-  margin:0 auto;
+  width: 60%;
+  margin: 0 auto;
 }
 .wrap{
   padding-top: 10px; 
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  text-align: left;
+}
+.wrap > * {
+  display: inline-block;
+  margin-left: 20px;
 }
 
 .wrap2{
   padding-top: 60px; 
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  text-align: left;
+}
+.wrap2 > * {
+  display: inline-block;
+  margin-left: 20px;
 }
 .textInputField {
   height: 30px; 
@@ -168,7 +174,6 @@ export default {
   font-size: 14px;
   border: 3px solid #3fbc6a;
   color:#2a9451;
-  margin: auto;
   text-indent: 1em;
 }
 .wrap3{
@@ -214,7 +219,7 @@ export default {
   align-items: center;
 }
 .plusminus {
-  margin: auto;
+ margin-right: 10px;
 }
 .addRemove {
   border: 3px solid yellow;
@@ -240,6 +245,7 @@ export default {
 .lifeline {
   padding-top: 60px;
   display: flex;
+  align-items: center;
   margin-bottom: 2em;
 }
 .back{
@@ -311,11 +317,12 @@ input:checked + .slider:before {
   border-width: 0.1px;
 }
 
-@media only screen and (max-width: 2532px) and (orientation: portrait) {
+@media only screen and (max-width: 900px) {
   .wrapper {
     margin-top: -50px; 
     text-align: center;
     font-size: 18px;
+    width: 80%;
   }
   .textInputField {
     width: 150px;
@@ -395,14 +402,5 @@ input:checked + .slider:before {
     padding-bottom: 40px;
   }
 }
-  @media only screen and (max-height: 608px){
 
-    .back{
-    position: relative;
-  }
-
-  .button {
-    position: relative;
-  }
-}
 </style>
