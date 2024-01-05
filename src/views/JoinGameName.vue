@@ -173,7 +173,8 @@ export default {
   .wrap .back {
     left: 30px;
     bottom: 10px;
-    height: 40px;
+    height: 39px;
+    width: 144px;
     }
 }
 </style>
