@@ -170,9 +170,9 @@ export default {
 }
 .button {
   height: 20px;
-  position: absolute;
-  right: 50px;
-  bottom: 50px;
+  position: fixed;
+  right: 3em;
+  bottom: 3em;
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
@@ -193,6 +193,7 @@ export default {
   }
   .button {
     height: 30px;
+    position: relative;
   }
 }
 </style>
