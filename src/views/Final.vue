@@ -2,10 +2,13 @@
   <div class="confetti-wrapper">
     <Confetti />
   </div>
+  <header>
+    <h1>
+       Podium 
+      <img src="/img/Head_picture.png" class="head_picture">
+    </h1>
+  </header>
   <div class="content">
-    <div class="header">
-      <p>PODIUM</p>
-    </div>
     <div class="row-container">
       <img src="../../img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifLeft">
       <div class=podiumFrame>
@@ -106,7 +109,7 @@ export default {
   min-height: 40vh;
   overflow-wrap: break-word;
   margin: 0 auto;
-  margin-top: 4vh;
+  margin-top: 15vh;
   font-family: monospace;
   font-size: 20px;
 }
@@ -179,6 +182,7 @@ export default {
   .podiumFrame {
     border: 6px double green;
     width: 60vw;
+    margin-top: 4vh;
   }
   .row-container {
     flex-direction: column;
