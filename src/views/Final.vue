@@ -190,7 +190,7 @@ export default {
   transition: opacity 0.3s;
 }
 
-.quitGame:hover .tooltiptext {
+.button:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
