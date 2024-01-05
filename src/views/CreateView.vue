@@ -205,7 +205,7 @@ export default {
    color: #2a9451;
    font-family: monospace;
    text-indent: 1em;
-   margin-left: 2em;
+   margin: 8px
  }
 
  ::placeholder {
@@ -248,7 +248,7 @@ export default {
  }
 
  .lifeline {
-   padding-top: 60px;
+   padding-top: 30px;
    display: flex;
    margin-bottom: 2em;
    align-items: center;
@@ -355,13 +355,13 @@ export default {
    }
 
    .wrap2 {
-     padding-top: 40px;
+     padding-top: 10px;
      text-align: center;
      grid-template-columns: 1fr;
    }
 
    .wrap3 {
-     padding-top: 45px;
+     padding-top: 25px;
      text-align: center;
    }
 
@@ -378,12 +378,12 @@ export default {
      font-size: 12px;
      text-indent: 1.5em;
      margin-left: 0;
-     margin-top: 1em;
+     margin: 6px;
    }
 
    .themes {
      font-size: 12px;
-     margin: auto;
+     margin: 6px;
    }
 
    .button {
