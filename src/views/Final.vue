@@ -215,12 +215,21 @@ export default {
   #alligatorGifRigth {
     margin-top: 20px;
   }
-  .quitGame{
-    margin-right: 50px;
+  
+  .quitGame {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
   }
-  .button {
-    height: 30px;
-    position: relative;
+
+  .quitGame .button {
+    right: 30px;
+    bottom: 10px;
+    position: fixed;
   }
 }
 </style>
