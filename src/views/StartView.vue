@@ -108,10 +108,14 @@ export default {
 }
 
 .rightButton {
-  display: flex;
+  /* display: flex;
   justify-content: right;
-  margin-top: 80px;
-  padding-right: 30px;
+  margin-top: 70px;
+  margin-bottom: 20px;
+  padding-right: 30px; */
+  position: absolute;
+  right: 3em;
+  bottom: 3em;
 }
 
 body {
@@ -181,8 +185,11 @@ body {
   }
 
   .rightButton{
-    margin-top: 20px;
-    padding-right: 5px;
+  display: flex;
+  position: relative; 
+  margin: 50px 0px 0px 75px;
+  justify-content: center;
+  text-align: center;
   }
 }
 </style>
