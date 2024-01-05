@@ -251,6 +251,7 @@ export default {
    padding-top: 60px;
    display: flex;
    margin-bottom: 2em;
+   align-items: center;
  }
 
  .back {
@@ -333,11 +334,12 @@ export default {
    border-width: 0.1px;
  }
 
- @media only screen and (max-width: 2532px) and (orientation: portrait) {
+ @media only screen and (max-width: 900px) {
    .wrapper {
      margin-top: -50px;
      text-align: center;
      font-size: 18px;
+     width: 80%;
    }
 
    .textInputField {
@@ -407,7 +409,7 @@ export default {
      align-items: center;
      padding: 30px;
      margin: 0px;
-     width: 85%;
+     width: 100%;
      background-color: rgba(236, 236, 236, 0.3);
    }
 
@@ -423,6 +425,7 @@ export default {
      left: 30px;
      bottom: 10px;
      height: 39px;
+     background-color: rgba(236, 236, 236, 0);
    }
 
    .lifeline {
@@ -430,13 +433,4 @@ export default {
    }
  }
 
- @media only screen and (max-height: 608px) {
-   .back {
-     position: relative;
-   }
-
-   .button {
-     position: relative;
-   }
- }
 </style>
