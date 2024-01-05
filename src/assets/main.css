@@ -126,5 +126,9 @@ body {
     left: 10%;
     transform: translate(-5%); 
   }
+
+  .back {
+    background-color: rgba(236, 236, 236, 0);
+  }
 }
 

@@ -216,7 +216,7 @@ export default {
   #alligatorGifRigth {
     margin-top: 20px;
   }
-  
+
   .quitGame {  
     position: fixed;
     bottom: 0px;
