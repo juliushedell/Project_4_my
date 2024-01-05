@@ -38,7 +38,7 @@
   </div>
   <div class="playerLists">
     <div class="grid-container">
-      <label v-for="(player, index) in this.randomPlayers" :key="index" class="grid-item">
+      <label v-for="(player, index) in randomizedPlayers" :key="index" class="grid-item">
         <input type="radio" :value="player" v-model="selectedPlayer" @change="submitAnswer"
           :disabled="this.currentPlayer.answerLock" class="custom-radio-input" />
         <span :class="getClass(player)">{{ player }}</span>
@@ -80,6 +80,10 @@ export default {
     countPercentageAlligator() {
       return (this.timer / 15) * 100;
     },
+    randomizedPlayers: function() {
+      const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
+      return randomized.slice(0, 4);
+    }
   },
 
   created() {
@@ -117,10 +121,6 @@ export default {
   },
 
   methods: {
-    randomizeIt: function(playerlist) {
-      const randomized = playerlist.slice().sort(() => Math.random() - 0.5);
-      this.randomPlayers = randomized;
-    },
     getClass: function(player) {
       if (player === this.currentPlayer.currentAnswer) {
         return 'cssAnswer'
