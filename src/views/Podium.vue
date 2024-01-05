@@ -10,7 +10,7 @@
       {{ uiLabels['answer'] }} {{ poll.correctAnswer }}
     </h3>
   </div>
-  <div class=podiumFrame>
+  <div class="podiumFrame">
     <div class="placement" v-for="(i, index) in theScoreboard" :key="i">
       <template v-if="typeof i !== 'undefined' && i.length > 0">
         <div :class="{ 'gold': index === 0, 'silver': index === 1, 'bronze': index === 2 }">{{ index + 1 }}</div>

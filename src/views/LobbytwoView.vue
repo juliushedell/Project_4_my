@@ -117,8 +117,6 @@ export default {
   justify-content: center;
   padding-top: 50px;
   display: grid;
-  grid-template-areas: 'a b';
-  width: 440px;
   place-items: center;
 }
 */
@@ -185,14 +183,12 @@ export default {
     font-size: 8vw;
   }
 
-  /* .wrap {
-    padding-top: 300px;
-    display: grid;
-    grid-template-areas: 'a b';
-    width: 90vw;
-    place-items: center;
-  }
-*/
+  .wrap {
+    padding-top: 70px;
+    display: flex;
+    align-items: center;
+    gap: 120px;
+  } 
 
   .player-list {
     display: flex;

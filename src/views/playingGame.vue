@@ -9,7 +9,7 @@
     {{ this.allegationsLeft }}/{{ poll.totalAllegations }}
   </div>
   <div class=text-frame>
-    <p>{{ poll.randomAllegation }}</p>
+    <p>"{{ poll.randomAllegation }}"</p>
   </div>
   <div class="alligator-container">
     <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }"
@@ -203,6 +203,11 @@ img {
 }
 
 .text-frame {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   border: 4px solid green;
   padding: 5px;
   width: 80vw;
@@ -251,7 +256,7 @@ img {
   font-size: 15px;
   font-family: monospace;
   position: relative;
-  top: -40px;
+  top: -30px;
   font-weight: bold;
 }
 
@@ -291,7 +296,7 @@ img {
   cursor: pointer;
   width: 220px;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   border: 0.1875em solid #2a9451;
 }
 
@@ -299,12 +304,11 @@ img {
   background-color: #3fbc6a;
 }
 
-@media screen and (max-width:50em) {
+@media screen and (max-width:1134px) {
   .text-frame {
     font-size: 20px;
     height: 20vh;
   }
-
   .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -313,17 +317,17 @@ img {
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
-
   img {
     max-width: 40vw;
   }
-
   .custom-radio-button {
     font-size: 16px;
     width: 125px;
-
   }
 
+  .playerLists {
+    margin-top: -20px;
+  }
   .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -331,6 +335,6 @@ img {
   }
 
   .grid-item {
-    margin-bottom: -20px;
+    margin-bottom: -15px;
   }
 }</style>
