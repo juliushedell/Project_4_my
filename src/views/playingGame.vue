@@ -38,10 +38,10 @@
   </div>
   <div class="playerLists">
     <div class="grid-container">
-      <label v-for="(player, index) in randomizedPlayers" :key="index" class="grid-item">
-        <input type="radio" :id="'player_' + index" :value="player" v-model="selectedPlayer" @change="submitAnswer"
-          :disabled="this.currentPlayer.answerLock" class="custom-radio-input" />
-        <span class="custom-radio-button">{{ player }}</span>
+      <label v-for="(player, index) in this.randomPlayers" :key="index" class="grid-item">
+        <input type="radio" :value="player" v-model="selectedPlayer" @change="submitAnswer"
+          :disabled="this.currentPlayer.answerLock" class="custom-radio-button" />
+        <span :class="getClass(player)">{{ player }}</span>
       </label>
     </div>
   </div>
@@ -66,6 +66,7 @@ export default {
       isHost: false,
       playerList: [],
       answerList: [],
+      randomPlayers: [],
       sneakDict: {},
       currentPlayer: {},
       allegationsLeft: 0,
@@ -78,10 +79,6 @@ export default {
   computed: {
     countPercentageAlligator() {
       return (this.timer / 15) * 100;
-    },
-    randomizedPlayers() {
-      const randomized = this.playerList.slice().sort(() => Math.random() - 0.5);
-      return randomized.slice(0, 4);
     },
   },
 
@@ -96,6 +93,7 @@ export default {
       socket.emit('getPlayerList', this.gameCode, poll.correctAnswer);
       socket.on('playerList', (playerList) => {
         this.playerList = playerList
+        this.randomizeIt(playerList)
       });
     });
     socket.emit('findCurrentPlayer', this.gameCode, this.name);
@@ -119,6 +117,18 @@ export default {
   },
 
   methods: {
+    randomizeIt: function(playerlist) {
+      const randomized = playerlist.slice().sort(() => Math.random() - 0.5);
+      this.randomPlayers = randomized;
+    },
+    getClass: function(player) {
+      if (player === this.currentPlayer.currentAnswer) {
+        return 'cssAnswer'
+      }
+      else {
+        return 'custom-radio-button'
+      }
+    },
     startCountdown() {
       var countdownInterval = setInterval(() => {
         if (this.timer > 0) {
@@ -302,7 +312,20 @@ img {
   border: 0.1875em solid #2a9451;
 }
 
-.custom-radio-input:checked+.custom-radio-button {
+.cssAnswer {
+  display: flex;
+  gap: 25px;
+  padding: 15px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: monospace;
+  border: 2px solid rgb(54, 54, 54);
+  border-radius: 50px;
+  cursor: pointer;
+  width: 220px;
+  justify-content: center;
+  margin-bottom: 15px;
+  border: 0.1875em solid #2a9451;
   background-color: #3fbc6a;
 }
 
