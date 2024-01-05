@@ -157,10 +157,6 @@
 </script>
 
 <style scoped>
-  /* #name {
-    text-align: center;
-    margin-top: 0.3em; 
-  } */
   #gameCode {
     text-align: center;
     margin-top: 1em;
@@ -185,8 +181,6 @@
     font-size: 30px;
     color: #2a9451;
     font-weight: bold;
-    /* font-family: monospace; */
-    /* display: inline-block; */
     vertical-align: top;
   }
   #theme{
