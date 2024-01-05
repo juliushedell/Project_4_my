@@ -109,8 +109,8 @@ export default {
 .rightButton {
   display: flex;
   justify-content: right;
-  margin-top: 20px;
-  padding-right: 5px;
+  margin-top: 80px;
+  padding-right: 30px;
 }
 
 body {
@@ -174,6 +174,10 @@ body {
   .button {
     width: 30vw;
     height: 6vh;
+  }
+  .rightButton{
+    margin-top: 20px;
+    padding-right: 5px;
   }
 }
 </style>
