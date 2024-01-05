@@ -193,6 +193,7 @@ img {
   font-size: 14px;
   font-weight: bold;
   border: 4px solid yellow;
+  opacity: 50%;
   border-radius: 50%;
   width: 35px;
   height: 35px;

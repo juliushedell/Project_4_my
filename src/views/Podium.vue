@@ -7,7 +7,7 @@
   </header>
   <div class="answerDisplay">
     <h3>
-      {{ uiLabels['answer'] }} {{ poll.correctAnswer }}
+      {{ uiLabels['answer'] }} <span class="correct-answer">{{ poll.correctAnswer }}</span>
     </h3>
   </div>
   <div class="podiumFrame">
@@ -126,6 +126,10 @@ export default {
   text-align: center;
 }
 
+.answerDisplay .correct-answer {
+  color: yellow;
+}
+
 .podiumFrame {
   border: 8px double green;
   padding: 2vw;
@@ -195,6 +199,7 @@ export default {
 #name {
   margin-bottom: 5px;
   font-weight: bold;
+  color: rgb(54, 54, 54);
 }
 
 .wrapper {
