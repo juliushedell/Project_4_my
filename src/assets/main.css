@@ -54,6 +54,7 @@ body {
   align-items: center;  
   font-size: 18px;
   padding: 1.25vw;
+  white-space: nowrap;
 }
 .button:hover {
   background-color: darkgreen;

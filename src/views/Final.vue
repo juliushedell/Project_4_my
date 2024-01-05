@@ -199,6 +199,7 @@ export default {
   position: fixed;
   right: 3em;
   bottom: 3em;
+  white-space: wrap;
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
