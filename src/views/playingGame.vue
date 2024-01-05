@@ -256,7 +256,7 @@ img {
   font-size: 15px;
   font-family: monospace;
   position: relative;
-  top: -40px;
+  top: -30px;
   font-weight: bold;
 }
 
@@ -296,7 +296,7 @@ img {
   cursor: pointer;
   width: 220px;
   justify-content: center;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   border: 0.1875em solid #2a9451;
 }
 
@@ -309,7 +309,6 @@ img {
     font-size: 20px;
     height: 20vh;
   }
-
   .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -318,17 +317,17 @@ img {
 }
 
 @media only screen and (max-width: 2532px) and (orientation: portrait) {
-
   img {
     max-width: 40vw;
   }
-
   .custom-radio-button {
     font-size: 16px;
     width: 125px;
-
   }
 
+  .playerLists {
+    margin-top: -20px;
+  }
   .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -336,6 +335,6 @@ img {
   }
 
   .grid-item {
-    margin-bottom: -20px;
+    margin-bottom: -15px;
   }
 }</style>
