@@ -9,7 +9,7 @@
     {{ this.allegationsLeft }}/{{ poll.totalAllegations }}
   </div>
   <div class=text-frame>
-    <p>{{ poll.randomAllegation }}</p>
+    <p>"{{ poll.randomAllegation }}"</p>
   </div>
   <div class="alligator-container">
     <img :style="{ clipPath: 'inset(0 ' + (110 - countPercentageAlligator) + '% 0 0)' }"
@@ -97,7 +97,6 @@ export default {
       socket.emit('getPlayerList', this.gameCode, poll.correctAnswer);
       socket.on('playerList', (playerList) => {
         this.playerList = playerList
-        this.randomizeIt(playerList)
       });
     });
     socket.emit('findCurrentPlayer', this.gameCode, this.name);
