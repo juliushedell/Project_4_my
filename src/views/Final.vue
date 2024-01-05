@@ -21,7 +21,7 @@
           </template>
         </div>
       </div>
-      <img src="../../public/img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifRigth">
+      <img src="../../img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifRigth">
     </div>
     <div class="quitGame">
       <router-link to="/" class="button"> {{ uiLabels["endGame"] }} </router-link>
