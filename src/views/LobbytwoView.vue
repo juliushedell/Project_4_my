@@ -111,15 +111,6 @@ export default {
   gap: 20px;
 }
 
-/* .wrap {
-  grid-template-columns: auto auto;
-  display: grid;
-  justify-content: center;
-  padding-top: 50px;
-  display: grid;
-  place-items: center;
-}
-*/
 
 .code {
   align-items: center;
@@ -183,13 +174,6 @@ export default {
     font-size: 8vw;
   }
 
-  .wrap {
-    padding-top: 70px;
-    display: flex;
-    align-items: center;
-    gap: 120px;
-  } 
-
   .player-list {
     display: flex;
     justify-content: center;
@@ -200,16 +184,24 @@ export default {
     width: 220px;
   }
 
-  .button {
-    position: relative;
-    right: 50px;
-    bottom: 50px;
+  .wrap {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
   }
 
-  .back {
-    position: relative;
-    left: 50px;
-    bottom: 50px;
+  .wrap .button {
+    right: 30px;
+    bottom: 10px;
   }
+
+  .wrap .back {
+    left: 30px;
+    bottom: 10px;
+    }
 }
 </style>
