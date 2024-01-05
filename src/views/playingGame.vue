@@ -219,6 +219,7 @@ img {
   overflow-wrap: break-word;
   margin: 0 auto;
   font-family: monospace;
+  color:  rgb(54, 54, 54);
 }
 
 .alligator-container {
@@ -292,7 +293,7 @@ img {
   font-size: 25px;
   font-weight: bold;
   font-family: monospace;
-  border: 2px solid black;
+  border: 2px solid rgb(54, 54, 54);
   border-radius: 50px;
   cursor: pointer;
   width: 220px;
