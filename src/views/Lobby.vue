@@ -255,7 +255,7 @@
     padding: 30px;
     margin: 0px;
     width: 85%;
-    background-color: rgba(236, 236, 236, 0.8);
+    background-color: rgba(236, 236, 236, 0.3);
   }
 
   .wrappp .button {
