@@ -24,6 +24,7 @@
 <script>
 import io from 'socket.io-client';
 // sessionStorage.setItem("dataServer", "172.20.10.2:3000") // Julius IP 
+// sessionStorage.setItem("dataServer", "172.20.10.3:3000") // Hugo IP
 sessionStorage.setItem("dataServer", "localhost:3000")
 const socket = io(sessionStorage.getItem("dataServer"));
 
@@ -125,6 +126,7 @@ body {
 
 .button {
   height: 25px;
+  white-space: wrap;
 }
 
 @media screen and (max-width:50em) {
@@ -135,6 +137,7 @@ body {
   .button {
     width: 18vw;
     height: 6vh;
+    white-space: wrap;
   }
 
   #startpage_picture {
@@ -174,7 +177,9 @@ body {
   .button {
     width: 30vw;
     height: 6vh;
+    white-space: wrap;
   }
+
   .rightButton{
     margin-top: 20px;
     padding-right: 5px;
