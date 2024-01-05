@@ -2,10 +2,13 @@
   <div class="confetti-wrapper">
     <Confetti />
   </div>
+  <header>
+    <h1>
+       Podium 
+      <img src="/img/Head_picture.png" class="head_picture">
+    </h1>
+  </header>
   <div class="content">
-    <div class="header">
-      <p>PODIUM</p>
-    </div>
     <div class="row-container">
       <img src="../../img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifLeft">
       <div class=podiumFrame>
@@ -24,7 +27,9 @@
       <img src="../../img/gifAlligator.gif" alt="Alligator GIF" id="alligatorGifRigth">
     </div>
     <div class="quitGame">
-      <router-link to="/" class="button"> {{ uiLabels["endGame"] }} </router-link>
+      <router-link to="/" class="button"> {{ uiLabels["endGame"] }} 
+        <span class="tooltiptext">See ya later, allegator!</span>
+      </router-link>
     </div>
   </div>
 </template>
@@ -106,7 +111,7 @@ export default {
   min-height: 40vh;
   overflow-wrap: break-word;
   margin: 0 auto;
-  margin-top: 4vh;
+  margin-top: 10vh;
   font-family: monospace;
   font-size: 20px;
 }
@@ -168,6 +173,27 @@ export default {
   color: yellow;
   font-family: monospace;
 }
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.quitGame:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
 .button {
   height: 20px;
   position: fixed;
@@ -179,6 +205,7 @@ export default {
   .podiumFrame {
     border: 6px double green;
     width: 60vw;
+    margin-top: 4vh;
   }
   .row-container {
     flex-direction: column;
@@ -188,12 +215,21 @@ export default {
   #alligatorGifRigth {
     margin-top: 20px;
   }
-  .quitGame{
-    margin-right: 50px;
+
+  .quitGame {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
   }
-  .button {
-    height: 30px;
-    position: relative;
+
+  .quitGame .button {
+    right: 30px;
+    bottom: 10px;
+    position: fixed;
   }
 }
 </style>
