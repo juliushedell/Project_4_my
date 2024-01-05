@@ -10,7 +10,7 @@
       {{ uiLabels['answer'] }} {{ poll.correctAnswer }}
     </h3>
   </div>
-  <div class=podiumFrame :style="{ backgroundImage: 'url(https://cdn.pixabay.com/photo/2022/03/27/14/42/podium-7095300_1280.png)' }">
+  <div class="podiumFrame">
     <div class="placement" v-for="(i, index) in theScoreboard" :key="i">
       <template v-if="typeof i !== 'undefined' && i.length > 0">
         <div :class="{ 'gold': index === 0, 'silver': index === 1, 'bronze': index === 2 }">{{ index + 1 }}</div>
@@ -141,9 +141,6 @@ export default {
   font-family: monospace;
   font-size: 20px;
   text-align: center;
-  background-size: contain;
-  background-position: bottom;
-  background-repeat: no-repeat;
 }
 
 .placement {
@@ -214,29 +211,41 @@ export default {
   font-size: 16px;
   display: grid;
   justify-content: center;
+  padding-bottom:80px; 
 }
 
 .button {
   position: absolute;
-  right: 50px;
-  bottom: 50px;
+  right: 3em;
+  bottom: 3em;
 }
 
 .back {
   position: absolute;
-  left: 50px;
-  bottom: 50px;
+  left: 3em;
+  bottom: 3em;
 }
 
 @media only screen and (max-width: 1100px){
 .button{
-  position: relative; 
-  margin-top: 30px;
+  position: fixed; 
+  right: 30px;
+  bottom: 10px;
 }
 .back{
-  position: relative;
-  margin-top: 30px;
+  position: fixed;
+  left: 30px;
+  bottom: 10px;
 }
+.wrapper {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
+  }
   
 }
 

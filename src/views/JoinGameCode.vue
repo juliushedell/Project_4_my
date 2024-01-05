@@ -134,4 +134,26 @@ export default {
   }
 }
 
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  .wrapper {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
+  }
+
+  .wrapper .button {
+    right: 30px;
+    bottom: 10px;
+  }
+
+  .wrapper .back {
+    left: 30px;
+    bottom: 10px;
+    }
+}
+
 </style>
