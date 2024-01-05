@@ -151,5 +151,30 @@ export default {
   position: absolute;
   left: 50px;
   bottom: 50px;
+  height: 40px;
+}
+
+@media only screen and (max-width: 2532px) and (orientation: portrait) {
+  .wrap {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
+  }
+
+  .wrap .button {
+    right: 30px;
+    bottom: 10px;
+  }
+
+  .wrap .back {
+    left: 30px;
+    bottom: 10px;
+    height: 39px;
+    width: 144px;
+    }
 }
 </style>

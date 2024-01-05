@@ -365,6 +365,35 @@ input:checked + .slider:before {
   align-items: center;
   white-space: nowrap;
   }
+
+  .align {  
+    position: fixed;
+    bottom: 0px;
+    display: flex; 
+    align-items: center;
+    padding: 30px;
+    margin: 0px;
+    width: 85%;
+    background-color: rgba(236, 236, 236, 0.3);
+  }
+
+  .align .button {
+    position: fixed;
+    right: 30px;
+    bottom: 10px;
+    height: 45px;
+  }
+
+  .align .back {
+    position: fixed;
+    left: 30px;
+    bottom: 10px;
+    height: 39px;
+    }
+
+  .lifeline {
+    padding-bottom: 40px;
+  }
 }
   @media only screen and (max-height: 608px){
 
