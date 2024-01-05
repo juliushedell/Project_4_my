@@ -85,8 +85,8 @@ body {
 .custom-alert {
   position: fixed;
   top: 30%;
-  left: 50%; 
-  transform: translate(-50%); 
+  left: 50%; /*Placerar objektet så dess vänsterkant börjar 50% in i skärmen från vänster */
+  transform: translate(-50%); /*Flyttar objektet 50% av sin egna längd åt vänster (så den i vårt fall blir centrerad)*/
   background-color: whitesmoke; 
   border: 3px solid red;
   border-radius: 20px;
