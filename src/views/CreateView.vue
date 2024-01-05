@@ -134,7 +134,7 @@ export default {
   }
 }
 </script>
-  
+
 <style scoped> .wrapper {
    padding-top: 50px;
    color: #2a9451;
@@ -429,7 +429,6 @@ export default {
  }
 
  @media only screen and (max-height: 608px) {
-
    .back {
      position: relative;
    }
@@ -437,4 +436,5 @@ export default {
    .button {
      position: relative;
    }
- }</style>
+ }
+</style>

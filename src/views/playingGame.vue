@@ -338,4 +338,9 @@ img {
   .grid-item {
     margin-bottom: -15px;
   }
-}</style>
+
+  .sneakpeak {
+    margin-bottom: 28px;
+}
+}
+</style>
